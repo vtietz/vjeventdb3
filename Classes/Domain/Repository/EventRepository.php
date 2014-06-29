@@ -31,5 +31,37 @@ namespace VJmedia\Vjeventdb3\Domain\Repository;
  */
 class EventRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 
+	public function findAllInDateRange($startDate, $endDate) {
+		
+		$query = $this->persistenceManager->createQueryForType($this->objectType);
+		if ($this->defaultOrderings !== array()) {
+			$query->setOrderings($this->defaultOrderings);
+		}
+		if ($this->defaultQuerySettings !== NULL) {
+			$query->setQuerySettings(clone $this->defaultQuerySettings);
+		}
+		
+		//$query = $this->createQuery();
+		//$query->statement();
+		
+		$query->matching(
+				$query->logicalAnd(
+					$query->greaterThanOrEqual("dates.start_date", $startDate),
+					$query->logicalOr(
+						$query->lessThanOrEqual("dates.end_date", $endDate),
+						$query->equals("dates.end_date", NULL)
+					)
+				)
+			);
+
+		//$this->persistenceManager->a
+		
+		//$query->getQuerySettings()->
+		
+		return $query->execute();
+				
+		//return $this->createQuery()->execute();
+	}
+	
 	
 }
