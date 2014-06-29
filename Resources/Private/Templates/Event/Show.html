@@ -16,7 +16,10 @@ Otherwise your changes will be overwritten the next time you save the extension 
 <h1>Single View for Event</h1>
 
 <f:flashMessages renderMode="div" />
-<f:render partial="Event/Properties" arguments="{event:event}" />
+
+{event.title}
+
+<!--  f:render partial="Event/Properties" arguments="{event:event}" / -->
 <f:link.action action="list">Back to list</f:link.action><br />
 <f:link.action action="new">New Event</f:link.action>
 </f:section>
