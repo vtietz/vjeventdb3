@@ -252,10 +252,88 @@ class Event extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	}
 
 	/**
+	 * Adds a Location
+	 *
+	 * @param \VJmedia\Vjeventdb3\Domain\Model\Location $location
+	 * @return void
+	 */
+	public function addLocation(\VJmedia\Vjeventdb3\Domain\Model\Location $location) {
+		$this->location->attach($location);
+	}
+
+	/**
+	 * Removes a Location
+	 *
+	 * @param \VJmedia\Vjeventdb3\Domain\Model\Location $locationToRemove The Location to be removed
+	 * @return void
+	 */
+	public function removeLocation(\VJmedia\Vjeventdb3\Domain\Model\Location $locationToRemove) {
+		$this->location->detach($locationToRemove);
+	}
+
+	/**
+	 * Returns the location
+	 *
+	 * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\VJmedia\Vjeventdb3\Domain\Model\Location> $location
+	 */
+	public function getLocation() {
+		return $this->location;
+	}
+
+	/**
+	 * Sets the location
+	 *
+	 * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\VJmedia\Vjeventdb3\Domain\Model\Location> $location
+	 * @return void
+	 */
+	public function setLocation(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $location) {
+		$this->location = $location;
+	}
+
+	/**
+	 * Adds a Date
+	 *
+	 * @param \VJmedia\Vjeventdb3\Domain\Model\Date $date
+	 * @return void
+	 */
+	public function addDate(\VJmedia\Vjeventdb3\Domain\Model\Date $date) {
+		$this->dates->attach($date);
+	}
+
+	/**
+	 * Removes a Date
+	 *
+	 * @param \VJmedia\Vjeventdb3\Domain\Model\Date $dateToRemove The Date to be removed
+	 * @return void
+	 */
+	public function removeDate(\VJmedia\Vjeventdb3\Domain\Model\Date $dateToRemove) {
+		$this->dates->detach($dateToRemove);
+	}
+
+	/**
+	 * Returns the dates
+	 *
+	 * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\VJmedia\Vjeventdb3\Domain\Model\Date> $dates
+	 */
+	public function getDates() {
+		return $this->dates;
+	}
+
+	/**
+	 * Sets the dates
+	 *
+	 * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\VJmedia\Vjeventdb3\Domain\Model\Date> $dates
+	 * @return void
+	 */
+	public function setDates(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $dates) {
+		$this->dates = $dates;
+	}
+
+	/**
 	 * Adds a EventCategory
 	 *
 	 * @param \VJmedia\Vjeventdb3\Domain\Model\EventCategory $eventCategory
-	 * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\VJmedia\Vjeventdb3\Domain\Model\EventCategory> eventCategory
+	 * @return void
 	 */
 	public function addEventCategory(\VJmedia\Vjeventdb3\Domain\Model\EventCategory $eventCategory) {
 		$this->eventCategory->attach($eventCategory);
@@ -265,7 +343,7 @@ class Event extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 * Removes a EventCategory
 	 *
 	 * @param \VJmedia\Vjeventdb3\Domain\Model\EventCategory $eventCategoryToRemove The EventCategory to be removed
-	 * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\VJmedia\Vjeventdb3\Domain\Model\EventCategory> eventCategory
+	 * @return void
 	 */
 	public function removeEventCategory(\VJmedia\Vjeventdb3\Domain\Model\EventCategory $eventCategoryToRemove) {
 		$this->eventCategory->detach($eventCategoryToRemove);
@@ -274,7 +352,7 @@ class Event extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	/**
 	 * Returns the eventCategory
 	 *
-	 * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\VJmedia\Vjeventdb3\Domain\Model\EventCategory> eventCategory
+	 * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\VJmedia\Vjeventdb3\Domain\Model\EventCategory> $eventCategory
 	 */
 	public function getEventCategory() {
 		return $this->eventCategory;
@@ -284,7 +362,7 @@ class Event extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 * Sets the eventCategory
 	 *
 	 * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\VJmedia\Vjeventdb3\Domain\Model\EventCategory> $eventCategory
-	 * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\VJmedia\Vjeventdb3\Domain\Model\EventCategory> eventCategory
+	 * @return void
 	 */
 	public function setEventCategory(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $eventCategory) {
 		$this->eventCategory = $eventCategory;
@@ -330,51 +408,12 @@ class Event extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	}
 
 	/**
-	 * Adds a Location
-	 *
-	 * @param \VJmedia\Vjeventdb3\Domain\Model\Location $location
-	 * @return void
-	 */
-	public function addLocation(\VJmedia\Vjeventdb3\Domain\Model\Location $location) {
-		$this->location->attach($location);
-	}
-
-	/**
-	 * Removes a Location
-	 *
-	 * @param \VJmedia\Vjeventdb3\Domain\Model\Location $locationToRemove The Location to be removed
-	 * @return void
-	 */
-	public function removeLocation(\VJmedia\Vjeventdb3\Domain\Model\Location $locationToRemove) {
-		$this->location->detach($locationToRemove);
-	}
-
-	/**
-	 * Returns the location
-	 *
-	 * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\VJmedia\Vjeventdb3\Domain\Model\Location> $location
-	 */
-	public function getLocation() {
-		return $this->location;
-	}
-
-	/**
-	 * Sets the location
-	 *
-	 * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\VJmedia\Vjeventdb3\Domain\Model\Location> $location
-	 * @return void
-	 */
-	public function setLocation(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $location) {
-		$this->location = $location;
-	}
-
-	/**
 	 * Adds a Price
 	 *
 	 * @param \VJmedia\Vjeventdb3\Domain\Model\Price $price
-	 * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\VJmedia\Vjeventdb3\Domain\Model\Price> prices
+	 * @return void
 	 */
-	public function addPrice($price) {
+	public function addPrice(\VJmedia\Vjeventdb3\Domain\Model\Price $price) {
 		$this->prices->attach($price);
 	}
 
@@ -382,16 +421,16 @@ class Event extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 * Removes a Price
 	 *
 	 * @param \VJmedia\Vjeventdb3\Domain\Model\Price $priceToRemove The Price to be removed
-	 * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\VJmedia\Vjeventdb3\Domain\Model\Price> prices
+	 * @return void
 	 */
-	public function removePrice($priceToRemove) {
+	public function removePrice(\VJmedia\Vjeventdb3\Domain\Model\Price $priceToRemove) {
 		$this->prices->detach($priceToRemove);
 	}
 
 	/**
 	 * Returns the prices
 	 *
-	 * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\VJmedia\Vjeventdb3\Domain\Model\Price> prices
+	 * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\VJmedia\Vjeventdb3\Domain\Model\Price> $prices
 	 */
 	public function getPrices() {
 		return $this->prices;
@@ -401,49 +440,10 @@ class Event extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 * Sets the prices
 	 *
 	 * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\VJmedia\Vjeventdb3\Domain\Model\Price> $prices
-	 * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\VJmedia\Vjeventdb3\Domain\Model\Price> prices
+	 * @return void
 	 */
 	public function setPrices(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $prices) {
 		$this->prices = $prices;
-	}
-
-	/**
-	 * Adds a Date
-	 *
-	 * @param \VJmedia\Vjeventdb3\Domain\Model\Date $date
-	 * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\VJmedia\Vjeventdb3\Domain\Model\Date> dates
-	 */
-	public function addDate($date) {
-		$this->dates->attach($date);
-	}
-
-	/**
-	 * Removes a Date
-	 *
-	 * @param \VJmedia\Vjeventdb3\Domain\Model\Date $dateToRemove The Date to be removed
-	 * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\VJmedia\Vjeventdb3\Domain\Model\Date> dates
-	 */
-	public function removeDate($dateToRemove) {
-		$this->dates->detach($dateToRemove);
-	}
-
-	/**
-	 * Returns the dates
-	 *
-	 * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\VJmedia\Vjeventdb3\Domain\Model\Date> dates
-	 */
-	public function getDates() {
-		return $this->dates;
-	}
-
-	/**
-	 * Sets the dates
-	 *
-	 * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\VJmedia\Vjeventdb3\Domain\Model\Date> $dates
-	 * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\VJmedia\Vjeventdb3\Domain\Model\Date> dates
-	 */
-	public function setDates(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $dates) {
-		$this->dates = $dates;
 	}
 
 	/**

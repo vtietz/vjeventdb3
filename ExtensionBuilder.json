@@ -907,18 +907,6 @@
         },
         {
             "src": {
-                "moduleId": 0,
-                "terminal": "relationWire_1",
-                "uid": "548665531211"
-            },
-            "tgt": {
-                "moduleId": 2,
-                "terminal": "SOURCES",
-                "uid": "1031799716667"
-            }
-        },
-        {
-            "src": {
                 "moduleId": 5,
                 "terminal": "relationWire_1",
                 "uid": "996120404516"
@@ -964,10 +952,22 @@
                 "terminal": "SOURCES",
                 "uid": "1021232398943"
             }
+        },
+        {
+            "src": {
+                "moduleId": 0,
+                "terminal": "relationWire_1",
+                "uid": "548665531211"
+            },
+            "tgt": {
+                "moduleId": 2,
+                "terminal": "SOURCES",
+                "uid": "1031799716667"
+            }
         }
     ],
     "log": {
-        "last_modified": "2014-06-26 09:43",
+        "last_modified": "2014-06-29 04:47",
         "extension_builder_version": "6.2.0",
         "be_user": " (1)"
     }

@@ -128,9 +128,9 @@ class Price extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 * Adds a PriceCategory
 	 *
 	 * @param \VJmedia\Vjeventdb3\Domain\Model\PriceCategory $priceCategory
-	 * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\VJmedia\Vjeventdb3\Domain\Model\PriceCategory> priceCategory
+	 * @return void
 	 */
-	public function addPriceCategory($priceCategory) {
+	public function addPriceCategory(\VJmedia\Vjeventdb3\Domain\Model\PriceCategory $priceCategory) {
 		$this->priceCategory->attach($priceCategory);
 	}
 
@@ -138,16 +138,16 @@ class Price extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 * Removes a PriceCategory
 	 *
 	 * @param \VJmedia\Vjeventdb3\Domain\Model\PriceCategory $priceCategoryToRemove The PriceCategory to be removed
-	 * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\VJmedia\Vjeventdb3\Domain\Model\PriceCategory> priceCategory
+	 * @return void
 	 */
-	public function removePriceCategory($priceCategoryToRemove) {
+	public function removePriceCategory(\VJmedia\Vjeventdb3\Domain\Model\PriceCategory $priceCategoryToRemove) {
 		$this->priceCategory->detach($priceCategoryToRemove);
 	}
 
 	/**
 	 * Returns the priceCategory
 	 *
-	 * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\VJmedia\Vjeventdb3\Domain\Model\PriceCategory> priceCategory
+	 * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\VJmedia\Vjeventdb3\Domain\Model\PriceCategory> $priceCategory
 	 */
 	public function getPriceCategory() {
 		return $this->priceCategory;
@@ -157,7 +157,7 @@ class Price extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 * Sets the priceCategory
 	 *
 	 * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\VJmedia\Vjeventdb3\Domain\Model\PriceCategory> $priceCategory
-	 * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\VJmedia\Vjeventdb3\Domain\Model\PriceCategory> priceCategory
+	 * @return void
 	 */
 	public function setPriceCategory(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $priceCategory) {
 		$this->priceCategory = $priceCategory;
