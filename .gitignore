@@ -1,2 +1,4 @@
 .project
 Documentation.tmpl/.DS_Store
+.buildpath
+.settings/

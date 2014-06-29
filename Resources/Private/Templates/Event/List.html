@@ -18,6 +18,12 @@ Otherwise your changes will be overwritten the next time you save the extension 
 
 <h1><f:translate key="tx_vjeventdb3_events.events" /></h1>
 
+<ul>
+<f:for each="{days}" as="day">
+	<li><f:format.date format="l, d.m.">@{day}</f:format.date></li>
+</f:for>
+</ul>
+
 
 <table class="tx_vjeventdb3" >
 	<tr>

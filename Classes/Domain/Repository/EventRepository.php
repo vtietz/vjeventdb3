@@ -41,9 +41,6 @@ class EventRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 			$query->setQuerySettings(clone $this->defaultQuerySettings);
 		}
 		
-		//$query = $this->createQuery();
-		//$query->statement();
-		
 		$query->matching(
 				$query->logicalAnd(
 					$query->greaterThanOrEqual("dates.start_date", $startDate),
@@ -54,13 +51,7 @@ class EventRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 				)
 			);
 
-		//$this->persistenceManager->a
-		
-		//$query->getQuerySettings()->
-		
 		return $query->execute();
-				
-		//return $this->createQuery()->execute();
 	}
 	
 	
