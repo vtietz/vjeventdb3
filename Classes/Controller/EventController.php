@@ -45,8 +45,25 @@ class EventController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 	 * @return void
 	 */
 	public function listAction() {
+		
+		echo "hi";
+
+		
+		$startdate = date('Y-m-d', strtotime("last Monday"));
+		$enddate = date('Y-m-d', strtotime("next Monday"));
+		
+		echo $startdate;
+		echo $enddate;
+		$events = $this->eventRepository->findAllInDateRange($startdate, $enddate);
+		
+		/*
 		$events = $this->eventRepository->findAll();
+		*/
+		
+		//$events = $this->eventRepository->findAll();
 		$this->view->assign('events', $events);
+		
+		
 	}
 
 	/**
@@ -56,6 +73,10 @@ class EventController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 	 * @return void
 	 */
 	public function showAction(\VJmedia\Vjeventdb3\Domain\Model\Event $event) {
+
+		echo "hi";
+		var_dump($event->getDates());
+		
 		$this->view->assign('event', $event);
 	}
 
