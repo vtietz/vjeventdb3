@@ -1,6 +1,7 @@
 <?php
 namespace VJmedia\Vjeventdb3\Service;
 
+use VJmedia\Vjeventdb3\Domain\Model\Date;
 /**
  * 
  * Provides some methods to convert and to calculate dates.
@@ -14,6 +15,26 @@ class DateService implements \TYPO3\CMS\Core\SingletonInterface {
 	const DIFF_MODE_MONTHS = "m";
 	const DIFF_MODE_WEEKS = "w";
 	const DIFF_MODE_DAYS = "d";
+	
+	public function filterByPeriod($dates, $starttime, $endtime) {
+		
+		$theValue = array();
+		for($dates as $date) {
+			/* @var $date \VJmedia\Vjeventdb3\Domain\Model\Date */
+			if($date->getFrequency() == Date::FREQUENCY_ONCE) {
+				if($date->getStartDate() + $date->getEndDate() >= $starttime) {
+					$theValue[] = $date;				
+				}
+			}
+			if($date->getFrequency() == Date::FREQUENCY_WEEKLY) {
+				$theValue[] = $date;
+			}
+				
+		}
+		
+		return $theValue;
+		
+	}
 	
 	public function getDaySections($startdate, $enddate) {
 		$dayCount = $this->datediff(DateService::DIFF_MODE_DAYS, $startdate, $enddate, false);

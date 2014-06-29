@@ -32,6 +32,31 @@ namespace VJmedia\Vjeventdb3\Domain\Model;
 class Date extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	/**
+	 * Once.
+	 */
+	const FREQUENCY_ONCE = 0;
+	
+	/**
+	 * Daily.
+	 */
+	const FREQUENCY_DAILY = 1;
+	
+	/**
+	 * Weely.
+	 */
+	const FREQUENCY_WEEKLY = 2;
+	
+	/**
+	 * Monthly.
+	 */
+	const FREQUENCY_MONTHLY = 3;
+	
+	/**
+	 * Yearly.
+	 */
+	const FREQUENCY_YEARLY = 4;
+	
+	/**
 	 * startDate
 	 *
 	 * @var \DateTime

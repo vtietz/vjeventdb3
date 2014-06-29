@@ -19,8 +19,15 @@ Otherwise your changes will be overwritten the next time you save the extension 
 <h1><f:translate key="tx_vjeventdb3_events.events" /></h1>
 
 <ul>
+<f:for each="{dates}" as="date">
+	<li>{date.uid} | <f:format.date format="d.m">{date.startDate}</f:format.date> | <f:format.date format="H:i">{date.startTime}</f:format.date> | {date.frequency}</li>
+</f:for>
+</ul>
+
+
+<ul>
 <f:for each="{days}" as="day">
-	<li><f:format.date format="l, d.m.">@{day}</f:format.date></li>
+	<li><f:format.date format="{dateformat}">@{day}</f:format.date></li>
 </f:for>
 </ul>
 
@@ -37,10 +44,8 @@ Otherwise your changes will be overwritten the next time you save the extension 
 		<tr>
 			<td><f:link.action action="show" arguments="{event : event}"> {event.title}</f:link.action></td>
 			<td><f:link.action action="show" arguments="{event : event}"> {event.subtitle}</f:link.action></td>
-			<td><f:link.action action="show" arguments="{event : event}"> {event.teasertext}</f:link.action></td>
-			<td><f:link.action action="show" arguments="{event : event}"> {event.description}</f:link.action></td>
-			<td><f:link.action action="edit" arguments="{event : event}">Edit</f:link.action></td>
-			<td><f:link.action action="delete" arguments="{event : event}">Delete</f:link.action></td>
+			<td></td>
+			<td></td>
 		</tr>
 	</f:for>
 </table>
