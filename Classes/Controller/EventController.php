@@ -45,19 +45,17 @@ class EventController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 	 * @var \VJmedia\Vjeventdb3\Service\DateService
 	 */
 	protected $dateService = NULL;
-	
+
 	/**
 	 * action list
 	 *
 	 * @return void
 	 */
 	public function listAction() {
-		$startdate = date('Y-m-d', strtotime("last Monday"));
-		$enddate = date('Y-m-d', strtotime("next Monday"));
+		$startdate = date('Y-m-d', strtotime('last Monday'));
+		$enddate = date('Y-m-d', strtotime('next Monday'));
 		$events = $this->eventRepository->findAllInDateRange($startdate, $enddate);
-		
 		$this->dateService = new \VJmedia\Vjeventdb3\Service\DateService();
-		
 		$this->view->assign('days', $this->dateService->getDaySections($startdate, $enddate));
 		$this->view->assign('events', $events);
 	}
@@ -69,7 +67,6 @@ class EventController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 	 * @return void
 	 */
 	public function showAction(\VJmedia\Vjeventdb3\Domain\Model\Event $event) {
-
 		$this->view->assign('event', $event);
 	}
 

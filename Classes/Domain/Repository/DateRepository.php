@@ -1,6 +1,7 @@
 <?php
 namespace VJmedia\Vjeventdb3\Domain\Repository;
 
+
 /***************************************************************
  *
  *  Copyright notice
@@ -27,32 +28,9 @@ namespace VJmedia\Vjeventdb3\Domain\Repository;
  ***************************************************************/
 
 /**
- * The repository for Events
+ * The repository for Dates
  */
-class EventRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
+class DateRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 
-	/**
-	 * @param $startDate
-	 * @param $endDate
-	 */
-	public function findAllInDateRange($startDate, $endDate) {
-		$query = $this->persistenceManager->createQueryForType($this->objectType);
-		if ($this->defaultOrderings !== array()) {
-			$query->setOrderings($this->defaultOrderings);
-		}
-		if ($this->defaultQuerySettings !== NULL) {
-			$query->setQuerySettings(clone $this->defaultQuerySettings);
-		}
-		$query->matching(
-			$query->logicalAnd(
-				$query->greaterThanOrEqual('dates.start_date', $startDate),
-				$query->logicalOr(
-					$query->lessThanOrEqual('dates.end_date', $endDate),
-					$query->equals('dates.end_date', NULL)
-				)
-			)
-		);
-		return $query->execute();
-	}
-
+	
 }
