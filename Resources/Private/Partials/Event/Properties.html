@@ -1,0 +1,45 @@
+
+<table class="tx-vjeventdb3" >
+	<tr>
+		<td>
+			<f:translate key="tx_vjeventdb3_domain_model_event.title" />
+		</td>
+		<td>
+		{event.title}
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<f:translate key="tx_vjeventdb3_domain_model_event.subtitle" />
+		</td>
+		<td>
+		{event.subtitle}
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<f:translate key="tx_vjeventdb3_domain_model_event.teasertext" />
+		</td>
+		<td>
+		{event.teasertext}
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<f:translate key="tx_vjeventdb3_domain_model_event.description" />
+		</td>
+		<td>
+		{event.description}
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<f:translate key="tx_vjeventdb3_domain_model_event.images" />
+		</td>
+		<td>
+				<f:for each="{event.images}" as="image" >
+					<f:image src="{image.originalResource.publicUrl}" width="200"/>
+				</f:for>
+		</td>
+	</tr>
+</table>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" date="2014-06-26T21:43:02Z" product-name="vjeventdb3">
+		<header/>
+		<body>
+			<trans-unit id="name.description">
+				<source>name</source>
+			</trans-unit>
+			<trans-unit id="price.description">
+				<source>price</source>
+			</trans-unit>
+			<trans-unit id="price_category.description">
+				<source>priceCategory</source>
+			</trans-unit>
+			<trans-unit id="price_unit.description">
+				<source>priceUnit</source>
+			</trans-unit>
+			<trans-unit id="price_amount.description">
+				<source>priceAmount</source>
+			</trans-unit>
+			<trans-unit id="quanity.description">
+				<source>quanity</source>
+			</trans-unit>
+			<trans-unit id="unit.description">
+				<source>unit</source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

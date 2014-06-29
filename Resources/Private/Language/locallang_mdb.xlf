@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" date="2014-06-24T19:33:12Z" product-name="vjeventdb3">
+		<header/>
+		<body>
+
+			<trans-unit id="tx_vjeventdb3_events.frequency.I.0">
+				<source>Once</source>
+			</trans-unit>
+			<trans-unit id="tx_vjeventdb3_events.frequency.I.1">
+				<source>Daily</source>
+			</trans-unit>
+			<trans-unit id="tx_vjeventdb3_events.frequency.I.2">
+				<source>Weekly</source>
+			</trans-unit>
+			<trans-unit id="tx_vjeventdb3_events.frequency.I.3">
+				<source>Monthly</source>
+			</trans-unit>
+			<trans-unit id="tx_vjeventdb3_events.frequency.I.4">
+				<source>Yearly</source>
+			</trans-unit>
+			
+
+		</body>
+	</file>
+</xliff>
