@@ -42,10 +42,10 @@ Otherwise your changes will be overwritten the next time you save the extension 
 
 	<f:for each="{events}" as="event">
 		<tr>
+			<td>{event}</td>
+			<td><f:format.date format="d.m">@{event}</f:format.date> | <f:format.date format="H:i">{event}</f:format.date></td>
 			<td><f:link.action action="show" arguments="{event : event}"> {event.title}</f:link.action></td>
 			<td><f:link.action action="show" arguments="{event : event}"> {event.subtitle}</f:link.action></td>
-			<td></td>
-			<td></td>
 		</tr>
 	</f:for>
 </table>

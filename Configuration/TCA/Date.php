@@ -166,7 +166,7 @@ $GLOBALS['TCA']['tx_vjeventdb3_domain_model_date'] = array(
 
 $TCA['tx_vjeventdb3_domain_model_date']['types']['1'] =  array('showitem' => 'sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, hidden;;1, start_date, start_time, end_date, end_time, frequency, --div--;LLL:EXT:cms/locallang_ttc.xlf:tabs.extended,title, text;;;richtext:rte_transform[mode=ts_links], ');
 
-$TCA['tx_vjeventdb3_domain_model_date']['ctrl']['hideTable'] = 1;
+// $TCA['tx_vjeventdb3_domain_model_date']['ctrl']['hideTable'] = 1;
 $TCA['tx_vjeventdb3_domain_model_date']['ctrl']['label'] = 'start_date';
 $TCA['tx_vjeventdb3_domain_model_date']['ctrl']['label_alt'] = 'start_time,frequency,title';
 $TCA['tx_vjeventdb3_domain_model_date']['ctrl']['label_alt_force'] = 1;

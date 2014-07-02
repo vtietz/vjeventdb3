@@ -19,7 +19,7 @@ class DateService implements \TYPO3\CMS\Core\SingletonInterface {
 	public function filterByPeriod($dates, $starttime, $endtime) {
 		
 		$theValue = array();
-		for($dates as $date) {
+		foreach($dates as $date) {
 			/* @var $date \VJmedia\Vjeventdb3\Domain\Model\Date */
 			if($date->getFrequency() == Date::FREQUENCY_ONCE) {
 				if($date->getStartDate() + $date->getEndDate() >= $starttime) {
@@ -53,6 +53,33 @@ class DateService implements \TYPO3\CMS\Core\SingletonInterface {
 	public function geDaysCount($startdate, $enddate) {
 		return $this->datediff(DateService::DIFF_MODE_DAYS, $startdate, $enddate, false);
 	} 
+
+	/**
+	 * @param number $startdate The start timestamp.
+	 * @param number $enddate The end timestamp.
+	 * @return number Amount of weeks.
+	 */
+	public function getWeeksCount($startdate, $enddate) {
+		return $this->datediff(DateService::DIFF_MODE_WEEKS, $startdate, $enddate, false);
+	}
+
+	/**
+	 * @param number $startdate The start timestamp.
+	 * @param number $enddate The end timestamp.
+	 * @return number Amount of months.
+	 */
+	public function getMonthsCount($startdate, $enddate) {
+		return $this->datediff(DateService::DIFF_MODE_MONTHS, $startdate, $enddate, false);
+	}
+	
+	/**
+	 * @param number $startdate The start timestamp.
+	 * @param number $enddate The end timestamp.
+	 * @return number Amount of years.
+	 */
+	public function getYearsCount($startdate, $enddate) {
+		return $this->datediff(DateService::DIFF_MODE_YEARS, $startdate, $enddate, false);
+	}
 	
 	/**
 	 * @param unknown $interval

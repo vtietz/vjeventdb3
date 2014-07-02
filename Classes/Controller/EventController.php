@@ -96,7 +96,28 @@ class EventController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 		$this->view->assign('dates', $dates);
 		
 		$this->view->assign('days', array());
-		$this->view->assign('events', array());
+		$this->view->assign('events', $this->getEvents($dates, $start, $end));
+		
+	}
+	
+	public function getEvents($dates, $start, $end) {
+		
+		$theValue = array();
+		
+		foreach($dates as $date) {
+			/* @var $date \VJmedia\Vjeventdb3\Domain\Model\Date */
+			
+			
+			
+			$timestamp = $date->getStartDate()->getTimestamp() + $date->getStartTime();
+			//if($timestamp < $end) {
+				$theValue[$timestamp] = $this->eventRepository->findByDates($date)->getFirst();
+			//}
+		}
+		
+		ksort($theValue);
+		
+		return $theValue;
 		
 	}
 

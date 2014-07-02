@@ -140,7 +140,7 @@ class Date extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 * @param integer $startTime
 	 * @return void
 	 */
-	public function setStartTime(integer $startTime) {
+	public function setStartTime($startTime) {
 		$this->startTime = $startTime;
 	}
 
@@ -178,7 +178,7 @@ class Date extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 * @param integer $endTime
 	 * @return void
 	 */
-	public function setEndTime(integer $endTime) {
+	public function setEndTime($endTime) {
 		$this->endTime = $endTime;
 	}
 
