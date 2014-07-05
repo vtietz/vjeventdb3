@@ -96,7 +96,8 @@ class EventController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 		$this->view->assign('dates', $dates);
 		
 		$this->view->assign('days', array());
-		$this->view->assign('events', $this->getEvents($dates, $start, $end));
+		// $this->view->assign('events', $this->getEvents($dates, $start, $end));
+		$this->view->assign('events', $this->eventRepository->findAll());
 		
 	}
 	
