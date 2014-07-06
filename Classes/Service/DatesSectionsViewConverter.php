@@ -107,13 +107,11 @@ class DatesSectionsViewConverter {
 		if($date->getStartDate()->getTimestamp() > $endDateTime->getTimestamp()) {
 			return false;
 		}
-
-		/*
-		if(($date->getEndDate()->format('Y-m-d') != '0000-00-00') && 
-			($date->getEndDate()->getTimestamp() < $startDateTime->getTimestamp())) {
+		
+		if(($date->getEndDate()->getTimestamp() !== FALSE) && 
+			$date->getEndDate()->getTimestamp() < $startDateTime->getTimestamp()) {
 			return false;
 		}
-		*/
 		
 		return true;
 		

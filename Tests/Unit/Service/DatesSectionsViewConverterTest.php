@@ -66,7 +66,7 @@ class DatesSectionsViewConverterTest extends \TYPO3\CMS\Core\Tests\UnitTestCase 
 	 *
 	 * @test
 	 */
-	public function onceNullTest() {
+	public function onceNoDateEndTest() {
 	
 		$dates = array(
 			$this->getDateMock(new DateTime("2012-01-01"), strtotime("10:00"), new DateTime("0000-00-00"), strtotime("11:00"), Date::FREQUENCY_ONCE),
