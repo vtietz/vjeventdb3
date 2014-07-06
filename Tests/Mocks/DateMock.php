@@ -64,4 +64,23 @@ class DateMock {
 		return $this->dateMock;
 	}
 	
+	/**
+	 * Produces a date object.
+	 * @param \DateTime $startDate The start date.
+	 * @param integer $startTime The start time.
+	 * @param \DateTime $endDate The end date.
+	 * @param integer $endTime The end time.
+	 * @param integer $frequency The frequency.
+	 */
+	public static function getDateMock($startDate, $startTime, $endDate, $endTime, $frequency) {
+		$dateMock = new \VJmedia\Vjeventdb3\Tests\Mocks\DateMock();
+		return $dateMock->
+		withStartDate($startDate)->
+		withStartTime($startTime)->
+		withEndDate($endDate)->
+		withEndTime($endTime)->
+		withFrequencey($frequency)->
+		build();
+	}
+	
 }
