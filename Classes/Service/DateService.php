@@ -8,7 +8,7 @@ use DateInterval;
 
 /**
  * 
- * Calculates all dates from a set of dates with a certain frequency (e.g. daily) between a goven time period.
+ * Calculates all dates from a set of dates with a certain frequency (e.g. daily) between a given time period.
  * 
  * @copyright Copyright belongs to the respective authors
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
@@ -43,7 +43,7 @@ class DateService {
 				continue;
 			}
 			elseif($date->getFrequency() == Date::FREQUENCY_ONCE) {
-				$theDates[] = $date;
+				$this->addDate($theDates, $date);
 			}
 			elseif($date->getFrequency() == Date::FREQUENCY_DAILY) {
 				$this->makeNewDates($theDates, $date, "+1 day", $startDateTime, $endDateTime);
@@ -59,10 +59,25 @@ class DateService {
 			}				
 		} 
 		
-		usort($theDates, array('VJmedia\Vjeventdb3\Service\DateService', 'compare'));
+		$this->removeKeysFromArray($theDates);
+		$this->sortDates($theDates);
+		
 		
 		return $theDates;
 		
+	}
+	
+	
+	public function sortDates(&$dates) {
+		usort($dates, array('VJmedia\Vjeventdb3\Service\DateService', 'compare'));
+	}
+	
+	private function removeKeysFromArray($array) {
+		$theArray = array();
+		foreach ($array as $item) {
+			$theArray[] = &$item;
+		}
+		return $theArray;
 	}
 	
 	/**
@@ -71,7 +86,7 @@ class DateService {
 	 */
 	private function makeNewDates(&$dates, $date, $intervalString, $startDateTime, $endDateTime) {
 		while($this->isValid($date, $startDateTime, $endDateTime)) {
-			$dates[] = unserialize(serialize($date)); // make deep copy of the object
+			$this->addDate($dates, unserialize(serialize($date))); // make deep copy of the object
 			$date->getStartDate()->add(DateInterval::createfromdatestring($intervalString));
 		}
 		return $dates;
@@ -92,7 +107,7 @@ class DateService {
 		}
 		
 		
-		if(($date->getEndDate()->getTimestamp() !== FALSE)) {
+		if($date->getEndDate() && ($date->getEndDate()->getTimestamp() !== FALSE)) {
 		
 			// not valid if start date is after end date of the date
 			if($date->getStartDate()->getTimestamp() > $date->getEndDate()->getTimestamp()) {
@@ -108,6 +123,31 @@ class DateService {
 		
 		return true;
 		
+	}
+	
+	/**
+	 * Adds a date to the given array if the sorting is bigger than the existing item.
+	 * @param array $dates The dates in the form $dates[$timestamp]
+	 * @param \VJmedia\Vjeventdb3\Domain\Model\Date $date
+	 * @return array
+	 */
+	private function addDate(&$dates, $date) {
+		$timestamp = $this->getStartTimestamp($date);
+		$existingDate = $dates[$timestamp]; 
+		if($existingDate && $existingDate->getSorting() > $date->getSorting()) {
+			return $dates;
+		}
+		$dates[$timestamp] = $date;
+		return $dates;
+	}
+	
+	/**
+	 * Returns the timestamp consisting of start date and start time.
+	 * @param \VJmedia\Vjeventdb3\Domain\Model\Date $date
+	 * @return integer The start timestamp.
+	 */
+	private function getStartTimestamp($date) {
+		return $date->getStartDate()->getTimestamp() + $date->getStartTime();
 	}
 	
 	/**

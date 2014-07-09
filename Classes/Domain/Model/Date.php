@@ -107,6 +107,18 @@ class Date extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	protected $text = '';
 
 	/**
+	 * @var integer
+	 */
+	protected $sorting;
+	
+	/**
+	 * events
+	 *
+	 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\VJmedia\Vjeventdb3\Domain\Model\Event>
+	 */
+	protected $events = NULL;
+	
+	/**
 	 * Returns the startDate
 	 *
 	 * @return \DateTime $startDate
@@ -239,4 +251,43 @@ class Date extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 		$this->text = $text;
 	}
 
+	/**
+	 * Sets the sorting.
+	 * 
+	 * @param integer $sorting
+	 */
+	public function setSorting($sorting) {
+		$this->sorting = $sorting;
+	}
+	
+	/**
+	 * Returns the sorting.
+	 * 
+	 * @return integer $sorting
+	 */
+	public function getSorting() {
+		return $this->sorting;
+	}
+	
+	
+	/**
+	 * Sets the sorting.
+	 *
+	 * @param integer $sorting
+	 */
+	public function setEvent($event) {
+		$this->event = $event;
+	}
+	
+	/**
+	 * Returns the event.
+	 *
+	 * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\VJmedia\Vjeventdb3\Domain\Model\Event> $event
+	 */
+	public function getEvent() {
+		return $this->event;
+	}	
+	
+	
+	
 }

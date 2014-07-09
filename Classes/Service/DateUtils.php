@@ -12,7 +12,7 @@ use VJmedia\Vjeventdb3\Domain\Model\Date;
  * @author Vincent Tietz <vincent.tietz@vj-media.de>
  *
  */
-class DateService {
+class DateUtils {
 	
 	const DIFF_MODE_YEARS = "yyyy";
 	const DIFF_MODE_MONTHS = "m";

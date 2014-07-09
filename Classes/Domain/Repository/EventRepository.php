@@ -37,7 +37,6 @@ class EventRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 	 */
 	public function findAllInDateRange($startDate, $endDate) {
 		$query = $this->persistenceManager->createQueryForType($this->objectType);
-		/*
 		if ($this->defaultOrderings !== array()) {
 			$query->setOrderings($this->defaultOrderings);
 		}
@@ -46,15 +45,14 @@ class EventRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 		}
 		$query->matching(
 			$query->logicalAnd(
-				$query->greaterThanOrEqual('dates.start_date', $startDate),
+				$query->lessThanOrEqual('dates.start_date', $endDate),
 				$query->logicalOr(
-					$query->lessThanOrEqual('dates.end_date', $endDate),
+					$query->greaterThanOrEqual('dates.end_date', $startDate),
+					$query->equals('dates.end_date', '0000-00-00'),
 					$query->equals('dates.end_date', NULL)
 				)
 			)
 		);
-		*/
-		$query->statement('select * from `tx_vjeventdb3_domain_model_event`');
 		return $query->execute();
 	}
 	

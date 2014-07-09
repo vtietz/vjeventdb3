@@ -20,10 +20,12 @@ Otherwise your changes will be overwritten the next time you save the extension 
 
 <ul>
 <f:for each="{dates}" as="date">
-	<li>{date.uid} | <f:format.date format="d.m">{date.startDate}</f:format.date> | <f:format.date format="H:i">{date.startTime}</f:format.date> | {date.frequency}</li>
+	<li>{date.uid} | <f:format.date format="d.m">{date.startDate}</f:format.date> | <f:format.date format="H:i">{date.startTime}</f:format.date> | {date.frequency} | {date.event.title}</li>
 </f:for>
 </ul>
 
+
+<!-- 
 
 <ul>
 <f:for each="{days}" as="day">
@@ -62,5 +64,5 @@ Otherwise your changes will be overwritten the next time you save the extension 
   });
   </script>
   <p>Date: <input type="text" id="datepicker"></p>
-
+ -->
 </f:section>

@@ -162,4 +162,24 @@ class DateServiceTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 		$this->assertDateTimeEquals(new DateTime("2016-01-01"), $allDates[2]->getStartDate());
 	}	
 	
+	/**
+	 * Tests if there is only one date with the same start time and if it is the date with maximum sort value.
+	 *
+	 * @test
+	 */
+	public function multipleDatesTest() {
+
+		$dates = array(
+				DateMock::getDateMock(new DateTime("2014-01-01"), strtotime("10:00"), new DateTime("2016-06-01"), strtotime("11:00"), Date::FREQUENCY_ONCE, 0),
+				DateMock::getDateMock(new DateTime("2014-01-01"), strtotime("10:00"), new DateTime("2016-06-01"), strtotime("12:00"), Date::FREQUENCY_ONCE, 1),
+				DateMock::getDateMock(new DateTime("2014-01-01"), strtotime("10:00"), new DateTime("2016-06-01"), strtotime("13:00"), Date::FREQUENCY_ONCE, 2),
+		);
+		
+		$allDates = $this->subject->getAllDates($dates, new DateTime("2014-01-01"), new DateTime("2016-01-01"));
+		$this->assertEquals(1, count($allDates));
+		$this->assertDateTimeEquals(new DateTime("2014-01-01"), $allDates[0]->getStartDate());
+		$this->assertEquals(2, $allDates[0]->getSorting());
+		
+	}
+	
 }

@@ -172,9 +172,9 @@ $TCA['tx_vjeventdb3_domain_model_date']['ctrl']['label_alt'] = 'start_time,frequ
 $TCA['tx_vjeventdb3_domain_model_date']['ctrl']['label_alt_force'] = 1;
 
 $TCA['tx_vjeventdb3_domain_model_date']['columns']['frequency']['config']['items'] = array(
-		array('LLL:EXT:vjeventdb3/Resources/Private/Language/locallang_db.xlf:tx_vjeventdb3_events.frequency.I.0', '0'),
-		array('LLL:EXT:vjeventdb3/Resources/Private/Language/locallang_db.xlf:tx_vjeventdb3_events.frequency.I.1', '1'),
-		array('LLL:EXT:vjeventdb3/Resources/Private/Language/locallang_db.xlf:tx_vjeventdb3_events.frequency.I.2', '2'),
-		array('LLL:EXT:vjeventdb3/Resources/Private/Language/locallang_db.xlf:tx_vjeventdb3_events.frequency.I.3', '3'),
-		array('LLL:EXT:vjeventdb3/Resources/Private/Language/locallang_db.xlf:tx_vjeventdb3_events.frequency.I.4', '4'),
+		array('LLL:EXT:vjeventdb3/Resources/Private/Language/locallang_mdb.xlf:tx_vjeventdb3_events.frequency.I.0', '0'),
+		array('LLL:EXT:vjeventdb3/Resources/Private/Language/locallang_mdb.xlf:tx_vjeventdb3_events.frequency.I.1', '1'),
+		array('LLL:EXT:vjeventdb3/Resources/Private/Language/locallang_mdb.xlf:tx_vjeventdb3_events.frequency.I.2', '2'),
+		array('LLL:EXT:vjeventdb3/Resources/Private/Language/locallang_mdb.xlf:tx_vjeventdb3_events.frequency.I.3', '3'),
+		array('LLL:EXT:vjeventdb3/Resources/Private/Language/locallang_mdb.xlf:tx_vjeventdb3_events.frequency.I.4', '4'),
 );

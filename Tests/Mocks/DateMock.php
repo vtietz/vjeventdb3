@@ -46,7 +46,7 @@ class DateMock {
 	 * @param integer $frequency The frequency.
 	 * @return \VJmedia\Vjeventdb3\Tests\Mocks\DateMock
 	 */
-	public function withFrequencey($frequency) {
+	public function withFrequency($frequency) {
 		$this->dateMock->setFrequency($frequency);
 		return $this;
 	}
@@ -59,7 +59,16 @@ class DateMock {
 		$this->dateMock->setEndTime($endTime);
 		return $this;
 	}
-		
+
+	/**
+	 * @param integer $sorting sorting.
+	 * @return \VJmedia\Vjeventdb3\Tests\Mocks\DateMock
+	 */
+	public function withSorting($sorting) {
+		$this->dateMock->setSorting($sorting);
+		return $this;
+	}
+	
 	public function build() {
 		return $this->dateMock;
 	}
@@ -71,15 +80,17 @@ class DateMock {
 	 * @param \DateTime $endDate The end date.
 	 * @param integer $endTime The end time.
 	 * @param integer $frequency The frequency.
+	 * @param integer $sorting The sorting.
 	 */
-	public static function getDateMock($startDate, $startTime, $endDate, $endTime, $frequency) {
+	public static function getDateMock($startDate, $startTime, $endDate, $endTime, $frequency, $sorting = 0) {
 		$dateMock = new \VJmedia\Vjeventdb3\Tests\Mocks\DateMock();
 		return $dateMock->
 		withStartDate($startDate)->
 		withStartTime($startTime)->
 		withEndDate($endDate)->
 		withEndTime($endTime)->
-		withFrequencey($frequency)->
+		withFrequency($frequency)->
+		withSorting($sorting)->
 		build();
 	}
 	
