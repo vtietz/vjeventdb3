@@ -3,7 +3,11 @@ namespace VJmedia\Vjeventdb3\Controller;
 
 use VJmedia\Vjeventdb3\Domain\Repository\DateRepository;
 use VJmedia\Vjeventdb3\Service\DateService;
+use VJmedia\Vjeventdb3\Domain\ViewModel\YearSectionView;
+use VJmedia\Vjeventdb3\Domain\ViewModel\MonthSectionView;
+use VJmedia\Vjeventdb3\Domain\ViewModel\DaySectionView;
 use DateTime;
+use VJmedia\Vjeventdb3\Service\DateUtils;
 
 /***************************************************************
  *
@@ -65,8 +69,8 @@ class EventController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 	 */
 	public function listAction() {
 		
-		$startdate = date('Y-m-d', strtotime('last Monday'));
-		$enddate = date('Y-m-d', strtotime('next Monday'));
+		$startdate = date('Y-m-d', strtotime('first day of this month'));
+		$enddate = date('Y-m-d', strtotime('last day of this month'));
 		
 		$events = $this->eventRepository->findAllInDateRange($startdate, $enddate);
 		
@@ -76,37 +80,45 @@ class EventController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 			$eventDates = $event->getDates();
 			foreach($eventDates as $date) {
 				$date->setEvent($event);
+				$date->setDuration($this->dateService->getDuration($date));
 			}
 			$allEventDates = array_merge($allEventDates, 
 					$this->dateService->getAllDates($eventDates, new DateTime($startdate), new DateTime($enddate)));
 		}
 		$this->dateService->sortDates($allEventDates);
 		$this->view->assign('dates', $allEventDates);
-		
-		
+
+		$years = array();
+		$year = null;
+		$month = null;
+		$day = null;
+		foreach ($allEventDates as $date) {
+			
+			if($year == null || $year->getDate()->format('Y') != $date->getStartDate()->format('Y')) {
+				$year = new \VJmedia\Vjeventdb3\Domain\ViewModel\YearSectionView();
+				$year->setDate($date->getStartDate());
+				$years[] = &$year;
+				$month = null;
+			}
+			
+			if($month == null || $month->getDate()->format('m') != $date->getStartDate()->format('m')) {
+				$month = new \VJmedia\Vjeventdb3\Domain\ViewModel\MonthSectionView();
+				$month->setDate($date->getStartDate());
+				$year->addMonth($month);
+				$day = null;
+			}
+
+			if($day == null || $day->getDate()->format('d') != $date->getStartDate()->format('d')) {
+				$day = new \VJmedia\Vjeventdb3\Domain\ViewModel\DaySectionView();
+				$day->setDate($date->getStartDate());
+				$day->addDate($date);
+				$month->addDay($day);
+			}
+		}
+
+		$this->view->assign('years', $years);
 	}
 	
-	public function getEvents($dates, $start, $end) {
-		
-		$theValue = array();
-		
-		foreach($dates as $date) {
-			/* @var $date \VJmedia\Vjeventdb3\Domain\Model\Date */
-			
-			
-			
-			$timestamp = $date->getStartDate()->getTimestamp() + $date->getStartTime();
-			//if($timestamp < $end) {
-				$theValue[$timestamp] = $this->eventRepository->findByDates($date)->getFirst();
-			//}
-		}
-		
-		ksort($theValue);
-		
-		return $theValue;
-		
-	}
-
 	/**
 	 * action show
 	 *

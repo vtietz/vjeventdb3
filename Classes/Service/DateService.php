@@ -4,6 +4,8 @@ namespace VJmedia\Vjeventdb3\Service;
 use VJmedia\Vjeventdb3\Domain\ViewModel\EventsView;
 use VJmedia\Vjeventdb3\Domain\ViewModel\SectionsView;
 use VJmedia\Vjeventdb3\Domain\Model\Date;
+use VJmedia\Vjeventdb3\Service\DateUtils;
+use DateTime;
 use DateInterval;
 
 /**
@@ -163,6 +165,15 @@ class DateService {
  		
 		return $startDateTimeA - $startDateTimeB;  
 		
+	}
+	
+	public function getDuration($date) {
+		if($date->getEndTime() - $date->getStartTime() > 0) {
+			$startTimeStamp = $date->getStartTime();
+			$endTimeStamp = $date->getEndTime();
+			return DateUtils::formatDateDiff(new DateTime(date("c", $startTimeStamp)), new DateTime(date("c", $endTimeStamp)));
+		}
+		return '';
 	}
 	
 }

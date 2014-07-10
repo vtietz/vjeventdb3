@@ -118,6 +118,9 @@ class Date extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 */
 	protected $events = NULL;
 	
+	
+	protected $duration = '';
+	
 	/**
 	 * Returns the startDate
 	 *
@@ -287,6 +290,14 @@ class Date extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	public function getEvent() {
 		return $this->event;
 	}	
+
+	public function setDuration($duration) {
+		$this->duration = $duration;
+	}
+	
+	public function getDuration() {
+		return $this->duration;
+	}
 	
 	
 	
