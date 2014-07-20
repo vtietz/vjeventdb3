@@ -221,7 +221,7 @@ CREATE TABLE tx_vjeventdb3_domain_model_price (
 
 	name varchar(255) DEFAULT '' NOT NULL,
 	price varchar(255) DEFAULT '' NOT NULL,
-	price_category int(11) unsigned DEFAULT '0' NOT NULL,
+	price_category int(11) unsigned DEFAULT '0',
 	price_unit int(11) unsigned DEFAULT '0',
 	price_amount int(11) unsigned DEFAULT '0',
 
@@ -536,19 +536,6 @@ CREATE TABLE sys_file_reference (
 
 	location  int(11) unsigned DEFAULT '0' NOT NULL,
 
-);
-
-#
-# Table structure for table 'tx_vjeventdb3_price_pricecategory_mm'
-#
-CREATE TABLE tx_vjeventdb3_price_pricecategory_mm (
-	uid_local int(11) unsigned DEFAULT '0' NOT NULL,
-	uid_foreign int(11) unsigned DEFAULT '0' NOT NULL,
-	sorting int(11) unsigned DEFAULT '0' NOT NULL,
-	sorting_foreign int(11) unsigned DEFAULT '0' NOT NULL,
-
-	KEY uid_local (uid_local),
-	KEY uid_foreign (uid_foreign)
 );
 
 #

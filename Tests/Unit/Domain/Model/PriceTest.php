@@ -98,9 +98,8 @@ class PriceTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 	 * @test
 	 */
 	public function getPriceCategoryReturnsInitialValueForPriceCategory() {
-		$newObjectStorage = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
 		$this->assertEquals(
-			$newObjectStorage,
+			NULL,
 			$this->subject->getPriceCategory()
 		);
 	}
@@ -108,42 +107,15 @@ class PriceTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 	/**
 	 * @test
 	 */
-	public function setPriceCategoryForObjectStorageContainingPriceCategorySetsPriceCategory() {
-		$priceCategory = new \VJmedia\Vjeventdb3\Domain\Model\PriceCategory();
-		$objectStorageHoldingExactlyOnePriceCategory = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
-		$objectStorageHoldingExactlyOnePriceCategory->attach($priceCategory);
-		$this->subject->setPriceCategory($objectStorageHoldingExactlyOnePriceCategory);
+	public function setPriceCategoryForPriceCategorySetsPriceCategory() {
+		$priceCategoryFixture = new \VJmedia\Vjeventdb3\Domain\Model\PriceCategory();
+		$this->subject->setPriceCategory($priceCategoryFixture);
 
 		$this->assertAttributeEquals(
-			$objectStorageHoldingExactlyOnePriceCategory,
+			$priceCategoryFixture,
 			'priceCategory',
 			$this->subject
 		);
-	}
-
-	/**
-	 * @test
-	 */
-	public function addPriceCategoryToObjectStorageHoldingPriceCategory() {
-		$priceCategory = new \VJmedia\Vjeventdb3\Domain\Model\PriceCategory();
-		$priceCategoryObjectStorageMock = $this->getMock('TYPO3\\CMS\\Extbase\\Persistence\\ObjectStorage', array('attach'), array(), '', FALSE);
-		$priceCategoryObjectStorageMock->expects($this->once())->method('attach')->with($this->equalTo($priceCategory));
-		$this->inject($this->subject, 'priceCategory', $priceCategoryObjectStorageMock);
-
-		$this->subject->addPriceCategory($priceCategory);
-	}
-
-	/**
-	 * @test
-	 */
-	public function removePriceCategoryFromObjectStorageHoldingPriceCategory() {
-		$priceCategory = new \VJmedia\Vjeventdb3\Domain\Model\PriceCategory();
-		$priceCategoryObjectStorageMock = $this->getMock('TYPO3\\CMS\\Extbase\\Persistence\\ObjectStorage', array('detach'), array(), '', FALSE);
-		$priceCategoryObjectStorageMock->expects($this->once())->method('detach')->with($this->equalTo($priceCategory));
-		$this->inject($this->subject, 'priceCategory', $priceCategoryObjectStorageMock);
-
-		$this->subject->removePriceCategory($priceCategory);
-
 	}
 
 	/**

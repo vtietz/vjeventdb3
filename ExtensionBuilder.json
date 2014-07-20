@@ -496,7 +496,7 @@
                             "propertyIsExcludeField": true,
                             "relationDescription": "",
                             "relationName": "priceCategory",
-                            "relationType": "manyToMany",
+                            "relationType": "zeroToOne",
                             "relationWire": "[wired]",
                             "uid": "228551400306"
                         },
@@ -967,7 +967,7 @@
         }
     ],
     "log": {
-        "last_modified": "2014-07-20 04:46",
+        "last_modified": "2014-07-20 07:18",
         "extension_builder_version": "6.2.0",
         "be_user": " (1)"
     }

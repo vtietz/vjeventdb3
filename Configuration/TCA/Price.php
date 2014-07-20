@@ -119,35 +119,16 @@ $GLOBALS['TCA']['tx_vjeventdb3_domain_model_price'] = array(
 			'exclude' => 1,
 			'label' => 'LLL:EXT:vjeventdb3/Resources/Private/Language/locallang_db.xlf:tx_vjeventdb3_domain_model_price.price_category',
 			'config' => array(
-				'type' => 'select',
+				'type' => 'inline',
 				'foreign_table' => 'tx_vjeventdb3_domain_model_pricecategory',
-				'MM' => 'tx_vjeventdb3_price_pricecategory_mm',
-				'size' => 10,
-				'autoSizeMax' => 30,
-				'maxitems' => 9999,
-				'multiple' => 0,
-				'wizards' => array(
-					'_PADDING' => 1,
-					'_VERTICAL' => 1,
-					'edit' => array(
-						'type' => 'popup',
-						'title' => 'Edit',
-						'script' => 'wizard_edit.php',
-						'icon' => 'edit2.gif',
-						'popup_onlyOpenIfSelected' => 1,
-						'JSopenParams' => 'height=350,width=580,status=0,menubar=0,scrollbars=1',
-						),
-					'add' => Array(
-						'type' => 'script',
-						'title' => 'Create new',
-						'icon' => 'add.gif',
-						'params' => array(
-							'table' => 'tx_vjeventdb3_domain_model_pricecategory',
-							'pid' => '###CURRENT_PID###',
-							'setValue' => 'prepend'
-							),
-						'script' => 'wizard_add.php',
-					),
+				'minitems' => 0,
+				'maxitems' => 1,
+				'appearance' => array(
+					'collapseAll' => 0,
+					'levelLinksPosition' => 'top',
+					'showSynchronizationLink' => 1,
+					'showPossibleLocalizationRecords' => 1,
+					'showAllLocalizationLink' => 1
 				),
 			),
 		),
@@ -196,8 +177,29 @@ $TCA['tx_vjeventdb3_domain_model_price']['ctrl']['label'] = 'name';
 $TCA['tx_vjeventdb3_domain_model_price']['ctrl']['label_alt'] = 'price';
 $TCA['tx_vjeventdb3_domain_model_price']['ctrl']['label_alt_force'] = 1;
 
-$TCA['tx_vjeventdb3_domain_model_price']['columns']['price_category']['config']['size'] = 5;
-$TCA['tx_vjeventdb3_domain_model_price']['columns']['price_category']['config']['wizards']['suggest'] = array('type' => 'suggest');
+$TCA['tx_vjeventdb3_domain_model_price']['columns']['price_category']['config']['type'] = 'select';
+$TCA['tx_vjeventdb3_domain_model_price']['columns']['price_category']['config']['size'] = 1;
+//$TCA['tx_vjeventdb3_domain_model_price']['columns']['price_category']['config']['wizards']['suggest'] = array('type' => 'suggest');
+$TCA['tx_vjeventdb3_domain_model_price']['columns']['price_category']['config']['wizards']['edit'] = array(
+				'type' => 'popup',
+				'title' => 'Edit',
+				'script' => 'wizard_edit.php',
+				'icon' => 'edit2.gif',
+				'popup_onlyOpenIfSelected' => 1,
+				'JSopenParams' => 'height=350,width=580,status=0,menubar=0,scrollbars=1',
+		);
+$TCA['tx_vjeventdb3_domain_model_price']['columns']['price_category']['config']['wizards']['add'] = array(
+				'type' => 'script',
+				'title' => 'Create new',
+				'icon' => 'add.gif',
+				'params' => array(
+						'table' => 'tx_vjeventdb3_domain_model_pricecategory',
+						'pid' => '###CURRENT_PID###',
+						'setValue' => 'prepend'
+				),
+				'script' => 'wizard_add.php',
+		);
+
 
 $TCA['tx_vjeventdb3_domain_model_price']['columns']['price_unit']['config']['type'] = 'select';
 $TCA['tx_vjeventdb3_domain_model_price']['columns']['price_unit']['config']['items'] = array(

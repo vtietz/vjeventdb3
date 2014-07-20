@@ -46,13 +46,6 @@ class Price extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	protected $price = '';
 
 	/**
-	 * priceCategory
-	 *
-	 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\VJmedia\Vjeventdb3\Domain\Model\PriceCategory>
-	 */
-	protected $priceCategory = NULL;
-
-	/**
 	 * priceUnit
 	 *
 	 * @var \VJmedia\Vjeventdb3\Domain\Model\PriceUnit
@@ -65,6 +58,13 @@ class Price extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 * @var \VJmedia\Vjeventdb3\Domain\Model\PriceAmount
 	 */
 	protected $priceAmount = NULL;
+
+	/**
+	 * priceCategory
+	 *
+	 * @var \VJmedia\Vjeventdb3\Domain\Model\PriceCategory
+	 */
+	protected $priceCategory = NULL;
 
 	/**
 	 * __construct
@@ -83,7 +83,7 @@ class Price extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 * @return void
 	 */
 	protected function initStorageObjects() {
-		$this->priceCategory = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
+		
 	}
 
 	/**
@@ -125,45 +125,6 @@ class Price extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	}
 
 	/**
-	 * Adds a PriceCategory
-	 *
-	 * @param \VJmedia\Vjeventdb3\Domain\Model\PriceCategory $priceCategory
-	 * @return void
-	 */
-	public function addPriceCategory(\VJmedia\Vjeventdb3\Domain\Model\PriceCategory $priceCategory) {
-		$this->priceCategory->attach($priceCategory);
-	}
-
-	/**
-	 * Removes a PriceCategory
-	 *
-	 * @param \VJmedia\Vjeventdb3\Domain\Model\PriceCategory $priceCategoryToRemove The PriceCategory to be removed
-	 * @return void
-	 */
-	public function removePriceCategory(\VJmedia\Vjeventdb3\Domain\Model\PriceCategory $priceCategoryToRemove) {
-		$this->priceCategory->detach($priceCategoryToRemove);
-	}
-
-	/**
-	 * Returns the priceCategory
-	 *
-	 * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\VJmedia\Vjeventdb3\Domain\Model\PriceCategory> $priceCategory
-	 */
-	public function getPriceCategory() {
-		return $this->priceCategory;
-	}
-
-	/**
-	 * Sets the priceCategory
-	 *
-	 * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\VJmedia\Vjeventdb3\Domain\Model\PriceCategory> $priceCategory
-	 * @return void
-	 */
-	public function setPriceCategory(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $priceCategory) {
-		$this->priceCategory = $priceCategory;
-	}
-
-	/**
 	 * Returns the priceUnit
 	 *
 	 * @return \VJmedia\Vjeventdb3\Domain\Model\PriceUnit $priceUnit
@@ -199,6 +160,25 @@ class Price extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 */
 	public function setPriceAmount(\VJmedia\Vjeventdb3\Domain\Model\PriceAmount $priceAmount) {
 		$this->priceAmount = $priceAmount;
+	}
+
+	/**
+	 * Returns the priceCategory
+	 *
+	 * @return \VJmedia\Vjeventdb3\Domain\Model\PriceCategory $priceCategory
+	 */
+	public function getPriceCategory() {
+		return $this->priceCategory;
+	}
+
+	/**
+	 * Sets the priceCategory
+	 *
+	 * @param \VJmedia\Vjeventdb3\Domain\Model\PriceCategory $priceCategory
+	 * @return void
+	 */
+	public function setPriceCategory(\VJmedia\Vjeventdb3\Domain\Model\PriceCategory $priceCategory) {
+		$this->priceCategory = $priceCategory;
 	}
 
 }

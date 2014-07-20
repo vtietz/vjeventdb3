@@ -32,17 +32,16 @@ namespace VJmedia\Vjeventdb3\Domain\Model;
 class PriceCategory extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	/**
+	 * @var integer
+	 */
+	protected $sorting = NULL;
+
+	/**
 	 * name
 	 *
 	 * @var string
 	 */
 	protected $name = '';
-	
-	/**
-	 * @var integer
-	 */
-	protected $sorting;
-	
 
 	/**
 	 * Returns the name
@@ -62,7 +61,7 @@ class PriceCategory extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	public function setName($name) {
 		$this->name = $name;
 	}
-	
+
 	/**
 	 * Sets the sorting.
 	 *
@@ -71,7 +70,7 @@ class PriceCategory extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	public function setSorting($sorting) {
 		$this->sorting = $sorting;
 	}
-	
+
 	/**
 	 * Returns the sorting.
 	 *
