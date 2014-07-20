@@ -1,0 +1,22 @@
+<f:if condition="{date.startTime}">
+
+	<f:if condition="{date.endTime}">
+		<f:then>
+			von
+		</f:then>
+		<f:else>
+			um 
+		</f:else>
+	</f:if>
+	
+	<f:format.date format="H:i">{date.startTime}</f:format.date>
+	
+	<f:if condition="{date.endTime}">
+		<f:then>
+			bis <f:format.date format="H:i">{date.endTime}</f:format.date>
+		</f:then>
+	</f:if>
+		
+	Uhr
+			
+</f:if>

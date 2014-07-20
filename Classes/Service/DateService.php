@@ -176,4 +176,17 @@ class DateService {
 		return '';
 	}
 	
+	/**
+	 * @param unknown $dates
+	 * @return \VJmedia\Vjeventdb3\Domain\Model\Date|NULL The next date from now.
+	 */
+	public function getNextDate($dates) {
+		foreach($dates as $date) {
+			if($this->getStartTimestamp($date) >= time()) {
+				return $date;
+			}
+		}
+		return NULL;
+	}
+	
 }

@@ -69,22 +69,8 @@ class EventController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 	 */
 	public function listAction() {
 		
-		$startdate = date('Y-m-d', strtotime('first day of this month'));
-		$enddate = date('Y-m-d', strtotime('last day of this month'));
+		$allEventDates = $this->getAllDateEvents();
 		
-		$events = $this->eventRepository->findAllInDateRange($startdate, $enddate);
-		
-		$this->dateService = new \VJmedia\Vjeventdb3\Service\DateService();
-		$allEventDates = array();
-		foreach($events as $event) {
-			$eventDates = $event->getDates();
-			foreach($eventDates as $date) {
-				$date->setEvent($event);
-				$date->setDuration($this->dateService->getDuration($date));
-			}
-			$allEventDates = array_merge($allEventDates, 
-					$this->dateService->getAllDates($eventDates, new DateTime($startdate), new DateTime($enddate)));
-		}
 		$this->dateService->sortDates($allEventDates);
 		$this->view->assign('dates', $allEventDates);
 
@@ -119,6 +105,37 @@ class EventController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 		$this->view->assign('years', $years);
 	}
 	
+	private function getAllDateEvents() {
+
+		$startdate = date('Y-m-d', strtotime('first day of this month'));
+		$enddate = date('Y-m-d', strtotime('last day of this month'));
+		
+		$events = $this->eventRepository->findAllInDateRange($startdate, $enddate);
+		
+		$allEventDates = array();
+		foreach($events as $event) {
+			$allEventDates = array_merge($allEventDates, $this->getDatesOfEvent($event, $startdate, $enddate));
+		}
+		return $allEventDates;
+	}
+	
+	private function getDatesOfEvent(\VJmedia\Vjeventdb3\Domain\Model\Event $event, $startdate, $enddate) {
+		
+		$eventDates = $this->getDateService()->getAllDates($event->getDates(), new DateTime($startdate), new DateTime($enddate));
+		foreach($eventDates as $date) {
+			$date->setEvent($event);
+			$date->setDuration($this->getDateService()->getDuration($date));
+		}
+		return $eventDates;
+	}
+	
+	private function getDateService() {
+		if($this->dateService == NULL)  {
+			$this->dateService = new \VJmedia\Vjeventdb3\Service\DateService();
+		}
+		return $this->dateService;
+	}
+	
 	/**
 	 * action show
 	 *
@@ -126,7 +143,18 @@ class EventController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 	 * @return void
 	 */
 	public function showAction(\VJmedia\Vjeventdb3\Domain\Model\Event $event) {
+
 		$this->view->assign('event', $event);
+		
+		$startdate = date('Y-m-d', strtotime('first day of this month'));
+		$enddate = date('Y-m-d', strtotime('last day of this month'));
+		
+		// var_dump($event->getDates());
+		
+		$dates = $this->getDatesOfEvent($event, $startdate, $enddate);
+		$this->view->assign('dates', $dates);
+		$this->view->assign('nextdate', $this->getDateService()->getNextDate($dates));
+		
 	}
 
 	/**

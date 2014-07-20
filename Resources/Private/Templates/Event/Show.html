@@ -16,6 +16,29 @@ Otherwise your changes will be overwritten the next time you save the extension 
 
 <f:flashMessages renderMode="div" />
 <f:render partial="Event/Properties" arguments="{event:event}" />
+
+<div class="vjeventdb3-event-dates">
+	<h2>Alle Termine</h2>
+	<ul>
+		<f:for each="{dates}" as="date">
+			<li>
+				<f:render partial="Date/Single" arguments="{date:date}" />
+			</li>
+		</f:for>
+	</ul>
+</div>
+
+<f:if condition="{nextdate}">
+	<div class="vjeventdb3-event-dates">
+		<h2>Nächster Termin</h2>
+		<ul>
+			<li>
+				<f:render partial="Date/Single" arguments="{date: nextdate}" />
+			</li>
+		</ul>
+	</div>
+</f:if>
+
 <f:link.action action="list">Back to list</f:link.action>
 
 </f:section>
