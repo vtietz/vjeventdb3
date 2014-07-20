@@ -7,29 +7,20 @@
 				</TCEforms>
 				<type>array</type>
 				<el>
-					<settings.action>
+					<switchableControllerActions>
 						<TCEforms>
 							<label>Action</label>
 							<config>
 							  <type>select</type>
 							  <items type="array">
 							    <numIndex index="0" type="array">
-							      <numIndex index="0">LIST</numIndex>
-							      <numIndex index="1">list</numIndex>
-							    </numIndex>
-							    <numIndex index="1" type="array">
-							      <numIndex index="0">TEASER</numIndex>
-							      <numIndex index="1">teaser</numIndex>
-							    </numIndex>
-							    <numIndex index="2" type="array">
-							      <numIndex index="0">SHOW</numIndex>
-							      <numIndex index="1">show</numIndex>
+							      <numIndex index="0">Listenansicht</numIndex>
+							      <numIndex index="1">Event->list;Event->show</numIndex>
 							    </numIndex>
 							  </items>
-							  <default>list</default>
 							</config>
 						</TCEforms>
-					</settings.action>
+					</switchableControllerActions>
 					<settings.eventsPerPage>
 						<TCEforms>
 							<label>Max. number of events to display per page</label>

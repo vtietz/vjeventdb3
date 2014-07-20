@@ -1,0 +1,10 @@
+<h3>{performer.name}</h3>
+<div>
+
+{performer.description}
+
+<f:for each="{performer.images}" as="image" >
+	<f:image src="{image.originalResource.publicUrl}" alt="{performer.name}" width="200"/>
+</f:for>
+
+</div>
