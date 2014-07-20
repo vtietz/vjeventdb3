@@ -28,6 +28,17 @@ Otherwise your changes will be overwritten the next time you save the extension 
 	</ul>
 </div>
 
+<div class="vjeventdb3-event-dates">
+	<h2>Kommende Termine</h2>
+	<ul>
+		<f:for each="{nextdates}" as="date">
+			<li>
+				<f:render partial="Date/Single" arguments="{date:date}" />
+			</li>
+		</f:for>
+	</ul>
+</div>
+
 <f:if condition="{nextdate}">
 	<div class="vjeventdb3-event-dates">
 		<h2>Nächster Termin</h2>

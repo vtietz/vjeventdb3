@@ -154,6 +154,7 @@ class EventController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 		$dates = $this->getDatesOfEvent($event, $startdate, $enddate);
 		$this->view->assign('dates', $dates);
 		$this->view->assign('nextdate', $this->getDateService()->getNextDate($dates));
+		$this->view->assign('nextdates', $this->getDateService()->getNextDates($dates));
 		
 	}
 

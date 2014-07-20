@@ -189,4 +189,18 @@ class DateService {
 		return NULL;
 	}
 	
+	/**
+	 * @param unknown $dates
+	 * @return array The next dates from now.
+	 */
+	public function getNextDates($dates) {
+		$nextDates = array();
+		foreach($dates as $date) {
+			if($this->getStartTimestamp($date) >= time()) {
+				$nextDates[] = $date;
+			}
+		}
+		return $nextDates;
+	}	
+	
 }
