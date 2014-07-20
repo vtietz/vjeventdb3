@@ -36,14 +36,8 @@ Otherwise your changes will be overwritten the next time you save the extension 
 							<td></td>
 							<td><f:link.action action="show" arguments="{event : date.event}">{date.event.title}</f:link.action></td>
 							<td>
-							
-							 <f:for each="{date.event.performers}" as="performer" iteration="performerIterator">
-							 	{performer.name}
-							    <f:if condition="{performerIterator.isLast}">
-							    <f:then></f:then>
-							    <f:else>,</f:else>
-							    </f:if>
-							 </f:for>
+
+							<f:render partial="Performer/FlatList" arguments="{performers: date.event.performers}" />							
 							
 							</td>
 							<td>{date.duration}</td>

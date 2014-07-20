@@ -1,0 +1,7 @@
+<f:for each="{ageCategories}" as="category" iteration="categoryIterator">
+	{category.name}
+   <f:if condition="{categoryIterator.isLast}">
+   <f:then></f:then>
+   <f:else>,</f:else>
+   </f:if>
+</f:for>

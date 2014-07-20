@@ -149,8 +149,6 @@ class EventController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 		$startdate = date('Y-m-d', strtotime('first day of this month'));
 		$enddate = date('Y-m-d', strtotime('last day of this month'));
 		
-		// var_dump($event->getDates());
-		
 		$dates = $this->getDatesOfEvent($event, $startdate, $enddate);
 		$this->view->assign('dates', $dates);
 		$this->view->assign('nextdate', $this->getDateService()->getNextDate($dates));

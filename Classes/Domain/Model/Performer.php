@@ -46,11 +46,12 @@ class Performer extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	protected $description = '';
 
 	/**
-	 * images
-	 *
-	 * @var \TYPO3\CMS\Extbase\Domain\Model\FileReference
-	 */
-	protected $images = NULL;
+	* images to use in the gallery
+	*
+	* @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\TYPO3\CMS\Extbase\Domain\Model\FileReference>
+	* @lazy
+	*/
+	protected $images;
 
 	/**
 	 * performerCategory
@@ -77,6 +78,7 @@ class Performer extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 */
 	protected function initStorageObjects() {
 		$this->performerCategory = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
+		$this->images = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
 	}
 
 	/**
@@ -120,7 +122,7 @@ class Performer extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	/**
 	 * Returns the images
 	 *
-	 * @return \TYPO3\CMS\Extbase\Domain\Model\FileReference $images
+	 * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage $images
 	 */
 	public function getImages() {
 		return $this->images;
@@ -129,7 +131,7 @@ class Performer extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	/**
 	 * Sets the images
 	 *
-	 * @param \TYPO3\CMS\Extbase\Domain\Model\FileReference $images
+	 * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage $images
 	 * @return void
 	 */
 	public function setImages(\TYPO3\CMS\Extbase\Domain\Model\FileReference $images) {

@@ -1,0 +1,7 @@
+<f:for each="{performers}" as="performer" iteration="performerIterator">
+	{performer.name}
+   <f:if condition="{performerIterator.isLast}">
+   <f:then></f:then>
+   <f:else>,</f:else>
+   </f:if>
+</f:for>

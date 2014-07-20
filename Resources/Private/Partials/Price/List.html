@@ -1,0 +1,11 @@
+<f:if condition="{prices}">
+	<span class="vjeventdb3-event-prices">
+		<f:for each="{prices}" as="price" iteration="performerCategoryIterator">
+			{performerCategory.name}
+			<f:if condition="{performerCategoryIterator.isLast}">
+			<f:then></f:then>
+			<f:else>,</f:else>
+			</f:if>
+		</f:for>
+	</span>
+</f:if>

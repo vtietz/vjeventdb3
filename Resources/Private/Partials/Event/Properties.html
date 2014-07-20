@@ -1,14 +1,10 @@
 
 <h1>{event.title}</h1>
 <span class="vjeventdb3-event-event-category">
-	<f:for each="{event.eventCategory}" as="eventCategory">
-		{eventCategory.name}
-	</f:for>
+	<f:render partial="Event/FlatEventCategoryList" arguments="{eventCategories : event.eventCategory}" />
 </span>
 <span class="vjeventdb3-event-age-category">
-	<f:for each="{event.ageCategory}" as="ageCategory">
-		{ageCategory.name}
-	</f:for>
+	<f:render partial="Event/FlatAgeCategoryList" arguments="{ageCategories : event.ageCategory}" />
 </span>
 
 <p>{event.teasertext}</p>
