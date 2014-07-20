@@ -1,5 +1,5 @@
 <?php
-namespace VJmedia\Vjeventdb3\Domain\Model;
+namespace VJmedia\Vjeventdb3\Domain\Repository;
 
 /***************************************************************
  *
@@ -27,58 +27,20 @@ namespace VJmedia\Vjeventdb3\Domain\Model;
  ***************************************************************/
 
 /**
- * PriceCategory
+ * The repository for PriceCategory
  */
-class PriceCategory extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
+class PriceRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 
-	/**
-	 * name
-	 *
-	 * @var string
-	 */
-	protected $name = '';
+	protected $defaultOrderings = array(
+		'sorting' => \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_DESCENDING,
+		'title' => \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_ASCENDING
+	);
 	
-	/**
-	 * @var integer
-	 */
-	protected $sorting;
-	
-
-	/**
-	 * Returns the name
-	 *
-	 * @return string $name
-	 */
-	public function getName() {
-		return $this->name;
-	}
-
-	/**
-	 * Sets the name
-	 *
-	 * @param string $name
-	 * @return void
-	 */
-	public function setName($name) {
-		$this->name = $name;
+	public function findPricesByEventAndCategory($event, $category) {
+		$query = $this->persistenceManager->createQueryForType($this->objectType);
+		$query->equals("priceCategory", $category);
+		$query->contains("event", $event);
+		return $query->execute();
 	}
 	
-	/**
-	 * Sets the sorting.
-	 *
-	 * @param integer $sorting
-	 */
-	public function setSorting($sorting) {
-		$this->sorting = $sorting;
-	}
-	
-	/**
-	 * Returns the sorting.
-	 *
-	 * @return integer $sorting
-	 */
-	public function getSorting() {
-		return $this->sorting;
-	}
-
 }

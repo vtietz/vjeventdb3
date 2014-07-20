@@ -2,6 +2,7 @@
 namespace VJmedia\Vjeventdb3\Controller;
 
 use VJmedia\Vjeventdb3\Domain\Repository\DateRepository;
+use VJmedia\Vjeventdb3\Domain\Repository\PriceCategoryRepository;
 use VJmedia\Vjeventdb3\Service\DateService;
 use VJmedia\Vjeventdb3\Domain\ViewModel\YearSectionView;
 use VJmedia\Vjeventdb3\Domain\ViewModel\MonthSectionView;
@@ -54,6 +55,23 @@ class EventController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 	 * @inject
 	 */
 	protected $dateRepository = NULL;
+	
+	/**
+	 * priceCategoryRepository
+	 *
+	 * @var \VJmedia\Vjeventdb3\Domain\Repository\PriceCategoryRepository
+	 * @inject
+	 */
+	protected $priceCategoryRepository = NULL;	
+
+	/**
+	 * priceRepository
+	 *
+	 * @var \VJmedia\Vjeventdb3\Domain\Repository\PriceRepository
+	 * @inject
+	 */
+	protected $priceRepository = NULL;
+	
 	
 	/**
 	 * dateService
@@ -153,8 +171,41 @@ class EventController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 		$this->view->assign('dates', $dates);
 		$this->view->assign('nextdate', $this->getDateService()->getNextDate($dates));
 		$this->view->assign('nextdates', $this->getDateService()->getNextDates($dates));
+		$this->view->assign('prices', $this->getPricesSortedByCategory($event));
+		
+		//$priceCategories = $this->priceCategoryRepository->findAll($event);
+		$this->view->assign('cats', $this->getPricesSortedByCategory($event));
 		
 	}
+	
+	public function getPricesSortedByCategory(\VJmedia\Vjeventdb3\Domain\Model\Event $event) {
+
+		$pricesByCategory = array();
+		
+		$prices = $event->getPrices();
+		foreach ($prices as $price) {
+			$pricesByCategory[$price->getPriceCategory()][] = $price;
+		}
+		
+		/*
+		$pricesByCategory = array();
+		foreach ($priceCategories as $priceCategory) {
+			$prices = $event->getPrices()->toArray();
+			foreach ($prices as $price) {
+				$categories = $price->getCategoroy()->toArray();
+				if($price->getCategory())
+			}
+		}
+		*/
+		
+		
+		/*
+		$pricesByCategory = array();
+		$prices = $event->getPrices()->toArray();
+		*/
+		
+		return $pricesByCategory;
+	} 
 
 	/**
 	 * action teaser

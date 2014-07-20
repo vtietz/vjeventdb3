@@ -54,7 +54,12 @@ Otherwise your changes will be overwritten the next time you save the extension 
 	</div>
 </f:if>
 
-<f:render partial="Price/List" arguments="{prices : event.prices}" />
+<f:debug title="Results of cats">{cats}</f:debug>
+
+<f:if condition="{prices}">
+	<h2>Preise</h2>
+	<f:render partial="Price/List" arguments="{prices : prices}" />
+</f:if>
 
 <f:link.action action="list">Back to list</f:link.action>
 
