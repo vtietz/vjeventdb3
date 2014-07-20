@@ -1,0 +1,57 @@
+<T3DataStructure>
+	<sheets>
+		<sDEF>
+			<ROOT>
+				<TCEforms>
+					<sheetTitle>Options</sheetTitle>
+				</TCEforms>
+				<type>array</type>
+				<el>
+					<settings.action>
+						<TCEforms>
+							<label>Action</label>
+							<config>
+							  <type>select</type>
+							  <items type="array">
+							    <numIndex index="0" type="array">
+							      <numIndex index="0">LIST</numIndex>
+							      <numIndex index="1">list</numIndex>
+							    </numIndex>
+							    <numIndex index="1" type="array">
+							      <numIndex index="0">TEASER</numIndex>
+							      <numIndex index="1">teaser</numIndex>
+							    </numIndex>
+							    <numIndex index="2" type="array">
+							      <numIndex index="0">SHOW</numIndex>
+							      <numIndex index="1">show</numIndex>
+							    </numIndex>
+							  </items>
+							  <default>list</default>
+							</config>
+						</TCEforms>
+					</settings.action>
+					<settings.eventsPerPage>
+						<TCEforms>
+							<label>Max. number of events to display per page</label>
+							<config>
+								<type>input</type>
+								<size>2</size>
+								<eval>int</eval>
+								<default>30</default>
+							</config>
+						</TCEforms>
+					</settings.eventsPerPage>
+					<settings.hidePastEvents>
+						<TCEforms>
+							<label>Hide past events</label>
+							<config>
+								<type>check</type>
+								<default>1</default>
+							</config>
+						</TCEforms>
+					</settings.hidePastEvents>
+				</el>
+			</ROOT>
+		</sDEF>
+	</sheets>
+</T3DataStructure>
