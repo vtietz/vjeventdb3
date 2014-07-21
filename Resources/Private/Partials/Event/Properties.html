@@ -1,30 +1,34 @@
 
-<h1>{event.title}</h1>
-<span class="vjeventdb3-event-event-category">
-	<f:render partial="Event/FlatEventCategoryList" arguments="{eventCategories : event.eventCategory}" />
-</span>
-<span class="vjeventdb3-event-age-category">
-	<f:render partial="Event/FlatAgeCategoryList" arguments="{ageCategories : event.ageCategory}" />
-</span>
+<div  class="tx-vjeventdb3-event">
 
-<p>{event.teasertext}</p>
-
-<div>
-	{event.description}
-</div>
-
-<f:if condition="{event.performers}">
-	<div class="vjeventdb3-event-performers">
-		<h2>Kursleiter</h2>
-		<f:for each="{event.performers}" as="performer">
-			<f:render partial="Performer/Properties" arguments="{performer:performer}" />
-		</f:for>
-	</div>
-</f:if>
+	<h1>{event.title}</h1>
+	<span class="tx-vjeventdb3-event-event-category">
+		<f:render partial="Event/FlatEventCategoryList" arguments="{eventCategories : event.eventCategory}" />
+	</span>
+	<span class="tx-vjeventdb3-event-age-category">
+		<f:render partial="Event/FlatAgeCategoryList" arguments="{ageCategories : event.ageCategory}" />
+	</span>
 	
-<f:if condition="{event.dates}">
-	<div class="vjeventdb3-event-dates">
-		<h2>Termine</h2>
-		<f:render partial="Date/List" arguments="{dates:event.dates}" />
+	<p class="tx-vjeventdb3-event-teasertext">{event.teasertext}</p>
+	
+	<div class="tx-vjeventdb3-event-description">
+		<f:format.html>{event.description}</f:format.html>
 	</div>
-</f:if>
+	
+	<f:if condition="{event.performers}">
+		<div class="tx-vjeventdb3-event-performers">
+			<h2><f:translate key="tx_vjeventdb3_domain_model_performer" /></h2>
+			<f:for each="{event.performers}" as="performer">
+				<f:render partial="Performer/Properties" arguments="{performer:performer}" />
+			</f:for>
+		</div>
+	</f:if>
+		
+	<f:if condition="{event.dates}">
+		<div class="tx-vjeventdb3-event-dates">
+			<h2><f:translate key="tx_vjeventdb3_dates" /></h2>
+			<f:render partial="Date/List" arguments="{dates:event.dates}" />
+		</div>
+	</f:if>
+
+</div>

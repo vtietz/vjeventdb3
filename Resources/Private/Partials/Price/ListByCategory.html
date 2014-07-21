@@ -1,0 +1,14 @@
+<dl class="tx-vjeventdb3-price-list">
+	<f:for each="{priceCategories}" as="priceCategory">
+			<dt class="tx-vjeventdb3-price-category-name">{priceCategory.category.name}</dt>
+				<f:for each="{priceCategory.prices}" as="price">
+					<dd class="tx-vjeventdb3-price-item">
+						<span class="tx-vjeventdb3-price-unit-name">{price.priceUnit.name}</span>
+						<span class="tx-vjeventdb3-price-amount-name">{price.priceAmount.name}</span>
+						<span class="tx-vjeventdb3-price-price">{price.price}</span>
+					</dd>
+				</f:for>
+			</dt>
+		</tr>
+	</f:for>
+</dl>

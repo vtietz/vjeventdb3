@@ -1,13 +1,12 @@
-<h3>{performer.name}</h3>
-
-<f:render partial="Performer/FlatCategoryList" arguments="{performerCategories : performer.performerCategory}" />
-
-<div>
-
-{performer.description}
-
-<f:for each="{performer.images}" as="image" >
-	<f:image src="{image.originalResource.publicUrl}" alt="{performer.name}" width="200" />
-</f:for>
+<div class="tx-vjeventdb3-performer">
+	<h3>{performer.name}</h3>
+	
+	<f:render partial="Performer/FlatCategoryList" arguments="{performerCategories : performer.performerCategory}" />
+	
+	<f:format.html>{performer.description}</f:format.html>
+	
+	<f:for each="{performer.images}" as="image" >
+		<f:image src="{image.originalResource.publicUrl}" alt="{performer.name}" width="200" />
+	</f:for>
 
 </div>

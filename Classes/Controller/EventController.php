@@ -87,11 +87,34 @@ class EventController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 	 */
 	public function listAction() {
 		
-		$allEventDates = $this->getAllDateEvents();
+		if ($this->request->hasArgument('starttime')) {
+			$starttime = $this->request->getArgument('starttime');
+		}
 		
-		$this->dateService->sortDates($allEventDates);
+		if ($this->request->hasArgument('endtime')) {
+			$endtime = $this->request->getArgument('endtime');
+		}
+		
+		if(!$starttime) {
+			$starttime = new DateTime(date('Y-m-d 00:00:00',strtotime($this->settings['list']['defaultStartTime'])));
+		}
+		else {
+			$starttime = new DateTime($starttime);
+		}
+		if(!$endtime) {
+			$endtime = new DateTime(date('Y-m-d 23:59:59',strtotime($this->settings['list']['defaultEndTime'])));
+		}
+		else {
+			$endtime = new DateTime($endtime);
+		}
+		
+		$allEventDates = $this->getAllDateEvents($starttime, $endtime);
+		
+		$this->getDateService()->sortDates($allEventDates);
 		$this->view->assign('dates', $allEventDates);
-
+		$this->view->assign('starttime', $starttime);
+		$this->view->assign('endtime', $endtime);
+		
 		$years = array();
 		$year = null;
 		$month = null;
@@ -123,11 +146,8 @@ class EventController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 		$this->view->assign('years', $years);
 	}
 	
-	private function getAllDateEvents() {
+	private function getAllDateEvents($startdate, $enddate) {
 
-		$startdate = date('Y-m-d', strtotime('first day of this month'));
-		$enddate = date('Y-m-d', strtotime('last day of this month'));
-		
 		$events = $this->eventRepository->findAllInDateRange($startdate, $enddate);
 		
 		$allEventDates = array();
@@ -137,9 +157,9 @@ class EventController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 		return $allEventDates;
 	}
 	
-	private function getDatesOfEvent(\VJmedia\Vjeventdb3\Domain\Model\Event $event, $startdate, $enddate) {
+	private function getDatesOfEvent(\VJmedia\Vjeventdb3\Domain\Model\Event $event, \DateTime $startdate, \DateTime $enddate) {
 		
-		$eventDates = $this->getDateService()->getAllDates($event->getDates(), new DateTime($startdate), new DateTime($enddate));
+		$eventDates = $this->getDateService()->getAllDates($event->getDates(), $startdate, $enddate);
 		foreach($eventDates as $date) {
 			$date->setEvent($event);
 			$date->setDuration($this->getDateService()->getDuration($date));
@@ -163,50 +183,41 @@ class EventController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 	public function showAction(\VJmedia\Vjeventdb3\Domain\Model\Event $event) {
 
 		$this->view->assign('event', $event);
+
+		//$starttime = date('Y-m-d', strtotime($this->settings['show']['startTime']));
+		//$endtime = date('Y-m-d', strtotime($this->settings['show']['endTime']));
 		
-		$startdate = date('Y-m-d', strtotime('first day of this month'));
-		$enddate = date('Y-m-d', strtotime('last day of this month'));
-		
-		$dates = $this->getDatesOfEvent($event, $startdate, $enddate);
+		$dates = $this->getDatesOfEvent($event);
 		$this->view->assign('dates', $dates);
 		$this->view->assign('nextdate', $this->getDateService()->getNextDate($dates));
 		$this->view->assign('nextdates', $this->getDateService()->getNextDates($dates));
-		$this->view->assign('prices', $this->getPricesSortedByCategory($event));
 		
-		//$priceCategories = $this->priceCategoryRepository->findAll($event);
-		$this->view->assign('cats', $this->getPricesSortedByCategory($event));
+		$this->view->assign('prices', $prices);
+		$this->view->assign('priceCategories', $this->getPriceCategories($event->getPrices()));
 		
 	}
 	
-	public function getPricesSortedByCategory(\VJmedia\Vjeventdb3\Domain\Model\Event $event) {
-
-		$pricesByCategory = array();
-		
-		$prices = $event->getPrices();
+	public function getPriceCategories($prices) {
+		$priceCategories = array();
 		foreach ($prices as $price) {
-			$pricesByCategory[$price->getPriceCategory()][] = $price;
-		}
-		
-		/*
-		$pricesByCategory = array();
-		foreach ($priceCategories as $priceCategory) {
-			$prices = $event->getPrices()->toArray();
-			foreach ($prices as $price) {
-				$categories = $price->getCategoroy()->toArray();
-				if($price->getCategory())
+			$cuid = '';
+			if($price->getPriceCategory()) {
+				$cuid = $price->getPriceCategory()->getUid();
 			}
+			if(!$priceCategories[$cuid]) {
+				$priceCategories[$cuid] = array();
+				$priceCategories[$cuid]['category'] = $price->getPriceCategory();
+				$priceCategories[$cuid]['prices'] = array();
+			}
+			$priceCategories[$cuid]['prices'][] = $price;
 		}
-		*/
-		
-		
-		/*
-		$pricesByCategory = array();
-		$prices = $event->getPrices()->toArray();
-		*/
-		
-		return $pricesByCategory;
-	} 
-
+		$compare = function($a, $b) {
+			return $a['category']->getSorting() > $b['category']->getSorting() ? -1 : 1;
+		};
+		usort($priceCategories, $compare);
+		return $priceCategories;
+	}
+	
 	/**
 	 * action teaser
 	 *

@@ -18,8 +18,8 @@ Otherwise your changes will be overwritten the next time you save the extension 
 <f:render partial="Event/Properties" arguments="{event:event}" />
 
 <f:if condition="{dates}">
-<div class="vjeventdb3-event-dates">
-	<h2>Alle Termine</h2>
+<div class="tx-vjeventdb3-event-dates">
+	<h2><f:translate key="tx_vjeventdb3_allDates" /></h2>
 	<ul>
 		<f:for each="{dates}" as="date">
 			<li>
@@ -31,8 +31,8 @@ Otherwise your changes will be overwritten the next time you save the extension 
 </f:if>
 
 <f:if condition="{nextdates}">
-<div class="vjeventdb3-event-dates">
-	<h2>Kommende Termine</h2>
+<div class="tx-vjeventdb3-event-dates">
+	<h2><f:translate key="tx_vjeventdb3_nextDates" /></h2>
 	<ul>
 		<f:for each="{nextdates}" as="date">
 			<li>
@@ -44,8 +44,8 @@ Otherwise your changes will be overwritten the next time you save the extension 
 </f:if>
 
 <f:if condition="{nextdate}">
-	<div class="vjeventdb3-event-dates">
-		<h2>Nächster Termin</h2>
+	<div class="tx-vjeventdb3-event-dates">
+		<h2><f:translate key="tx_vjeventdb3_nextDate" /></h2>
 		<ul>
 			<li>
 				<f:render partial="Date/Single" arguments="{date: nextdate}" />
@@ -54,11 +54,9 @@ Otherwise your changes will be overwritten the next time you save the extension 
 	</div>
 </f:if>
 
-<f:debug title="Results of cats">{cats}</f:debug>
-
-<f:if condition="{prices}">
-	<h2>Preise</h2>
-	<f:render partial="Price/List" arguments="{prices : prices}" />
+<f:if condition="{priceCategories}">
+	<h2><f:translate key="tx_vjeventdb3_prices" /></h2>
+	<f:render partial="Price/ListByCategory" arguments="{priceCategories : priceCategories}" />
 </f:if>
 
 <f:link.action action="list">Back to list</f:link.action>

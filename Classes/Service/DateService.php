@@ -35,7 +35,7 @@ class DateService {
 	 * @param \DateTime $startDateTime The start date for valid dates.
 	 * @param \DateTime $endDateTime The end date for valid dates.
 	 */
-	public function getAllDates($dates, $startDateTime, $endDateTime) {
+	public function getAllDates($dates, \DateTime $startDateTime = NULL, \DateTime $endDateTime = NULL) {
 
 		$theDates = array();
 		foreach($dates as $date) {
@@ -104,7 +104,7 @@ class DateService {
 	private static function isValid($date, $startDateTime, $endDateTime) {
 		
 		// not valid of start date is after end date of the given range
-		if($date->getStartDate()->getTimestamp() > $endDateTime->getTimestamp()) {
+		if($endDateTime && ($date->getStartDate()->getTimestamp() > $endDateTime->getTimestamp())) {
 			return false;
 		}
 		
@@ -117,7 +117,7 @@ class DateService {
 			}
 			
 			// not valid if an end date is given and the end date is before the start date of the given range  
-			if($date->getEndDate()->getTimestamp() < $startDateTime->getTimestamp()) {
+			if($startDateTime && ($date->getEndDate()->getTimestamp() < $startDateTime->getTimestamp())) {
 				return false;
 			}
 			

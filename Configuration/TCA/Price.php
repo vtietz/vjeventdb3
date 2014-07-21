@@ -178,6 +178,9 @@ $TCA['tx_vjeventdb3_domain_model_price']['ctrl']['label_alt'] = 'price';
 $TCA['tx_vjeventdb3_domain_model_price']['ctrl']['label_alt_force'] = 1;
 
 $TCA['tx_vjeventdb3_domain_model_price']['columns']['price_category']['config']['type'] = 'select';
+$TCA['tx_vjeventdb3_domain_model_price']['columns']['price_category']['config']['items'] = array(
+		array('-', ''),
+);
 $TCA['tx_vjeventdb3_domain_model_price']['columns']['price_category']['config']['size'] = 1;
 //$TCA['tx_vjeventdb3_domain_model_price']['columns']['price_category']['config']['wizards']['suggest'] = array('type' => 'suggest');
 $TCA['tx_vjeventdb3_domain_model_price']['columns']['price_category']['config']['wizards']['edit'] = array(
@@ -205,7 +208,47 @@ $TCA['tx_vjeventdb3_domain_model_price']['columns']['price_unit']['config']['typ
 $TCA['tx_vjeventdb3_domain_model_price']['columns']['price_unit']['config']['items'] = array(
 		array('-', ''),
 );
+$TCA['tx_vjeventdb3_domain_model_price']['columns']['price_unit']['config']['wizards']['edit'] = array(
+		'type' => 'popup',
+		'title' => 'Edit',
+		'script' => 'wizard_edit.php',
+		'icon' => 'edit2.gif',
+		'popup_onlyOpenIfSelected' => 1,
+		'JSopenParams' => 'height=350,width=580,status=0,menubar=0,scrollbars=1',
+);
+$TCA['tx_vjeventdb3_domain_model_price']['columns']['price_unit']['config']['wizards']['add'] = array(
+		'type' => 'script',
+		'title' => 'Create new',
+		'icon' => 'add.gif',
+		'params' => array(
+				'table' => 'tx_vjeventdb3_domain_model_pricecategory',
+				'pid' => '###CURRENT_PID###',
+				'setValue' => 'prepend'
+		),
+		'script' => 'wizard_add.php',
+);
+
+
 $TCA['tx_vjeventdb3_domain_model_price']['columns']['price_amount']['config']['type'] = 'select';
 $TCA['tx_vjeventdb3_domain_model_price']['columns']['price_amount']['config']['items'] = array(
 		array('-', ''),
+);
+$TCA['tx_vjeventdb3_domain_model_price']['columns']['price_amount']['config']['wizards']['edit'] = array(
+		'type' => 'popup',
+		'title' => 'Edit',
+		'script' => 'wizard_edit.php',
+		'icon' => 'edit2.gif',
+		'popup_onlyOpenIfSelected' => 1,
+		'JSopenParams' => 'height=350,width=580,status=0,menubar=0,scrollbars=1',
+);
+$TCA['tx_vjeventdb3_domain_model_price']['columns']['price_amount']['config']['wizards']['add'] = array(
+		'type' => 'script',
+		'title' => 'Create new',
+		'icon' => 'add.gif',
+		'params' => array(
+				'table' => 'tx_vjeventdb3_domain_model_pricecategory',
+				'pid' => '###CURRENT_PID###',
+				'setValue' => 'prepend'
+		),
+		'script' => 'wizard_add.php',
 );

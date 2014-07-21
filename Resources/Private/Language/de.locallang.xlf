@@ -166,7 +166,7 @@
 			<trans-unit id="tx_vjeventdb3_events.frequency.I.4">
 				<target>Jährlich</target>
 			</trans-unit>			
-			
+
 			<trans-unit id="tx_vjeventdb3_events.events.listing1">
 				<target>Veranstaltungen1</target>
 			</trans-unit>

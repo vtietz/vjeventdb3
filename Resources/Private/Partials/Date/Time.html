@@ -1,22 +1,12 @@
 <f:if condition="{date.startTime}">
 
 	<f:if condition="{date.endTime}">
-		<f:then>
-			von
-		</f:then>
-		<f:else>
-			um 
-		</f:else>
+		<f:then><f:translate key="tx_vjeventdb3_domain_model_date.from" /></f:then>
+		<f:else><f:translate key="tx_vjeventdb3_domain_model_date.at" /></f:else>
 	</f:if>
-	
-	<f:format.date format="H:i">{date.startTime}</f:format.date>
-	
+	<f:format.date format="{f:translate(key:'tx_vjeventdb3_domain_model_date.timeFormat')}">{date.startTime}</f:format.date>
 	<f:if condition="{date.endTime}">
-		<f:then>
-			bis <f:format.date format="H:i">{date.endTime}</f:format.date>
-		</f:then>
+		<f:then><f:translate key="tx_vjeventdb3_domain_model_date.to" /> <f:format.date format="{f:translate(key:'tx_vjeventdb3_domain_model_date.timeFormat')}">{date.endTime}</f:format.date></f:then>
 	</f:if>
-		
-	Uhr
 			
 </f:if>

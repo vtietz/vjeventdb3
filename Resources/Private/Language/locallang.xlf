@@ -150,6 +150,85 @@
 			<trans-unit id="tx_vjeventdb3_domain_model_price.unit">
 				<source>Unit</source>
 			</trans-unit>
+			
+			<trans-unit id="tx_vjeventdb3_duration">
+				<source>Duration</source>
+			</trans-unit>
+			
+			
+			<trans-unit id="tx_vjeventdb3_domain_model_date.Every">
+				<source>Every</source>
+			</trans-unit>			
+			<trans-unit id="tx_vjeventdb3_domain_model_date.every">
+				<source>every</source>
+			</trans-unit>			
+			<trans-unit id="tx_vjeventdb3_domain_model_date.From">
+				<source>From</source>
+			</trans-unit>			
+			<trans-unit id="tx_vjeventdb3_domain_model_date.FromWithEnd">
+				<source>From</source>
+			</trans-unit>	
+			<trans-unit id="tx_vjeventdb3_domain_model_date.from">
+				<source>from</source>
+			</trans-unit>			
+			<trans-unit id="tx_vjeventdb3_domain_model_date.to">
+				<source>to</source>
+			</trans-unit>			
+			<trans-unit id="tx_vjeventdb3_domain_model_date.at">
+				<source>at</source>
+			</trans-unit>			
+			<trans-unit id="tx_vjeventdb3_domain_model_date.clock">
+				<source></source>
+			</trans-unit>
+			<trans-unit id="tx_vjeventdb3_domain_model_date.clock">
+				<source></source>
+			</trans-unit>	
+
+
+			<trans-unit id="tx_vjeventdb3_domain_model_date.dates">
+				<source>Dates</source>
+			</trans-unit>
+			<trans-unit id="tx_vjeventdb3_domain_model_date.nextDates">
+				<source>Next Dates</source>
+			</trans-unit>	
+			<trans-unit id="tx_vjeventdb3_domain_model_date.Dates">
+				<source>All Dates</source>
+			</trans-unit>	
+
+			<trans-unit id="tx_vjeventdb3_domain_model_date.once">
+				<source>l, d.m.</source>
+			</trans-unit>	
+			<trans-unit id="tx_vjeventdb3_domain_model_date.timeFormat">
+				<source>h:i A</source>
+			</trans-unit>	
+			<trans-unit id="tx_vjeventdb3_domain_model_date.dateFormat">
+				<source>F jS</source>
+			</trans-unit>		
+			
+			<trans-unit id="tx_vjeventdb3_back_to_list">
+				<source>Back to list</source>
+			</trans-unit>
+
+			<trans-unit id="tx_vjeventdb3_allDates">
+				<source>All dates</source>
+			</trans-unit>
+
+			<trans-unit id="tx_vjeventdb3_nextDates">
+				<source>Next dates</source>
+			</trans-unit>
+
+			<trans-unit id="tx_vjeventdb3_nextDate">
+				<source>Next date</source>
+			</trans-unit>
+
+			<trans-unit id="tx_vjeventdb3_dates">
+				<source>Dates</source>
+			</trans-unit>
+
+			<trans-unit id="tx_vjeventdb3_prices">
+				<source>Prices</source>
+			</trans-unit>
+
 		</body>
 	</file>
 </xliff>

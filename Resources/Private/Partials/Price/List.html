@@ -1,7 +1,7 @@
 <f:if condition="{prices}">
-	<span class="vjeventdb3-event-prices">
+	<span class="tx-vjeventdb3-event-prices">
 		<f:for each="{prices}" as="price">
-			{price.name}
+			{price.priceCategory.name} {price.name} {price.price} <br/>
 		</f:for>
 	</span>
 </f:if>

@@ -1,6 +1,8 @@
 <?php
 namespace VJmedia\Vjeventdb3\Domain\Repository;
 
+use \DateTime;
+
 /***************************************************************
  *
  *  Copyright notice
@@ -35,7 +37,7 @@ class EventRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 	 * @param $startDate
 	 * @param $endDate
 	 */
-	public function findAllInDateRange($startDate, $endDate) {
+	public function findAllInDateRange(\DateTime $startDate, \DateTime $endDate) {
 		$query = $this->persistenceManager->createQueryForType($this->objectType);
 		if ($this->defaultOrderings !== array()) {
 			$query->setOrderings($this->defaultOrderings);
@@ -45,9 +47,9 @@ class EventRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 		}
 		$query->matching(
 			$query->logicalAnd(
-				$query->lessThanOrEqual('dates.start_date', $endDate),
+				$query->lessThanOrEqual('dates.start_date', date('Y-m-d', $endDate->getTimestamp())),
 				$query->logicalOr(
-					$query->greaterThanOrEqual('dates.end_date', $startDate),
+					$query->greaterThanOrEqual('dates.end_date', date('Y-m-d', $startDate->getTimestamp())),
 					$query->equals('dates.end_date', '0000-00-00'),
 					$query->equals('dates.end_date', NULL)
 				)
