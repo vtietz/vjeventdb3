@@ -16,11 +16,13 @@ Otherwise your changes will be overwritten the next time you save the extension 
 
 <f:flashMessages renderMode="div" />
 
-<f:render partial="Date/DatePicker" arguments="{starttime: starttime, endtime : endtime}" />
+<f:render partial="Date/DatePicker" arguments="{starttime: starttime, endtime : endtime, datepickerSettings : datepickerSettings}" />
 
 <f:format.date format="l, d.m. H:i">{starttime}</f:format.date>
 -
 <f:format.date format="l, d.m. H:i">{endtime}</f:format.date>
+
+<f:debug title="Settings">{settings}</f:debug>
 
 <table class="tx-vjeventdb3-list">
 	<thead>

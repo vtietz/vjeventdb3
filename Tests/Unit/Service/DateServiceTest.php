@@ -182,4 +182,32 @@ class DateServiceTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 		
 	}
 	
+	/**
+	 * Tests if only dates are returned that are within the given date range.
+	 * 
+	 * @test
+	 */
+	public function dateRangeWithinTest() {
+		$dates = array(
+				DateMock::getDateMock(new DateTime("2014-01-01"), strtotime("10:00"), new DateTime("2014-01-31"), strtotime("11:00"), Date::FREQUENCY_DAILY, 0),
+		);
+		
+		$allDates = $this->subject->getAllDates($dates, new DateTime("2014-01-05"), new DateTime("2014-01-10"));
+		$this->assertEquals(6, count($allDates));
+	}
+	
+	/**
+	 * Tests if dates are returned even though the start date of the date range is before the first date.
+	 *
+	 * @test
+	 */
+	public function dateRangeBeforeTest() {
+		$dates = array(
+				DateMock::getDateMock(new DateTime("2014-06-29"), strtotime("20:00"), new DateTime("0000-00-00"), strtotime("21:00"), Date::FREQUENCY_WEEKLY, 0),
+		);
+	
+		$allDates = $this->subject->getAllDates($dates, new DateTime("2014-06-30"), new DateTime("2014-07-31"));
+		$this->assertEquals(5, count($allDates));
+	}	
+	
 }

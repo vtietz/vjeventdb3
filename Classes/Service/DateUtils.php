@@ -18,7 +18,7 @@ class DateUtils {
 	
 	const DIFF_MODE_YEARS = "yyyy";
 	const DIFF_MODE_MONTHS = "m";
-	const DIFF_MODE_WEEKS = "w";
+	const DIFF_MODE_WEEKS = "ww";
 	const DIFF_MODE_DAYS = "d";
 	
 	private function __construct() {
@@ -155,6 +155,12 @@ class DateUtils {
 		n - Number of full minutes
 		s - Number of full seconds (default)
 		*/
+		
+		if($datefrom instanceof DateTime && $dateto instanceof DateTime) {
+			$datefrom = $datefrom->getTimestamp();
+			$dateto = $dateto->getTimestamp();
+			$using_timestamps = true;
+		}
 		
 		if (!$using_timestamps) {
 			$datefrom = strtotime($datefrom, 0);

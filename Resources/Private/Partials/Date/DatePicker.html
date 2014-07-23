@@ -2,12 +2,23 @@
 <script src="//code.jquery.com/ui/1.11.0/jquery-ui.js"></script>
 <link rel="stylesheet" href="//code.jquery.com/ui/1.11.0/themes/smoothness/jquery-ui.css">
 
-<script>
-var format = '{settings.list.datepicker.JSformat}';
+<script type="text/javascript">
+var format = '{settings.datepicker.JSformat}';
 $(function() {
-	$( "#starttime" ).datepicker({ dateFormat : format  });
+	$( "#starttime" ).datepicker({ 
+		dateFormat : format,
+		onSelect : function(dateText, inst) {
+			$( "#starttime").val(dateText);
+			$( "#tx-vjeventdb3-datepicker" ).submit();
+		}
+	});
+	$( "#currentRange").change( function() { $( "#tx-vjeventdb3-datepicker" ).submit(); });
 });
 </script>
-<f:form action="list">
-	<f:form.textfield id="starttime" value="{f:format.date(date: '{starttime}', format: '{settings.list.datepicker.format}')}" /><f:form.button>Send</f:form.button>
+<f:form id="tx-vjeventdb3-datepicker" action="list">
+	<f:link.action action="list" arguments="{starttime : datepickerSettings.today}">Today</f:link.action>
+	<f:link.action action="list" arguments="{starttime : datepickerSettings.previous}">Previous</f:link.action>
+	<f:form.select id="currentRange" name="currentRange" options="{datepickerSettings.ranges}" value="{datepickerSettings.currentRange}" />
+	<f:link.action action="list" arguments="{starttime : datepickerSettings.next}">Next</f:link.action>
+	<f:form.textfield id="starttime" name="starttime" value="{f:format.date(date: '{starttime}', format: '{settings.datepicker.format}')}" /><f:form.button>Send</f:form.button>
 </f:form>

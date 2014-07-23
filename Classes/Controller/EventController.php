@@ -86,35 +86,17 @@ class EventController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 	 * @return void
 	 */
 	public function listAction() {
+
+		$startDateTime = $this->getStartDateTime();
+		$endDateTime = $this->getEndDateTime($startDateTime);
 		
-		if ($this->request->hasArgument('starttime')) {
-			$starttime = $this->request->getArgument('starttime');
-		}
-		
-		if ($this->request->hasArgument('endtime')) {
-			$endtime = $this->request->getArgument('endtime');
-		}
-		
-		if(!$starttime) {
-			$starttime = new DateTime(date('Y-m-d 00:00:00',strtotime($this->settings['list']['defaultStartTime'])));
-		}
-		else {
-			$starttime = new DateTime($starttime);
-		}
-		if(!$endtime) {
-			$endtime = new DateTime(date('Y-m-d 23:59:59',strtotime($this->settings['list']['defaultEndTime'])));
-		}
-		else {
-			$endtime = new DateTime($endtime);
-		}
-		
-		$allEventDates = $this->getAllDateEvents($starttime, $endtime);
+		$allEventDates = $this->getAllDateEvents($startDateTime, $endDateTime);
 		
 		$this->getDateService()->sortDates($allEventDates);
 		$this->view->assign('dates', $allEventDates);
-		$this->view->assign('starttime', $starttime);
-		$this->view->assign('endtime', $endtime);
-		
+		$this->view->assign('starttime', $startDateTime);
+		$this->view->assign('endtime', $endDateTime);
+				
 		$years = array();
 		$year = null;
 		$month = null;
@@ -144,6 +126,72 @@ class EventController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 		}
 
 		$this->view->assign('years', $years);
+		$this->view->assign('datepickerSettings', $this->getDatePickerSettings($startDateTime));
+		
+	}
+	
+	private function getDatePickerSettings(\DateTime $startDateTime) {
+
+		$rangeSettings = $this->getCurrentDateRangeSettings();
+
+		$datepickerSettings = array();
+		$datepickerSettings['ranges'] = $this->getDatePickerRanges();
+		$datepickerSettings['currentRange'] = $this->getCurrentDatePickerRange();
+		$datepickerSettings['today'] = date('Y-m-d', strtotime($rangeSettings['today']));
+		$datepickerSettings['previous'] = date('Y-m-d', strtotime($rangeSettings['previous'], $startDateTime->getTimestamp()));
+		$datepickerSettings['next'] =  date('Y-m-d',  strtotime($rangeSettings['next'], $startDateTime->getTimestamp()));
+		
+		return $datepickerSettings;
+		
+	}
+	
+	private function dateCorrection(\DateTime $datetime, $timeCorrection) {
+		if($correctionSettings) {
+			$starttimeString = date('Y-m-d 00:00:00', strtotime($timeCorrection, $datetime->getTimestamp()));
+			$datetime = new DateTime($starttimeString);
+		}
+		return $datetime;
+	}
+	
+	private function getStartDateTime() {
+		$rangeSettings = $this->getCurrentDateRangeSettings();
+		$starttimeString = $this->getArgument('starttime',
+				date('Y-m-d 00:00:00', strtotime($rangeSettings['defaultStartTime'])));
+		$startDateTime = new DateTime($starttimeString);
+		$startDateTime = $this->dateCorrection($startDateTime, $rangeSettings['startTimeCorrection']);
+		return $startDateTime;
+	}
+	
+	private function getEndDateTime(\DateTime $startDateTime) {
+		$rangeSettings = $this->getCurrentDateRangeSettings();
+		$endtimeString = $this->getArgument('endtime',
+				date('Y-m-d 00:00:00', strtotime($rangeSettings['endTimeCorrection'], $startDateTime->getTimestamp())));
+		$endDateTime = new DateTime($endtimeString);
+		return $endDateTime;
+	}
+	
+	private function getCurrentDateRangeSettings() {
+		$range = $this->getCurrentDatePickerRange();
+		return $this->settings['datepicker']['ranges'][$range];
+	}
+	
+	private function getDatePickerRanges() {
+		$datepickerranges = array();
+		foreach($this->settings['datepicker']['ranges'] as $key => $range) {
+			$datepickerranges[$key] = \TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate($range['label'], ''); 
+		}
+		return $datepickerranges;
+	}
+	
+	private function getCurrentDatePickerRange() {
+		return $this->getArgument('currentRange', $this->settings['datepicker']['defaultRange']);
+	}
+	
+	private function getArgument($name, $default) {
+		if ($this->request->hasArgument($name)) {
+			return $this->request->getArgument($name);
+		}
+		return $default;
 	}
 	
 	private function getAllDateEvents($startdate, $enddate) {

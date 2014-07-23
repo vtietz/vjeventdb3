@@ -37,33 +37,37 @@ class DateService {
 	 */
 	public function getAllDates($dates, \DateTime $startDateTime = NULL, \DateTime $endDateTime = NULL) {
 
+		
 		$theDates = array();
 		foreach($dates as $date) {
 			/* @var $date \VJmedia\Vjeventdb3\Domain\Model\Date */
 
-			if(!$this->isValid($date, $startDateTime, $endDateTime)) {
-				continue;
+			if(($date->getFrequency() == Date::FREQUENCY_ONCE) && ($this->isValid($date, $startDateTime, $endDateTime)) &&
+						(DateService::getStartTimestamp($date) >= $startDateTime->getTimestamp())) {
+					$this->addDate($theDates, $date);
+					continue;
 			}
-			elseif($date->getFrequency() == Date::FREQUENCY_ONCE) {
-				$this->addDate($theDates, $date);
-			}
-			elseif($date->getFrequency() == Date::FREQUENCY_DAILY) {
-				$this->makeNewDates($theDates, $date, "+1 day", $startDateTime, $endDateTime);
+			
+			if($date->getFrequency() == Date::FREQUENCY_DAILY) {
+				$startOffset = DateUtils::datediff(DateUtils::DIFF_MODE_DAYS, $date->getStartDate(), $startDateTime);
+				$this->makeNewDates($theDates, $date, "day", $startOffset, $startDateTime, $endDateTime);
 			}
 			elseif($date->getFrequency() == Date::FREQUENCY_WEEKLY) {
-				$this->makeNewDates($theDates, $date, "+1 week", $startDateTime, $endDateTime);
+				$startOffset = DateUtils::datediff(DateUtils::DIFF_MODE_WEEKS, $date->getStartDate(), $startDateTime);
+				$this->makeNewDates($theDates, $date, "week", $startOffset, $startDateTime, $endDateTime);
 			}				
 			elseif($date->getFrequency() == Date::FREQUENCY_MONTHLY) {
-				$this->makeNewDates($theDates, $date, "+1 month", $startDateTime, $endDateTime);
+				$startOffset = DateUtils::datediff(DateUtils::DIFF_MODE_MONTHS, $date->getStartDate(), $startDateTime);
+				$this->makeNewDates($theDates, $date, "month", $startOffset, $startDateTime, $endDateTime);
 			}				
 			elseif($date->getFrequency() == Date::FREQUENCY_YEARLY) {
-				$this->makeNewDates($theDates, $date, "+1 year", $startDateTime, $endDateTime);
+				$startOffset = DateUtils::datediff(DateUtils::DIFF_MODE_YEARS, $date->getStartDate(), $startDateTime);
+				$this->makeNewDates($theDates, $date, "year", $startOffset, $startDateTime, $endDateTime);
 			}				
 		} 
 		
 		$this->removeKeysFromArray($theDates);
 		$this->sortDates($theDates);
-		
 		
 		return $theDates;
 		
@@ -86,10 +90,17 @@ class DateService {
 	 * @param \VJmedia\Vjeventdb3\Domain\Model\Date $date The date.
 	 * @param string $intervalString The relative time which is added to each new date.
 	 */
-	private function makeNewDates(&$dates, $date, $intervalString, $startDateTime, $endDateTime) {
+	private function makeNewDates(&$dates, $date, $intervalString, $startOffset, $startDateTime, $endDateTime) {
+		// make the first date
+		if($startOffset > 0) {
+			$date->getStartDate()->add(DateInterval::createfromdatestring("+".$startOffset." ".$intervalString));
+		}
+		// add first date if valid and add all further dates till the $endDateTime is reached
 		while($this->isValid($date, $startDateTime, $endDateTime)) {
-			$this->addDate($dates, unserialize(serialize($date))); // make deep copy of the object
-			$date->getStartDate()->add(DateInterval::createfromdatestring($intervalString));
+			if(DateService::getStartTimestamp($date) >= $startDateTime->getTimestamp()) {
+				$this->addDate($dates, unserialize(serialize($date))); // make deep copy of the object
+			}
+			$date->getStartDate()->add(DateInterval::createfromdatestring("+1 ".$intervalString));
 		}
 		return $dates;
 	}
@@ -103,7 +114,14 @@ class DateService {
 	 */
 	private static function isValid($date, $startDateTime, $endDateTime) {
 		
-		// not valid of start date is after end date of the given range
+		// not valid if start date is before the start date of the given date range
+		/*
+		if(DateService::getStartTimestamp($date) < $startDateTime->getTimestamp()) {
+			return false;
+		}
+		*/
+		
+		// not valid if start date is after end date of the given range
 		if($endDateTime && ($date->getStartDate()->getTimestamp() > $endDateTime->getTimestamp())) {
 			return false;
 		}

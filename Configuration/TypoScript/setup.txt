@@ -18,8 +18,8 @@ plugin.tx_vjeventdb3.settings {
 
 	list {
 
-		defaultStartTime = first day of this week
-		defaultEndTime = last day of this month
+		defaultStartTime = monday this week
+		defaultDateRange = week
 
 		sections.year {
 			show = 0
@@ -37,9 +37,57 @@ plugin.tx_vjeventdb3.settings {
 		}
 		
 		timeFormat = H:i
-		datepicker.format = m/d/y
-		datepicker.JSformat = mm/dd/yy
 		
+	}
+	
+	datepicker {
+
+		format = m/d/y
+		JSformat = mm/dd/yy
+	
+		defaultRange = week
+
+		ranges {
+		
+			day {
+				label = LLL:EXT:vjeventdb3/Resources/Private/Language/locallang.xlf:tx_vjeventdb3_datepicker_range.day
+				defaultStartTime = monday this week
+				startTimeCorrection =
+				endTimeCorrection = +1 day 
+				today = today
+				previous = -1 day
+				next = +1 day
+			}
+			week {
+				label = LLL:EXT:vjeventdb3/Resources/Private/Language/locallang.xlf:tx_vjeventdb3_datepicker_range.week
+				defaultStartTime = monday this week
+				startTimeCorrection =
+				endTimeCorrection = +1 week
+				today = today
+				previous = -1 week
+				next = +1 week
+			}
+			month {
+				label = LLL:EXT:vjeventdb3/Resources/Private/Language/locallang.xlf:tx_vjeventdb3_datepicker_range.month
+				defaultStartTime = first day of this month
+				startTimeCorrection =
+				endTimeCorrection = +1 month
+				today = today
+				previous = -1 month
+				next = +1 month
+			}
+			year {
+				label = LLL:EXT:vjeventdb3/Resources/Private/Language/locallang.xlf:tx_vjeventdb3_datepicker_range.year
+				defaultStartTime = first day of this year
+				startTimeCorrection =
+				endTimeCorrection = +1 year
+				today = today
+				previous = -1 year
+				next = +1 year
+			}
+			
+		}
+					
 	}
 	
 	single {
