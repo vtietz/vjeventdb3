@@ -8,7 +8,7 @@ if (!defined('TYPO3_MODE')) {
 	'Events',
 	array(
 		'Event' => 'list, teaser, show',
-		
+		'Performer' => 'list',
 	),
 	// non-cacheable actions
 	array(
