@@ -32,16 +32,19 @@ class DateService {
 	 * Calculates all dates from a set of dates with a certain frequency (e.g. Daily) between a goven time period.
 	 * 
 	 * @param array $dates The source of dates.
-	 * @param \DateTime $startDateTime The start date for valid dates.
-	 * @param \DateTime $endDateTime The end date for valid dates.
+	 * @param \DateTime $rangeStartDateTime The start date for valid dates.
+	 * @param \DateTime $rangeEndDateTime The end date for valid dates.
 	 */
-	public function getAllDates($dates, \DateTime $startDateTime = NULL, \DateTime $endDateTime = NULL) {
+	public function getAllDates($dates, \DateTime $rangeStartDateTime, \DateTime $rangeEndDateTime, $maxItemsPerDate = 50) {
 
 		
 		$theDates = array();
 		foreach($dates as $date) {
 			/* @var $date \VJmedia\Vjeventdb3\Domain\Model\Date */
 
+			$startDateTime = $rangeStartDateTime->getTimestamp() !== FALSE ? $rangeStartDateTime : $date->getStartDate();
+			$endDateTime = $rangeEndDateTime->getTimestamp() !== FALSE ? $rangeEndDateTime : $date->getEndDate();
+				
 			if(($date->getFrequency() == Date::FREQUENCY_ONCE) && ($this->isValid($date, $startDateTime, $endDateTime)) &&
 						(DateService::getStartTimestamp($date) >= $startDateTime->getTimestamp())) {
 					$this->addDate($theDates, $date);
@@ -50,19 +53,19 @@ class DateService {
 			
 			if($date->getFrequency() == Date::FREQUENCY_DAILY) {
 				$startOffset = DateUtils::datediff(DateUtils::DIFF_MODE_DAYS, $date->getStartDate(), $startDateTime);
-				$this->makeNewDates($theDates, $date, "day", $startOffset, $startDateTime, $endDateTime);
+				$this->makeNewDates($theDates, $maxItemsPerDate, $date, "day", $startOffset, $startDateTime, $endDateTime);
 			}
 			elseif($date->getFrequency() == Date::FREQUENCY_WEEKLY) {
 				$startOffset = DateUtils::datediff(DateUtils::DIFF_MODE_WEEKS, $date->getStartDate(), $startDateTime);
-				$this->makeNewDates($theDates, $date, "week", $startOffset, $startDateTime, $endDateTime);
+				$this->makeNewDates($theDates, $maxItemsPerDate, $date, "week", $startOffset, $startDateTime, $endDateTime);
 			}				
 			elseif($date->getFrequency() == Date::FREQUENCY_MONTHLY) {
 				$startOffset = DateUtils::datediff(DateUtils::DIFF_MODE_MONTHS, $date->getStartDate(), $startDateTime);
-				$this->makeNewDates($theDates, $date, "month", $startOffset, $startDateTime, $endDateTime);
+				$this->makeNewDates($theDates, $maxItemsPerDate, $date, "month", $startOffset, $startDateTime, $endDateTime);
 			}				
 			elseif($date->getFrequency() == Date::FREQUENCY_YEARLY) {
 				$startOffset = DateUtils::datediff(DateUtils::DIFF_MODE_YEARS, $date->getStartDate(), $startDateTime);
-				$this->makeNewDates($theDates, $date, "year", $startOffset, $startDateTime, $endDateTime);
+				$this->makeNewDates($theDates, $maxItemsPerDate, $date, "year", $startOffset, $startDateTime, $endDateTime);
 			}				
 		} 
 		
@@ -90,13 +93,13 @@ class DateService {
 	 * @param \VJmedia\Vjeventdb3\Domain\Model\Date $date The date.
 	 * @param string $intervalString The relative time which is added to each new date.
 	 */
-	private function makeNewDates(&$dates, $date, $intervalString, $startOffset, $startDateTime, $endDateTime) {
+	private function makeNewDates(&$dates, $maxItemsPerDate, $date, $intervalString, $startOffset, $startDateTime, $endDateTime) {
 		// make the first date
 		if($startOffset > 0) {
 			$date->getStartDate()->add(DateInterval::createfromdatestring("+".$startOffset." ".$intervalString));
 		}
 		// add first date if valid and add all further dates till the $endDateTime is reached
-		while($this->isValid($date, $startDateTime, $endDateTime)) {
+		while($this->isValid($date, $startDateTime, $endDateTime) && (count($dates) < $maxItemsPerDate)) {
 			if(DateService::getStartTimestamp($date) >= $startDateTime->getTimestamp()) {
 				$this->addDate($dates, unserialize(serialize($date))); // make deep copy of the object
 			}
@@ -195,30 +198,41 @@ class DateService {
 	}
 	
 	/**
-	 * @param unknown $dates
-	 * @return \VJmedia\Vjeventdb3\Domain\Model\Date|NULL The next date from now.
-	 */
-	public function getNextDate($dates) {
-		foreach($dates as $date) {
-			if($this->getStartTimestamp($date) >= time()) {
-				return $date;
-			}
-		}
-		return NULL;
-	}
-	
-	/**
-	 * @param unknown $dates
+	 * @param array $dates
 	 * @return array The next dates from now.
 	 */
-	public function getNextDates($dates) {
+	public function getNextDates($dates, $maxItems = 0) {
 		$nextDates = array();
 		foreach($dates as $date) {
 			if($this->getStartTimestamp($date) >= time()) {
 				$nextDates[] = $date;
 			}
+			if(count($nextDates) > $maxItems) {
+				break;
+			}
 		}
 		return $nextDates;
 	}	
+	
+	public function getDatesWithinRange($dates, $starttime, $endtime, $maxItems) {
+		$theDates = array();
+		foreach ($dates as $date) {
+			$timestamp = $this->getStartTimestamp($date);
+			if($this->isInRange($timestamp, $starttime, $endtime)) {
+				$theDates[] = $date;				
+			}
+			if(count($theDates) >= $maxItems) {
+				break;
+			}
+		}
+		return $theDates;
+	}
+	
+	public function isInRange($timestamp, $starttime, $endtime) {
+		if(($timestamp >= $starttime) && (($timestamp <= $endtime) || !$endtime)) {
+			return true;
+		}
+		return false;
+	}
 	
 }

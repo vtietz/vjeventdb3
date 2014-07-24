@@ -140,6 +140,7 @@ class EventController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 		$datepickerSettings['today'] = date('Y-m-d', strtotime($rangeSettings['today']));
 		$datepickerSettings['previous'] = date('Y-m-d', strtotime($rangeSettings['previous'], $startDateTime->getTimestamp()));
 		$datepickerSettings['next'] =  date('Y-m-d',  strtotime($rangeSettings['next'], $startDateTime->getTimestamp()));
+		$datepickerSettings['regional'] = $this->settings['datepicker']['regional'];
 		
 		return $datepickerSettings;
 		
@@ -153,11 +154,29 @@ class EventController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 		return $datetime;
 	}
 	
-	private function getStartDateTime() {
-		$rangeSettings = $this->getCurrentDateRangeSettings();
+	private function getStartTimeFromArguments($rangeSettings) {
+		
 		$starttimeString = $this->getArgument('starttime',
 				date('Y-m-d 00:00:00', strtotime($rangeSettings['defaultStartTime'])));
 		$startDateTime = new DateTime($starttimeString);
+		
+		if($this->getArgument('nav') == 'today') {
+			$starttimeString = date('Y-m-d', strtotime($rangeSettings['today']));
+		}
+		elseif($this->getArgument('nav') == 'next') {
+			$starttimeString = date('Y-m-d',  strtotime($rangeSettings['next'], $startDateTime->getTimestamp()));
+		}
+		elseif($this->getArgument('nav') == 'previous') {
+			$starttimeString = date('Y-m-d', strtotime($rangeSettings['previous'], $startDateTime->getTimestamp()));
+		}
+		
+		return new DateTime($starttimeString);
+		
+	}
+	
+	private function getStartDateTime() {
+		$rangeSettings = $this->getCurrentDateRangeSettings();
+		$startDateTime = $this->getStartTimeFromArguments($rangeSettings);
 		$startDateTime = $this->dateCorrection($startDateTime, $rangeSettings['startTimeCorrection']);
 		return $startDateTime;
 	}
@@ -184,10 +203,10 @@ class EventController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 	}
 	
 	private function getCurrentDatePickerRange() {
-		return $this->getArgument('currentRange', $this->settings['datepicker']['defaultRange']);
+		return $this->getArgument('currentrange', $this->settings['datepicker']['defaultRange']);
 	}
 	
-	private function getArgument($name, $default) {
+	private function getArgument($name, $default = '') {
 		if ($this->request->hasArgument($name)) {
 			return $this->request->getArgument($name);
 		}
@@ -205,9 +224,9 @@ class EventController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 		return $allEventDates;
 	}
 	
-	private function getDatesOfEvent(\VJmedia\Vjeventdb3\Domain\Model\Event $event, \DateTime $startdate, \DateTime $enddate) {
+	private function getDatesOfEvent(\VJmedia\Vjeventdb3\Domain\Model\Event $event, \DateTime $startdate, \DateTime $enddate, $maxItemsPerDate = 50) {
 		
-		$eventDates = $this->getDateService()->getAllDates($event->getDates(), $startdate, $enddate);
+		$eventDates = $this->getDateService()->getAllDates($event->getDates(), $startdate, $enddate, $maxItemsPerDate);
 		foreach($eventDates as $date) {
 			$date->setEvent($event);
 			$date->setDuration($this->getDateService()->getDuration($date));
@@ -222,6 +241,29 @@ class EventController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 		return $this->dateService;
 	}
 	
+	private function getDateTime($strtotime, $starttime = 0) {
+		if(!$strtotime) {
+			return new DateTime("0000-00-00");
+		}
+		return $this->getDateTimeFromTimestamp(strtotime($strtotime, $starttime));
+	}
+	
+	private function getDateTimeFromTimestamp($timestamp) {
+		if($timestamp == 0) {
+			return new DateTime("0000-00-00");
+		} 
+		$dateString = date('Y-m-d', $timestamp);
+		return new DateTime($dateString);		
+	}
+	
+	private function getTimestampFromSetting($key) {
+		$setting = $this->getSetting($key);
+		if(!$setting) {
+			return 0;
+		}
+		return strtotime($setting);
+	}
+	
 	/**
 	 * action show
 	 *
@@ -231,18 +273,70 @@ class EventController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 	public function showAction(\VJmedia\Vjeventdb3\Domain\Model\Event $event) {
 
 		$this->view->assign('event', $event);
-
-		//$starttime = date('Y-m-d', strtotime($this->settings['show']['startTime']));
-		//$endtime = date('Y-m-d', strtotime($this->settings['show']['endTime']));
 		
-		$dates = $this->getDatesOfEvent($event);
-		$this->view->assign('dates', $dates);
-		$this->view->assign('nextdate', $this->getDateService()->getNextDate($dates));
-		$this->view->assign('nextdates', $this->getDateService()->getNextDates($dates));
+		$maxItemsPerDate = max(
+				$this->getSetting('show.allDates.maxItems', 10),
+				$this->getSetting('show.nextDates.maxItems', 10),
+				$this->getSetting('show.nextDate.maxItems', 10)
+		);
+		
+		$minStartTimestamp = min(
+				$this->getTimestampFromSetting('show.allDates.startTime'),
+				$this->getTimestampFromSetting('show.nextDates.startTime'),
+				$this->getTimestampFromSetting('show.nextDate.startTime')
+		);
+
+		$maxEndTimestamp = max(
+				$this->getTimestampFromSetting('show.allDates.endTime'),
+				$this->getTimestampFromSetting('show.nextDates.endTime'),
+				$this->getTimestampFromSetting('show.nextDate.endTime')
+		);
+		
+		$dates = $this->getDatesOfEvent(
+				$event, 
+				$this->getDateTimeFromTimestamp($minStartTimestamp), 
+				$this->getDateTimeFromTimestamp($maxEndTimestamp), 
+				$maxItemsPerDate
+		);
+		
+		
+		$allDates = $this->getDateService()->getDatesWithinRange($dates,
+				$this->getTimestampFromSetting('show.allDates.startTime'),
+				$this->getTimestampFromSetting('show.allDates.endTime'),
+				$this->getSetting('show.allDates.maxItems', 10)
+		);
+
+		$nextDates = $this->getDateService()->getDatesWithinRange($dates,
+				$this->getTimestampFromSetting('show.nextDates.startTime'),
+				$this->getTimestampFromSetting('show.nextDates.endTime'),
+				$this->getSetting('show.nextDates.maxItems', 10)
+		);
+		
+		$nextDate = $this->getDateService()->getDatesWithinRange($dates,
+				$this->getTimestampFromSetting('show.nextDate.startTime'),
+				$this->getTimestampFromSetting('show.nextDate.endTime'),
+				$this->getSetting('show.nextDate.maxItems', 10)
+		);		
+		
+		$this->view->assign('alldates', $this->getSetting('show.alldates.show') ? $allDates : '');
+		$this->view->assign('nextdates', $this->getSetting('show.nextDates.show') ? $nextDates : '');
+		$this->view->assign('nextdate', $this->getSetting('show.nextDate.show') ? $nextDate : '');
 		
 		$this->view->assign('prices', $prices);
 		$this->view->assign('priceCategories', $this->getPriceCategories($event->getPrices()));
 		
+	}
+	
+	private function getSetting($key, $defaultValue = '') {
+		$keys = explode('.', $key);
+		$valueHolder = $this->settings;
+		foreach ($keys as $key) {
+			$valueHolder = $valueHolder[$key];
+		}
+		if($valueHolder) {
+			return $valueHolder;
+		}
+		return $defaultValue;
 	}
 	
 	public function getPriceCategories($prices) {

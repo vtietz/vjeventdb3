@@ -1,24 +1,30 @@
 <script src="//code.jquery.com/jquery-1.10.2.js"></script>
 <script src="//code.jquery.com/ui/1.11.0/jquery-ui.js"></script>
+<script src="//jquery-ui.googlecode.com/svn/tags/latest/ui/i18n/jquery.ui.datepicker-{datepickerSettings.regional}.js"></script>
+
 <link rel="stylesheet" href="//code.jquery.com/ui/1.11.0/themes/smoothness/jquery-ui.css">
 
 <script type="text/javascript">
 var format = '{settings.datepicker.JSformat}';
+var regional = '{datepickerSettings.regional}';
 $(function() {
-	$( "#starttime" ).datepicker({ 
-		dateFormat : format,
-		onSelect : function(dateText, inst) {
-			$( "#starttime").val(dateText);
-			$( "#tx-vjeventdb3-datepicker" ).submit();
-		}
-	});
-	$( "#currentRange").change( function() { $( "#tx-vjeventdb3-datepicker" ).submit(); });
+	$( "#starttime" ).datepicker(
+			{ 
+				dateFormat : format,
+				onSelect : function(dateText, inst) {
+					$( "#starttime").val(dateText);
+					$( "#tx-vjeventdb3-datepicker" ).submit();
+				}
+			},
+			$.datepicker.regional[regional]
+	);
+	$( "#currentrange").change( function() { $( "#tx-vjeventdb3-datepicker" ).submit(); });
 });
 </script>
-<f:form id="tx-vjeventdb3-datepicker" action="list">
-	<f:link.action action="list" arguments="{starttime : datepickerSettings.today}">Today</f:link.action>
-	<f:link.action action="list" arguments="{starttime : datepickerSettings.previous}">Previous</f:link.action>
-	<f:form.select id="currentRange" name="currentRange" options="{datepickerSettings.ranges}" value="{datepickerSettings.currentRange}" />
-	<f:link.action action="list" arguments="{starttime : datepickerSettings.next}">Next</f:link.action>
-	<f:form.textfield id="starttime" name="starttime" value="{f:format.date(date: '{starttime}', format: '{settings.datepicker.format}')}" /><f:form.button>Send</f:form.button>
+<f:form id="tx-vjeventdb3-datepicker" action="list" method="GET">
+	<f:form.button name="nav" value="today" ><f:translate key="tx_vjeventdb3_datepicker_range.today" /></f:form.button>
+	<f:form.button name="nav" value="previous" ><f:translate key="tx_vjeventdb3_datepicker_range.previous" /></f:form.button>
+	<f:form.select id="currentrange" name="currentrange" options="{datepickerSettings.ranges}" value="{datepickerSettings.currentRange}" />
+	<f:form.button name="nav" value="next" ><f:translate key="tx_vjeventdb3_datepicker_range.next" /></f:form.button>
+	<f:form.textfield id="starttime" name="starttime" value="{f:format.date(date: '{starttime}', format: '{settings.datepicker.format}')}" />
 </f:form>

@@ -44,6 +44,7 @@ plugin.tx_vjeventdb3.settings {
 
 		format = m/d/y
 		JSformat = mm/dd/yy
+		regional = en
 	
 		defaultRange = week
 
@@ -90,14 +91,35 @@ plugin.tx_vjeventdb3.settings {
 					
 	}
 	
-	single {
+	show {
 
 		timeFormat = H:i
 		startDateFormat =
 		endDateFormat =
 		startTimeFormat =
 		endTimeFormat =
-		 
+		
+		allDates {
+			show = 0
+			maxItems = 20
+			startTime = 
+			endTime = 
+		}
+		
+		nextDates {
+			show = 1
+			maxItems = 5
+			startTime = today
+			endTime = 
+		}
+		
+		nextDate {
+			show = 1
+			maxItems = 1
+			startTime = today
+			endTime = 
+		}		
+		
 	}
 
 }

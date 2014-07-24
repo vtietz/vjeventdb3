@@ -17,11 +17,11 @@ Otherwise your changes will be overwritten the next time you save the extension 
 <f:flashMessages renderMode="div" />
 <f:render partial="Event/Properties" arguments="{event:event}" />
 
-<f:if condition="{dates}">
+<f:if condition="{alldates}">
 <div class="tx-vjeventdb3-event-dates">
 	<h2><f:translate key="tx_vjeventdb3_allDates" /></h2>
 	<ul>
-		<f:for each="{dates}" as="date">
+		<f:for each="{alldates}" as="date">
 			<li>
 				<f:render partial="Date/Single" arguments="{date:date}" />
 			</li>
@@ -44,14 +44,16 @@ Otherwise your changes will be overwritten the next time you save the extension 
 </f:if>
 
 <f:if condition="{nextdate}">
-	<div class="tx-vjeventdb3-event-dates">
-		<h2><f:translate key="tx_vjeventdb3_nextDate" /></h2>
-		<ul>
+<div class="tx-vjeventdb3-event-dates">
+	<h2><f:translate key="tx_vjeventdb3_nextDate" /></h2>
+	<ul>
+		<f:for each="{nextdate}" as="date">
 			<li>
-				<f:render partial="Date/Single" arguments="{date: nextdate}" />
+				<f:render partial="Date/Single" arguments="{date:date}" />
 			</li>
-		</ul>
-	</div>
+		</f:for>
+	</ul>
+</div>
 </f:if>
 
 <f:if condition="{priceCategories}">

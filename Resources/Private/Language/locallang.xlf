@@ -241,7 +241,17 @@
 			<trans-unit id="tx_vjeventdb3_datepicker_range.year">
 				<source>Year</source>
 			</trans-unit>
-			
+
+			<trans-unit id="tx_vjeventdb3_datepicker_range.next">
+				<source>Next</source>
+			</trans-unit>			
+			<trans-unit id="tx_vjeventdb3_datepicker_range.previous">
+				<source>Previous</source>
+			</trans-unit>	
+			<trans-unit id="tx_vjeventdb3_datepicker_range.today">
+				<source>Today</source>
+			</trans-unit>			
+					
 			
 
 		</body>
