@@ -106,7 +106,7 @@ class EventController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 			if($year == null || $year->getDate()->format('Y') != $date->getStartDate()->format('Y')) {
 				$year = new \VJmedia\Vjeventdb3\Domain\ViewModel\YearSectionView();
 				$year->setDate($date->getStartDate());
-				$years[] = &$year;
+				$years[] = $year;
 				$month = null;
 			}
 			
@@ -213,20 +213,20 @@ class EventController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 		return $default;
 	}
 	
-	private function getAllDateEvents($startdate, $enddate) {
+	private function getAllDateEvents($startDateTime, $endDateTime) {
 
-		$events = $this->eventRepository->findAllInDateRange($startdate, $enddate);
+		$events = $this->eventRepository->findAllInDateRange($startDateTime, $endDateTime);
 		
 		$allEventDates = array();
 		foreach($events as $event) {
-			$allEventDates = array_merge($allEventDates, $this->getDatesOfEvent($event, $startdate, $enddate));
+			$allEventDates = array_merge($allEventDates, $this->getDatesOfEvent($event, $startDateTime, $endDateTime));
 		}
 		return $allEventDates;
 	}
 	
-	private function getDatesOfEvent(\VJmedia\Vjeventdb3\Domain\Model\Event $event, \DateTime $startdate, \DateTime $enddate, $maxItemsPerDate = 50) {
+	private function getDatesOfEvent(\VJmedia\Vjeventdb3\Domain\Model\Event $event, \DateTime $startDateTime, \DateTime $endDateTime, $maxItemsPerDate = 50) {
 		
-		$eventDates = $this->getDateService()->getAllDates($event->getDates(), $startdate, $enddate, $maxItemsPerDate);
+		$eventDates = $this->getDateService()->getAllDates($event->getDates(), $startDateTime, $endDateTime, $maxItemsPerDate);
 		foreach($eventDates as $date) {
 			$date->setEvent($event);
 			$date->setDuration($this->getDateService()->getDuration($date));

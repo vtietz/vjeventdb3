@@ -44,7 +44,9 @@ class DateService {
 
 			$startDateTime = $rangeStartDateTime->getTimestamp() !== FALSE ? $rangeStartDateTime : $date->getStartDate();
 			$endDateTime = $rangeEndDateTime->getTimestamp() !== FALSE ? $rangeEndDateTime : $date->getEndDate();
-				
+			
+			
+			
 			if(($date->getFrequency() == Date::FREQUENCY_ONCE) && ($this->isValid($date, $startDateTime, $endDateTime)) &&
 						(DateService::getStartTimestamp($date) >= $startDateTime->getTimestamp())) {
 					$this->addDate($theDates, $date);
