@@ -3,8 +3,8 @@
         {
             "config": {
                 "position": [
-                    385,
-                    112
+                    391,
+                    91
                 ]
             },
             "name": "New Model Object",
@@ -84,6 +84,16 @@
                             "propertyName": "images",
                             "propertyType": "Image",
                             "uid": "1381427081637"
+                        },
+                        {
+                            "allowedFileTypes": "",
+                            "maxItems": "10",
+                            "propertyDescription": "",
+                            "propertyIsExcludeField": true,
+                            "propertyIsRequired": false,
+                            "propertyName": "teaserImages",
+                            "propertyType": "Image",
+                            "uid": "1085273079223"
                         }
                     ]
                 },
@@ -967,7 +977,7 @@
         }
     ],
     "log": {
-        "last_modified": "2014-07-20 07:18",
+        "last_modified": "2014-07-26 08:27",
         "extension_builder_version": "6.2.0",
         "be_user": " (1)"
     }

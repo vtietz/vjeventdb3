@@ -195,6 +195,58 @@ class EventTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 	/**
 	 * @test
 	 */
+	public function getTeaserImagesReturnsInitialValueForFileReference() {
+		$newObjectStorage = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
+		$this->assertEquals(
+			$newObjectStorage,
+			$this->subject->getTeaserImages()
+		);
+	}
+
+	/**
+	 * @test
+	 */
+	public function setTeaserImagesForFileReferenceSetsTeaserImages() {
+		$teaserImage = new \TYPO3\CMS\Extbase\Domain\Model\FileReference();
+		$objectStorageHoldingExactlyOneTeaserImages = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
+		$objectStorageHoldingExactlyOneTeaserImages->attach($teaserImage);
+		$this->subject->setTeaserImages($objectStorageHoldingExactlyOneTeaserImages);
+
+		$this->assertAttributeEquals(
+			$objectStorageHoldingExactlyOneTeaserImages,
+			'teaserImages',
+			$this->subject
+		);
+	}
+
+	/**
+	 * @test
+	 */
+	public function addTeaserImageToObjectStorageHoldingTeaserImages() {
+		$teaserImage = new \TYPO3\CMS\Extbase\Domain\Model\FileReference();
+		$teaserImagesObjectStorageMock = $this->getMock('TYPO3\\CMS\\Extbase\\Persistence\\ObjectStorage', array('attach'), array(), '', FALSE);
+		$teaserImagesObjectStorageMock->expects($this->once())->method('attach')->with($this->equalTo($teaserImage));
+		$this->inject($this->subject, 'teaserImages', $teaserImagesObjectStorageMock);
+
+		$this->subject->addTeaserImage($teaserImage);
+	}
+
+	/**
+	 * @test
+	 */
+	public function removeTeaserImageFromObjectStorageHoldingTeaserImages() {
+		$teaserImage = new \TYPO3\CMS\Extbase\Domain\Model\FileReference();
+		$teaserImagesObjectStorageMock = $this->getMock('TYPO3\\CMS\\Extbase\\Persistence\\ObjectStorage', array('detach'), array(), '', FALSE);
+		$teaserImagesObjectStorageMock->expects($this->once())->method('detach')->with($this->equalTo($teaserImage));
+		$this->inject($this->subject, 'teaserImages', $teaserImagesObjectStorageMock);
+
+		$this->subject->removeTeaserImage($teaserImage);
+
+	}
+
+	/**
+	 * @test
+	 */
 	public function getLocationReturnsInitialValueForLocation() {
 		$newObjectStorage = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
 		$this->assertEquals(

@@ -11,6 +11,7 @@ CREATE TABLE tx_vjeventdb3_domain_model_event (
 	teasertext text NOT NULL,
 	description text NOT NULL,
 	images int(11) unsigned DEFAULT '0' NOT NULL,
+	teaser_images int(11) unsigned DEFAULT '0' NOT NULL,
 	location int(11) unsigned DEFAULT '0' NOT NULL,
 	dates int(11) unsigned DEFAULT '0' NOT NULL,
 	event_category int(11) unsigned DEFAULT '0' NOT NULL,

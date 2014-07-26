@@ -68,6 +68,14 @@ class Event extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	protected $images = NULL;
 
 	/**
+	 * teaserImages
+	 *
+	 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\TYPO3\CMS\Extbase\Domain\Model\FileReference>
+	 * @cascade remove
+	 */
+	protected $teaserImages = NULL;
+
+	/**
 	 * location
 	 *
 	 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\VJmedia\Vjeventdb3\Domain\Model\Location>
@@ -128,6 +136,7 @@ class Event extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 */
 	protected function initStorageObjects() {
 		$this->images = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
+		$this->teaserImages = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
 		$this->location = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
 		$this->dates = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
 		$this->eventCategory = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
@@ -408,45 +417,6 @@ class Event extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	}
 
 	/**
-	 * Adds a Price
-	 *
-	 * @param \VJmedia\Vjeventdb3\Domain\Model\Price $price
-	 * @return void
-	 */
-	public function addPrice(\VJmedia\Vjeventdb3\Domain\Model\Price $price) {
-		$this->prices->attach($price);
-	}
-
-	/**
-	 * Removes a Price
-	 *
-	 * @param \VJmedia\Vjeventdb3\Domain\Model\Price $priceToRemove The Price to be removed
-	 * @return void
-	 */
-	public function removePrice(\VJmedia\Vjeventdb3\Domain\Model\Price $priceToRemove) {
-		$this->prices->detach($priceToRemove);
-	}
-
-	/**
-	 * Returns the prices
-	 *
-	 * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\VJmedia\Vjeventdb3\Domain\Model\Price> $prices
-	 */
-	public function getPrices() {
-		return $this->prices;
-	}
-
-	/**
-	 * Sets the prices
-	 *
-	 * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\VJmedia\Vjeventdb3\Domain\Model\Price> $prices
-	 * @return void
-	 */
-	public function setPrices(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $prices) {
-		$this->prices = $prices;
-	}
-
-	/**
 	 * Adds a Performer
 	 *
 	 * @param \VJmedia\Vjeventdb3\Domain\Model\Performer $performer
@@ -483,6 +453,84 @@ class Event extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 */
 	public function setPerformers(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $performers) {
 		$this->performers = $performers;
+	}
+
+	/**
+	 * Adds a FileReference
+	 *
+	 * @param \TYPO3\CMS\Extbase\Domain\Model\FileReference $teaserImage
+	 * @return void
+	 */
+	public function addTeaserImage(\TYPO3\CMS\Extbase\Domain\Model\FileReference $teaserImage) {
+		$this->teaserImages->attach($teaserImage);
+	}
+
+	/**
+	 * Removes a FileReference
+	 *
+	 * @param \TYPO3\CMS\Extbase\Domain\Model\FileReference $teaserImageToRemove The FileReference to be removed
+	 * @return void
+	 */
+	public function removeTeaserImage(\TYPO3\CMS\Extbase\Domain\Model\FileReference $teaserImageToRemove) {
+		$this->teaserImages->detach($teaserImageToRemove);
+	}
+
+	/**
+	 * Returns the teaserImages
+	 *
+	 * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\TYPO3\CMS\Extbase\Domain\Model\FileReference> $teaserImages
+	 */
+	public function getTeaserImages() {
+		return $this->teaserImages;
+	}
+
+	/**
+	 * Sets the teaserImages
+	 *
+	 * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\TYPO3\CMS\Extbase\Domain\Model\FileReference> $teaserImages
+	 * @return void
+	 */
+	public function setTeaserImages(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $teaserImages) {
+		$this->teaserImages = $teaserImages;
+	}
+
+	/**
+	 * Adds a Price
+	 *
+	 * @param \VJmedia\Vjeventdb3\Domain\Model\Price $price
+	 * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\VJmedia\Vjeventdb3\Domain\Model\Price> prices
+	 */
+	public function addPrice($price) {
+		$this->prices->attach($price);
+	}
+
+	/**
+	 * Removes a Price
+	 *
+	 * @param \VJmedia\Vjeventdb3\Domain\Model\Price $priceToRemove The Price to be removed
+	 * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\VJmedia\Vjeventdb3\Domain\Model\Price> prices
+	 */
+	public function removePrice($priceToRemove) {
+		$this->prices->detach($priceToRemove);
+	}
+
+	/**
+	 * Returns the prices
+	 *
+	 * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\VJmedia\Vjeventdb3\Domain\Model\Price> prices
+	 */
+	public function getPrices() {
+		return $this->prices;
+	}
+
+	/**
+	 * Sets the prices
+	 *
+	 * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\VJmedia\Vjeventdb3\Domain\Model\Price> $prices
+	 * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\VJmedia\Vjeventdb3\Domain\Model\Price> prices
+	 */
+	public function setPrices(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $prices) {
+		$this->prices = $prices;
 	}
 
 }
