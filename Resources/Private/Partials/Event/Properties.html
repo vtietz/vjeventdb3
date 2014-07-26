@@ -11,9 +11,21 @@
 	
 	<p class="tx-vjeventdb3-event-teasertext">{event.teasertext}</p>
 	
+	<div class="tx-vjeventdb3-event-teaserimages">
+		<f:for each="{event.teaserimages}" as="image" >
+			<f:image src="{image.originalResource.publicUrl}" alt="{event.name}" width="200" />
+		</f:for>
+	</div>		
+	
 	<div class="tx-vjeventdb3-event-description">
 		<f:format.html>{event.description}</f:format.html>
 	</div>
+
+	<div class="tx-vjeventdb3-event-images">
+		<f:for each="{event.images}" as="image" >
+			<f:image src="{image.originalResource.publicUrl}" alt="{event.name}" width="200" />
+		</f:for>
+	</div>		
 	
 	<f:if condition="{event.performers}">
 		<div class="tx-vjeventdb3-event-performers">
