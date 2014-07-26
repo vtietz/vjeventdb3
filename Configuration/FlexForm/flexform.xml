@@ -69,5 +69,53 @@
 				</el>
 			</ROOT>
 		</sDEF>
+		<sFILTER>
+			<ROOT>
+				<TCEforms>
+					<sheetTitle>Filter</sheetTitle>
+				</TCEforms>
+				<type>array</type>
+				<el>
+					<settings.eventCategoryFilter>
+						<TCEforms>
+							<label>LLL:EXT:vjeventdb3/Resources/Private/Language/locallang_db.xlf:tx_vjeventdb3_domain_model_event.event_category</label>
+							<config>
+								<type>group</type>
+								<internal_type>db</internal_type>
+								<allowed>tx_vjeventdb3_domain_model_eventcategory</allowed>
+								<size>3</size>
+								<maxitems>50</maxitems>
+								<minitems>0</minitems>
+								<show_thumbs>1</show_thumbs>
+								<wizards>
+									<suggest>
+										<type>suggest</type>
+									</suggest>
+								</wizards>
+							</config>
+						</TCEforms>
+					</settings.eventCategoryFilter>
+					<settings.ageCategoryFilter>
+						<TCEforms>
+							<label>LLL:EXT:vjeventdb3/Resources/Private/Language/locallang_db.xlf:tx_vjeventdb3_domain_model_event.age_category</label>
+							<config>
+								<type>group</type>
+								<internal_type>db</internal_type>
+								<allowed>tx_vjeventdb3_domain_model_agecategory</allowed>
+								<size>3</size>
+								<maxitems>50</maxitems>
+								<minitems>0</minitems>
+								<show_thumbs>1</show_thumbs>
+								<wizards>
+									<suggest>
+										<type>suggest</type>
+									</suggest>
+								</wizards>
+							</config>
+						</TCEforms>
+					</settings.ageCategoryFilter>					
+				</el>
+			</ROOT>
+		</sFILTER>		
 	</sheets>
 </T3DataStructure>

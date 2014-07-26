@@ -72,6 +72,21 @@ class EventController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 	 */
 	protected $priceRepository = NULL;
 	
+	/**
+	 * eventCategoryRepository
+	 *
+	 * @var \VJmedia\Vjeventdb3\Domain\Repository\EventCategoryRepository
+	 * @inject
+	 */
+	protected $eventCategoryRepository = NULL;
+	
+	/**
+	 * ageCategoryRepository
+	 *
+	 * @var \VJmedia\Vjeventdb3\Domain\Repository\AgeCategoryRepository
+	 * @inject
+	 */
+	protected $ageCategoryRepository = NULL;
 	
 	/**
 	 * dateService
@@ -213,15 +228,39 @@ class EventController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 		return $default;
 	}
 	
+	private function getEventCategoryFilter() {
+		$list = $this->getArgument('eventCategories', $this->settings['eventCategoryFilter']);
+		if(!$list) {
+			return array();
+		}
+		return \TYPO3\CMS\Core\Utility\GeneralUtility::trimExplode(',', $list);
+	}
+
+	private function getAgeCategoryFilter() {
+		$list = $this->getArgument('ageCategories', $this->settings['ageCategoryFilter']);
+			if(!$list) {
+			return array();
+		}
+		return \TYPO3\CMS\Core\Utility\GeneralUtility::trimExplode(',', $list);
+	}
+	
+	
 	private function getAllDateEvents($startDateTime, $endDateTime) {
 
-		$events = $this->eventRepository->findAllInDateRange($startDateTime, $endDateTime);
+		$events = $this->eventRepository->findAllInDateRange(
+					$startDateTime, 
+					$endDateTime, 
+					$this->getEventCategoryFilter(), 
+					$this->getAgeCategoryFilter()
+		);
 		
 		$allEventDates = array();
 		foreach($events as $event) {
 			$allEventDates = array_merge($allEventDates, $this->getDatesOfEvent($event, $startDateTime, $endDateTime));
 		}
+		
 		return $allEventDates;
+		
 	}
 	
 	private function getDatesOfEvent(\VJmedia\Vjeventdb3\Domain\Model\Event $event, \DateTime $startDateTime, \DateTime $endDateTime, $maxItemsPerDate = 50) {

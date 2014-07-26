@@ -6,10 +6,10 @@ if (!defined ('TYPO3_MODE')) {
 $GLOBALS['TCA']['tx_vjeventdb3_domain_model_event'] = array(
 	'ctrl' => $GLOBALS['TCA']['tx_vjeventdb3_domain_model_event']['ctrl'],
 	'interface' => array(
-		'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, title, subtitle, teasertext, description, images, location, dates, event_category, age_category, prices, performers',
+		'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, title, subtitle, teasertext, description, images, teaser_images, location, dates, event_category, age_category, prices, performers',
 	),
 	'types' => array(
-		'1' => array('showitem' => 'sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, hidden;;1, title, subtitle, teasertext, description;;;richtext:rte_transform[mode=ts_links], images, location, dates, event_category, age_category, prices, performers, --div--;LLL:EXT:cms/locallang_ttc.xlf:tabs.access, starttime, endtime'),
+		'1' => array('showitem' => 'sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, hidden;;1, title, subtitle, teasertext, description;;;richtext:rte_transform[mode=ts_links], images, teaser_images, location, dates, event_category, age_category, prices, performers, --div--;LLL:EXT:cms/locallang_ttc.xlf:tabs.access, starttime, endtime'),
 	),
 	'palettes' => array(
 		'1' => array('showitem' => ''),
@@ -156,6 +156,17 @@ $GLOBALS['TCA']['tx_vjeventdb3_domain_model_event'] = array(
 			),
 
 		),
+		'teaser_images' => array(
+				'exclude' => 1,
+				'label' => 'LLL:EXT:vjeventdb3/Resources/Private/Language/locallang_db.xlf:tx_vjeventdb3_domain_model_event.teaser_images',
+				'config' =>
+				\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::getFileFieldTCAConfig(
+						'teaser_images',
+						array('maxitems' => 10),
+						$GLOBALS['TYPO3_CONF_VARS']['GFX']['imagefile_ext']
+				),
+		
+		),			
 		'location' => array(
 			'exclude' => 1,
 			'label' => 'LLL:EXT:vjeventdb3/Resources/Private/Language/locallang_db.xlf:tx_vjeventdb3_domain_model_event.location',
@@ -359,9 +370,10 @@ $GLOBALS['TCA']['tx_vjeventdb3_domain_model_event'] = array(
 );
 ## EXTENSION BUILDER DEFAULTS END TOKEN - Everything BEFORE this line is overwritten with the defaults of the extension builder
 
-$TCA['tx_vjeventdb3_domain_model_event']['types']['1'] = array('showitem' => 'sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, hidden;;1, title, subtitle, teasertext, description;;;richtext:rte_transform[mode=ts_links], images, --div--;Dates, location, prices, dates, --div--;LLL:EXT:cms/locallang_ttc.xlf:tabs.extended, performers, event_category, age_category, --div--;LLL:EXT:cms/locallang_ttc.xlf:tabs.access, starttime, endtime');
+$TCA['tx_vjeventdb3_domain_model_event']['types']['1'] = array('showitem' => 'sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, hidden;;1, title, subtitle, teasertext, description;;;richtext:rte_transform[mode=ts_links],  --div--;LLL:EXT:cms/locallang_ttc.xlf:tabs.images, teaser_images, images, --div--;Dates, location, prices, dates, --div--;LLL:EXT:cms/locallang_ttc.xlf:tabs.extended, performers, event_category, age_category, --div--;LLL:EXT:cms/locallang_ttc.xlf:tabs.access, starttime, endtime');
 
 $TCA['tx_vjeventdb3_domain_model_event']['columns']['images']['config']['size'] = 5;
+$TCA['tx_vjeventdb3_domain_model_event']['columns']['teaser_images']['config']['size'] = 5;
 $TCA['tx_vjeventdb3_domain_model_event']['columns']['event_category']['config']['size'] = 5;
 $TCA['tx_vjeventdb3_domain_model_event']['columns']['age_category']['config']['size'] = 5;
 $TCA['tx_vjeventdb3_domain_model_event']['columns']['performers']['config']['size'] = 5;

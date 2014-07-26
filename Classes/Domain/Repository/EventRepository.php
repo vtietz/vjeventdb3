@@ -37,14 +37,18 @@ class EventRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 	 * @param $startDate
 	 * @param $endDate
 	 */
-	public function findAllInDateRange(\DateTime $startDate, \DateTime $endDate) {
+	public function findAllInDateRange(\DateTime $startDate, \DateTime $endDate, $eventCategories = array(), $ageCategories = array()) {
+		
 		$query = $this->persistenceManager->createQueryForType($this->objectType);
+		
 		if ($this->defaultOrderings !== array()) {
 			$query->setOrderings($this->defaultOrderings);
 		}
+		
 		if ($this->defaultQuerySettings !== NULL) {
 			$query->setQuerySettings(clone $this->defaultQuerySettings);
 		}
+		
 		$query->matching(
 			$query->logicalAnd(
 				$query->lessThanOrEqual('dates.start_date', date('Y-m-d', $endDate->getTimestamp())),
@@ -55,29 +59,13 @@ class EventRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 				)
 			)
 		);
-		return $query->execute();
-	}
-	
-	public function findAll() {
-		$query = $this->persistenceManager->createQueryForType($this->objectType);
-		/*
-			if ($this->defaultOrderings !== array()) {
-		$query->setOrderings($this->defaultOrderings);
+		
+		if(count($eventCategories) > 0) {
+			$query->matching($query->in('event_category', $eventCategories));
+		}	
+		if(count($ageCategory) > 0) {
+			$query->matching($query->in('age_category', $ageCategories));
 		}
-		if ($this->defaultQuerySettings !== NULL) {
-		$query->setQuerySettings(clone $this->defaultQuerySettings);
-		}
-		$query->matching(
-				$query->logicalAnd(
-						$query->greaterThanOrEqual('dates.start_date', $startDate),
-						$query->logicalOr(
-								$query->lessThanOrEqual('dates.end_date', $endDate),
-								$query->equals('dates.end_date', NULL)
-						)
-				)
-		);
-		*/
-		$query->statement('select * from `tx_vjeventdb3_domain_model_event`');
 		return $query->execute();
 	}
 
