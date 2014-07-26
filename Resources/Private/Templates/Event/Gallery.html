@@ -1,0 +1,13 @@
+<f:layout name="Default" />
+
+<f:section name="main">
+
+<f:if condition="{events}">
+	<div class="tx-vjeventdb3-event-gallary-items">
+		<f:for each="{events}" as="event">
+			<f:render partial="Event/GalleryItem" arguments="{event: event}" />					
+		</f:for>
+	</div>
+</f:if>
+
+</f:section>

@@ -16,6 +16,11 @@ plugin.tx_vjeventdb3 {
 
 plugin.tx_vjeventdb3.settings {
 
+	gallery {
+		imageWidth = 330
+		imageHeight = 330
+	}
+
 	list {
 
 		defaultStartTime = monday this week

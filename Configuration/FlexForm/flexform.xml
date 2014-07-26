@@ -21,6 +21,10 @@
 										<numIndex index="0">Kursleiter</numIndex>
 										<numIndex index="1">Performer->list</numIndex>
 									</numIndex>
+									<numIndex index="2" type="array">
+										<numIndex index="0">Gallery</numIndex>
+										<numIndex index="1">Event->gallery;Event->show</numIndex>
+									</numIndex>
 								</items>
 							</config>
 						</TCEforms>

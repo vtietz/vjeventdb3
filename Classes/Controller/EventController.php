@@ -408,5 +408,22 @@ class EventController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 	public function teaserAction() {
 		
 	}
+	
+
+	/**
+	 * action gallery
+	 *
+	 * @return void
+	 */
+	public function galleryAction() {
+		
+		$events = $this->eventRepository->findAllByCategory(
+				$this->getEventCategoryFilter(),
+				$this->getAgeCategoryFilter()
+		);
+		
+		$this->view->assign('events', $events);
+		
+	}
 
 }
