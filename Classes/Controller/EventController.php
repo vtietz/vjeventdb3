@@ -254,11 +254,12 @@ class EventController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 					$this->getAgeCategoryFilter()
 		);
 		
+		
 		$allEventDates = array();
 		foreach($events as $event) {
-			$allEventDates = array_merge($allEventDates, $this->getDatesOfEvent($event, $startDateTime, $endDateTime));
+			$datesOfEvent = $this->getDatesOfEvent($event, $startDateTime, $endDateTime);
+			$allEventDates = array_merge($allEventDates, $datesOfEvent);
 		}
-		
 		return $allEventDates;
 		
 	}

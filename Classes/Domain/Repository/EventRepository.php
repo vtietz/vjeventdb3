@@ -34,8 +34,10 @@ use \DateTime;
 class EventRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 
 	/**
-	 * @param $startDate
-	 * @param $endDate
+	 * @param $startDate The start date
+	 * @param $endDate The end date
+	 * @param $eventCategories If set only events with these event categories are returned.
+	 * @param $ageCategories If set only events with these age categories are returned.
 	 */
 	public function findAllInDateRange(\DateTime $startDate, \DateTime $endDate, $eventCategories = array(), $ageCategories = array()) {
 		
@@ -66,6 +68,7 @@ class EventRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 		if(count($ageCategory) > 0) {
 			$query->matching($query->in('age_category', $ageCategories));
 		}
+		
 		return $query->execute();
 	}
 
