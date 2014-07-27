@@ -19,6 +19,7 @@ plugin.tx_vjeventdb3.settings {
 	gallery {
 		imageWidth = 330
 		imageHeight = 330
+		partialRootPath = 
 	}
 
 	list {

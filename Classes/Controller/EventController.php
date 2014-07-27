@@ -140,8 +140,12 @@ class EventController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 			}
 		}
 
+		
 		$this->view->assign('years', $years);
 		$this->view->assign('datepickerSettings', $this->getDatePickerSettings($startDateTime));
+
+		$cObjData = $this->configurationManager->getContentObject()->data;
+		$this->view->assign('data', $cObjData);
 		
 	}
 	
@@ -410,12 +414,30 @@ class EventController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 	}
 	
 
+	private function setTemplatePaths($config) {
+		if($partialRootPath = $config['partialRootPath']) {
+			$this->view->setPartialRootPath($partialRootPath);
+		}
+		if($layoutRootPath = $config['layoutRootPath']) {
+			$this->view->setLayoutRootPath($layoutRootPath);
+		}
+		if($templateRootPath = $config['templateRootPath']) {
+			$this->view->setTemplateRootPath($templateRootPath);
+		}		
+		if($templatePathAndFilname = $config['templatePathAndFilname']) {
+			$templatePathAndFilname = \TYPO3\CMS\Core\Utility\GeneralUtility::getFileAbsFileName($templatePathAndFilname);
+			$this->view->setTemplatePathAndFilename($templatePathAndFilname);
+		}
+	}
+	
 	/**
 	 * action gallery
 	 *
 	 * @return void
 	 */
 	public function galleryAction() {
+
+		$this->setTemplatePaths($this->settings['gallery']);
 		
 		$events = $this->eventRepository->findAllByCategory(
 				$this->getEventCategoryFilter(),
