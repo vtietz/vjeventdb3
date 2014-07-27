@@ -23,6 +23,8 @@ plugin.tx_vjeventdb3.settings {
 	}
 
 	list {
+	
+		showCurrentDateRange = 1
 
 		defaultStartTime = monday this week
 		defaultDateRange = week
