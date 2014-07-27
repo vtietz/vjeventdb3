@@ -15,6 +15,9 @@ Otherwise your changes will be overwritten the next time you save the extension 
 <f:section name="main">
 
 <f:flashMessages renderMode="div" />
+
+<div class="tx-vjeventdb3-show">
+
 <f:render partial="Event/Properties" arguments="{event:event}" />
 
 <f:if condition="{alldates}">
@@ -62,5 +65,7 @@ Otherwise your changes will be overwritten the next time you save the extension 
 </f:if>
 
 <a href="javascript:history.back();"><f:translate key="tx_vjeventdb3_back_to_list" /></a>
+
+</div>
 
 </f:section>

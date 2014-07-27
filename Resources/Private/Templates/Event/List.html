@@ -16,6 +16,8 @@ Otherwise your changes will be overwritten the next time you save the extension 
 
 <f:flashMessages renderMode="div" />
 
+<div class="tx-vjeventdb3-list">
+
 <f:render partial="Date/DatePicker" arguments="{starttime: starttime, endtime : endtime, datepickerSettings : datepickerSettings, data : data}" />
 
 <f:if condition="{settings.list.showCurrentDateRange}">
@@ -24,7 +26,7 @@ Otherwise your changes will be overwritten the next time you save the extension 
 	<f:format.date format="{settings.list.sections.day.format}">{endtime}</f:format.date>
 </f:if>
 
-<table class="tx-vjeventdb3-list" cellspacing="0" cellpadding="0">
+<table class="tx-vjeventdb3-table" cellspacing="0" cellpadding="0">
 	<thead>
 		<tr>
 			<th><f:translate key="tx_vjeventdb3_domain_model_date.start_time" /></th>
@@ -51,7 +53,7 @@ Otherwise your changes will be overwritten the next time you save the extension 
 						<tr class="{rowtype}">
 							<td><f:format.date format="{settings.list.timeFormat}">{date.startTime}</f:format.date></td>
 							<td></td>
-							<td><f:link.action action="show" arguments="{event : date.event}">{date.event.title}</f:link.action></td>
+							<td><f:link.action action="show" arguments="{event : date.event}" pageUid="{settings.showEventPage}">{date.event.title}</f:link.action></td>
 							<td>
 								<f:render partial="Performer/FlatList" arguments="{performers: date.event.performers}" />							
 							</td>
@@ -63,5 +65,7 @@ Otherwise your changes will be overwritten the next time you save the extension 
 		</f:for>
 	</f:for>
 </table>
+
+</div>
 
 </f:section>

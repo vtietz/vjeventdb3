@@ -1,7 +1,6 @@
 <script src="//code.jquery.com/jquery-1.10.2.js"></script>
 <script src="//code.jquery.com/ui/1.11.0/jquery-ui.js"></script>
 <script src="//jquery-ui.googlecode.com/svn/tags/latest/ui/i18n/jquery.ui.datepicker-{datepickerSettings.regional}.js"></script>
-
 <link rel="stylesheet" href="//code.jquery.com/ui/1.11.0/themes/smoothness/jquery-ui.css">
 
 <script type="text/javascript">
@@ -19,14 +18,14 @@ $(function() {
 			},
 			$.datepicker.regional[regional]
 	);
-	$( "#currentrange").change( function() { $( "#tx-vjeventdb3-datepicker" ).submit(); });
+	$( "#currentrange"+uid).change( function() { $( "#tx-vjeventdb3-datepicker"+uid ).submit(); });
 });
 </script>
 
 <f:form id="tx-vjeventdb3-datepicker{data.uid}" class="tx-vjeventdb3-datepicker" action="list">
 	<f:form.button name="nav" value="today" ><f:translate key="tx_vjeventdb3_datepicker_range.today" /></f:form.button>
 	<f:form.button name="nav" value="previous" ><f:translate key="tx_vjeventdb3_datepicker_range.previous" /></f:form.button>
-	<f:form.select id="currentrange" name="currentrange" options="{datepickerSettings.ranges}" value="{datepickerSettings.currentRange}" />
+	<f:form.select id="currentrange{data.uid}" name="currentrange" options="{datepickerSettings.ranges}" value="{datepickerSettings.currentRange}" />
 	<f:form.button name="nav" value="next" ><f:translate key="tx_vjeventdb3_datepicker_range.next" /></f:form.button>
 	<f:form.textfield id="starttime{data.uid}" name="starttime" value="{f:format.date(date: '{starttime}', format: '{settings.datepicker.format}')}" />
 </f:form>

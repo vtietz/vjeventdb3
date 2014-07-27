@@ -18,10 +18,18 @@
 										<numIndex index="1">Event->list;Event->show</numIndex>
 									</numIndex>
 									<numIndex index="1" type="array">
-										<numIndex index="0">Kursleiter</numIndex>
-										<numIndex index="1">Performer->list</numIndex>
-									</numIndex>
+										<numIndex index="0">Eventansicht</numIndex>
+										<numIndex index="1">Event->show</numIndex>
+									</numIndex>									
 									<numIndex index="2" type="array">
+										<numIndex index="0">Kursleiter</numIndex>
+										<numIndex index="1">Performer->list;Performer->show</numIndex>
+									</numIndex>
+									<numIndex index="3" type="array">
+										<numIndex index="0">Kursleiteransicht</numIndex>
+										<numIndex index="1">Performer->show</numIndex>
+									</numIndex>
+									<numIndex index="4" type="array">
 										<numIndex index="0">Gallery</numIndex>
 										<numIndex index="1">Event->gallery;Event->show</numIndex>
 									</numIndex>
@@ -73,6 +81,88 @@
 				</el>
 			</ROOT>
 		</sDEF>
+		<sLINKS>
+			<ROOT>
+				<TCEforms>
+					<sheetTitle>Links</sheetTitle>
+				</TCEforms>
+				<type>array</type>
+				<el>
+					<settings.showEventPage>
+						<TCEforms>
+							<label>Event Detailseite</label>
+							<config>
+								<type>group</type>
+								<internal_type>db</internal_type>
+								<allowed>pages</allowed>
+								<size>1</size>
+								<maxitems>1</maxitems>
+								<show_thumbs>1</show_thumbs>
+								<wizards>
+									<suggest>
+										<type>suggest</type>
+									</suggest>
+								</wizards>
+							</config>
+						</TCEforms>
+					</settings.showEventPage>
+					<settings.listEventPage>
+						<TCEforms>
+							<label>Events Liste</label>
+							<config>
+								<type>group</type>
+								<internal_type>db</internal_type>
+								<allowed>pages</allowed>
+								<size>1</size>
+								<maxitems>1</maxitems>
+								<show_thumbs>1</show_thumbs>
+								<wizards>
+									<suggest>
+										<type>suggest</type>
+									</suggest>
+								</wizards>
+							</config>
+						</TCEforms>
+					</settings.listEventPage>
+					<settings.showPerformerPage>
+						<TCEforms>
+							<label>Performer Detailseite</label>
+							<config>
+								<type>group</type>
+								<internal_type>db</internal_type>
+								<allowed>pages</allowed>
+								<size>1</size>
+								<maxitems>1</maxitems>
+								<show_thumbs>1</show_thumbs>
+								<wizards>
+									<suggest>
+										<type>suggest</type>
+									</suggest>
+								</wizards>
+							</config>
+						</TCEforms>
+					</settings.showPerformerPage>
+					<settings.listPerformerPage>
+						<TCEforms>
+							<label>Performer Liste</label>
+							<config>
+								<type>group</type>
+								<internal_type>db</internal_type>
+								<allowed>pages</allowed>
+								<size>1</size>
+								<maxitems>1</maxitems>
+								<show_thumbs>1</show_thumbs>
+								<wizards>
+									<suggest>
+										<type>suggest</type>
+									</suggest>
+								</wizards>
+							</config>
+						</TCEforms>
+					</settings.listPerformerPage>															
+				</el>
+			</ROOT>
+		</sLINKS>		
 		<sFILTER>
 			<ROOT>
 				<TCEforms>
