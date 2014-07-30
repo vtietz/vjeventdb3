@@ -1,13 +1,24 @@
 
+
 <div  class="tx-vjeventdb3-event">
 
-	<h1>{event.title}
-	<span class="tx-vjeventdb3-event-event-category">
-		<f:render partial="Event/FlatEventCategoryList" arguments="{eventCategories : event.eventCategory}" />
-	</span>
-	</h1>
-	<span class="tx-vjeventdb3-event-age-category">
-		<f:render partial="Event/FlatAgeCategoryList" arguments="{ageCategories : event.ageCategory}" />
+	<f:cObject typoscriptObjectPath="plugin.tx_vjeventdb3.settings.show.header">
+	
+		{event.title}
+		<f:if condition="{event.eventCategory}">
+		<span class="tx-vjeventdb3-event-event-category">
+			<f:render partial="Event/FlatEventCategoryList" arguments="{eventCategories : event.eventCategory}" />
+		</span>
+		</f:if>
+	
+	</f:cObject>
+
+	<span class="tx-vjeventdb3-event-categories">
+		<f:if condition="{event.ageCategory}">
+			<span class="tx-vjeventdb3-event-age-category">
+				<f:render partial="Event/FlatAgeCategoryList" arguments="{ageCategories : event.ageCategory}" />
+			</span>
+		</f:if>
 	</span>
 	
 	<f:if condition="{settings.show.teaserText.show}">
@@ -17,7 +28,7 @@
 	<f:if condition="{settings.show.teaserImages.show}">
 		<div class="tx-vjeventdb3-event-teaserimages tx-vjeventdb3-images">
 			<f:for each="{event.teaserimages}" as="image" >
-				<f:image src="{image.originalResource.publicUrl}" alt="{event.name}" width="200" />
+				<f:image src="{image.originalResource.publicUrl}" alt="{event.name}" width="{settings.show.images.width}" height="{settings.show.images.height}" />
 			</f:for>
 		</div>		
 	</f:if>
@@ -28,7 +39,7 @@
 
 	<div class="tx-vjeventdb3-event-images tx-vjeventdb3-images">
 		<f:for each="{event.images}" as="image" >
-			<f:image src="{image.originalResource.publicUrl}" alt="{event.name}" width="200" />
+			<f:image src="{image.originalResource.publicUrl}" alt="{event.name}" width="{settings.show.images.width}" height="{settings.show.images.height}" />
 		</f:for>
 	</div>		
 	

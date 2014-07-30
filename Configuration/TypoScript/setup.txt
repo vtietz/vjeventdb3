@@ -16,6 +16,22 @@ plugin.tx_vjeventdb3 {
 
 plugin.tx_vjeventdb3.settings {
 
+	teaser {
+	
+		showCurrentDateRange = 0
+	
+		startTime = today
+		endTime = +1 week
+		
+		sections.day {
+			show = 1
+			format = l, d. F Y
+		}
+		
+		timeFormat = H:i
+		
+	}
+
 	gallery {
 		imageWidth = 330
 		imageHeight = 330
@@ -23,6 +39,8 @@ plugin.tx_vjeventdb3.settings {
 	}
 
 	list {
+	
+		header < lib.stdheader.10.1
 	
 		showCurrentDateRange = 1
 
@@ -101,6 +119,11 @@ plugin.tx_vjeventdb3.settings {
 	
 	show {
 
+		header =< lib.stdheader.10.1
+		
+		images.width = 200c
+		images.height = 200c
+
 		timeFormat = H:i
 		startDateFormat =
 		endDateFormat =
@@ -133,6 +156,11 @@ plugin.tx_vjeventdb3.settings {
 		teaserText.show = 1
 		teaserImages.show = 1
 		
+	}
+	
+	showPerformer {
+		images.width = 200c
+		images.height = 200c
 	}
 
 }

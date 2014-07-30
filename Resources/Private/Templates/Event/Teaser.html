@@ -1,0 +1,49 @@
+
+<div class="tx-vjeventdb3-teaser">
+
+	<f:if condition="{settings.teaser.showCurrentDateRange}">
+		<f:format.date format="{settings.teaser.sections.day.format}">{starttime}</f:format.date>
+		-
+		<f:format.date format="{settings.teaser.sections.day.format}">{endtime}</f:format.date>
+	</f:if>
+
+<table class="tx-vjeventdb3-table" cellspacing="0" cellpadding="0">
+	<f:for each="{years}" as="year">
+		<f:if condition="{settings.teaser.sections.year.show}">
+			<tr>
+				<td colspan="2">
+					<f:format.date format="{settings.teaser.sections.year.format}">{year.date}</f:format.date>
+				</td>
+			</tr>
+		</f:if>
+		<f:for each="{year.months}" as="month">
+			<f:if condition="{settings.teaser.sections.month.show}">
+				<tr>
+					<td colspan="2">
+						<f:format.date format="{settings.teaser.sections.date.format}">{month.date}</f:format.date>
+					</td>
+				</tr>
+			</f:if>
+			<f:for each="{month.days}" as="day">
+				<f:if condition="{settings.teaser.sections.day.show}">
+					<tr class="tx-vjeventdb3-daysection">
+						<td colspan="2">
+							<f:format.date format="{settings.teaser.sections.day.format}">{day.date}</f:format.date>
+						</td>
+					</tr>
+				</f:if>
+				<f:for each="{day.dates}" as="date" iteration="iterator">
+					<f:cycle values="{0: 'odd', 1: 'even'}" as="rowtype">
+						<tr class="{rowtype}">
+							<td><f:link.action action="show"
+									arguments="{event : date.event}"
+									pageUid="{settings.showEventPage}">{date.event.title}</f:link.action></td>
+							<td><f:format.date format="{settings.teaser.timeFormat}">{date.startTime}</f:format.date> <f:translate key="tx_vjeventdb3_domain_model_date.clock" /></td>
+						</tr>
+					</f:cycle>
+				</f:for>
+			</f:for>
+		</f:for>
+	</f:for>
+	</table>
+</div>

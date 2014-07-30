@@ -183,9 +183,6 @@
 			<trans-unit id="tx_vjeventdb3_domain_model_date.clock">
 				<source></source>
 			</trans-unit>
-			<trans-unit id="tx_vjeventdb3_domain_model_date.clock">
-				<source></source>
-			</trans-unit>	
 
 
 			<trans-unit id="tx_vjeventdb3_domain_model_date.dates">
@@ -267,6 +264,9 @@
 			<trans-unit id="tx_vjeventdb3_flexform.listEventAction">
 				<source>Calendar list of events</source>
 			</trans-unit>
+			<trans-unit id="tx_vjeventdb3_flexform.simplelistEventAction">
+				<source>Simple list of events</source>
+			</trans-unit>
 			<trans-unit id="tx_vjeventdb3_flexform.teaserEventAction">
 				<source>Teaser list of events</source>
 			</trans-unit>			
@@ -287,7 +287,56 @@
 			</trans-unit>									
 			<trans-unit id="tx_vjeventdb3_flexform.filter">
 				<source>Filter</source>
-			</trans-unit>									
+			</trans-unit>	
+			
+			<trans-unit id="tx_vjeventdb3_flexform.filter">
+				<source>Filter</source>
+			</trans-unit>
+			
+			<trans-unit id="tx_vjeventdb3_day.short.0">
+				<source>Mo</source>
+			</trans-unit>	
+			<trans-unit id="tx_vjeventdb3_day.short.1">
+				<source>Tu</source>
+			</trans-unit>	
+			<trans-unit id="tx_vjeventdb3_day.short.2">
+				<source>We</source>
+			</trans-unit>	
+			<trans-unit id="tx_vjeventdb3_day.short.3">
+				<source>Th</source>
+			</trans-unit>	
+			<trans-unit id="tx_vjeventdb3_day.short.4">
+				<source>Fr</source>
+			</trans-unit>	
+			<trans-unit id="tx_vjeventdb3_day.short.5">
+				<source>Sa</source>
+			</trans-unit>	
+			<trans-unit id="tx_vjeventdb3_day.short.6">
+				<source>Su</source>
+			</trans-unit>	
+			
+			<trans-unit id="tx_vjeventdb3_day.long.0">
+				<source>Monday</source>
+			</trans-unit>	
+			<trans-unit id="tx_vjeventdb3_day.long.1">
+				<source>Tuesday</source>
+			</trans-unit>	
+			<trans-unit id="tx_vjeventdb3_day.long.2">
+				<source>Wednesday</source>
+			</trans-unit>	
+			<trans-unit id="tx_vjeventdb3_day.long.3">
+				<source>Thursday</source>
+			</trans-unit>	
+			<trans-unit id="tx_vjeventdb3_day.long.4">
+				<source>Friday</source>
+			</trans-unit>	
+			<trans-unit id="tx_vjeventdb3_day.long.5">
+				<source>Saturday</source>
+			</trans-unit>	
+			<trans-unit id="tx_vjeventdb3_day.long.6">
+				<source>Sunday</source>
+			</trans-unit>			
+
 
 		</body>
 	</file>

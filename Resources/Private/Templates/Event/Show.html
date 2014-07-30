@@ -24,7 +24,7 @@ Otherwise your changes will be overwritten the next time you save the extension 
 
 	<f:if condition="{alldates}">
 	<div class="tx-vjeventdb3-event-dates">
-		<h2><f:translate key="tx_vjeventdb3_allDates" /></h2>
+		<f:cObject typoscriptObjectPath="plugin.tx_vjeventdb3.settings.show.header"><f:translate key="tx_vjeventdb3_allDates" /></f:cObject>
 		<ul>
 			<f:for each="{alldates}" as="date">
 				<li>
@@ -37,7 +37,7 @@ Otherwise your changes will be overwritten the next time you save the extension 
 	
 	<f:if condition="{nextdates}">
 	<div class="tx-vjeventdb3-event-dates">
-		<h2><f:translate key="tx_vjeventdb3_nextDates" /></h2>
+		<f:cObject typoscriptObjectPath="plugin.tx_vjeventdb3.settings.show.header"><f:translate key="tx_vjeventdb3_nextDates" /></f:cObject>
 		<ul>
 			<f:for each="{nextdates}" as="date">
 				<li>
@@ -51,7 +51,7 @@ Otherwise your changes will be overwritten the next time you save the extension 
 	
 	<f:if condition="{nextdate}">
 	<div class="tx-vjeventdb3-event-dates">
-		<h2><f:translate key="tx_vjeventdb3_nextDate" /></h2>
+		<f:cObject typoscriptObjectPath="plugin.tx_vjeventdb3.settings.show.header"><f:translate key="tx_vjeventdb3_nextDate" /></f:cObject>
 		<ul class="tx-vjeventdb-dates">
 			<f:for each="{nextdate}" as="date">
 				<li>
@@ -66,11 +66,15 @@ Otherwise your changes will be overwritten the next time you save the extension 
 
 <f:if condition="{priceCategories}">
 	<div class="tx-vjeventdb3-prices">
-		<h1><f:translate key="tx_vjeventdb3_prices" /></h1>
+		<f:cObject typoscriptObjectPath="plugin.tx_vjeventdb3.settings.show.header"><f:translate key="tx_vjeventdb3_prices" /></f:cObject>
 		<f:render partial="Price/ListByCategory" arguments="{priceCategories : priceCategories}" />
 	</div>
 </f:if>
 
+
+<!-- 
+	<f:cObject data="{header: 'value' }" typoscriptObjectPath="lib.stdheader" />
+ -->
 <a href="javascript:history.back();"><f:translate key="tx_vjeventdb3_back_to_list" /></a>
 
 </div>

@@ -18,22 +18,26 @@
 										<numIndex index="1">Event->list;Event->show</numIndex>
 									</numIndex>
 									<numIndex index="1" type="array">
-										<numIndex index="0">LLL:EXT:vjeventdb3/Resources/Private/Language/locallang.xlf:tx_vjeventdb3_flexform.teaserEventAction</numIndex>
-										<numIndex index="1">Event->teaserlist;Event->show</numIndex>
+										<numIndex index="0">LLL:EXT:vjeventdb3/Resources/Private/Language/locallang.xlf:tx_vjeventdb3_flexform.simplelistEventAction</numIndex>
+										<numIndex index="1">Event->simplelist;Event->show</numIndex>
 									</numIndex>
 									<numIndex index="2" type="array">
+										<numIndex index="0">LLL:EXT:vjeventdb3/Resources/Private/Language/locallang.xlf:tx_vjeventdb3_flexform.teaserEventAction</numIndex>
+										<numIndex index="1">Event->teaser;Event->show</numIndex>
+									</numIndex>
+									<numIndex index="3" type="array">
 										<numIndex index="0">LLL:EXT:vjeventdb3/Resources/Private/Language/locallang.xlf:tx_vjeventdb3_flexform.galleryEventAction</numIndex>
 										<numIndex index="1">Event->gallery;Event->show</numIndex>
 									</numIndex>
-									<numIndex index="3" type="array">
+									<numIndex index="4" type="array">
 										<numIndex index="0">LLL:EXT:vjeventdb3/Resources/Private/Language/locallang.xlf:tx_vjeventdb3_flexform.showEventAction</numIndex>
 										<numIndex index="1">Event->show</numIndex>
 									</numIndex>									
-									<numIndex index="4" type="array">
+									<numIndex index="5" type="array">
 										<numIndex index="0">LLL:EXT:vjeventdb3/Resources/Private/Language/locallang.xlf:tx_vjeventdb3_flexform.listPerformerAction</numIndex>
 										<numIndex index="1">Performer->list;Performer->show</numIndex>
 									</numIndex>
-									<numIndex index="5" type="array">
+									<numIndex index="6" type="array">
 										<numIndex index="0">LLL:EXT:vjeventdb3/Resources/Private/Language/locallang.xlf:tx_vjeventdb3_flexform.showPerformerAction</numIndex>
 										<numIndex index="1">Performer->show</numIndex>
 									</numIndex>

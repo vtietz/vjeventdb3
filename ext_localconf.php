@@ -7,7 +7,7 @@ if (!defined('TYPO3_MODE')) {
 	'VJmedia.' . $_EXTKEY,
 	'Events',
 	array(
-		'Event' => 'list, teaser, gallery, show',
+		'Event' => 'list, simplelist, teaser, gallery, show',
 		'Performer' => 'list',
 	),
 	// non-cacheable actions

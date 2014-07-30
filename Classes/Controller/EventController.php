@@ -106,47 +106,53 @@ class EventController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 		$endDateTime = $this->getEndDateTime($startDateTime);
 		
 		$allEventDates = $this->getAllDateEvents($startDateTime, $endDateTime);
-		
 		$this->getDateService()->sortDates($allEventDates);
+		
 		$this->view->assign('dates', $allEventDates);
 		$this->view->assign('starttime', $startDateTime);
 		$this->view->assign('endtime', $endDateTime);
 				
+		
+		$this->view->assign('years', $this->makeYearSections($allEventDates));
+		$this->view->assign('datepickerSettings', $this->getDatePickerSettings($startDateTime));
+
+		$cObjData = $this->configurationManager->getContentObject()->data;
+		$this->view->assign('data', $cObjData);
+		
+	}
+	
+	private function makeYearSections($allEventDates) {
+		
 		$years = array();
 		$year = null;
 		$month = null;
 		$day = null;
 		foreach ($allEventDates as $date) {
-			
+				
 			if($year == null || $year->getDate()->format('Y') != $date->getStartDate()->format('Y')) {
 				$year = new \VJmedia\Vjeventdb3\Domain\ViewModel\YearSectionView();
 				$year->setDate($date->getStartDate());
 				$years[] = $year;
 				$month = null;
 			}
-			
+				
 			if($month == null || $month->getDate()->format('m') != $date->getStartDate()->format('m')) {
 				$month = new \VJmedia\Vjeventdb3\Domain\ViewModel\MonthSectionView();
 				$month->setDate($date->getStartDate());
 				$year->addMonth($month);
 				$day = null;
 			}
-
+		
 			if($day == null || $day->getDate()->format('d') != $date->getStartDate()->format('d')) {
 				$day = new \VJmedia\Vjeventdb3\Domain\ViewModel\DaySectionView();
 				$day->setDate($date->getStartDate());
 				$month->addDay($day);
 			}
 			$day->addDate($date);
-			
+				
 		}
-
 		
-		$this->view->assign('years', $years);
-		$this->view->assign('datepickerSettings', $this->getDatePickerSettings($startDateTime));
-
-		$cObjData = $this->configurationManager->getContentObject()->data;
-		$this->view->assign('data', $cObjData);
+		return $years;
 		
 	}
 	
@@ -421,8 +427,39 @@ class EventController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 	 */
 	public function teaserAction() {
 		
+		$this->setTemplatePaths($this->settings['teaser']);
+
+		$startTimestamp = $this->getTimestampFromSetting('teaser.startTime');
+		$startDateTime = $this->getDateTimeFromTimestamp($startTimestamp);
+		$endTimestamp = strtotime($this->getSetting('teaser.endTime'), $startDateTime->getTimestamp());
+		$endDateTime = $this->getDateTimeFromTimestamp($endTimestamp);
+		
+		$allEventDates = $this->getAllDateEvents($startDateTime, $endDateTime);
+		$this->getDateService()->sortDates($allEventDates);
+		
+		$this->view->assign('dates', $allEventDates);
+		$this->view->assign('starttime', $startDateTime);
+		$this->view->assign('endtime', $endDateTime);
+		$this->view->assign('years', $this->makeYearSections($allEventDates));
+		$this->assignPageUids();
+		
 	}
 	
+	private function assignPageUids() {
+		$this->assignPageUidToView('showEventPage');
+		$this->assignPageUidToView('listEventPage');
+		$this->assignPageUidToView('showPerformerPage');
+		$this->assignPageUidToView('listPerformerPage');
+	}
+	
+	private function assignPageUidToView($pageName) {
+		if($page = $this->getSetting($pageName)) {
+			$this->view->assign($pageName, $page);
+		}
+		else {
+			$this->view->assign($pageName, $this->data->pid);
+		}
+	}
 
 	private function setTemplatePaths($config) {
 		if($partialRootPath = $config['partialRootPath']) {
@@ -438,6 +475,15 @@ class EventController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 			$templatePathAndFilname = \TYPO3\CMS\Core\Utility\GeneralUtility::getFileAbsFileName($templatePathAndFilname);
 			$this->view->setTemplatePathAndFilename($templatePathAndFilname);
 		}
+	}
+
+	/**
+	 * action simplelist
+	 *
+	 * @return void
+	 */
+	public function simplelistAction() {
+		$this->view->assign('events', $this->eventRepository->findAll());		
 	}
 	
 	/**

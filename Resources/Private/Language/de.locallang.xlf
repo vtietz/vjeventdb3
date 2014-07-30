@@ -1,176 +1,343 @@
 ﻿<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <xliff version="1.0">
-	<file source-language="en" target-language="de" datatype="plaintext" original="messages" date="2014-06-26T21:43:02Z" product-name="vjeventdb3">
+	<file target-language="de" datatype="plaintext" original="messages" date="2014-06-26T21:43:02Z" product-name="vjeventdb3">
 		<header/>
 		<body>
 			<trans-unit id="tx_vjeventdb3_domain_model_event">
-				<source>Event</source>
+				<target>Veranstaltung</target>
 			</trans-unit>
 			<trans-unit id="tx_vjeventdb3_domain_model_event.title">
-				<source>Title</source>
+				<target>Titel</target>
 			</trans-unit>
 			<trans-unit id="tx_vjeventdb3_domain_model_event.subtitle">
-				<source>Subtitle</source>
+				<target>Untertitel</target>
 			</trans-unit>
 			<trans-unit id="tx_vjeventdb3_domain_model_event.teasertext">
-				<source>Teasertext</source>
+				<target>Teasertext</target>
 			</trans-unit>
 			<trans-unit id="tx_vjeventdb3_domain_model_event.description">
-				<source>Description</source>
+				<target>Beschreibung</target>
 			</trans-unit>
 			<trans-unit id="tx_vjeventdb3_domain_model_event.images">
-				<source>Images</source>
+				<target>Bilder</target>
+			</trans-unit>
+			<trans-unit id="tx_vjeventdb3_domain_model_event.teaser_images">
+				<target>Teaserbilder</target>
 			</trans-unit>
 			<trans-unit id="tx_vjeventdb3_domain_model_event.location">
-				<source>Location</source>
+				<target>Ort</target>
 			</trans-unit>
 			<trans-unit id="tx_vjeventdb3_domain_model_event.dates">
-				<source>Dates</source>
+				<target>Daten</target>
 			</trans-unit>
 			<trans-unit id="tx_vjeventdb3_domain_model_event.event_category">
-				<source>Event Category</source>
+				<target>Kategorie</target>
 			</trans-unit>
 			<trans-unit id="tx_vjeventdb3_domain_model_event.age_category">
-				<source>Age Category</source>
+				<target>Alterskategorie</target>
 			</trans-unit>
 			<trans-unit id="tx_vjeventdb3_domain_model_event.prices">
-				<source>Prices</source>
+				<target>Preise</target>
 			</trans-unit>
 			<trans-unit id="tx_vjeventdb3_domain_model_event.performers">
-				<source>Performers</source>
+				<target>Veranstaltungsleiter</target>
 			</trans-unit>
 			<trans-unit id="tx_vjeventdb3_domain_model_location">
-				<source>Location</source>
+				<target>Ort</target>
 			</trans-unit>
 			<trans-unit id="tx_vjeventdb3_domain_model_location.name">
-				<source>Name</source>
+				<target>Name</target>
 			</trans-unit>
 			<trans-unit id="tx_vjeventdb3_domain_model_location.description">
-				<source>Description</source>
+				<target>Beschreibung</target>
 			</trans-unit>
 			<trans-unit id="tx_vjeventdb3_domain_model_location.images">
-				<source>Images</source>
+				<target>Bilder</target>
 			</trans-unit>
 			<trans-unit id="tx_vjeventdb3_domain_model_date">
-				<source>Date</source>
+				<target>Datum</target>
 			</trans-unit>
 			<trans-unit id="tx_vjeventdb3_domain_model_date.start_date">
-				<source>Start Date</source>
+				<target>Startdatum</target>
 			</trans-unit>
 			<trans-unit id="tx_vjeventdb3_domain_model_date.start_time">
-				<source>Start Time</source>
+				<target>Startzeit</target>
 			</trans-unit>
 			<trans-unit id="tx_vjeventdb3_domain_model_date.end_date">
-				<source>End Date</source>
+				<target>Enddatum</target>
 			</trans-unit>
 			<trans-unit id="tx_vjeventdb3_domain_model_date.end_time">
-				<source>End Time</source>
+				<target>Endzeit</target>
 			</trans-unit>
 			<trans-unit id="tx_vjeventdb3_domain_model_date.frequency">
-				<source>Frequency</source>
+				<target>Wiederholung</target>
 			</trans-unit>
 			<trans-unit id="tx_vjeventdb3_domain_model_date.title">
-				<source>Title</source>
+				<target>Titel</target>
 			</trans-unit>
 			<trans-unit id="tx_vjeventdb3_domain_model_date.text">
-				<source>Text</source>
+				<target>Text</target>
 			</trans-unit>
 			<trans-unit id="tx_vjeventdb3_domain_model_eventcategory">
-				<source>Event Category</source>
+				<target>Kategorie</target>
 			</trans-unit>
 			<trans-unit id="tx_vjeventdb3_domain_model_eventcategory.name">
-				<source>Name</source>
+				<target>Name</target>
 			</trans-unit>
 			<trans-unit id="tx_vjeventdb3_domain_model_agecategory">
-				<source>Age Category</source>
+				<target>Alterskategorie</target>
 			</trans-unit>
 			<trans-unit id="tx_vjeventdb3_domain_model_agecategory.name">
-				<source>Name</source>
+				<target>Name</target>
 			</trans-unit>
 			<trans-unit id="tx_vjeventdb3_domain_model_price">
-				<source>Price</source>
+				<target>Preis</target>
 			</trans-unit>
 			<trans-unit id="tx_vjeventdb3_domain_model_price.name">
-				<source>Name</source>
+				<target>Name</target>
 			</trans-unit>
 			<trans-unit id="tx_vjeventdb3_domain_model_price.price">
-				<source>Price</source>
+				<target>Preis</target>
 			</trans-unit>
 			<trans-unit id="tx_vjeventdb3_domain_model_price.price_category">
-				<source>Price Category</source>
+				<target>Preiskategorie</target>
 			</trans-unit>
 			<trans-unit id="tx_vjeventdb3_domain_model_price.price_unit">
-				<source>Price Unit</source>
+				<target>Einheit</target>
 			</trans-unit>
 			<trans-unit id="tx_vjeventdb3_domain_model_price.price_amount">
-				<source>Price Amount</source>
+				<target>Anzahl</target>
 			</trans-unit>
 			<trans-unit id="tx_vjeventdb3_domain_model_pricecategory">
-				<source>Price Category</source>
+				<target>Preiskategorie</target>
 			</trans-unit>
 			<trans-unit id="tx_vjeventdb3_domain_model_pricecategory.name">
-				<source>Name</source>
+				<target>Name</target>
 			</trans-unit>
 			<trans-unit id="tx_vjeventdb3_domain_model_priceunit">
-				<source>Price Unit</source>
+				<target>Einheit</target>
 			</trans-unit>
 			<trans-unit id="tx_vjeventdb3_domain_model_priceunit.name">
-				<source>Name</source>
+				<target>Name</target>
 			</trans-unit>
 			<trans-unit id="tx_vjeventdb3_domain_model_priceamount">
-				<source>Price Amount</source>
+				<target>Anzahl</target>
 			</trans-unit>
 			<trans-unit id="tx_vjeventdb3_domain_model_priceamount.name">
-				<source>Name</source>
+				<target>Name</target>
 			</trans-unit>
 			<trans-unit id="tx_vjeventdb3_domain_model_performer">
-				<source>Performer</source>
+				<target>Veranstaltungsleiter</target>
 			</trans-unit>
 			<trans-unit id="tx_vjeventdb3_domain_model_performer.name">
-				<source>Name</source>
+				<target>Name</target>
 			</trans-unit>
 			<trans-unit id="tx_vjeventdb3_domain_model_performer.description">
-				<source>Description</source>
+				<target>Beschreibung</target>
 			</trans-unit>
 			<trans-unit id="tx_vjeventdb3_domain_model_performer.images">
-				<source>Images</source>
+				<target>Bilder</target>
 			</trans-unit>
 			<trans-unit id="tx_vjeventdb3_domain_model_performer.performer_category">
-				<source>Performer Category</source>
+				<target>Veranstaltungsleiterkategorie</target>
 			</trans-unit>
 			<trans-unit id="tx_vjeventdb3_domain_model_performercategory">
-				<source>Performer Category</source>
+				<target>Veranstaltungsleiterkategorie</target>
 			</trans-unit>
 			<trans-unit id="tx_vjeventdb3_domain_model_performercategory.name">
-				<source>Name</source>
+				<target>Name</target>
 			</trans-unit>
 			<trans-unit id="tx_vjeventdb3_domain_model_price.quanity">
-				<source>Quanity</source>
+				<target>Anzahl</target>
 			</trans-unit>
 			<trans-unit id="tx_vjeventdb3_domain_model_price.unit">
-				<source>Unit</source>
+				<target>Einheit</target>
 			</trans-unit>
 			
-			<trans-unit id="tx_vjeventdb3_events.frequency.I.0">
-				<target>Einmalig</target>
+			<trans-unit id="tx_vjeventdb3_duration">
+				<target>Dauer</target>
 			</trans-unit>
-			<trans-unit id="tx_vjeventdb3_events.frequency.I.1">
-				<target>Täglich</target>
+			
+			
+			<trans-unit id="tx_vjeventdb3_domain_model_date.Every">
+				<target>Jeden</target>
+			</trans-unit>			
+			<trans-unit id="tx_vjeventdb3_domain_model_date.every">
+				<target>jeden</target>
+			</trans-unit>			
+			<trans-unit id="tx_vjeventdb3_domain_model_date.From">
+				<target>Von</target>
+			</trans-unit>			
+			<trans-unit id="tx_vjeventdb3_domain_model_date.FromWithEnd">
+				<target>Von</target>
+			</trans-unit>	
+			<trans-unit id="tx_vjeventdb3_domain_model_date.from">
+				<target>von</target>
+			</trans-unit>			
+			<trans-unit id="tx_vjeventdb3_domain_model_date.to">
+				<target>bis</target>
+			</trans-unit>			
+			<trans-unit id="tx_vjeventdb3_domain_model_date.at">
+				<target>um</target>
+			</trans-unit>			
+			<trans-unit id="tx_vjeventdb3_domain_model_date.clock">
+				<target>Uhr</target>
 			</trans-unit>
-			<trans-unit id="tx_vjeventdb3_events.frequency.I.2">
-				<target>Wöchentlich</target>
+
+
+			<trans-unit id="tx_vjeventdb3_domain_model_date.dates">
+				<target>Termine</target>
 			</trans-unit>
-			<trans-unit id="tx_vjeventdb3_events.frequency.I.3">
-				<target>Monatlich</target>
+			<trans-unit id="tx_vjeventdb3_domain_model_date.nextDates">
+				<target>Nächste Termine</target>
+			</trans-unit>	
+			<trans-unit id="tx_vjeventdb3_domain_model_date.Dates">
+				<target>Alle Termine</target>
+			</trans-unit>	
+
+			<trans-unit id="tx_vjeventdb3_domain_model_date.once">
+				<target>l, d.m.</target>
+			</trans-unit>	
+			<trans-unit id="tx_vjeventdb3_domain_model_date.timeFormat">
+				<target>h:i</target>
+			</trans-unit>	
+			<trans-unit id="tx_vjeventdb3_domain_model_date.dateFormat">
+				<target>d. F.</target>
+			</trans-unit>		
+			
+			<trans-unit id="tx_vjeventdb3_back_to_list">
+				<target>Zurück zur Liste</target>
 			</trans-unit>
-			<trans-unit id="tx_vjeventdb3_events.frequency.I.4">
-				<target>Jährlich</target>
+
+			<trans-unit id="tx_vjeventdb3_allDates">
+				<target>Alle Termine</target>
+			</trans-unit>
+
+			<trans-unit id="tx_vjeventdb3_nextDates">
+				<target>Nächste Termine</target>
+			</trans-unit>
+
+			<trans-unit id="tx_vjeventdb3_nextDate">
+				<target>Nächster Termin</target>
+			</trans-unit>
+
+			<trans-unit id="tx_vjeventdb3_dates">
+				<target>Termine</target>
+			</trans-unit>
+
+			<trans-unit id="tx_vjeventdb3_prices">
+				<target>Preise</target>
+			</trans-unit>
+			<trans-unit id="tx_vjeventdb3_furtherPricesOnRequest">
+				<target>Weitere Angebote auf Anfrage!</target>
+			</trans-unit>			
+			
+			
+			<trans-unit id="tx_vjeventdb3_datepicker_range.day">
+				<target>Tag</target>
+			</trans-unit>
+			<trans-unit id="tx_vjeventdb3_datepicker_range.week">
+				<target>Woche</target>
+			</trans-unit>
+			<trans-unit id="tx_vjeventdb3_datepicker_range.month">
+				<target>Monat</target>
+			</trans-unit>
+			<trans-unit id="tx_vjeventdb3_datepicker_range.year">
+				<target>Jahr</target>
+			</trans-unit>
+
+			<trans-unit id="tx_vjeventdb3_datepicker_range.next">
+				<target>Weiter</target>
+			</trans-unit>			
+			<trans-unit id="tx_vjeventdb3_datepicker_range.previous">
+				<target>Zurück</target>
+			</trans-unit>	
+			<trans-unit id="tx_vjeventdb3_datepicker_range.today">
+				<target>Heute</target>
+			</trans-unit>			
+					
+		
+			<!-- Flexform -->
+			<trans-unit id="tx_vjeventdb3_flexform.action">
+				<target>Aktion</target>
+			</trans-unit>			
+			<trans-unit id="tx_vjeventdb3_flexform.listEventAction">
+				<target>Kalenderliste mit Veranstaltungen</target>
+			</trans-unit>
+			<trans-unit id="tx_vjeventdb3_flexform.simplelistEventAction">
+				<source>Einfache Liste aller Veranstaltungen</source>
+			</trans-unit>
+			<trans-unit id="tx_vjeventdb3_flexform.teaserEventAction">
+				<target>Teaserliste mit Veranstaltungen</target>
+			</trans-unit>			
+			<trans-unit id="tx_vjeventdb3_flexform.galleryEventAction">
+				<target>Gallerie von Veranstaltungen</target>
+			</trans-unit>			
+			<trans-unit id="tx_vjeventdb3_flexform.showEventAction">
+				<target>Details für eine Veranstaltung</target>
+			</trans-unit>			
+			<trans-unit id="tx_vjeventdb3_flexform.listPerformerAction">
+				<target>Liste aller Veranstaltungsleiter</target>
+			</trans-unit>			
+			<trans-unit id="tx_vjeventdb3_flexform.showPerformerAction">
+				<target>Details für einen Veranstaltungsleiter</target>
+			</trans-unit>						
+			<trans-unit id="tx_vjeventdb3_flexform.links">
+				<target>Links</target>
+			</trans-unit>									
+			<trans-unit id="tx_vjeventdb3_flexform.filter">
+				<target>Filter</target>
+			</trans-unit>	
+			
+			<trans-unit id="tx_vjeventdb3_flexform.filter">
+				<target>Filter</target>
+			</trans-unit>
+			
+			<trans-unit id="tx_vjeventdb3_day.short.0">
+				<target>Mo</target>
+			</trans-unit>	
+			<trans-unit id="tx_vjeventdb3_day.short.1">
+				<target>Di</target>
+			</trans-unit>	
+			<trans-unit id="tx_vjeventdb3_day.short.2">
+				<target>Mi</target>
+			</trans-unit>	
+			<trans-unit id="tx_vjeventdb3_day.short.3">
+				<target>Do</target>
+			</trans-unit>	
+			<trans-unit id="tx_vjeventdb3_day.short.4">
+				<target>Fr</target>
+			</trans-unit>	
+			<trans-unit id="tx_vjeventdb3_day.short.5">
+				<target>Sa</target>
+			</trans-unit>	
+			<trans-unit id="tx_vjeventdb3_day.short.6">
+				<target>So</target>
+			</trans-unit>	
+			
+			<trans-unit id="tx_vjeventdb3_day.long.0">
+				<target>Montag</target>
+			</trans-unit>	
+			<trans-unit id="tx_vjeventdb3_day.long.1">
+				<target>Dienstag</target>
+			</trans-unit>	
+			<trans-unit id="tx_vjeventdb3_day.long.2">
+				<target>Mittwoch</target>
+			</trans-unit>	
+			<trans-unit id="tx_vjeventdb3_day.long.3">
+				<target>Donnerstag</target>
+			</trans-unit>	
+			<trans-unit id="tx_vjeventdb3_day.long.4">
+				<target>Freitag</target>
+			</trans-unit>	
+			<trans-unit id="tx_vjeventdb3_day.long.5">
+				<target>Samstag</target>
+			</trans-unit>	
+			<trans-unit id="tx_vjeventdb3_day.long.6">
+				<target>Sonntag</target>
 			</trans-unit>			
 
-			<trans-unit id="tx_vjeventdb3_events.events.listing1">
-				<target>Veranstaltungen1</target>
-			</trans-unit>
-			
+
 		</body>
 	</file>
 </xliff>

@@ -5,7 +5,7 @@
 <f:flashMessages renderMode="div" />
 
 <f:if condition="{performers}">
-	<div class="tx-vjeventdb3-event-performers">
+	<div class="tx-vjeventdb3-listPerformers">
 		<h2><f:translate key="tx_vjeventdb3_domain_model_performer" /></h2>
 		<f:for each="{performers}" as="performer">
 			<f:render partial="Performer/Properties" arguments="{performer:performer}" />

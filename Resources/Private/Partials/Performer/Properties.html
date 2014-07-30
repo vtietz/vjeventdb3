@@ -1,5 +1,6 @@
 <div class="tx-vjeventdb3-performer">
-	<h1>{performer.name}</h1>
+	
+	<f:cObject typoscriptObjectPath="plugin.tx_vjeventdb3.settings.show.header">{performer.name}</f:cObject>
 	
 	<span class="tx-vjeventdb3-performer-categories">
 		<f:render partial="Performer/FlatCategoryList" arguments="{performerCategories : performer.performerCategory}" />
@@ -7,9 +8,9 @@
 	
 	<f:format.html>{performer.description}</f:format.html>
 	
-	<div class="tx-vjeventdb3-performer tx-vjeventdb3-images">
+	<div class="tx-vjeventdb3-perfomer-images tx-vjeventdb3-images">
 		<f:for each="{performer.images}" as="image" >
-			<f:image src="{image.originalResource.publicUrl}" alt="{performer.name}" width="200" />
+			<f:image src="{image.originalResource.publicUrl}" alt="{performer.name}" width="{settings.showPerformer.images.width}" height="{settings.showPerformer.images.height}" />
 		</f:for>
 	</div>
 

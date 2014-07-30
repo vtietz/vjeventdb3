@@ -32,10 +32,4 @@ use \DateTime;
  * The repository for Performers
  */
 class PerformerRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
-
-	public function findAll() {
-		$query = $this->persistenceManager->createQueryForType($this->objectType);
-		return $query->execute();
-	}
-	
 }
