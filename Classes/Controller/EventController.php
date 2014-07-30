@@ -135,9 +135,10 @@ class EventController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 			if($day == null || $day->getDate()->format('d') != $date->getStartDate()->format('d')) {
 				$day = new \VJmedia\Vjeventdb3\Domain\ViewModel\DaySectionView();
 				$day->setDate($date->getStartDate());
-				$day->addDate($date);
 				$month->addDay($day);
 			}
+			$day->addDate($date);
+			
 		}
 
 		
@@ -318,57 +319,66 @@ class EventController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 
 		$this->view->assign('event', $event);
 		
-		$maxItemsPerDate = max(
-				$this->getSetting('show.allDates.maxItems', 10),
-				$this->getSetting('show.nextDates.maxItems', 10),
-				$this->getSetting('show.nextDate.maxItems', 10)
-		);
+		if($this->anyDateShouldBeShown()) {
 		
-		$minStartTimestamp = min(
-				$this->getTimestampFromSetting('show.allDates.startTime'),
-				$this->getTimestampFromSetting('show.nextDates.startTime'),
-				$this->getTimestampFromSetting('show.nextDate.startTime')
-		);
-
-		$maxEndTimestamp = max(
-				$this->getTimestampFromSetting('show.allDates.endTime'),
-				$this->getTimestampFromSetting('show.nextDates.endTime'),
-				$this->getTimestampFromSetting('show.nextDate.endTime')
-		);
-		
-		$dates = $this->getDatesOfEvent(
-				$event, 
-				$this->getDateTimeFromTimestamp($minStartTimestamp), 
-				$this->getDateTimeFromTimestamp($maxEndTimestamp), 
-				$maxItemsPerDate
-		);
-		
-		
-		$allDates = $this->getDateService()->getDatesWithinRange($dates,
-				$this->getTimestampFromSetting('show.allDates.startTime'),
-				$this->getTimestampFromSetting('show.allDates.endTime'),
-				$this->getSetting('show.allDates.maxItems', 10)
-		);
-
-		$nextDates = $this->getDateService()->getDatesWithinRange($dates,
-				$this->getTimestampFromSetting('show.nextDates.startTime'),
-				$this->getTimestampFromSetting('show.nextDates.endTime'),
-				$this->getSetting('show.nextDates.maxItems', 10)
-		);
-		
-		$nextDate = $this->getDateService()->getDatesWithinRange($dates,
-				$this->getTimestampFromSetting('show.nextDate.startTime'),
-				$this->getTimestampFromSetting('show.nextDate.endTime'),
-				$this->getSetting('show.nextDate.maxItems', 10)
-		);		
-		
-		$this->view->assign('alldates', $this->getSetting('show.alldates.show') ? $allDates : '');
-		$this->view->assign('nextdates', $this->getSetting('show.nextDates.show') ? $nextDates : '');
-		$this->view->assign('nextdate', $this->getSetting('show.nextDate.show') ? $nextDate : '');
+			$maxItemsPerDate = max(
+					$this->getSetting('show.allDates.maxItems', 10),
+					$this->getSetting('show.nextDates.maxItems', 10),
+					$this->getSetting('show.nextDate.maxItems', 10)
+			);
+			
+			$minStartTimestamp = min(
+					$this->getTimestampFromSetting('show.allDates.startTime'),
+					$this->getTimestampFromSetting('show.nextDates.startTime'),
+					$this->getTimestampFromSetting('show.nextDate.startTime')
+			);
+	
+			$maxEndTimestamp = max(
+					$this->getTimestampFromSetting('show.allDates.endTime'),
+					$this->getTimestampFromSetting('show.nextDates.endTime'),
+					$this->getTimestampFromSetting('show.nextDate.endTime')
+			);
+			
+			$dates = $this->getDatesOfEvent(
+					$event, 
+					$this->getDateTimeFromTimestamp($minStartTimestamp), 
+					$this->getDateTimeFromTimestamp($maxEndTimestamp), 
+					$maxItemsPerDate
+			);
+			
+			
+			$allDates = $this->getDateService()->getDatesWithinRange($dates,
+					$this->getTimestampFromSetting('show.allDates.startTime'),
+					$this->getTimestampFromSetting('show.allDates.endTime'),
+					$this->getSetting('show.allDates.maxItems', 10)
+			);
+	
+			$nextDates = $this->getDateService()->getDatesWithinRange($dates,
+					$this->getTimestampFromSetting('show.nextDates.startTime'),
+					$this->getTimestampFromSetting('show.nextDates.endTime'),
+					$this->getSetting('show.nextDates.maxItems', 10)
+			);
+			
+			$nextDate = $this->getDateService()->getDatesWithinRange($dates,
+					$this->getTimestampFromSetting('show.nextDate.startTime'),
+					$this->getTimestampFromSetting('show.nextDate.endTime'),
+					$this->getSetting('show.nextDate.maxItems', 10)
+			);		
+			
+			$this->view->assign('alldates', $this->getSetting('show.allDates.show') ? $allDates : '');
+			$this->view->assign('nextdates', $this->getSetting('show.nextDates.show') ? $nextDates : '');
+			$this->view->assign('nextdate', $this->getSetting('show.nextDate.show') ? $nextDate : '');
+			
+		}
 		
 		$this->view->assign('prices', $prices);
 		$this->view->assign('priceCategories', $this->getPriceCategories($event->getPrices()));
+		$this->view->assign('showAnyDate', $this->anyDateShouldBeShown());
 		
+	}
+	
+	private function anyDateShouldBeShown() {
+		return $this->getSetting('show.dates.show') || $this->getSetting('show.allDates.show') || $this->getSetting('show.nextDates.show') || $this->getSetting('show.nextDate.show');
 	}
 	
 	private function getSetting($key, $defaultValue = '') {

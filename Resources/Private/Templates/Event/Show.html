@@ -20,48 +20,55 @@ Otherwise your changes will be overwritten the next time you save the extension 
 
 <f:render partial="Event/Properties" arguments="{event:event}" />
 
-<f:if condition="{alldates}">
-<div class="tx-vjeventdb3-event-dates">
-	<h2><f:translate key="tx_vjeventdb3_allDates" /></h2>
-	<ul>
-		<f:for each="{alldates}" as="date">
-			<li>
-				<f:render partial="Date/Single" arguments="{date:date}" />
-			</li>
-		</f:for>
-	</ul>
-</div>
-</f:if>
+<f:if condition="{showAnyDate}">
 
-<f:if condition="{nextdates}">
-<div class="tx-vjeventdb3-event-dates">
-	<h2><f:translate key="tx_vjeventdb3_nextDates" /></h2>
-	<ul>
-		<f:for each="{nextdates}" as="date">
-			<li>
-				<f:render partial="Date/Single" arguments="{date:date}" />
-			</li>
-		</f:for>
-	</ul>
-</div>
-</f:if>
+	<f:if condition="{alldates}">
+	<div class="tx-vjeventdb3-event-dates">
+		<h2><f:translate key="tx_vjeventdb3_allDates" /></h2>
+		<ul>
+			<f:for each="{alldates}" as="date">
+				<li>
+					<f:render partial="Date/Single" arguments="{date:date}" />
+				</li>
+			</f:for>
+		</ul>
+	</div>
+	</f:if>
+	
+	<f:if condition="{nextdates}">
+	<div class="tx-vjeventdb3-event-dates">
+		<h2><f:translate key="tx_vjeventdb3_nextDates" /></h2>
+		<ul>
+			<f:for each="{nextdates}" as="date">
+				<li>
+					<f:render partial="Date/Single" arguments="{date:date}" />
+				</li>
+			</f:for>
+		</ul>
+	</div>
+	</f:if>
+	
+	
+	<f:if condition="{nextdate}">
+	<div class="tx-vjeventdb3-event-dates">
+		<h2><f:translate key="tx_vjeventdb3_nextDate" /></h2>
+		<ul class="tx-vjeventdb-dates">
+			<f:for each="{nextdate}" as="date">
+				<li>
+					<f:render partial="Date/Single" arguments="{date:date}" />
+				</li>
+			</f:for>
+		</ul>
+	</div>
+	</f:if>
 
-<f:if condition="{nextdate}">
-<div class="tx-vjeventdb3-event-dates">
-	<h2><f:translate key="tx_vjeventdb3_nextDate" /></h2>
-	<ul>
-		<f:for each="{nextdate}" as="date">
-			<li>
-				<f:render partial="Date/Single" arguments="{date:date}" />
-			</li>
-		</f:for>
-	</ul>
-</div>
 </f:if>
 
 <f:if condition="{priceCategories}">
-	<h2><f:translate key="tx_vjeventdb3_prices" /></h2>
-	<f:render partial="Price/ListByCategory" arguments="{priceCategories : priceCategories}" />
+	<div class="tx-vjeventdb3-prices">
+		<h1><f:translate key="tx_vjeventdb3_prices" /></h1>
+		<f:render partial="Price/ListByCategory" arguments="{priceCategories : priceCategories}" />
+	</div>
 </f:if>
 
 <a href="javascript:history.back();"><f:translate key="tx_vjeventdb3_back_to_list" /></a>

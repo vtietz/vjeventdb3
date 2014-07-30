@@ -1,27 +1,32 @@
 
 <div  class="tx-vjeventdb3-event">
 
-	<h1>{event.title}</h1>
+	<h1>{event.title}
 	<span class="tx-vjeventdb3-event-event-category">
 		<f:render partial="Event/FlatEventCategoryList" arguments="{eventCategories : event.eventCategory}" />
 	</span>
+	</h1>
 	<span class="tx-vjeventdb3-event-age-category">
 		<f:render partial="Event/FlatAgeCategoryList" arguments="{ageCategories : event.ageCategory}" />
 	</span>
 	
-	<p class="tx-vjeventdb3-event-teasertext">{event.teasertext}</p>
+	<f:if condition="{settings.show.teaserText.show}">
+		<p class="tx-vjeventdb3-event-teasertext">{event.teasertext}</p>
+	</f:if>
 	
-	<div class="tx-vjeventdb3-event-teaserimages">
-		<f:for each="{event.teaserimages}" as="image" >
-			<f:image src="{image.originalResource.publicUrl}" alt="{event.name}" width="200" />
-		</f:for>
-	</div>		
+	<f:if condition="{settings.show.teaserImages.show}">
+		<div class="tx-vjeventdb3-event-teaserimages tx-vjeventdb3-images">
+			<f:for each="{event.teaserimages}" as="image" >
+				<f:image src="{image.originalResource.publicUrl}" alt="{event.name}" width="200" />
+			</f:for>
+		</div>		
+	</f:if>
 	
 	<div class="tx-vjeventdb3-event-description">
 		<f:format.html>{event.description}</f:format.html>
 	</div>
 
-	<div class="tx-vjeventdb3-event-images">
+	<div class="tx-vjeventdb3-event-images tx-vjeventdb3-images">
 		<f:for each="{event.images}" as="image" >
 			<f:image src="{image.originalResource.publicUrl}" alt="{event.name}" width="200" />
 		</f:for>
@@ -29,18 +34,20 @@
 	
 	<f:if condition="{event.performers}">
 		<div class="tx-vjeventdb3-event-performers">
-			<h2><f:translate key="tx_vjeventdb3_domain_model_performer" /></h2>
+			<!--  <h1><f:translate key="tx_vjeventdb3_domain_model_performer" /></h1> -->
 			<f:for each="{event.performers}" as="performer">
 				<f:render partial="Performer/Properties" arguments="{performer:performer}" />
 			</f:for>
 		</div>
 	</f:if>
-		
-	<f:if condition="{event.dates}">
-		<div class="tx-vjeventdb3-event-dates">
-			<h2><f:translate key="tx_vjeventdb3_dates" /></h2>
-			<f:render partial="Date/List" arguments="{dates:event.dates}" />
-		</div>
+	
+	<f:if condition="{showAnyDate}">	
+		<f:if condition="{event.dates}">
+			<div class="tx-vjeventdb3-event-dates">
+				<h1><f:translate key="tx_vjeventdb3_dates" /></h1>
+				<f:render partial="Date/List" arguments="{dates:event.dates}" />
+			</div>
+		</f:if>
 	</f:if>
 
 </div>

@@ -9,54 +9,38 @@
 				<el>
 					<switchableControllerActions>
 						<TCEforms>
-							<label>Action</label>
+							<label>LLL:EXT:vjeventdb3/Resources/Private/Language/locallang.xlf:tx_vjeventdb3_flexform.action</label>
 							<config>
 								<type>select</type>
 								<items type="array">
 									<numIndex index="0" type="array">
-										<numIndex index="0">Listenansicht</numIndex>
+										<numIndex index="0">LLL:EXT:vjeventdb3/Resources/Private/Language/locallang.xlf:tx_vjeventdb3_flexform.listEventAction</numIndex>
 										<numIndex index="1">Event->list;Event->show</numIndex>
 									</numIndex>
 									<numIndex index="1" type="array">
-										<numIndex index="0">Eventansicht</numIndex>
-										<numIndex index="1">Event->show</numIndex>
-									</numIndex>									
+										<numIndex index="0">LLL:EXT:vjeventdb3/Resources/Private/Language/locallang.xlf:tx_vjeventdb3_flexform.teaserEventAction</numIndex>
+										<numIndex index="1">Event->teaserlist;Event->show</numIndex>
+									</numIndex>
 									<numIndex index="2" type="array">
-										<numIndex index="0">Kursleiter</numIndex>
-										<numIndex index="1">Performer->list;Performer->show</numIndex>
+										<numIndex index="0">LLL:EXT:vjeventdb3/Resources/Private/Language/locallang.xlf:tx_vjeventdb3_flexform.galleryEventAction</numIndex>
+										<numIndex index="1">Event->gallery;Event->show</numIndex>
 									</numIndex>
 									<numIndex index="3" type="array">
-										<numIndex index="0">Kursleiteransicht</numIndex>
-										<numIndex index="1">Performer->show</numIndex>
-									</numIndex>
+										<numIndex index="0">LLL:EXT:vjeventdb3/Resources/Private/Language/locallang.xlf:tx_vjeventdb3_flexform.showEventAction</numIndex>
+										<numIndex index="1">Event->show</numIndex>
+									</numIndex>									
 									<numIndex index="4" type="array">
-										<numIndex index="0">Gallery</numIndex>
-										<numIndex index="1">Event->gallery;Event->show</numIndex>
+										<numIndex index="0">LLL:EXT:vjeventdb3/Resources/Private/Language/locallang.xlf:tx_vjeventdb3_flexform.listPerformerAction</numIndex>
+										<numIndex index="1">Performer->list;Performer->show</numIndex>
+									</numIndex>
+									<numIndex index="5" type="array">
+										<numIndex index="0">LLL:EXT:vjeventdb3/Resources/Private/Language/locallang.xlf:tx_vjeventdb3_flexform.showPerformerAction</numIndex>
+										<numIndex index="1">Performer->show</numIndex>
 									</numIndex>
 								</items>
 							</config>
 						</TCEforms>
 					</switchableControllerActions>
-					<settings.eventsPerPage>
-						<TCEforms>
-							<label>Max. number of events to display per page</label>
-							<config>
-								<type>input</type>
-								<size>2</size>
-								<eval>int</eval>
-								<default>30</default>
-							</config>
-						</TCEforms>
-					</settings.eventsPerPage>
-					<settings.hidePastEvents>
-						<TCEforms>
-							<label>Hide past events</label>
-							<config>
-								<type>check</type>
-								<default>1</default>
-							</config>
-						</TCEforms>
-					</settings.hidePastEvents>
 					<persistence.storagePid>
 						<TCEforms>
 							<exclude>1</exclude>
@@ -84,13 +68,13 @@
 		<sLINKS>
 			<ROOT>
 				<TCEforms>
-					<sheetTitle>Links</sheetTitle>
+					<sheetTitle>LLL:EXT:vjeventdb3/Resources/Private/Language/locallang.xlf:tx_vjeventdb3_flexform.links</sheetTitle>
 				</TCEforms>
 				<type>array</type>
 				<el>
 					<settings.showEventPage>
 						<TCEforms>
-							<label>Event Detailseite</label>
+							<label>LLL:EXT:vjeventdb3/Resources/Private/Language/locallang.xlf:tx_vjeventdb3_flexform.showEventAction</label>
 							<config>
 								<type>group</type>
 								<internal_type>db</internal_type>
@@ -108,7 +92,7 @@
 					</settings.showEventPage>
 					<settings.listEventPage>
 						<TCEforms>
-							<label>Events Liste</label>
+							<label>LLL:EXT:vjeventdb3/Resources/Private/Language/locallang.xlf:tx_vjeventdb3_flexform.listEventAction</label>
 							<config>
 								<type>group</type>
 								<internal_type>db</internal_type>
@@ -126,7 +110,7 @@
 					</settings.listEventPage>
 					<settings.showPerformerPage>
 						<TCEforms>
-							<label>Performer Detailseite</label>
+							<label>LLL:EXT:vjeventdb3/Resources/Private/Language/locallang.xlf:tx_vjeventdb3_flexform.showPerformerAction</label>
 							<config>
 								<type>group</type>
 								<internal_type>db</internal_type>
@@ -144,7 +128,7 @@
 					</settings.showPerformerPage>
 					<settings.listPerformerPage>
 						<TCEforms>
-							<label>Performer Liste</label>
+							<label>LLL:EXT:vjeventdb3/Resources/Private/Language/locallang.xlf:tx_vjeventdb3_flexform.listPerformerAction</label>
 							<config>
 								<type>group</type>
 								<internal_type>db</internal_type>
@@ -166,7 +150,7 @@
 		<sFILTER>
 			<ROOT>
 				<TCEforms>
-					<sheetTitle>Filter</sheetTitle>
+					<sheetTitle>LLL:EXT:vjeventdb3/Resources/Private/Language/locallang.xlf:tx_vjeventdb3_flexform.filter</sheetTitle>
 				</TCEforms>
 				<type>array</type>
 				<el>

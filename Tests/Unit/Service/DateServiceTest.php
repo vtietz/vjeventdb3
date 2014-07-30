@@ -210,4 +210,19 @@ class DateServiceTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 		$this->assertEquals(5, count($allDates));
 	}	
 	
+	/**
+	 * Tests if only dates are returned that are within the given date range.
+	 *
+	 * @test
+	 */
+	public function multipleDatesOnDayTest() {
+		$dates = array(
+				DateMock::getDateMock(new DateTime("2014-01-01"), strtotime("10:00"), new DateTime("2014-01-31"), strtotime("11:00"), Date::FREQUENCY_DAILY, 0),
+				DateMock::getDateMock(new DateTime("2014-01-01"), strtotime("12:00"), new DateTime("2014-01-31"), strtotime("13:00"), Date::FREQUENCY_DAILY, 0),
+		);
+	
+		$allDates = $this->subject->getAllDates($dates, new DateTime("2014-01-05"), new DateTime("2014-01-05"));
+		$this->assertEquals(2, count($allDates));
+	}	
+	
 }

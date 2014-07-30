@@ -231,6 +231,10 @@
 			<trans-unit id="tx_vjeventdb3_prices">
 				<source>Prices</source>
 			</trans-unit>
+			<trans-unit id="tx_vjeventdb3_furtherPricesOnRequest">
+				<source>Further prices on request</source>
+			</trans-unit>			
+			
 			
 			<trans-unit id="tx_vjeventdb3_datepicker_range.day">
 				<source>Day</source>
@@ -255,7 +259,35 @@
 				<source>Today</source>
 			</trans-unit>			
 					
-			
+		
+			<!-- Flexform -->
+			<trans-unit id="tx_vjeventdb3_flexform.action">
+				<source>Action</source>
+			</trans-unit>			
+			<trans-unit id="tx_vjeventdb3_flexform.listEventAction">
+				<source>Calendar list of events</source>
+			</trans-unit>
+			<trans-unit id="tx_vjeventdb3_flexform.teaserEventAction">
+				<source>Teaser list of events</source>
+			</trans-unit>			
+			<trans-unit id="tx_vjeventdb3_flexform.galleryEventAction">
+				<source>Gallery of events</source>
+			</trans-unit>			
+			<trans-unit id="tx_vjeventdb3_flexform.showEventAction">
+				<source>Show event details</source>
+			</trans-unit>			
+			<trans-unit id="tx_vjeventdb3_flexform.listPerformerAction">
+				<source>List performers</source>
+			</trans-unit>			
+			<trans-unit id="tx_vjeventdb3_flexform.showPerformerAction">
+				<source>Show performer details</source>
+			</trans-unit>						
+			<trans-unit id="tx_vjeventdb3_flexform.links">
+				<source>Links</source>
+			</trans-unit>									
+			<trans-unit id="tx_vjeventdb3_flexform.filter">
+				<source>Filter</source>
+			</trans-unit>									
 
 		</body>
 	</file>

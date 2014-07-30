@@ -107,6 +107,8 @@ plugin.tx_vjeventdb3.settings {
 		startTimeFormat =
 		endTimeFormat =
 		
+		dates.show = 1
+		
 		allDates {
 			show = 0
 			maxItems = 20
@@ -127,6 +129,9 @@ plugin.tx_vjeventdb3.settings {
 			startTime = today
 			endTime = 
 		}		
+		
+		teaserText.show = 1
+		teaserImages.show = 1
 		
 	}
 
