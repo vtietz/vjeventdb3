@@ -1,6 +1,6 @@
 <div class="tx-vjeventdb3-event-gallary-item">
 
-	<f:link.action action="show" arguments="{event : event}" pageUid="{showEventPage}">
+	<f:link.action action="show" pluginName="EventDetail" arguments="{event : event}" pageUid="{showEventPage}">
 	<f:if condition="{event.teaserImages}">
 		<div class="tx-vjeventdb3-event-teaserimages">
 			<f:for each="{event.teaserImages}" as="image" iteration="iterator">

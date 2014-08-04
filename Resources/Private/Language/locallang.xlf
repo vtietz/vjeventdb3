@@ -337,7 +337,53 @@
 				<source>Sunday</source>
 			</trans-unit>			
 
+			<trans-unit id="tx_vjeventdb3_duration.year">
+				<source>year</source>
+			</trans-unit>		
+			<trans-unit id="tx_vjeventdb3_duration.years">
+				<source>years</source>
+			</trans-unit>
+			<trans-unit id="tx_vjeventdb3_duration.month">
+				<source>month</source>
+			</trans-unit>		
+			<trans-unit id="tx_vjeventdb3_duration.months">
+				<source>months</source>
+			</trans-unit>		
+			<trans-unit id="tx_vjeventdb3_duration.day">
+				<source>day</source>
+			</trans-unit>						
+			<trans-unit id="tx_vjeventdb3_duration.days">
+				<source>days</source>
+			</trans-unit>						
+			<trans-unit id="tx_vjeventdb3_duration.hour">
+				<source>hour</source>
+			</trans-unit>			
+			<trans-unit id="tx_vjeventdb3_duration.hours">
+				<source>hours</source>
+			</trans-unit>	
+			<trans-unit id="tx_vjeventdb3_duration.minute">
+				<source>minute</source>
+			</trans-unit>			
+			<trans-unit id="tx_vjeventdb3_duration.minutes">
+				<source>minutes</source>
+			</trans-unit>			
+			<trans-unit id="tx_vjeventdb3_duration.second">
+				<source>second</source>
+			</trans-unit>						
+			<trans-unit id="tx_vjeventdb3_duration.seconds">
+				<source>seconds</source>
+			</trans-unit>				
+			<trans-unit id="tx_vjeventdb3_duration.and">
+				<source>and</source>
+			</trans-unit>
 
+			<trans-unit id="tx_vjeventdb3_not_found.performer">
+				<source>Performer not found.</source>
+			</trans-unit>
+			<trans-unit id="tx_vjeventdb3_not_found.performers">
+				<source>No performers found.</source>
+			</trans-unit>
+										
 		</body>
 	</file>
 </xliff>

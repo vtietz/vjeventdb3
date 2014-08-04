@@ -231,6 +231,20 @@ class DateUtils {
 		}
 		return $datediff;
 	}
+
+	public static function getDateTime($strtotime, $starttime = 0) {
+		if(!$strtotime) {
+			return new DateTime("0000-00-00");
+		}
+		return static::getDateTimeFromTimestamp(strtotime($strtotime, $starttime));
+	}
 	
+	public static function getDateTimeFromTimestamp($timestamp) {
+		if($timestamp == 0) {
+			return new DateTime("0000-00-00");
+		}
+		$dateString = date('Y-m-d', $timestamp);
+		return new DateTime($dateString);
+	}
 	
 }

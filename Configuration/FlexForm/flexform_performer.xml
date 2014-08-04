@@ -38,42 +38,6 @@
 				</TCEforms>
 				<type>array</type>
 				<el>
-					<settings.showEventPage>
-						<TCEforms>
-							<label>LLL:EXT:vjeventdb3/Resources/Private/Language/locallang.xlf:tx_vjeventdb3_flexform.showEventAction</label>
-							<config>
-								<type>group</type>
-								<internal_type>db</internal_type>
-								<allowed>pages</allowed>
-								<size>1</size>
-								<maxitems>1</maxitems>
-								<show_thumbs>1</show_thumbs>
-								<wizards>
-									<suggest>
-										<type>suggest</type>
-									</suggest>
-								</wizards>
-							</config>
-						</TCEforms>
-					</settings.showEventPage>
-					<settings.listEventPage>
-						<TCEforms>
-							<label>LLL:EXT:vjeventdb3/Resources/Private/Language/locallang.xlf:tx_vjeventdb3_flexform.listEventAction</label>
-							<config>
-								<type>group</type>
-								<internal_type>db</internal_type>
-								<allowed>pages</allowed>
-								<size>1</size>
-								<maxitems>1</maxitems>
-								<show_thumbs>1</show_thumbs>
-								<wizards>
-									<suggest>
-										<type>suggest</type>
-									</suggest>
-								</wizards>
-							</config>
-						</TCEforms>
-					</settings.listEventPage>
 					<settings.showPerformerPage>
 						<TCEforms>
 							<label>LLL:EXT:vjeventdb3/Resources/Private/Language/locallang.xlf:tx_vjeventdb3_flexform.showPerformerAction</label>
@@ -120,13 +84,13 @@
 				</TCEforms>
 				<type>array</type>
 				<el>
-					<settings.eventCategoryFilter>
+					<settings.performerCategoryFilter>
 						<TCEforms>
-							<label>LLL:EXT:vjeventdb3/Resources/Private/Language/locallang_db.xlf:tx_vjeventdb3_domain_model_event.event_category</label>
+							<label>LLL:EXT:vjeventdb3/Resources/Private/Language/locallang_db.xlf:tx_vjeventdb3_domain_model_performer.performer_category</label>
 							<config>
 								<type>group</type>
 								<internal_type>db</internal_type>
-								<allowed>tx_vjeventdb3_domain_model_eventcategory</allowed>
+								<allowed>tx_vjeventdb3_domain_model_performercategory</allowed>
 								<size>3</size>
 								<maxitems>50</maxitems>
 								<minitems>0</minitems>
@@ -138,26 +102,7 @@
 								</wizards>
 							</config>
 						</TCEforms>
-					</settings.eventCategoryFilter>
-					<settings.ageCategoryFilter>
-						<TCEforms>
-							<label>LLL:EXT:vjeventdb3/Resources/Private/Language/locallang_db.xlf:tx_vjeventdb3_domain_model_event.age_category</label>
-							<config>
-								<type>group</type>
-								<internal_type>db</internal_type>
-								<allowed>tx_vjeventdb3_domain_model_agecategory</allowed>
-								<size>3</size>
-								<maxitems>50</maxitems>
-								<minitems>0</minitems>
-								<show_thumbs>1</show_thumbs>
-								<wizards>
-									<suggest>
-										<type>suggest</type>
-									</suggest>
-								</wizards>
-							</config>
-						</TCEforms>
-					</settings.ageCategoryFilter>					
+					</settings.performerCategoryFilter>					
 				</el>
 			</ROOT>
 		</sFILTER>		

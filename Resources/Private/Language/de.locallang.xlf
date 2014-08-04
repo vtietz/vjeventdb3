@@ -265,7 +265,7 @@
 				<target>Kalenderliste mit Veranstaltungen</target>
 			</trans-unit>
 			<trans-unit id="tx_vjeventdb3_flexform.simplelistEventAction">
-				<source>Einfache Liste aller Veranstaltungen</source>
+				<target>Einfache Liste aller Veranstaltungen</target>
 			</trans-unit>
 			<trans-unit id="tx_vjeventdb3_flexform.teaserEventAction">
 				<target>Teaserliste mit Veranstaltungen</target>
@@ -337,6 +337,45 @@
 				<target>Sonntag</target>
 			</trans-unit>			
 
+			<trans-unit id="tx_vjeventdb3_duration.year">
+				<target>Jahr</target>
+			</trans-unit>		
+			<trans-unit id="tx_vjeventdb3_duration.years">
+				<target>Jahre</target>
+			</trans-unit>
+			<trans-unit id="tx_vjeventdb3_duration.month">
+				<target>Monat</target>
+			</trans-unit>		
+			<trans-unit id="tx_vjeventdb3_duration.months">
+				<target>Monate</target>
+			</trans-unit>		
+			<trans-unit id="tx_vjeventdb3_duration.day">
+				<target>Tag</target>
+			</trans-unit>						
+			<trans-unit id="tx_vjeventdb3_duration.days">
+				<target>Tage</target>
+			</trans-unit>						
+			<trans-unit id="tx_vjeventdb3_duration.hour">
+				<target>Stunde</target>
+			</trans-unit>			
+			<trans-unit id="tx_vjeventdb3_duration.hours">
+				<target>Stunden</target>
+			</trans-unit>	
+			<trans-unit id="tx_vjeventdb3_duration.minute">
+				<target>Minute</target>
+			</trans-unit>			
+			<trans-unit id="tx_vjeventdb3_duration.minutes">
+				<target>Minuten</target>
+			</trans-unit>			
+			<trans-unit id="tx_vjeventdb3_duration.second">
+				<target>Sekunde</target>
+			</trans-unit>						
+			<trans-unit id="tx_vjeventdb3_duration.seconds">
+				<target>Sekunden</target>
+			</trans-unit>				
+			<trans-unit id="tx_vjeventdb3_duration.and">
+				<target>und</target>
+			</trans-unit>
 
 		</body>
 	</file>

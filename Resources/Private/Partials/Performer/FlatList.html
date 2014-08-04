@@ -1,7 +1,7 @@
 <f:for each="{performers}" as="performer" iteration="performerIterator">
-	{performer.name}
-   <f:if condition="{performerIterator.isLast}">
-   <f:then></f:then>
-   <f:else>,</f:else>
-   </f:if>
+	<f:link.action action="show" pluginName="PerformerDetail" controller="PerformerDetail" arguments="{performer : performer}" pageUid="{showPerformerPage}">{performer.name}</f:link.action>
+	<f:if condition="{performerIterator.isLast}">
+	<f:then></f:then>
+	<f:else>,</f:else>
+	</f:if>
 </f:for>

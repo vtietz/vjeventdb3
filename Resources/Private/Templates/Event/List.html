@@ -1,3 +1,4 @@
+{namespace m=VJmedia\Vjeventdb3\ViewHelper}
 
 <f:layout name="Default" />
 
@@ -11,6 +12,7 @@ in /Configuration/ExtensionBuilder/settings.yaml:
         List.html: keep
 
 Otherwise your changes will be overwritten the next time you save the extension in the extension builder
+
 
 <f:section name="main">
 
@@ -39,7 +41,7 @@ Otherwise your changes will be overwritten the next time you save the extension 
 	<f:for each="{years}" as="year">
 		<f:if condition="{settings.list.sections.year.show}">
 			<tr>
-				<td colspan="5">
+				<td colspan="5" class="tx-vjeventdb3-day">
 					<f:format.date format="{settings.list.sections.year.format}">{year.date}</f:format.date>
 				</td>
 			</tr>
@@ -47,7 +49,7 @@ Otherwise your changes will be overwritten the next time you save the extension 
 		<f:for each="{year.months}" as="month">
 			<f:if condition="{settings.list.sections.month.show}">
 				<tr>
-					<td colspan="5">
+					<td colspan="5" class="tx-vjeventdb3-month">
 						<f:format.date format="{settings.list.sections.date.format}">{month.date}</f:format.date>
 					</td>
 				</tr>
@@ -55,22 +57,23 @@ Otherwise your changes will be overwritten the next time you save the extension 
 			<f:for each="{month.days}" as="day">
 				<f:if condition="{settings.list.sections.day.show}">
 					<tr class="tx-vjeventdb3-daysection">
-						<td colspan="5">
-							<f:format.date format="{settings.list.sections.day.format}">{day.date}</f:format.date>
+						<td colspan="5" class="tx-vjeventdb3-date">
+							<span class="dayname"><m:dateTime date="{day.date}" key="day.long" /></span>
+							<span class="daydate"><f:format.date format="{settings.list.sections.day.format}">{day.date}</f:format.date></span>
 						</td>
 					</tr>
 				</f:if>
 				<f:for each="{day.dates}" as="date" iteration="iterator">
 					<f:cycle values="{0: 'odd', 1: 'even'}" as="rowtype">
 						<tr class="{rowtype}">
-							<td><f:format.date format="{settings.list.timeFormat}">{date.startTime}</f:format.date></td>
-							<td></td>
-							<td><f:link.action action="show"
-									arguments="{event : date.event}"
+							<td class="tx-vjeventdb3-time"><f:format.date format="{settings.list.timeFormat}">{date.startTime}</f:format.date></td>
+							<td class="tx-vjeventdb3-button"></td>
+							<td class="tx-vjeventdb3-event"><f:link.action action="show"
+									arguments="{event : date.event}" controller="EventDetail"
 									pageUid="{showEventPage}">{date.event.title}</f:link.action></td>
-							<td><f:render partial="Performer/FlatList"
-									arguments="{performers: date.event.performers}" /></td>
-							<td>{date.duration}</td>
+							<td class="tx-vjeventdb3-performer"><f:render partial="Performer/FlatList"
+									arguments="{performers: date.event.performers, showPerformerPage : showPerformerPage}" /></td>
+							<td class="tx-vjeventdb3-duration"><m:durationTranslate duration="{date.duration}" /></td>
 						</tr>
 					</f:cycle>
 				</f:for>

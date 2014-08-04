@@ -1,9 +1,6 @@
 <?php
 namespace VJmedia\Vjeventdb3\Controller;
 
-use VJmedia\Vjeventdb3\Domain\Repository\PerformerRepository;
-use VJmedia\Vjeventdb3\Domain\Model\PerformerCategory;
-
 /***************************************************************
  *
  *  Copyright notice
@@ -30,35 +27,18 @@ use VJmedia\Vjeventdb3\Domain\Model\PerformerCategory;
  ***************************************************************/
 
 /**
- * PerformerController
+ * PerformerDetailController
  */
-class PerformerController extends \VJmedia\Vjeventdb3\Controller\AbstractController {
+class PerformerDetailController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController {
 
 	/**
-	 * performerRepository
+	 * action show
 	 *
-	 * @var \VJmedia\Vjeventdb3\Domain\Repository\PerformerRepository
-	 * @inject
-	 */
-	protected $performerRepository = NULL;
-	
-	/**
-	 * action list
-	 *
+	 * @param \VJmedia\Vjeventdb3\Domain\Model\Performer $performer
 	 * @return void
 	 */
-	public function listAction() {
-		$performers = $this->performerRepository->findAll($this->getPerfromerCategoryFilter());
-		$this->view->assign('performers', $this->performerRepository->findAll());
-	}
-
-	
-	protected function getPerfromerCategoryFilter() {
-		$list = $this->getArgument('performerCategories', $this->settings['performerCategoryFilter']);
-		if(!$list) {
-			return array();
-		}
-		return \TYPO3\CMS\Core\Utility\GeneralUtility::trimExplode(',', $list);
-	}
+	public function showAction(\VJmedia\Vjeventdb3\Domain\Model\Performer $performer) {
+		$this->view->assign('performer', $performer);
+	}	
 	
 }

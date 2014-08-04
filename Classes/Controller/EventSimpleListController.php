@@ -1,8 +1,14 @@
 <?php
 namespace VJmedia\Vjeventdb3\Controller;
 
-use VJmedia\Vjeventdb3\Domain\Repository\PerformerRepository;
-use VJmedia\Vjeventdb3\Domain\Model\PerformerCategory;
+use VJmedia\Vjeventdb3\Domain\Repository\DateRepository;
+use VJmedia\Vjeventdb3\Domain\Repository\PriceCategoryRepository;
+use VJmedia\Vjeventdb3\Service\DateService;
+use VJmedia\Vjeventdb3\Domain\ViewModel\YearSectionView;
+use VJmedia\Vjeventdb3\Domain\ViewModel\MonthSectionView;
+use VJmedia\Vjeventdb3\Domain\ViewModel\DaySectionView;
+use DateTime;
+use VJmedia\Vjeventdb3\Service\DateUtils;
 
 /***************************************************************
  *
@@ -30,35 +36,25 @@ use VJmedia\Vjeventdb3\Domain\Model\PerformerCategory;
  ***************************************************************/
 
 /**
- * PerformerController
+ * EventGalleryController
  */
-class PerformerController extends \VJmedia\Vjeventdb3\Controller\AbstractController {
+class EventSimpleListController extends \VJmedia\Vjeventdb3\Controller\AbstractController {
 
 	/**
-	 * performerRepository
+	 * eventRepository
 	 *
-	 * @var \VJmedia\Vjeventdb3\Domain\Repository\PerformerRepository
+	 * @var \VJmedia\Vjeventdb3\Domain\Repository\EventRepository
 	 * @inject
 	 */
-	protected $performerRepository = NULL;
-	
+	protected $eventRepository = NULL;
+
 	/**
 	 * action list
 	 *
 	 * @return void
 	 */
 	public function listAction() {
-		$performers = $this->performerRepository->findAll($this->getPerfromerCategoryFilter());
-		$this->view->assign('performers', $this->performerRepository->findAll());
-	}
-
-	
-	protected function getPerfromerCategoryFilter() {
-		$list = $this->getArgument('performerCategories', $this->settings['performerCategoryFilter']);
-		if(!$list) {
-			return array();
-		}
-		return \TYPO3\CMS\Core\Utility\GeneralUtility::trimExplode(',', $list);
+		$this->view->assign('events', $this->eventRepository->findAll());		
 	}
 	
 }

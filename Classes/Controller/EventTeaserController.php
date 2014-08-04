@@ -2,7 +2,6 @@
 namespace VJmedia\Vjeventdb3\Controller;
 
 use VJmedia\Vjeventdb3\Domain\Repository\PerformerRepository;
-use VJmedia\Vjeventdb3\Domain\Model\PerformerCategory;
 
 /***************************************************************
  *
@@ -30,17 +29,17 @@ use VJmedia\Vjeventdb3\Domain\Model\PerformerCategory;
  ***************************************************************/
 
 /**
- * PerformerController
+ * EventTeaserController
  */
-class PerformerController extends \VJmedia\Vjeventdb3\Controller\AbstractController {
+class EventTeaserController extends \VJmedia\Vjeventdb3\Controller\AbstractEventListController {
 
 	/**
-	 * performerRepository
+	 * eventRepository
 	 *
-	 * @var \VJmedia\Vjeventdb3\Domain\Repository\PerformerRepository
+	 * @var \VJmedia\Vjeventdb3\Domain\Repository\EventRepository
 	 * @inject
 	 */
-	protected $performerRepository = NULL;
+	protected $eventRepository = NULL;
 	
 	/**
 	 * action list
@@ -48,17 +47,23 @@ class PerformerController extends \VJmedia\Vjeventdb3\Controller\AbstractControl
 	 * @return void
 	 */
 	public function listAction() {
-		$performers = $this->performerRepository->findAll($this->getPerfromerCategoryFilter());
-		$this->view->assign('performers', $this->performerRepository->findAll());
-	}
+		
+		$this->setTemplatePaths($this->settings['teaser']);
 
-	
-	protected function getPerfromerCategoryFilter() {
-		$list = $this->getArgument('performerCategories', $this->settings['performerCategoryFilter']);
-		if(!$list) {
-			return array();
-		}
-		return \TYPO3\CMS\Core\Utility\GeneralUtility::trimExplode(',', $list);
+		$startTimestamp = $this->getTimestampFromSetting('teaser.startTime');
+		$startDateTime = $this->getDateTimeFromTimestamp($startTimestamp);
+		$endTimestamp = strtotime($this->getSetting('teaser.endTime'), $startDateTime->getTimestamp());
+		$endDateTime = $this->getDateTimeFromTimestamp($endTimestamp);
+		
+		$allEventDates = $this->getAllDateEvents($startDateTime, $endDateTime);
+		$this->getDateService()->sortDates($allEventDates);
+		
+		$this->view->assign('dates', $allEventDates);
+		$this->view->assign('starttime', $startDateTime);
+		$this->view->assign('endtime', $endDateTime);
+		$this->view->assign('years', $this->makeYearSections($allEventDates));
+		$this->assignPageUids();
+		
 	}
 	
 }

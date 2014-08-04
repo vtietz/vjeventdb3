@@ -32,4 +32,27 @@ use \DateTime;
  * The repository for Performers
  */
 class PerformerRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
+	
+	/**
+	 * @param $performerCategories If set only performers with these categories are returned.
+	 */
+	public function findAll($performerCategories = array()) {
+	
+		$query = $this->persistenceManager->createQueryForType($this->objectType);
+	
+		if ($this->defaultOrderings !== array()) {
+			$query->setOrderings($this->defaultOrderings);
+		}
+	
+		if ($this->defaultQuerySettings !== NULL) {
+			$query->setQuerySettings(clone $this->defaultQuerySettings);
+		}
+	
+		if(count($eventCategories) > 0) {
+			$query->matching($query->in('performer_category', $performerCategories));
+		}
+		
+		return $query->execute();
+	}
+	
 }

@@ -1,8 +1,11 @@
 <?php
 namespace VJmedia\Vjeventdb3\Controller;
 
-use VJmedia\Vjeventdb3\Domain\Repository\PerformerRepository;
-use VJmedia\Vjeventdb3\Domain\Model\PerformerCategory;
+use VJmedia\Vjeventdb3\Domain\Repository\DateRepository;
+use VJmedia\Vjeventdb3\Domain\Repository\PriceCategoryRepository;
+use VJmedia\Vjeventdb3\Service\DateService;
+use DateTime;
+use VJmedia\Vjeventdb3\Service\DateUtils;
 
 /***************************************************************
  *
@@ -30,35 +33,34 @@ use VJmedia\Vjeventdb3\Domain\Model\PerformerCategory;
  ***************************************************************/
 
 /**
- * PerformerController
+ * EventGalleryController
  */
-class PerformerController extends \VJmedia\Vjeventdb3\Controller\AbstractController {
+class EventGalleryController extends \VJmedia\Vjeventdb3\Controller\AbstractEventListController {
 
 	/**
-	 * performerRepository
+	 * eventRepository
 	 *
-	 * @var \VJmedia\Vjeventdb3\Domain\Repository\PerformerRepository
+	 * @var \VJmedia\Vjeventdb3\Domain\Repository\EventRepository
 	 * @inject
 	 */
-	protected $performerRepository = NULL;
-	
+	protected $eventRepository = NULL;
+
 	/**
 	 * action list
 	 *
 	 * @return void
 	 */
 	public function listAction() {
-		$performers = $this->performerRepository->findAll($this->getPerfromerCategoryFilter());
-		$this->view->assign('performers', $this->performerRepository->findAll());
+
+		$this->setTemplatePaths($this->settings['gallery']);
+		
+		$events = $this->eventRepository->findAllByCategory(
+				$this->getEventCategoryFilter(),
+				$this->getAgeCategoryFilter()
+		);
+		
+		$this->view->assign('events', $events);
+		$this->assignPageUids();		
 	}
 
-	
-	protected function getPerfromerCategoryFilter() {
-		$list = $this->getArgument('performerCategories', $this->settings['performerCategoryFilter']);
-		if(!$list) {
-			return array();
-		}
-		return \TYPO3\CMS\Core\Utility\GeneralUtility::trimExplode(',', $list);
-	}
-	
 }

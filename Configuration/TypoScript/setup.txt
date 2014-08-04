@@ -33,8 +33,8 @@ plugin.tx_vjeventdb3.settings {
 	}
 
 	gallery {
-		imageWidth = 330
-		imageHeight = 330
+		imageWidth = 330c
+		imageHeight = 330c
 		partialRootPath = 
 	}
 
@@ -59,7 +59,8 @@ plugin.tx_vjeventdb3.settings {
 	
 		sections.day {
 			show = 1
-			format = l, d. F Y
+			daynameFormat = l
+			format = d. F Y
 		}
 		
 		timeFormat = H:i
