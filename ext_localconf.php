@@ -78,3 +78,13 @@ if (!defined('TYPO3_MODE')) {
 		// non-cacheable actions
 		array()
 );
+
+\TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
+		'VJmedia.' . $_EXTKEY,
+		'EventOrderForm',
+		array(
+				'EventOrderForm' => 'show,submit',
+		),
+		// non-cacheable actions
+		array()
+);

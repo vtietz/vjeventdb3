@@ -28,4 +28,5 @@ $(function() {
 	<f:form.select id="currentrange{data.uid}" name="currentrange" options="{datepickerSettings.ranges}" value="{datepickerSettings.currentRange}" />
 	<f:form.button name="nav" value="next" ><f:translate key="tx_vjeventdb3_datepicker_range.next" /></f:form.button>
 	<f:form.textfield id="starttime{data.uid}" name="starttime" value="{f:format.date(date: '{starttime}', format: '{settings.datepicker.format}')}" />
+	<f:form.submit name="submit" />
 </f:form>

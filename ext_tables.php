@@ -426,3 +426,28 @@ $pluginSignature = $extensionName.'_'.$pluginName;
 $TCA['tt_content']['types']['list']['subtypes_excludelist'][$pluginSignature] = 'layout,select_key,pages';
 $TCA['tt_content']['types']['list']['subtypes_addlist'][$pluginSignature] = 'pi_flexform';
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPiFlexFormValue($pluginSignature, 'FILE:EXT:'.$_EXTKEY . '/Configuration/FlexForm/flexform_performer.xml');
+
+// Performer Detail Plugin
+
+\TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
+		$_EXTKEY,
+		'PerformerDetail',
+		'PerformerDetail'
+);
+
+// EventOrderForm
+
+\TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
+		$_EXTKEY,
+		'EventOrderForm',
+		'EventOrderForm'
+);
+
+$pluginName = strtolower('EventOrderForm');
+$pluginSignature = $extensionName.'_'.$pluginName;
+
+$TCA['tt_content']['types']['list']['subtypes_excludelist'][$pluginSignature] = 'layout,select_key,pages';
+$TCA['tt_content']['types']['list']['subtypes_addlist'][$pluginSignature] = 'pi_flexform';
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPiFlexFormValue($pluginSignature, 'FILE:EXT:'.$_EXTKEY . '/Configuration/FlexForm/flexform_eventOrder.xml');
+
+

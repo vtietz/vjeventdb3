@@ -1,0 +1,74 @@
+
+<f:layout name="Default" />
+
+<f:section name="main">
+
+<f:flashMessages renderMode="div" />
+
+<f:form 
+	id="tx-vjeventdb3-event-order{data.uid}" 
+	class="tx-vjeventdb3-event-order" 
+	action="submit" 
+	name="eventOrder" 
+	object="{eventOrder}"
+	addQueryString="true">
+
+	<h1>
+		<f:translate key="tx_vjeventdb3_event_order_form.order" />
+		<!-- 
+		<f:form.select id="events{data.uid}" name="events" options="{events}" property="event" optionValueField="uid" optionLabelField="title" />
+		 -->
+	</h1>
+
+	<div class="form-left">
+		<dt>
+			<label for="tx-vjeventdb3-event-order-name"><f:translate key="tx_vjeventdb3_event_order_form.name" />:</label>
+		</dt>
+		<dd>
+			<f:form.textfield property="name" id="tx-vjeventdb3-event-order-name" />
+		</dd>
+		<dt>
+			<label for="tx-vjeventdb3-event-order-surname"><f:translate key="tx_vjeventdb3_event_order_form.surname" />:</label>
+		</dt>
+		<dd>
+			<f:form.textfield property="surname" id="tx-vjeventdb3-event-order-surname" />
+		</dd>
+		<dt>
+			<label for="tx-vjeventdb3-event-order-address"><f:translate key="tx_vjeventdb3_event_order_form.address" />:</label>
+		</dt>
+		<dd>
+			<f:form.textfield property="address" id="tx-vjeventdb3-event-order-address" />
+		</dd>
+		<dt>
+			<label for="tx-vjeventdb3-event-order-telephone"><f:translate key="tx_vjeventdb3_event_order_form.telephone" />:</label>
+		</dt>
+		<dd>
+			<f:form.textfield property="surname" id="tx-vjeventdb3-event-order-telephone" />
+		</dd>
+		<dt>
+			<label for="tx-vjeventdb3-event-order-email"><f:translate key="tx_vjeventdb3_event_order_form.email" />:</label>
+		</dt>
+		<dd>
+			<f:form.textfield property="email" id="tx-vjeventdb3-event-order-email" />
+		</dd>		
+	</div>
+	
+	<div class="form-right">
+		<dt>
+			<label for="tx-vjeventdb3-event-order-message"><f:translate key="tx_vjeventdb3_event_order_form.message" />:</label>
+		</dt>
+		<dd>
+			<f:form.textarea property="surname" id="tx-vjeventdb3-event-order-message" />
+		</dd>
+		
+		<f:form.submit id="tx-vjeventdb3-event-order-submit" value="{f:translate(key:'tx_vjeventdb3_event_order_form.submit')}"></f:form.submit>
+	
+	</div>
+	
+	<div class="clearer" />
+	
+	<f:debug>{_all}</f:debug>
+		
+</f:form>
+
+</f:section>

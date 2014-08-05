@@ -377,6 +377,35 @@
 				<target>und</target>
 			</trans-unit>
 
+			<trans-unit id="tx_vjeventdb3_event_order_form.order">
+				<target>Bestellung</target>
+			</trans-unit>
+			<trans-unit id="tx_vjeventdb3_event_order_form.name">
+				<target>Name</target>
+			</trans-unit>
+			<trans-unit id="tx_vjeventdb3_event_order_form.surname">
+				<target>Vorname</target>
+			</trans-unit>
+			<trans-unit id="tx_vjeventdb3_event_order_form.address">
+				<target>Adresse</target>
+			</trans-unit>
+			<trans-unit id="tx_vjeventdb3_event_order_form.telephone">
+				<target>Telefon</target>
+			</trans-unit>
+			<trans-unit id="tx_vjeventdb3_event_order_form.email">
+				<target>E-Mail</target>
+			</trans-unit>
+			<trans-unit id="tx_vjeventdb3_event_order_form.message">
+				<target>Nachricht</target>
+			</trans-unit>
+			<trans-unit id="tx_vjeventdb3_event_order_form.order_received">
+				<target>Vielen Dank für Ihre Bestellung. Wir werden sie so schnell wie möglich bearbeiten.</target>
+			</trans-unit>
+			<trans-unit id="tx_vjeventdb3_event_order_form.submit">
+				<source>Senden</source>
+			</trans-unit>
+
+
 		</body>
 	</file>
 </xliff>
