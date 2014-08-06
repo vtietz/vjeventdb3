@@ -2,7 +2,6 @@
 
 namespace VJmedia\Vjeventdb3\Controller;
 
-use VJmedia\Vjeventdb3\Domain\ViewModel\EventOrder;
 /***************************************************************
  *
 *  Copyright notice
@@ -40,6 +39,14 @@ class EventOrderFormController extends \VJmedia\Vjeventdb3\Controller\AbstractCo
 	 * @inject
 	 */
 	protected $eventRepository = NULL;
+
+	/**
+	 * eventOrderRepository
+	 *
+	 * @var \VJmedia\Vjeventdb3\Domain\Repository\EventOrderRepository
+	 * @inject
+	 */
+	protected $eventOrderRepository = NULL;
 	
 	/**
 	 * action show
@@ -47,7 +54,7 @@ class EventOrderFormController extends \VJmedia\Vjeventdb3\Controller\AbstractCo
 	 * @return void
 	 */
 	public function showAction() {
-		$eventOrder = new \VJmedia\Vjeventdb3\Domain\ViewModel\EventOrder();
+		$eventOrder = $this->objectManager->get('VJmedia\Vjeventdb3\Domain\Model\EventOrder');
 		$eventOrder->setEvent($this->getCurrentEvent());
 		$this->view->assign('eventOrder', $eventOrder);
 		$this->view->assign('events', $this->eventRepository->findAll());
@@ -55,17 +62,23 @@ class EventOrderFormController extends \VJmedia\Vjeventdb3\Controller\AbstractCo
 		$this->view->assign('data', $cObjData);
 	}
 	
-	protected function notify(\VJmedia\Vjeventdb3\Domain\ViewModel\EventOrder $eventOrder) {
+	/**
+	 * @param \VJmedia\Vjeventdb3\Domain\Model\EventOrder $eventOrder
+	 */
+	protected function notify(\VJmedia\Vjeventdb3\Domain\Model\EventOrder $eventOrder) {
 		$message = $this->getMessage($eventOrder);
 		$this->sendMail($this->getSetting('mail_recipient'), $this->getSetting('mail_subject'), $message, $eventOrder->getEmail());
 	}
 	
-	protected function getMessage($eventOrder, $templateName) {
+	/**
+	 * @param \VJmedia\Vjeventdb3\Domain\Model\EventOrder $eventOrder
+	 * @param string $templateName
+	 * @return string
+	 */
+	protected function getMessage(\VJmedia\Vjeventdb3\Domain\Model\EventOrder $eventOrder, $templateName) {
 		$renderer = $this->getPlainTextEmailRenderer($templateName);
-		// assign the data to it
 		$renderer->assign('eventOrder', $eventOrder);
 		$renderer->assign('url', $this->uriBuilder->getRequest()->getBaseUri());
-		// and do the rendering magic
 		return $renderer->render();
 	}
 	
@@ -93,21 +106,36 @@ class EventOrderFormController extends \VJmedia\Vjeventdb3\Controller\AbstractCo
 	
 	/**
 	 * action submit
-	 * @param array $eventOrder
+	 * @param \VJmedia\Vjeventdb3\Domain\Model\EventOrder $eventOrder
 	 * @return void
 	 */
-	public function submitAction($eventOrder) {
+	public function submitAction(\VJmedia\Vjeventdb3\Domain\Model\EventOrder $eventOrder) {
+		$this->eventOrderRepository->add($eventOrder);
 		$this->view->assign('eventOrder', $eventOrder);
-		$this->view->assign('events', $this->eventRepository->findAll());
-		$cObjData = $this->configurationManager->getContentObject()->data;
-		$this->view->assign('data', $cObjData);
-		$message = $this->getMessage($eventOrder, 'NotifyRecipient');
-		$this->sendMail($this->settings['mail_recipient'], $this->settings['mail_subject'], $message, $eventOrder['email']);
-	}
-	
-	private function validate($eventOrder) {
+		
+		$this->sendMailToRecipient($eventOrder);
+		if($this->getSetting('mail_send_copy_to_sender')) {
+			$this->sendMailToSender($eventOrder);
+		}
 		
 	}
+	
+	protected function sendMailToRecipient(\VJmedia\Vjeventdb3\Domain\Model\EventOrder $eventOrder) {
+		$message = $this->getMessage($eventOrder, 'NotifyRecipient');
+		if($this->getSetting('mail_recipient')) {
+			$subject = sprintf($this->getSetting('mail_subject', '%s'), $eventOrder->getEvent()->getTitle());
+			$this->sendMail($this->getSetting('mail_recipient'), $subject , $message, $eventOrder->getEmail());
+		}
+	}
+	
+	protected function sendMailToSender(\VJmedia\Vjeventdb3\Domain\Model\EventOrder $eventOrder) {
+		$message = $this->getMessage($eventOrder, 'NotifySender');
+		if($this->getSetting('mail_recipient')) {
+			$subject = sprintf($this->getSetting('mail_subject', '%s'), $eventOrder->getEvent()->getTitle());
+			$this->sendMail($eventOrder->getEmail(), $subject , $message, $this->getSetting('mail_recipient'));
+		}
+	}
+	
 	/**
 	 * @param string $recipient
 	 * @param string $subject
@@ -115,26 +143,10 @@ class EventOrderFormController extends \VJmedia\Vjeventdb3\Controller\AbstractCo
 	 * @param string $sender
 	 */
 	protected function sendMail($recipient, $subject, $message, $sender) {
-		
-		var_dump($recipient);
-		var_dump($subject);
-		var_dump($message);
-		var_dump($sender);
-		
-		/*
-		$message = new \TYPO3\CMS\Core\Mail\MailMessage();
-		$message->setFrom(array($sender => ''));
-		$message->setTo(array($recipient => ''));
-		$message->setBody($message);
-		$message->send();
-		*/
-		/*
-		if($message->isSent()) {
-			$this->flashMessageContainer->add('Subj');
-		} else {
-			$this->flashMessageContainer->add('Die Mail wurde nicht versandt.');
-		}
-		*/
+		// TODO use \TYPO3\CMS\Core\Mail\MailMessage(), but currently error 500		
+		$additionalHeader = 'From: '.$sender. "\r\n";
+		$additionalHeader .= 'Content-type: text/plain; charset=utf-8' . "\r\n";
+		return mail($recipient, $subject,  $message, $additionalHeader);
 	}
 	
 }

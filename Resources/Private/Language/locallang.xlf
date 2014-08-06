@@ -420,7 +420,11 @@
 			</trans-unit>
 			<trans-unit id="tx_vjeventdb3_flexform.mail_subject">
 				<source>Subject</source>
-			</trans-unit>			
+			</trans-unit>		
+			<trans-unit id="tx_vjeventdb3_flexform.mail_send_copy_to_sender">
+				<source>Send a message to the sender</source>
+			</trans-unit>		
+	
 			
 			
 		</body>

@@ -54,6 +54,15 @@
 							</config>
 						</TCEforms>
 					</settings.mail_subject>
+					<settings.mail_send_copy_to_sender>
+						<TCEforms>
+							<label>LLL:EXT:vjeventdb3/Resources/Private/Language/locallang.xlf:tx_vjeventdb3_flexform.mail_send_copy_to_sender</label>
+							<default>0</default>
+							<config>
+								<type>check</type>
+							</config>
+						</TCEforms>
+					</settings.mail_send_copy_to_sender>					
 				</el>
 			</ROOT>
 		</sMAIL>		

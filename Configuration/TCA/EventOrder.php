@@ -173,3 +173,5 @@ $GLOBALS['TCA']['tx_vjeventdb3_domain_model_eventorder'] = array(
 	),
 );
 ## EXTENSION BUILDER DEFAULTS END TOKEN - Everything BEFORE this line is overwritten with the defaults of the extension builder
+
+$GLOBALS['TCA']['tx_vjeventdb3_domain_model_eventorder']['columns']['event']['config']['type'] = 'select';

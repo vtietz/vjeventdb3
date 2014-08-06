@@ -4,7 +4,7 @@ there is a new event order information with the following data:
 
 You received a reservation request for the following event:
 
-{eventOrder.event.name}
+*{eventOrder.event.title}*
 
 from your website {url}.
 

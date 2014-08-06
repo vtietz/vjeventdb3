@@ -405,6 +405,19 @@
 				<source>Senden</source>
 			</trans-unit>
 
+			<trans-unit id="tx_vjeventdb3_flexform.mail">
+				<source>Mail</source>
+			</trans-unit>
+			<trans-unit id="tx_vjeventdb3_flexform.mail_recipient">
+				<source>Empfänger</source>
+			</trans-unit>
+			<trans-unit id="tx_vjeventdb3_flexform.mail_subject">
+				<source>Betreff</source>
+			</trans-unit>		
+			<trans-unit id="tx_vjeventdb3_flexform.mail_send_copy_to_sender">
+				<source>Eine Kopie an den Sender schicken</source>
+			</trans-unit>		
+
 
 		</body>
 	</file>

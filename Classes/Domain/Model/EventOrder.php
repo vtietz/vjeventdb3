@@ -79,6 +79,13 @@ class EventOrder extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 * @var \VJmedia\Vjeventdb3\Domain\Model\Event
 	 */
 	protected $event = NULL;
+	
+	
+	/**
+	 * @var string
+	 * @validate \SJBR\SrFreecap\Validation\Validator\CaptchaValidator
+	 */
+	protected $captchaResponse;
 
 	/**
 	 * Returns the name
@@ -211,6 +218,25 @@ class EventOrder extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 */
 	public function setEvent(\VJmedia\Vjeventdb3\Domain\Model\Event $event) {
 		$this->event = $event;
+	}
+	
+	/**
+	 * Sets the captchaResponse
+	 *
+	 * @param string $captchaResponse
+	 * @return void
+	 */
+	public function setCaptchaResponse($captchaResponse) {
+		$this->captchaResponse = $captchaResponse;
+	}
+	
+	/**
+	 * Getter for captchaResponse
+	 *
+	 * @return string
+	 */
+	public function getCaptchaResponse() {
+		return $this->captchaResponse;
 	}
 
 }
