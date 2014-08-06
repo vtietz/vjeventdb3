@@ -216,6 +216,7 @@ $GLOBALS['TCA']['tx_vjeventdb3_domain_model_event'] = array(
 					'levelLinksPosition' => 'top',
 					'showSynchronizationLink' => 1,
 					'showPossibleLocalizationRecords' => 1,
+					'useSortable' => 1,
 					'showAllLocalizationLink' => 1
 				),
 			),
