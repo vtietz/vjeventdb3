@@ -1,0 +1,25 @@
+Dear {eventOrder.name},
+
+we received the following data and will proceed your request as soon as possible.
+
+You have sent a reservation request for the following event:
+
+{eventOrder.event.name}
+
+Your data is as follows:
+
+Name:		{eventOrder.name}
+Surname:	{eventOrder.surname}
+Address:	{eventOrder.address}
+Telephone:	{eventOrder.telephone}
+E-Mail:		{eventOrder.email}
+Message:	{eventOrder.message}
+
+If you received this e-mail by accident, please contact us immediately.
+
+Thank you,
+Your {url}
+
+--
+This email is automatically sent.
+

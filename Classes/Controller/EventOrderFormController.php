@@ -56,14 +56,33 @@ class EventOrderFormController extends \VJmedia\Vjeventdb3\Controller\AbstractCo
 	}
 	
 	protected function notify(\VJmedia\Vjeventdb3\Domain\ViewModel\EventOrder $eventOrder) {
-		// create a Fluid instance for plain text rendering
-		$renderer = $this->getPlainTextEmailRenderer('notify');
+		$message = $this->getMessage($eventOrder);
+		$this->sendMail($this->getSetting('mail_recipient'), $this->getSetting('mail_subject'), $message, $eventOrder->getEmail());
+	}
+	
+	protected function getMessage($eventOrder, $templateName) {
+		$renderer = $this->getPlainTextEmailRenderer($templateName);
 		// assign the data to it
 		$renderer->assign('eventOrder', $eventOrder);
+		$renderer->assign('url', $this->uriBuilder->getRequest()->getBaseUri());
 		// and do the rendering magic
-		$message = $renderer->render();
-		// finally, send the mail
-		$this->sendMail($this->getSetting('mail_recipient'), $this->getSetting('mail_subject'), $message, $eventOrder->getEmail());
+		return $renderer->render();
+	}
+	
+	/**
+	 * This creates another stand-alone instance of the Fluid view to render a plain text e-mail template
+	 * @param string $templateName the name of the template to use
+	 * @return Tx_Fluid_View_StandaloneView the Fluid instance
+	 */
+	protected function getPlainTextEmailRenderer($templateName = 'default') {
+		$emailView = new \TYPO3\CMS\Fluid\View\StandaloneView();
+		$emailView->setFormat('txt');
+		$extbaseFrameworkConfiguration = $this->configurationManager->getConfiguration(\TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface::CONFIGURATION_TYPE_FRAMEWORK);
+		$templateRootPath = \TYPO3\CMS\Core\Utility\GeneralUtility::getFileAbsFileName($extbaseFrameworkConfiguration['view']['templateRootPath']);
+		$templatePathAndFilename = $templateRootPath . $this->request->getControllerName().'/' . $templateName . '.txt';
+		$emailView->setTemplatePathAndFilename($templatePathAndFilename);
+		$emailView->assign('settings', $this->settings);
+		return $emailView;
 	}
 	
 	protected function getCurrentEvent() {
@@ -74,18 +93,21 @@ class EventOrderFormController extends \VJmedia\Vjeventdb3\Controller\AbstractCo
 	
 	/**
 	 * action submit
-	 * @param \VJmedia\Vjeventdb3\Domain\ViewModel\EventOrder $eventOrder
+	 * @param array $eventOrder
 	 * @return void
 	 */
-	public function submitAction(\VJmedia\Vjeventdb3\Domain\ViewModel\EventOrder $eventOrder) {
+	public function submitAction($eventOrder) {
 		$this->view->assign('eventOrder', $eventOrder);
 		$this->view->assign('events', $this->eventRepository->findAll());
 		$cObjData = $this->configurationManager->getContentObject()->data;
 		$this->view->assign('data', $cObjData);
-		var_dump("submit");
+		$message = $this->getMessage($eventOrder, 'NotifyRecipient');
+		$this->sendMail($this->settings['mail_recipient'], $this->settings['mail_subject'], $message, $eventOrder['email']);
 	}
 	
-	
+	private function validate($eventOrder) {
+		
+	}
 	/**
 	 * @param string $recipient
 	 * @param string $subject
@@ -93,11 +115,19 @@ class EventOrderFormController extends \VJmedia\Vjeventdb3\Controller\AbstractCo
 	 * @param string $sender
 	 */
 	protected function sendMail($recipient, $subject, $message, $sender) {
+		
+		var_dump($recipient);
+		var_dump($subject);
+		var_dump($message);
+		var_dump($sender);
+		
+		/*
 		$message = new \TYPO3\CMS\Core\Mail\MailMessage();
 		$message->setFrom(array($sender => ''));
 		$message->setTo(array($recipient => ''));
 		$message->setBody($message);
 		$message->send();
+		*/
 		/*
 		if($message->isSent()) {
 			$this->flashMessageContainer->add('Subj');
@@ -108,3 +138,4 @@ class EventOrderFormController extends \VJmedia\Vjeventdb3\Controller\AbstractCo
 	}
 	
 }
+

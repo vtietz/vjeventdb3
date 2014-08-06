@@ -1,0 +1,25 @@
+Dear Recipient,
+
+there is a new event order information with the following data:
+
+You received a reservation request for the following event:
+
+{eventOrder.event.name}
+
+from your website {url}.
+
+This is the data from the sender:
+
+Name:		{eventOrder.name}
+Surname:	{eventOrder.surname}
+Address:	{eventOrder.address}
+Telephone:	{eventOrder.telephone}
+E-Mail:		{eventOrder.email}
+Message:	{eventOrder.message}
+
+Sincerly,
+Your vjeventdb3
+
+--
+This email is automatically sent.
+
