@@ -58,6 +58,8 @@ class EventOrderFormController extends \VJmedia\Vjeventdb3\Controller\AbstractCo
 		$eventOrder->setEvent($this->getCurrentEvent());
 		$this->view->assign('eventOrder', $eventOrder);
 		$this->view->assign('events', $this->eventRepository->findAll());
+		$this->view->assign('sr_freecap', \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('sr_freecap'));
+		
 		$cObjData = $this->configurationManager->getContentObject()->data;
 		$this->view->assign('data', $cObjData);
 	}
@@ -76,26 +78,10 @@ class EventOrderFormController extends \VJmedia\Vjeventdb3\Controller\AbstractCo
 	 * @return string
 	 */
 	protected function getMessage(\VJmedia\Vjeventdb3\Domain\Model\EventOrder $eventOrder, $templateName) {
-		$renderer = $this->getPlainTextEmailRenderer($templateName);
+		$renderer = $this->getPlainTextRenderer($templateName, $this->getSetting('eventOrderForm.templateFile.'.$templateName));
 		$renderer->assign('eventOrder', $eventOrder);
 		$renderer->assign('url', $this->uriBuilder->getRequest()->getBaseUri());
 		return $renderer->render();
-	}
-	
-	/**
-	 * This creates another stand-alone instance of the Fluid view to render a plain text e-mail template
-	 * @param string $templateName the name of the template to use
-	 * @return Tx_Fluid_View_StandaloneView the Fluid instance
-	 */
-	protected function getPlainTextEmailRenderer($templateName = 'default') {
-		$emailView = new \TYPO3\CMS\Fluid\View\StandaloneView();
-		$emailView->setFormat('txt');
-		$extbaseFrameworkConfiguration = $this->configurationManager->getConfiguration(\TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface::CONFIGURATION_TYPE_FRAMEWORK);
-		$templateRootPath = \TYPO3\CMS\Core\Utility\GeneralUtility::getFileAbsFileName($extbaseFrameworkConfiguration['view']['templateRootPath']);
-		$templatePathAndFilename = $templateRootPath . $this->request->getControllerName().'/' . $templateName . '.txt';
-		$emailView->setTemplatePathAndFilename($templatePathAndFilename);
-		$emailView->assign('settings', $this->settings);
-		return $emailView;
 	}
 	
 	protected function getCurrentEvent() {
@@ -112,7 +98,6 @@ class EventOrderFormController extends \VJmedia\Vjeventdb3\Controller\AbstractCo
 	public function submitAction(\VJmedia\Vjeventdb3\Domain\Model\EventOrder $eventOrder) {
 		$this->eventOrderRepository->add($eventOrder);
 		$this->view->assign('eventOrder', $eventOrder);
-		
 		$this->sendMailToRecipient($eventOrder);
 		if($this->getSetting('mail_send_copy_to_sender')) {
 			$this->sendMailToSender($eventOrder);

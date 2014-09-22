@@ -58,9 +58,13 @@
 			<f:form.textarea property="message" id="tx-vjeventdb3-event-order-message" />
 		</dd>
 		
-		<f:render partial="CaptchaElement" />
+		<f:if condition="{sr_freecap}">
+			<f:render partial="FreeCaptchaElement" />
+		</f:if>
 		
-		<f:form.submit id="tx-vjeventdb3-event-order-submit" value="{f:translate(key:'tx_vjeventdb3_event_order_form.submit')}"></f:form.submit>
+		<div class="buttons">
+			<f:form.submit id="tx-vjeventdb3-event-order-submit" value="{f:translate(key:'tx_vjeventdb3_event_order_form.submit')}"></f:form.submit>
+		</div>
 	
 	</div>
 	

@@ -29,6 +29,7 @@ $EM_CONF[$_EXTKEY] = array(
 		'conflicts' => array(
 		),
 		'suggests' => array(
+			'sr_freecap' => '2.0.8'
 		),
 	),
 );

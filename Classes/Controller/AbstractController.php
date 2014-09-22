@@ -99,6 +99,27 @@ abstract class AbstractController extends \TYPO3\CMS\Extbase\Mvc\Controller\Acti
 		}
 		return strtotime($setting);
 	}
-	
+
+
+	/**
+	 * This creates another stand-alone instance of the Fluid view to render a plain text e-mail template
+	 * @param string $templateName the name of the template to use
+	 * @return Tx_Fluid_View_StandaloneView the Fluid instance
+	 */
+	protected function getPlainTextRenderer($templateName, $templatePathAndFilename = '') {
+		$emailView = new \TYPO3\CMS\Fluid\View\StandaloneView();
+		$emailView->setFormat('txt');
+		$extbaseFrameworkConfiguration = $this->configurationManager->getConfiguration(\TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface::CONFIGURATION_TYPE_FRAMEWORK);
+		$templateRootPath = \TYPO3\CMS\Core\Utility\GeneralUtility::getFileAbsFileName($extbaseFrameworkConfiguration['view']['templateRootPath']);
+		if(!$templatePathAndFilename) {
+			$templatePathAndFilename = $templateRootPath . $this->request->getControllerName().'/' . $templateName . '.txt';
+		}
+		else {
+			$templatePathAndFilename = \TYPO3\CMS\Core\Utility\GeneralUtility::getFileAbsFileName($templatePathAndFilename);
+		}
+		$emailView->setTemplatePathAndFilename($templatePathAndFilename);
+		$emailView->assign('settings', $this->settings);
+		return $emailView;
+	}
 	
 }

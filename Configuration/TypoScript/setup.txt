@@ -163,6 +163,16 @@ plugin.tx_vjeventdb3.settings {
 		images.width = 200c
 		images.height = 200c
 	}
+	
+	eventOrderForm {
+		
+		# default is FILE:EXT:vjeventdb3/Resources/Private/Templates/EventOrderForm/NotifyRecipient.txt
+		templateFile.NotifyRecipient = 
+		
+		# default is FILE:EXT:vjeventdb3/Resources/Private/Templates/EventOrderForm/NotifySender.txt
+		templateFile.NotifySender =
+		
+	}
 
 }
 
