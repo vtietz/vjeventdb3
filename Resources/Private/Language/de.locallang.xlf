@@ -418,6 +418,9 @@
 				<source>Eine Kopie an den Sender schicken</source>
 			</trans-unit>		
 
+			<trans-unit id="tx_vjeventdb3.order_now">
+				<target>Jetzt bestellen!</target>
+			</trans-unit>	
 
 		</body>
 	</file>

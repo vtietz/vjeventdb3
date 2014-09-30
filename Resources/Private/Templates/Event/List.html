@@ -67,7 +67,9 @@ Otherwise your changes will be overwritten the next time you save the extension 
 					<f:cycle values="{0: 'odd', 1: 'even'}" as="rowtype">
 						<tr class="{rowtype}">
 							<td class="tx-vjeventdb3-time"><f:format.date format="{settings.list.timeFormat}">{date.startTime}</f:format.date></td>
-							<td class="tx-vjeventdb3-button"></td>
+							<td class="tx-vjeventdb3-button"><f:link.action action="show"
+									arguments="{event : date.event}" controller="EventDetail"
+									pageUid="{showEventPage}" class="button"><f:translate key="tx_vjeventdb3.order_now" /></f:link.action></td>
 							<td class="tx-vjeventdb3-event"><f:link.action action="show"
 									arguments="{event : date.event}" controller="EventDetail"
 									pageUid="{showEventPage}">{date.event.title}</f:link.action></td>

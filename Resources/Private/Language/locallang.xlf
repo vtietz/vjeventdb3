@@ -425,6 +425,9 @@
 				<source>Send a message to the sender</source>
 			</trans-unit>		
 	
+			<trans-unit id="tx_vjeventdb3.order_now">
+				<target>Order now!</target>
+			</trans-unit>	
 			
 			
 		</body>
