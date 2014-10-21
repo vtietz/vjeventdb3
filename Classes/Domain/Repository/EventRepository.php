@@ -80,6 +80,11 @@ class EventRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 		$query = $this->persistenceManager->createQueryForType($this->objectType);
 		
 		$queryResult = $query->execute();
+		
+		if((count($eventCategories) == 0) && (count($ageCategories) == 0)) {
+			return $queryResult;
+		}
+		
 		$result = array();
 		foreach($queryResult as $item) {
 			if($this->isInCollection($item->getEventCategory(), $eventCategories)) { 
