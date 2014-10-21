@@ -29,7 +29,7 @@
                     "description": "",
                     "mapToTable": "",
                     "parentClass": "",
-                    "sorting": false,
+                    "sorting": true,
                     "type": "Entity",
                     "uid": "326812284348"
                 },
@@ -1100,7 +1100,7 @@
         }
     ],
     "log": {
-        "last_modified": "2014-08-06 08:52",
+        "last_modified": "2014-10-21 11:14",
         "extension_builder_version": "6.2.0",
         "be_user": " (1)"
     }

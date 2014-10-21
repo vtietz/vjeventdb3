@@ -33,6 +33,11 @@ use \DateTime;
  */
 class EventRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 
+	protected $defaultOrderings = array(
+		'sorting' => \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_ASCENDING,
+		'title' => \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_ASCENDING
+	);
+	
 	/**
 	 * @param $startDate The start date
 	 * @param $endDate The end date
@@ -78,6 +83,14 @@ class EventRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 	public function findAllByCategory($eventCategories = array(), $ageCategories = array()) {
 		
 		$query = $this->persistenceManager->createQueryForType($this->objectType);
+		
+		if ($this->defaultOrderings !== array()) {
+			$query->setOrderings($this->defaultOrderings);
+		}
+		
+		if ($this->defaultQuerySettings !== NULL) {
+			$query->setQuerySettings(clone $this->defaultQuerySettings);
+		}
 		
 		$queryResult = $query->execute();
 		

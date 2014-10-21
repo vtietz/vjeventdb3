@@ -32,12 +32,15 @@ namespace VJmedia\Vjeventdb3\Domain\Repository;
 class PriceRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 
 	protected $defaultOrderings = array(
-		'sorting' => \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_DESCENDING,
+		'sorting' => \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_ASCENDING,
 		'title' => \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_ASCENDING
 	);
 	
 	public function findPricesByEventAndCategory($event, $category) {
 		$query = $this->persistenceManager->createQueryForType($this->objectType);
+		if ($this->defaultOrderings !== array()) {
+			$query->setOrderings($this->defaultOrderings);
+		}
 		$query->equals("priceCategory", $category);
 		$query->contains("event", $event);
 		return $query->execute();

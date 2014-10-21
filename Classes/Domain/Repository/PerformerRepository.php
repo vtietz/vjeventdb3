@@ -33,19 +33,19 @@ use \DateTime;
  */
 class PerformerRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 	
+	protected $defaultOrderings = array(
+		'sorting' => \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_ASCENDING,
+		'title' => \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_ASCENDING
+	);
+	
 	/**
 	 * @param $performerCategories If set only performers with these categories are returned.
 	 */
 	public function findAll($performerCategories = array()) {
 	
 		$query = $this->persistenceManager->createQueryForType($this->objectType);
-	
 		if ($this->defaultOrderings !== array()) {
 			$query->setOrderings($this->defaultOrderings);
-		}
-	
-		if ($this->defaultQuerySettings !== NULL) {
-			$query->setQuerySettings(clone $this->defaultQuerySettings);
 		}
 	
 		if(count($eventCategories) > 0) {

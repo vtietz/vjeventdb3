@@ -21,7 +21,7 @@ $GLOBALS['TCA']['tx_vjeventdb3_domain_model_event'] = array(
 		'crdate' => 'crdate',
 		'cruser_id' => 'cruser_id',
 		'dividers2tabs' => TRUE,
-
+		'sortby' => 'sorting',
 		'versioningWS' => 2,
 		'versioning_followPages' => TRUE,
 
