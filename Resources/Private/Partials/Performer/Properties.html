@@ -1,4 +1,11 @@
 <div class="tx-vjeventdb3-performer">
+
+	<div class="tx-vjeventdb3-perfomer-images tx-vjeventdb3-images">
+		<f:for each="{performer.images}" as="image" >
+			<f:image src="{image.originalResource.publicUrl}" alt="{performer.name}" width="{settings.showPerformer.images.width}" height="{settings.showPerformer.images.height}" />
+		</f:for>
+	</div>
+	<div class="clearer"></div>
 	
 	<f:cObject typoscriptObjectPath="plugin.tx_vjeventdb3.settings.show.header">{performer.name}</f:cObject>
 	
@@ -8,11 +15,4 @@
 	
 	<f:format.html>{performer.description}</f:format.html>
 	
-	<div class="tx-vjeventdb3-perfomer-images tx-vjeventdb3-images">
-		<f:for each="{performer.images}" as="image" >
-			<f:image src="{image.originalResource.publicUrl}" alt="{performer.name}" width="{settings.showPerformer.images.width}" height="{settings.showPerformer.images.height}" />
-		</f:for>
-	</div>
-	<div class="clearer"></div>
-
 </div>
