@@ -16,6 +16,8 @@ plugin.tx_vjeventdb3 {
 
 plugin.tx_vjeventdb3.settings {
 
+	adjustFrontendTime = -1 hour
+
 	teaser {
 	
 		showCurrentDateRange = 0

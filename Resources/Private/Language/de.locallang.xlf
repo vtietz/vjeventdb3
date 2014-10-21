@@ -293,47 +293,47 @@
 				<target>Filter</target>
 			</trans-unit>
 			
-			<trans-unit id="tx_vjeventdb3_day.short.0">
+			<trans-unit id="tx_vjeventdb3_day.short.1">
 				<target>Mo</target>
 			</trans-unit>	
-			<trans-unit id="tx_vjeventdb3_day.short.1">
+			<trans-unit id="tx_vjeventdb3_day.short.2">
 				<target>Di</target>
 			</trans-unit>	
-			<trans-unit id="tx_vjeventdb3_day.short.2">
+			<trans-unit id="tx_vjeventdb3_day.short.3">
 				<target>Mi</target>
 			</trans-unit>	
-			<trans-unit id="tx_vjeventdb3_day.short.3">
+			<trans-unit id="tx_vjeventdb3_day.short.4">
 				<target>Do</target>
 			</trans-unit>	
-			<trans-unit id="tx_vjeventdb3_day.short.4">
+			<trans-unit id="tx_vjeventdb3_day.short.5">
 				<target>Fr</target>
 			</trans-unit>	
-			<trans-unit id="tx_vjeventdb3_day.short.5">
+			<trans-unit id="tx_vjeventdb3_day.short.6">
 				<target>Sa</target>
 			</trans-unit>	
-			<trans-unit id="tx_vjeventdb3_day.short.6">
+			<trans-unit id="tx_vjeventdb3_day.short.0">
 				<target>So</target>
 			</trans-unit>	
 			
-			<trans-unit id="tx_vjeventdb3_day.long.0">
+			<trans-unit id="tx_vjeventdb3_day.long.1">
 				<target>Montag</target>
 			</trans-unit>	
-			<trans-unit id="tx_vjeventdb3_day.long.1">
+			<trans-unit id="tx_vjeventdb3_day.long.2">
 				<target>Dienstag</target>
 			</trans-unit>	
-			<trans-unit id="tx_vjeventdb3_day.long.2">
+			<trans-unit id="tx_vjeventdb3_day.long.3">
 				<target>Mittwoch</target>
 			</trans-unit>	
-			<trans-unit id="tx_vjeventdb3_day.long.3">
+			<trans-unit id="tx_vjeventdb3_day.long.4">
 				<target>Donnerstag</target>
 			</trans-unit>	
-			<trans-unit id="tx_vjeventdb3_day.long.4">
+			<trans-unit id="tx_vjeventdb3_day.long.5">
 				<target>Freitag</target>
 			</trans-unit>	
-			<trans-unit id="tx_vjeventdb3_day.long.5">
+			<trans-unit id="tx_vjeventdb3_day.long.6">
 				<target>Samstag</target>
 			</trans-unit>	
-			<trans-unit id="tx_vjeventdb3_day.long.6">
+			<trans-unit id="tx_vjeventdb3_day.long.0">
 				<target>Sonntag</target>
 			</trans-unit>			
 			
@@ -476,24 +476,61 @@
 				<target>Vielen Dank für Ihre Bestellung. Wir werden sie so schnell wie möglich bearbeiten.</target>
 			</trans-unit>
 			<trans-unit id="tx_vjeventdb3_event_order_form.submit">
-				<source>Senden</source>
+				<target>Senden</target>
 			</trans-unit>
 
 			<trans-unit id="tx_vjeventdb3_flexform.mail">
-				<source>Mail</source>
+				<target>Mail</target>
 			</trans-unit>
 			<trans-unit id="tx_vjeventdb3_flexform.mail_recipient">
-				<source>Empfänger</source>
+				<target>Empfänger</target>
 			</trans-unit>
 			<trans-unit id="tx_vjeventdb3_flexform.mail_subject">
-				<source>Betreff</source>
+				<target>Betreff</target>
 			</trans-unit>		
 			<trans-unit id="tx_vjeventdb3_flexform.mail_send_copy_to_sender">
-				<source>Eine Kopie an den Sender schicken</source>
+				<target>Eine Kopie an den Sender schicken</target>
 			</trans-unit>		
 
 			<trans-unit id="tx_vjeventdb3.order_now">
 				<target>Jetzt bestellen!</target>
+			</trans-unit>	
+
+			<trans-unit id="tx_vjeventdb3_translateDateViewHelper.January">
+				<target>Januar</target>
+			</trans-unit>	
+			<trans-unit id="tx_vjeventdb3_translateDateViewHelper.February">
+				<target>Februar</target>
+			</trans-unit>
+			<trans-unit id="tx_vjeventdb3_translateDateViewHelper.March">
+				<target>März</target>
+			</trans-unit>
+			<trans-unit id="tx_vjeventdb3_translateDateViewHelper.April">
+				<target>April</target>
+			</trans-unit>
+			<trans-unit id="tx_vjeventdb3_translateDateViewHelper.May">
+				<target>Mai</target>
+			</trans-unit>
+			<trans-unit id="tx_vjeventdb3_translateDateViewHelper.June">
+				<target>Juni</target>
+			</trans-unit>								
+			<trans-unit id="tx_vjeventdb3_translateDateViewHelper.July">
+				<target>Juli</target>
+			</trans-unit>								
+			<trans-unit id="tx_vjeventdb3_translateDateViewHelper.August">
+				<target>August</target>
+			</trans-unit>
+			<trans-unit id="tx_vjeventdb3_translateDateViewHelper.September">
+				<target>September</target>
+			</trans-unit>								
+			<trans-unit id="tx_vjeventdb3_translateDateViewHelper.October">
+				<target>Oktober</target>
+			</trans-unit>								
+			<trans-unit id="tx_vjeventdb3_translateDateViewHelper.November">
+				<target>November</target>
+			</trans-unit>
+			<trans-unit id="tx_vjeventdb3_translateDateViewHelper.December">
+				<target>Dezember</target>
 			</trans-unit>	
 
 		</body>

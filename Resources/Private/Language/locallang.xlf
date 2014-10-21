@@ -293,47 +293,47 @@
 				<source>Filter</source>
 			</trans-unit>
 			
-			<trans-unit id="tx_vjeventdb3_day.short.0">
+			<trans-unit id="tx_vjeventdb3_day.short.1">
 				<source>Mo</source>
 			</trans-unit>	
-			<trans-unit id="tx_vjeventdb3_day.short.1">
+			<trans-unit id="tx_vjeventdb3_day.short.2">
 				<source>Tu</source>
 			</trans-unit>	
-			<trans-unit id="tx_vjeventdb3_day.short.2">
+			<trans-unit id="tx_vjeventdb3_day.short.3">
 				<source>We</source>
 			</trans-unit>	
-			<trans-unit id="tx_vjeventdb3_day.short.3">
+			<trans-unit id="tx_vjeventdb3_day.short.4">
 				<source>Th</source>
 			</trans-unit>	
-			<trans-unit id="tx_vjeventdb3_day.short.4">
+			<trans-unit id="tx_vjeventdb3_day.short.5">
 				<source>Fr</source>
 			</trans-unit>	
-			<trans-unit id="tx_vjeventdb3_day.short.5">
+			<trans-unit id="tx_vjeventdb3_day.short.6">
 				<source>Sa</source>
 			</trans-unit>	
-			<trans-unit id="tx_vjeventdb3_day.short.6">
+			<trans-unit id="tx_vjeventdb3_day.short.0">
 				<source>Su</source>
 			</trans-unit>	
 			
-			<trans-unit id="tx_vjeventdb3_day.long.0">
+			<trans-unit id="tx_vjeventdb3_day.long.1">
 				<source>Monday</source>
 			</trans-unit>	
-			<trans-unit id="tx_vjeventdb3_day.long.1">
+			<trans-unit id="tx_vjeventdb3_day.long.2">
 				<source>Tuesday</source>
 			</trans-unit>	
-			<trans-unit id="tx_vjeventdb3_day.long.2">
+			<trans-unit id="tx_vjeventdb3_day.long.3">
 				<source>Wednesday</source>
 			</trans-unit>	
-			<trans-unit id="tx_vjeventdb3_day.long.3">
+			<trans-unit id="tx_vjeventdb3_day.long.4">
 				<source>Thursday</source>
 			</trans-unit>	
-			<trans-unit id="tx_vjeventdb3_day.long.4">
+			<trans-unit id="tx_vjeventdb3_day.long.5">
 				<source>Friday</source>
 			</trans-unit>	
-			<trans-unit id="tx_vjeventdb3_day.long.5">
+			<trans-unit id="tx_vjeventdb3_day.long.6">
 				<source>Saturday</source>
 			</trans-unit>	
-			<trans-unit id="tx_vjeventdb3_day.long.6">
+			<trans-unit id="tx_vjeventdb3_day.long.0">
 				<source>Sunday</source>
 			</trans-unit>	
 			
@@ -503,7 +503,43 @@
 				<source>Order now!</source>
 			</trans-unit>	
 			
-			
+			<trans-unit id="tx_vjeventdb3_translateDateViewHelper.January">
+				<source>January</source>
+			</trans-unit>	
+			<trans-unit id="tx_vjeventdb3_translateDateViewHelper.February">
+				<source>February</source>
+			</trans-unit>
+			<trans-unit id="tx_vjeventdb3_translateDateViewHelper.March">
+				<source>March</source>
+			</trans-unit>
+			<trans-unit id="tx_vjeventdb3_translateDateViewHelper.April">
+				<source>April</source>
+			</trans-unit>			
+			<trans-unit id="tx_vjeventdb3_translateDateViewHelper.May">
+				<source>May</source>
+			</trans-unit>
+			<trans-unit id="tx_vjeventdb3_translateDateViewHelper.June">
+				<source>June</source>
+			</trans-unit>								
+			<trans-unit id="tx_vjeventdb3_translateDateViewHelper.July">
+				<source>July</source>
+			</trans-unit>								
+			<trans-unit id="tx_vjeventdb3_translateDateViewHelper.August">
+				<source>August</source>
+			</trans-unit>
+			<trans-unit id="tx_vjeventdb3_translateDateViewHelper.September">
+				<source>September</source>
+			</trans-unit>								
+			<trans-unit id="tx_vjeventdb3_translateDateViewHelper.October">
+				<source>October</source>
+			</trans-unit>								
+			<trans-unit id="tx_vjeventdb3_translateDateViewHelper.November">
+				<source>November</source>
+			</trans-unit>
+			<trans-unit id="tx_vjeventdb3_translateDateViewHelper.December">
+				<source>December</source>
+			</trans-unit>								
+														
 		</body>
 	</file>
 </xliff>

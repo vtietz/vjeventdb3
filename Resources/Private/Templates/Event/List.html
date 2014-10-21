@@ -59,14 +59,14 @@ Otherwise your changes will be overwritten the next time you save the extension 
 					<tr class="tx-vjeventdb3-daysection">
 						<td colspan="5" class="tx-vjeventdb3-date">
 							<span class="dayname"><m:dateTime date="{day.date}" key="day.long" /></span>
-							<span class="daydate"><f:format.date format="{settings.list.sections.day.format}">{day.date}</f:format.date></span>
+							<span class="daydate"><m:translateDate><f:format.date format="{settings.list.sections.day.format}">{day.date}</f:format.date></m:translateDate></span>
 						</td>
 					</tr>
 				</f:if>
 				<f:for each="{day.dates}" as="date" iteration="iterator">
 					<f:cycle values="{0: 'odd', 1: 'even'}" as="rowtype">
 						<tr class="{rowtype}">
-							<td class="tx-vjeventdb3-time"><f:format.date format="{settings.list.timeFormat}">{date.startTime}</f:format.date></td>
+							<td class="tx-vjeventdb3-time"><m:timestamp time="{date.startTime}" format="{settings.list.timeFormat}" adjust="{settings.adjustFrontendTime}" /></td>
 							<td class="tx-vjeventdb3-button"><f:link.action action="show"
 									arguments="{event : date.event}" controller="EventDetail"
 									pageUid="{showEventPage}" class="button"><f:translate key="tx_vjeventdb3.order_now" /></f:link.action></td>
