@@ -32,16 +32,20 @@
 			</f:for>
 		</div>		
 	</f:if>
-	
-	<div class="tx-vjeventdb3-event-description">
-		<f:format.html>{event.description}</f:format.html>
-	</div>
 
 	<div class="tx-vjeventdb3-event-images tx-vjeventdb3-images">
 		<f:for each="{event.images}" as="image" >
 			<f:image src="{image.originalResource.publicUrl}" alt="{event.name}" width="{settings.show.images.width}" height="{settings.show.images.height}" />
 		</f:for>
-	</div>		
+	</div>	
+	
+	<div class="tx-vjeventdb3-event-description">
+		<f:format.html>{event.description}</f:format.html>
+	</div>
+	
+	<div class="clearer"></div>
+
+	
 	
 	<f:if condition="{event.performers}">
 		<div class="tx-vjeventdb3-event-performers">
