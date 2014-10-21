@@ -1,18 +1,22 @@
 
-<dl class="tx-vjeventdb3-price-list">
+<table class="tx-vjeventdb3-price-list">
 	<f:for each="{priceCategories}" as="priceCategory">
-		<dt class="tx-vjeventdb3-price-category-name">{priceCategory.category.name}</dt>
-		<f:for each="{priceCategory.prices}" as="price">
-		<dd class="tx-vjeventdb3-price-item">
-				<span class="tx-vjeventdb3-price-unit-name">{price.priceUnit.name}</span>
-				<span class="tx-vjeventdb3-price-amount-name">{price.priceAmount.name}</span>
-				<span class="tx-vjeventdb3-price-price">{price.price}</span>
-		</dd>
-		</f:for>
+		<tr>
+			<td class="tx-vjeventdb3-price-category-name">{priceCategory.category.name}</td>
+			<td>
+				<table class="prices">
+					<f:for each="{priceCategory.prices}" as="price">
+						<tr class="tx-vjeventdb3-price-item">
+							<td class="tx-vjeventdb3-price-unit-name">{price.priceUnit.name}</td>
+							<td class="tx-vjeventdb3-price-amount-name">{price.priceAmount.name}</td>
+							<td class="tx-vjeventdb3-price-price">{price.price}</td>
+						</tr>
+					</f:for>
+				</table>
+			</td>
+		</tr>
 	</f:for>
-	<f:if condition="{f:translate key='tx_vjeventdb3_furtherPricesOnRequest'}">
-		<dt class="tx-vjeventdb3-price-category-name">&nbsp;</dt><dd class="further-prices-on-request"><f:translate key="tx_vjeventdb3_furtherPricesOnRequest" /></dd>
-	</f:if>
-</dl>
-<div class="clearer"></div>
-
+</table>
+<f:if condition="{f:translate key='tx_vjeventdb3_furtherPricesOnRequest'}">
+	<p class="further-prices-on-request"><f:translate key="tx_vjeventdb3_furtherPricesOnRequest" /></p>
+</f:if>

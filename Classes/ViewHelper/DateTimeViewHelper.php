@@ -30,7 +30,15 @@ class DateTimeViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHe
     		$index = $date->format('w');
     		$llKey = 'LLL:EXT:vjeventdb3/Resources/Private/Language/locallang.xlf:tx_vjeventdb3_day.short.' . $index;
     	}
-    	
+    	if($key == "month.long") {
+    		$index = $date->format('n');
+    		$llKey = 'LLL:EXT:vjeventdb3/Resources/Private/Language/locallang.xlf:tx_vjeventdb3_month.long.' . $index;
+    	}
+    	if($key == "month.short") {
+    		$index = $date->format('n');
+    		$llKey = 'LLL:EXT:vjeventdb3/Resources/Private/Language/locallang.xlf:tx_vjeventdb3_month.short.' . $index;
+    	}
+    	 
    		if($result = \TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate($llKey, '')) {
    			return $result;
    		}

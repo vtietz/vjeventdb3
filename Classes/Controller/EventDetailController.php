@@ -128,6 +128,9 @@ class EventDetailController extends \VJmedia\Vjeventdb3\Controller\AbstractEvent
 			$priceCategories[$cuid]['prices'][] = $price;
 		}
 		$compare = function($a, $b) {
+			if(!is_object($a['category']) || !is_object($b['category'])) {
+				return 0;
+			}
 			return $a['category']->getSorting() > $b['category']->getSorting() ? -1 : 1;
 		};
 		usort($priceCategories, $compare);

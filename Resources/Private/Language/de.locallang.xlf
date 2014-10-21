@@ -336,6 +336,80 @@
 			<trans-unit id="tx_vjeventdb3_day.long.6">
 				<target>Sonntag</target>
 			</trans-unit>			
+			
+			<trans-unit id="tx_vjeventdb3_month.short.1">
+				<target>Jan</target>
+			</trans-unit>	
+			<trans-unit id="tx_vjeventdb3_month.short.2">
+				<target>Feb</target>
+			</trans-unit>	
+			<trans-unit id="tx_vjeventdb3_month.short.3">
+				<target>Mär</target>
+			</trans-unit>	
+			<trans-unit id="tx_vjeventdb3_month.short.4">
+				<target>Apr</target>
+			</trans-unit>	
+			<trans-unit id="tx_vjeventdb3_month.short.5">
+				<target>Mai</target>
+			</trans-unit>	
+			<trans-unit id="tx_vjeventdb3_month.short.6">
+				<target>Jun</target>
+			</trans-unit>	
+			<trans-unit id="tx_vjeventdb3_month.short.7">
+				<target>Jul</target>
+			</trans-unit>		
+			<trans-unit id="tx_vjeventdb3_month.short.8">
+				<target>Aug</target>
+			</trans-unit>		
+			<trans-unit id="tx_vjeventdb3_month.short.9">
+				<target>Sep</target>
+			</trans-unit>			
+			<trans-unit id="tx_vjeventdb3_month.short.10">
+				<target>Okt</target>
+			</trans-unit>
+			<trans-unit id="tx_vjeventdb3_month.short.11">
+				<target>Nov</target>
+			</trans-unit>
+			<trans-unit id="tx_vjeventdb3_month.short.12">
+				<target>Dez</target>
+			</trans-unit>	
+						
+			<trans-unit id="tx_vjeventdb3_month.long.1">
+				<target>Januar</target>
+			</trans-unit>	
+			<trans-unit id="tx_vjeventdb3_month.long.2">
+				<target>Februar</target>
+			</trans-unit>	
+			<trans-unit id="tx_vjeventdb3_month.long.3">
+				<target>März</target>
+			</trans-unit>	
+			<trans-unit id="tx_vjeventdb3_month.long.4">
+				<target>April</target>
+			</trans-unit>	
+			<trans-unit id="tx_vjeventdb3_month.long.5">
+				<target>Mai</target>
+			</trans-unit>	
+			<trans-unit id="tx_vjeventdb3_month.long.6">
+				<target>Juni</target>
+			</trans-unit>	
+			<trans-unit id="tx_vjeventdb3_month.long.7">
+				<target>Juli</target>
+			</trans-unit>		
+			<trans-unit id="tx_vjeventdb3_month.long.8">
+				<target>August</target>
+			</trans-unit>		
+			<trans-unit id="tx_vjeventdb3_month.long.9">
+				<target>September</target>
+			</trans-unit>			
+			<trans-unit id="tx_vjeventdb3_month.long.10">
+				<target>Oktober</target>
+			</trans-unit>
+			<trans-unit id="tx_vjeventdb3_month.long.11">
+				<target>November</target>
+			</trans-unit>
+			<trans-unit id="tx_vjeventdb3_month.long.12">
+				<target>Dezember</target>
+			</trans-unit>		
 
 			<trans-unit id="tx_vjeventdb3_duration.year">
 				<target>Jahr</target>
