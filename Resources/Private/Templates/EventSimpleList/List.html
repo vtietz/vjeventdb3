@@ -23,7 +23,7 @@ Otherwise your changes will be overwritten the next time you save the extension 
 		<f:for each="{events}" as="event" iteration="iterator">
 			<f:cycle values="{0: 'odd', 1: 'even'}" as="rowtype">
 				<li class="{rowtype}">
-					<f:link.action action="show" pluginName="EventDetail" arguments="{event : event}" pageUid="{showEventPage}">{event.title}</f:link.action>
+					<f:link.action action="show" pluginName="EventDetail" controller="EventDetail" arguments="{event : event}" pageUid="{showEventPage}">{event.title}</f:link.action>			
 					<f:render partial="Event/FlatEventCategoryList" arguments="{eventCategories : event.eventCategory}" />
 				</li>
 			</f:cycle>

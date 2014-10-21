@@ -83,7 +83,7 @@ if (!defined('TYPO3_MODE')) {
 		'VJmedia.' . $_EXTKEY,
 		'EventOrderForm',
 		array(
-				'EventOrderForm' => 'show,submit',
+			'EventOrderForm' => 'show,submit',
 		),
 		// non-cacheable actions
 		array()
