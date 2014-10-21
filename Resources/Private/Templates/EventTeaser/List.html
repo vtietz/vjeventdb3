@@ -36,7 +36,9 @@
 					<f:cycle values="{0: 'odd', 1: 'even'}" as="rowtype">
 						<tr class="{rowtype}">
 							<td>
-							<f:link.action action="show" pluginName="EventDetail" controller="EventDetail" arguments="{event : date.event}" pageUid="{showEventPage}">{date.event.title}</f:link.action></td>
+							<f:link.action action="show" pluginName="EventDetail" controller="EventDetail" arguments="{event : date.event}" pageUid="{showEventPage}">{date.event.title}
+							<br /> <f:render partial="Event/FlatAgeCategoryList" arguments="{ageCategories : date.event.ageCategory}" /></f:link.action>
+							</f:link.action></td>
 							<td><f:format.date format="{settings.teaser.timeFormat}">{date.startTime}</f:format.date> <f:translate key="tx_vjeventdb3_domain_model_date.clock" /></td>
 						</tr>
 					</f:cycle>

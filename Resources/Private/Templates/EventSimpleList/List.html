@@ -22,9 +22,9 @@ Otherwise your changes will be overwritten the next time you save the extension 
 	<ul class="tx-vjeventdb3-simplelist">
 		<f:for each="{events}" as="event" iteration="iterator">
 			<f:cycle values="{0: 'odd', 1: 'even'}" as="rowtype">
-				<li class="{rowtype}">
-					<f:link.action action="show" pluginName="EventDetail" controller="EventDetail" arguments="{event : event}" pageUid="{showEventPage}">{event.title}</f:link.action>			
-					<f:render partial="Event/FlatEventCategoryList" arguments="{eventCategories : event.eventCategory}" />
+				<li class="{rowtype} tx-vjeventdb3-event">
+					<f:link.action action="show" pluginName="EventDetail" controller="EventDetail" arguments="{event : event}" pageUid="{showEventPage}">{event.title} <f:render partial="Event/FlatAgeCategoryList" arguments="{ageCategories : event.ageCategory}" /></f:link.action>			
+					<!-- <f:render partial="Event/FlatEventCategoryList" arguments="{eventCategories : event.eventCategory}" /> -->
 				</li>
 			</f:cycle>
 		</f:for>

@@ -57,11 +57,36 @@ class EventOrderFormController extends \VJmedia\Vjeventdb3\Controller\AbstractCo
 		$eventOrder = $this->objectManager->get('VJmedia\Vjeventdb3\Domain\Model\EventOrder');
 		$eventOrder->setEvent($this->getCurrentEvent());
 		$this->view->assign('eventOrder', $eventOrder);
-		$this->view->assign('events', $this->eventRepository->findAll());
+		$events = $this->eventRepository->findAll();
+		$this->addTitleWithAgeCategory($events);
+		
+		$this->view->assign('events', $events);
 		$this->view->assign('sr_freecap', \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('sr_freecap'));
 		
 		$cObjData = $this->configurationManager->getContentObject()->data;
 		$this->view->assign('data', $cObjData);
+	}
+	
+	private function addTitleWithAgeCategory(&$events) {
+		foreach($events as $event) {
+			$event->setTitleWithAgeCategory($event->getTitle().' '.$this->getAgeCategoryList($event));
+		}
+	}
+	
+	private function getAgeCategoryList(&$event) {
+		$categories = $event->getAgeCategory()->toArray();
+		$categoryNames = array();
+		foreach($categories as $category) {
+			$categoryNames[] = $category->getName();
+		}
+		return $this->joinWithLastSeparator($categoryNames, ' &amp; ');
+	}
+	
+	private function joinWithLastSeparator(array $array, $separator = ' & ') {
+		$last  = array_slice($array, -1);
+		$first = join(', ', array_slice($array, 0, -1));
+		$both  = array_filter(array_merge(array($first), $last));
+		return join(' & ', $both);
 	}
 	
 	/**

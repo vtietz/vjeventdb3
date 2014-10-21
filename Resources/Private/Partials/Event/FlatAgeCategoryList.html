@@ -1,7 +1,7 @@
-<f:for each="{ageCategories}" as="category" iteration="categoryIterator">
-	{category.name}
-   <f:if condition="{categoryIterator.isLast}">
-   <f:then></f:then>
-   <f:else>,</f:else>
-   </f:if>
-</f:for>
+<f:if condition="{ageCategories}">
+	<span class="tx-vjeventdb3-event-age-category">
+		<f:for each="{ageCategories}" as="category" iteration="categoryIterator">
+			{category.name}<f:if condition="{categoryIterator.isLast}"><f:then></f:then><f:else>,</f:else></f:if>
+		</f:for>
+	</span>
+</f:if>
