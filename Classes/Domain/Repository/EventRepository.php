@@ -79,14 +79,27 @@ class EventRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 		
 		$query = $this->persistenceManager->createQueryForType($this->objectType);
 		
-		if(count($eventCategories) > 0) {
-			$query->matching($query->in('event_category', $eventCategories));
-		}
-		if(count($ageCategory) > 0) {
-			$query->matching($query->in('age_category', $ageCategories));
+		$queryResult = $query->execute();
+		$result = array();
+		foreach($queryResult as $item) {
+			if($this->isInCollection($item->getEventCategory(), $eventCategories)) { 
+				$result[] = $item;
+			}
+			if($this->isInCollection($item->getAgeCategory(), $ageCategories)) {
+				$result[] = $item;
+			}
 		}
 		
-		return $query->execute();
+		return $result;
+	}
+	
+	private function isInCollection($objects, $array) {
+		foreach($objects as $object) {
+			if(in_array($object->getUid(), $array)) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 }
