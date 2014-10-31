@@ -171,7 +171,7 @@ $GLOBALS['TCA']['tx_vjeventdb3_domain_model_price'] = array(
 );
 ## EXTENSION BUILDER DEFAULTS END TOKEN - Everything BEFORE this line is overwritten with the defaults of the extension builder
 
-$GLOBALS['TCA']['tx_vjeventdb3_domain_model_price']['types']['1'] = array('showitem' => 'sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, hidden;;1, name, price_amount, price_unit, price, price_category, --div--;LLL:EXT:cms/locallang_ttc.xlf:tabs.access, starttime, endtime');
+$GLOBALS['TCA']['tx_vjeventdb3_domain_model_price']['types']['1'] = array('showitem' => 'sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, hidden;;1, name, price_category, price_amount, price_unit, price, --div--;LLL:EXT:cms/locallang_ttc.xlf:tabs.access, starttime, endtime');
 
 $TCA['tx_vjeventdb3_domain_model_price']['ctrl']['label'] = 'name';
 $TCA['tx_vjeventdb3_domain_model_price']['ctrl']['label_alt'] = 'price';
@@ -221,7 +221,7 @@ $TCA['tx_vjeventdb3_domain_model_price']['columns']['price_unit']['config']['wiz
 		'title' => 'Create new',
 		'icon' => 'add.gif',
 		'params' => array(
-				'table' => 'tx_vjeventdb3_domain_model_pricecategory',
+				'table' => 'tx_vjeventdb3_domain_model_priceunit',
 				'pid' => '###CURRENT_PID###',
 				'setValue' => 'prepend'
 		),
@@ -246,7 +246,7 @@ $TCA['tx_vjeventdb3_domain_model_price']['columns']['price_amount']['config']['w
 		'title' => 'Create new',
 		'icon' => 'add.gif',
 		'params' => array(
-				'table' => 'tx_vjeventdb3_domain_model_pricecategory',
+				'table' => 'tx_vjeventdb3_domain_model_priceamount',
 				'pid' => '###CURRENT_PID###',
 				'setValue' => 'prepend'
 		),
