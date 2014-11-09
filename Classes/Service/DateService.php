@@ -80,6 +80,20 @@ class DateService {
 	public function sortDates(&$dates) {
 		usort($dates, array('VJmedia\Vjeventdb3\Service\DateService', 'compare'));
 	}
+
+	/**
+	 * Removes all dates above the given limit (amount of events).
+	 * @param array $dates The dates.
+	 * @param string $limit The limit.
+	 * @return array
+	 */
+	public function limitDates(&$dates, $limit = NULL) {
+		if($limit == NULL) {
+			return $dates;
+		}
+		return array_slice($dates, 0, $limit);
+	}
+	
 	
 	private function removeKeysFromArray($array) {
 		$theArray = array();

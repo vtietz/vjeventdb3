@@ -54,7 +54,14 @@ class EventSimpleListController extends \VJmedia\Vjeventdb3\Controller\AbstractC
 	 * @return void
 	 */
 	public function listAction() {
-		$this->view->assign('events', $this->eventRepository->findAll());		
+		
+		$events = $this->eventRepository->findAllByCategory(
+				$this->getSetting('maxItems'),
+				$this->getEventCategoryFilter(),
+				$this->getAgeCategoryFilter()
+		);
+		
+		$this->view->assign('events', $events);		
 	}
 	
 }

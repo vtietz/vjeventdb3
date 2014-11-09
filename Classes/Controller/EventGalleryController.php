@@ -55,6 +55,7 @@ class EventGalleryController extends \VJmedia\Vjeventdb3\Controller\AbstractEven
 		$this->setTemplatePaths($this->settings['gallery']);
 		
 		$events = $this->eventRepository->findAllByCategory(
+				$this->getSetting('maxItems'),
 				$this->getEventCategoryFilter(),
 				$this->getAgeCategoryFilter()
 		);

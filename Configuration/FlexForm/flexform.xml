@@ -120,6 +120,14 @@
 				</TCEforms>
 				<type>array</type>
 				<el>
+					<settings.maxItems>
+						<TCEforms>
+							<label>LLL:EXT:vjeventdb3/Resources/Private/Language/locallang.xlf:tx_vjeventdb3_flexform.maxItems</label>
+							<config>
+								<type>input</type>
+							</config>
+						</TCEforms>
+					</settings.maxItems>				
 					<settings.eventCategoryFilter>
 						<TCEforms>
 							<label>LLL:EXT:vjeventdb3/Resources/Private/Language/locallang_db.xlf:tx_vjeventdb3_domain_model_event.event_category</label>

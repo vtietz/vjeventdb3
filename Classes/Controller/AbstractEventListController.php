@@ -162,11 +162,12 @@ abstract class AbstractEventListController extends \VJmedia\Vjeventdb3\Controlle
 	}	
 
 	
-	protected function getAllDateEvents($startDateTime, $endDateTime) {
+	protected function getAllDateEvents($startDateTime, $endDateTime, $limit = NULL) {
 	
 		$events = $this->eventRepository->findAllInDateRange(
 				$startDateTime,
 				$endDateTime,
+				$limit,
 				$this->getEventCategoryFilter(),
 				$this->getAgeCategoryFilter()
 		);

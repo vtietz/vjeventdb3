@@ -177,6 +177,11 @@
 			<trans-unit id="tx_vjeventdb3_domain_model_price.unit">
 				<source>Unit</source>
 			</trans-unit>
+			
+			<trans-unit id="tx_vjeventdb3_flexform.maxItems">
+				<target>Maximum item count</target>
+			</trans-unit>	
+			
 		</body>
 	</file>
 </xliff>

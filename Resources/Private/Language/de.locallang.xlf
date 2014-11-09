@@ -533,6 +533,11 @@
 				<target>Dezember</target>
 			</trans-unit>	
 
+			<trans-unit id="tx_vjeventdb3_flexform.maxItems">
+				<target>Maximal dargestellte Anzahl</target>
+			</trans-unit>	
+
+
 		</body>
 	</file>
 </xliff>
