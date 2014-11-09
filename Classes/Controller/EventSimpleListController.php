@@ -38,7 +38,7 @@ use VJmedia\Vjeventdb3\Service\DateUtils;
 /**
  * EventGalleryController
  */
-class EventSimpleListController extends \VJmedia\Vjeventdb3\Controller\AbstractController {
+class EventSimpleListController extends \VJmedia\Vjeventdb3\Controller\AbstractEventListController {
 
 	/**
 	 * eventRepository
