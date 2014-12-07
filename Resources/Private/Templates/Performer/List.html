@@ -7,7 +7,6 @@
 <f:if condition="{performers}">
 	<f:then>
 		<div class="tx-vjeventdb3-listPerformers">
-			<h2><f:translate key="tx_vjeventdb3_domain_model_performer" /></h2>
 			<f:for each="{performers}" as="performer">
 				<f:render partial="Performer/Properties" arguments="{performer:performer}" />
 			</f:for>
