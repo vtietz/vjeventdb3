@@ -230,8 +230,10 @@
 			</trans-unit>
 			<trans-unit id="tx_vjeventdb3_furtherPricesOnRequest">
 				<target>Weitere Angebote auf Anfrage!</target>
-			</trans-unit>			
-			
+			</trans-unit>
+			<trans-unit id="tx_vjeventdb3_additionalPriceNotes">
+				<target></target>
+			</trans-unit>
 			
 			<trans-unit id="tx_vjeventdb3_datepicker_range.day">
 				<target>Tag</target>

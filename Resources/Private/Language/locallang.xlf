@@ -231,7 +231,9 @@
 			<trans-unit id="tx_vjeventdb3_furtherPricesOnRequest">
 				<source>Further prices on request</source>
 			</trans-unit>			
-			
+			<trans-unit id="tx_vjeventdb3_additionalPriceNotes">
+				<source></source>
+			</trans-unit>
 			
 			<trans-unit id="tx_vjeventdb3_datepicker_range.day">
 				<source>Day</source>
