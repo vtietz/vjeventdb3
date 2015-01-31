@@ -536,9 +536,18 @@
 			</trans-unit>	
 
 			<trans-unit id="tx_vjeventdb3_flexform.maxItems">
-				<target>Maximal dargestellte Anzahl</target>
+				<target>Maximal dargestellte Anzahl von Einträgen</target>
 			</trans-unit>	
-
+			<trans-unit id="tx_vjeventdb3_flexform.maxYearSections">
+				<target>Maximal dargestellte Jahren</target>
+			</trans-unit>	
+			<trans-unit id="tx_vjeventdb3_flexform.maxMonthSections">
+				<target>Maximal dargestellte Monaten</target>
+			</trans-unit>	
+			<trans-unit id="tx_vjeventdb3_flexform.maxDaySections">
+				<target>Maximal dargestellte Tagen</target>
+			</trans-unit>	
+			
 
 		</body>
 	</file>

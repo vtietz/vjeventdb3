@@ -95,33 +95,74 @@ abstract class AbstractEventListController extends \VJmedia\Vjeventdb3\Controlle
 		$year = null;
 		$month = null;
 		$day = null;
+
+		$yearCount = 0;
+		$monthCount = 0;
+		$dayCount = 0;
+		$dateCount = 0;
+		
 		foreach ($allEventDates as $date) {
-	
-			if($year == null || $year->getDate()->format('Y') != $date->getStartDate()->format('Y')) {
+			
+			if($this->isNewSectionRequired($year, $date, 'Y')) {
+				if($this->isOverLimit($yearCount, $this->settings['maxYearSections'])) {
+					break;
+				}
 				$year = new \VJmedia\Vjeventdb3\Domain\ViewModel\YearSectionView();
 				$year->setDate($date->getStartDate());
 				$years[] = $year;
 				$month = null;
+				$yearCount++;
 			}
-	
-			if($month == null || $month->getDate()->format('m') != $date->getStartDate()->format('m')) {
+			
+			if($this->isNewSectionRequired($month, $date, 'm')) {
+				if($this->isOverLimit($monthCount, $this->settings['maxMonthSections'])) {
+					break;
+				}
 				$month = new \VJmedia\Vjeventdb3\Domain\ViewModel\MonthSectionView();
 				$month->setDate($date->getStartDate());
 				$year->addMonth($month);
 				$day = null;
+				$monthCount++;
 			}
-	
-			if($day == null || $day->getDate()->format('d') != $date->getStartDate()->format('d')) {
+				
+			if($this->isNewSectionRequired($day, $date, 'd')) {
+				if($this->isOverLimit($dayCount, $this->settings['maxDaySections'])) {
+					break;
+				}
 				$day = new \VJmedia\Vjeventdb3\Domain\ViewModel\DaySectionView();
 				$day->setDate($date->getStartDate());
 				$month->addDay($day);
+				$dayCount++;
+			}
+					
+			if($this->isOverLimit($dateCount, $this->settings['maxItems'])) {
+				break;
 			}
 			$day->addDate($date);
-	
+			$dateCount++;
 		}
 	
 		return $years;
 	
+	}
+	
+	private function isNewSectionRequired($oldDate, $currentDate, $dateFormat) {
+		if($oldDate == null) {
+			return true;
+		}
+		if($newDate == null) {
+			return false;
+		}
+		return $oldDate->getDate()->format($dateFormat) != $newDate->getStartDate()->format($dateFormat);
+	}
+	
+	private function isOverLimit($itemCount, $value) {
+		if(isset($value) && $value) {
+			return $itemCount >= $value;
+		}
+		else {
+			return false;
+		}
 	}
 
 

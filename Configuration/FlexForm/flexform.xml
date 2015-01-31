@@ -128,6 +128,30 @@
 							</config>
 						</TCEforms>
 					</settings.maxItems>				
+					<settings.maxYearSections>
+						<TCEforms>
+							<label>LLL:EXT:vjeventdb3/Resources/Private/Language/locallang.xlf:tx_vjeventdb3_flexform.maxYearSections</label>
+							<config>
+								<type>input</type>
+							</config>
+						</TCEforms>
+					</settings.maxYearSections>				
+					<settings.maxMonthSections>
+						<TCEforms>
+							<label>LLL:EXT:vjeventdb3/Resources/Private/Language/locallang.xlf:tx_vjeventdb3_flexform.maxMonthSections</label>
+							<config>
+								<type>input</type>
+							</config>
+						</TCEforms>
+					</settings.maxMonthSections>				
+					<settings.maxDaySections>
+						<TCEforms>
+							<label>LLL:EXT:vjeventdb3/Resources/Private/Language/locallang.xlf:tx_vjeventdb3_flexform.maxDaySections</label>
+							<config>
+								<type>input</type>
+							</config>
+						</TCEforms>
+					</settings.maxDaySections>				
 					<settings.eventCategoryFilter>
 						<TCEforms>
 							<label>LLL:EXT:vjeventdb3/Resources/Private/Language/locallang_db.xlf:tx_vjeventdb3_domain_model_event.event_category</label>

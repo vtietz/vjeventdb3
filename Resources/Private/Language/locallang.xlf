@@ -541,7 +541,19 @@
 			<trans-unit id="tx_vjeventdb3_translateDateViewHelper.December">
 				<source>December</source>
 			</trans-unit>								
-														
+							
+			<trans-unit id="tx_vjeventdb3_flexform.maxItems">
+				<target>Maximum entries shown</target>
+			</trans-unit>	
+			<trans-unit id="tx_vjeventdb3_flexform.maxYearSections">
+				<target>Maximum years shown</target>
+			</trans-unit>	
+			<trans-unit id="tx_vjeventdb3_flexform.maxMonthSections">
+				<target>Maximum months shown</target>
+			</trans-unit>	
+			<trans-unit id="tx_vjeventdb3_flexform.maxDaySections">
+				<target>Maximum days shown</target>
+			</trans-unit>	
 		</body>
 	</file>
 </xliff>

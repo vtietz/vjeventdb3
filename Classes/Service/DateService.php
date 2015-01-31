@@ -88,7 +88,7 @@ class DateService {
 	 * @return array
 	 */
 	public function limitDates(&$dates, $limit = NULL) {
-		if($limit == NULL) {
+		if($limit == NULL || !$limit) {
 			return $dates;
 		}
 		return array_slice($dates, 0, $limit);
