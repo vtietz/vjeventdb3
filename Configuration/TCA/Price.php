@@ -121,6 +121,7 @@ $GLOBALS['TCA']['tx_vjeventdb3_domain_model_price'] = array(
 			'config' => array(
 				'type' => 'inline',
 				'foreign_table' => 'tx_vjeventdb3_domain_model_pricecategory',
+				'foreign_table_where' => 'AND tx_vjeventdb3_domain_model_pricecategory.pid=###CURRENT_PID###',					
 				'minitems' => 0,
 				'maxitems' => 1,
 				'appearance' => array(
@@ -138,6 +139,7 @@ $GLOBALS['TCA']['tx_vjeventdb3_domain_model_price'] = array(
 			'config' => array(
 				'type' => 'inline',
 				'foreign_table' => 'tx_vjeventdb3_domain_model_priceunit',
+				'foreign_table_where' => 'AND tx_vjeventdb3_domain_model_priceunit.pid=###CURRENT_PID###',					
 				'minitems' => 0,
 				'maxitems' => 1,
 				'appearance' => array(
@@ -155,6 +157,7 @@ $GLOBALS['TCA']['tx_vjeventdb3_domain_model_price'] = array(
 			'config' => array(
 				'type' => 'inline',
 				'foreign_table' => 'tx_vjeventdb3_domain_model_priceamount',
+				'foreign_table_where' => 'AND tx_vjeventdb3_domain_model_priceamount.pid=###CURRENT_PID###',					
 				'minitems' => 0,
 				'maxitems' => 1,
 				'appearance' => array(

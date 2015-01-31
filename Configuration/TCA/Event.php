@@ -209,6 +209,7 @@ $GLOBALS['TCA']['tx_vjeventdb3_domain_model_event'] = array(
 			'config' => array(
 				'type' => 'inline',
 				'foreign_table' => 'tx_vjeventdb3_domain_model_date',
+				'foreign_table_where' => 'AND tx_vjeventdb3_domain_model_date.pid=###CURRENT_PID###',
 				'foreign_field' => 'event',
 				'maxitems'      => 9999,
 				'appearance' => array(
@@ -228,6 +229,7 @@ $GLOBALS['TCA']['tx_vjeventdb3_domain_model_event'] = array(
 			'config' => array(
 				'type' => 'select',
 				'foreign_table' => 'tx_vjeventdb3_domain_model_eventcategory',
+				'foreign_table_where' => 'AND tx_vjeventdb3_domain_model_eventcategory.pid=###CURRENT_PID###',					
 				'MM' => 'tx_vjeventdb3_event_eventcategory_mm',
 				'size' => 10,
 				'autoSizeMax' => 30,
@@ -264,6 +266,7 @@ $GLOBALS['TCA']['tx_vjeventdb3_domain_model_event'] = array(
 			'config' => array(
 				'type' => 'select',
 				'foreign_table' => 'tx_vjeventdb3_domain_model_agecategory',
+				'foreign_table_where' => 'AND tx_vjeventdb3_domain_model_agecategory.pid=###CURRENT_PID###',
 				'MM' => 'tx_vjeventdb3_event_agecategory_mm',
 				'size' => 10,
 				'autoSizeMax' => 30,
@@ -300,6 +303,7 @@ $GLOBALS['TCA']['tx_vjeventdb3_domain_model_event'] = array(
 			'config' => array(
 				'type' => 'select',
 				'foreign_table' => 'tx_vjeventdb3_domain_model_price',
+				'foreign_table_where' => 'AND tx_vjeventdb3_domain_model_price.pid=###CURRENT_PID###',
 				'MM' => 'tx_vjeventdb3_event_price_mm',
 				'size' => 10,
 				'autoSizeMax' => 30,
