@@ -150,15 +150,14 @@ abstract class AbstractEventListController extends \VJmedia\Vjeventdb3\Controlle
 		if($oldDate == null) {
 			return true;
 		}
-		if($newDate == null) {
-			return false;
-		}
-		return $oldDate->getDate()->format($dateFormat) != $newDate->getStartDate()->format($dateFormat);
+		$date1 = $oldDate->getDate()->format($dateFormat); 
+		$date2 = $currentDate->getStartDate()->format($dateFormat);
+		return $date1 != $date2;
 	}
 	
 	private function isOverLimit($itemCount, $value) {
 		if(isset($value) && $value) {
-			return $itemCount >= $value;
+			return $itemCount > $value;
 		}
 		else {
 			return false;
