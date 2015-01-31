@@ -157,7 +157,7 @@ abstract class AbstractEventListController extends \VJmedia\Vjeventdb3\Controlle
 	
 	private function isOverLimit($itemCount, $value) {
 		if(isset($value) && $value) {
-			return $itemCount > $value;
+			return $itemCount >= $value;
 		}
 		else {
 			return false;
