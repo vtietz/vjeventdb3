@@ -122,19 +122,36 @@ class EventDetailController extends \VJmedia\Vjeventdb3\Controller\AbstractEvent
 			}
 			if(!$priceCategories[$cuid]) {
 				$priceCategories[$cuid] = array();
-				$priceCategories[$cuid]['category'] = $price->getPriceCategory();
+				// why is field sorting null if we would use the extbase repo here? NASS-41
+				$priceCategories[$cuid]['category'] = $this->getPriceCategoryFromDB($cuid);
 				$priceCategories[$cuid]['prices'] = array();
 			}
 			$priceCategories[$cuid]['prices'][] = $price;
 		}
 		$compare = function($a, $b) {
-			if(!is_object($a['category']) || !is_object($b['category'])) {
-				return 0;
-			}
-			return $a['category']->getSorting() > $b['category']->getSorting() ? -1 : 1;
+			return $a['category']['sorting'] < $b['category']['sorting'] ? -1 : 1;
 		};
 		usort($priceCategories, $compare);
 		return $priceCategories;
+	}
+	
+	private function getPriceCategoryFromDB($uid) {
+		
+		$res = $GLOBALS['TYPO3_DB']->exec_SELECTquery(
+				'*',
+				'tx_vjeventdb3_domain_model_pricecategory',
+				'uid = '.$uid,
+				'',
+				''
+		);
+		
+		if (!$GLOBALS['TYPO3_DB']->sql_error()) {
+			$result =  $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res);
+			$GLOBALS['TYPO3_DB']->sql_free_result($res);
+			return $result;
+		}
+		
+		return null;
 	}
 	
 
