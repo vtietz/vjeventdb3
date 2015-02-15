@@ -132,6 +132,7 @@ plugin.tx_vjeventdb3.settings {
 		endDateFormat =
 		startTimeFormat =
 		endTimeFormat =
+		showStartDay = 0
 		
 		dates.show = 1
 		

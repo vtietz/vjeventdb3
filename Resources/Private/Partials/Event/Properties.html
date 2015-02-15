@@ -1,4 +1,4 @@
-
+{namespace m=VJmedia\Vjeventdb3\ViewHelper}
 
 <div  class="tx-vjeventdb3-event">
 
@@ -10,6 +10,10 @@
 	<span class="tx-vjeventdb3-event-categories">
 		<f:render partial="Event/FlatEventCategoryList" arguments="{eventCategories : event.eventCategory}" />
 	</span>
+	
+	<m:translateDate><f:render partial="Date/Date" arguments="{date : date, settings : settings.show}" /></m:translateDate>
+	<m:translateDate><f:render partial="Date/Time" arguments="{date : date}" /></m:translateDate>
+	<f:translate key="tx_vjeventdb3_domain_model_date.clock" />
 	
 	<f:if condition="{settings.show.teaserText.show}">
 		<p class="tx-vjeventdb3-event-teasertext">{event.teasertext}</p>

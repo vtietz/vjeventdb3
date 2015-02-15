@@ -166,10 +166,10 @@
 				<target>jeden</target>
 			</trans-unit>			
 			<trans-unit id="tx_vjeventdb3_domain_model_date.From">
-				<target>Von</target>
+				<target>Vom</target>
 			</trans-unit>			
 			<trans-unit id="tx_vjeventdb3_domain_model_date.FromWithEnd">
-				<target>Von</target>
+				<target>Vom</target>
 			</trans-unit>	
 			<trans-unit id="tx_vjeventdb3_domain_model_date.from">
 				<target>von</target>
@@ -534,6 +534,30 @@
 			<trans-unit id="tx_vjeventdb3_translateDateViewHelper.December">
 				<target>Dezember</target>
 			</trans-unit>	
+
+			<trans-unit id="tx_vjeventdb3_translateDateViewHelper.Monday">
+				<target>Montag</target>
+			</trans-unit>				
+			<trans-unit id="tx_vjeventdb3_translateDateViewHelper.Tuesday">
+				<target>Dienstag</target>
+			</trans-unit>				
+			<trans-unit id="tx_vjeventdb3_translateDateViewHelper.Wednesday">
+				<target>Mittwoch</target>
+			</trans-unit>				
+			<trans-unit id="tx_vjeventdb3_translateDateViewHelper.Thursday">
+				<target>Donnerstag</target>
+			</trans-unit>				
+			<trans-unit id="tx_vjeventdb3_translateDateViewHelper.Friday">
+				<target>Freitag</target>
+			</trans-unit>				
+			<trans-unit id="tx_vjeventdb3_translateDateViewHelper.Saturday">
+				<target>Samstag</target>
+			</trans-unit>				
+			<trans-unit id="tx_vjeventdb3_translateDateViewHelper.Sunday">
+				<target>Sonntag</target>
+			</trans-unit>				
+
+
 
 			<trans-unit id="tx_vjeventdb3_flexform.maxItems">
 				<target>Maximal dargestellte Anzahl von Einträgen</target>

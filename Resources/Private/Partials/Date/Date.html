@@ -4,22 +4,25 @@
 	</f:then>
 	<f:else>
 
-		<f:if condition="{f:format.date(date: '{date.endDate}', format: 'U')}">
-			<f:then>{f:translate(key:'tx_vjeventdb3_domain_model_date.From')}</f:then>
-			<f:else>{f:translate(key:'tx_vjeventdb3_domain_model_date.FromWithEnd')}</f:else>
+		<f:if condition="{settings.showStartDay}">
+			<f:if condition="{f:format.date(date: '{date.endDate}', format: 'U')}">
+				<f:then>{f:translate(key:'tx_vjeventdb3_domain_model_date.From')}</f:then>
+				<f:else>{f:translate(key:'tx_vjeventdb3_domain_model_date.FromWithEnd')}</f:else>
+			</f:if>
+			<f:format.date format="{f:translate(key:'tx_vjeventdb3_domain_model_date.dateFormat')}">{date.startDate.timestamp}</f:format.date> 
 		</f:if>		
 		
 		<f:if condition="{date.frequency} == 1">
-			<f:format.date format="{f:translate(key:'tx_vjeventdb3_domain_model_date.dateFormat')}">{date.startTime}">{date.startDate.timestamp}</f:format.date> <f:translate key="tx_vjeventdb3_domain_model_date.daily" />
+			<f:translate key="tx_vjeventdb3_domain_model_date.daily" />
 		</f:if>
 		<f:if condition="{date.frequency} == 2">
-			<f:format.date format="{f:translate(key:'tx_vjeventdb3_domain_model_date.dateFormat')}">{date.startDate.timestamp}</f:format.date> <f:translate key="tx_vjeventdb3_domain_model_date.every" /> <f:format.date format="l">{date.startDate.timestamp}</f:format.date>
+			<f:translate key="tx_vjeventdb3_domain_model_date.every" /> <f:format.date format="l">{date.startDate.timestamp}</f:format.date>
 		</f:if>
 		<f:if condition="{date.frequency} == 3">
-			<f:format.date format="{f:translate(key:'tx_vjeventdb3_domain_model_date.dateFormat')}">{date.startDate.timestamp}</f:format.date> <f:translate key="tx_vjeventdb3_domain_model_date.every" /> <f:format.date format="d.">{date.startDate.timestamp}</f:format.date>
+			 <f:translate key="tx_vjeventdb3_domain_model_date.every" /> <f:format.date format="d.">{date.startDate.timestamp}</f:format.date>
 		</f:if>
 		<f:if condition="{date.frequency} == 4">
-			<f:format.date format="{f:translate(key:'tx_vjeventdb3_domain_model_date.dateFormat')}">{date.startDate.timestamp}</f:format.date> <f:translate key="tx_vjeventdb3_domain_model_date.every" /> <f:format.date format="d.m.">{date.startDate.timestamp}</f:format.date>
+			<f:translate key="tx_vjeventdb3_domain_model_date.every" /> <f:format.date format="d.m.">{date.startDate.timestamp}</f:format.date>
 		</f:if>
 	
 		<f:if condition="{f:format.date(date: '{date.endDate}', format: 'U')}">
