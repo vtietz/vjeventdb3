@@ -20,6 +20,8 @@ class TranslateDateViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractV
     	$parts = \TYPO3\CMS\Core\Utility\GeneralUtility::trimExplode(' ', $result);
     	foreach ($parts as $part) {
     		if(!is_numeric($part)) {
+    			$part = str_replace(",", "", $part);
+    			$part = str_replace(".", "", $part);
     			$llKey = 'LLL:EXT:vjeventdb3/Resources/Private/Language/locallang.xlf:tx_vjeventdb3_translateDateViewHelper.' . $part;
     			$replacement = \TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate($llKey, '');
     			if($replacement) {

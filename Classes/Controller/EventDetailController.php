@@ -47,10 +47,10 @@ class EventDetailController extends \VJmedia\Vjeventdb3\Controller\AbstractEvent
 	 * @param \VJmedia\Vjeventdb3\Domain\Model\Date $date
 	 * @return void
 	 */
-	public function showAction(\VJmedia\Vjeventdb3\Domain\Model\Event $event, \VJmedia\Vjeventdb3\Domain\Model\Date $date) {
+	public function showAction(\VJmedia\Vjeventdb3\Domain\Model\Event $event, \VJmedia\Vjeventdb3\Domain\Model\Date $date = null) {
 
 		$this->view->assign('event', $event);
-		$this->view->assign('date', $date);
+		$this->view->assign('selectedDate', $date);
 		
 		if($this->anyDateShouldBeShown()) {
 		
