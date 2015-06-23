@@ -55,7 +55,12 @@ class EventOrderFormController extends \VJmedia\Vjeventdb3\Controller\AbstractCo
 	 */
 	public function showAction() {
 		$eventOrder = $this->objectManager->get('VJmedia\Vjeventdb3\Domain\Model\EventOrder');
-		$eventOrder->setEvent($this->getCurrentEvent());
+		
+		$event = $this->getCurrentEvent();
+		if($event != null) {
+			$eventOrder->setEvent($this->getCurrentEvent());
+		}
+		
 		$this->view->assign('eventOrder', $eventOrder);
 		$events = $this->eventRepository->findAll();
 		$this->addTitleWithAgeCategory($events);
