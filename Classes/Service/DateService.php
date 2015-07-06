@@ -42,6 +42,11 @@ class DateService {
 		foreach($dates as $date) {
 			/* @var $date \VJmedia\Vjeventdb3\Domain\Model\Date */
 
+			if(!$date->getStartDate()) {
+				$this->log('Skipping date '.$date->getUid().' since no start date given. This is strange because start date is a required field.',2);
+				continue;
+			}
+			
 			$startDateTime = $rangeStartDateTime->getTimestamp() !== FALSE ? $rangeStartDateTime : $date->getStartDate();
 			$endDateTime = $rangeEndDateTime->getTimestamp() !== FALSE ? $rangeEndDateTime : $date->getEndDate();
 			
@@ -249,5 +254,17 @@ class DateService {
 		}
 		return false;
 	}
+
+	/**
+	 * Wrapper for dev log, in order to ease testing
+	 *
+	 * @param string $message Message (in english).
+	 * @param integer $severity Severity: 0 is info, 1 is notice, 2 is warning, 3 is fatal error, -1 is "OK" message
+	 * @return void
+	 */
+	protected function log($message, $severity) {
+		\TYPO3\CMS\Core\Utility\GeneralUtility::devLog($message, 'vjeventdb3', $severity);
+	}
+	
 	
 }

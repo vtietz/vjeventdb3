@@ -95,6 +95,29 @@ class DateServiceTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 		$this->assertDateTimeEquals(new DateTime("2012-01-05"), $allDates[4]->getStartDate());
 		
 	}
+
+	/**
+	 * Tests if dates are calulcated correctly with daily frequency and no end date.
+	 *
+	 * @test
+	 */
+	public function dailyNoEndDateTest() {
+	
+		$dates = array(
+				DateMock::getDateMock(new DateTime("2012-01-01"), strtotime("10:00"), new DateTime("0000-00-00"), strtotime("11:00"), Date::FREQUENCY_DAILY),
+		);
+	
+		$allDates = $this->subject->getAllDates($dates, new DateTime("2012-01-01"), new DateTime("2012-01-31"));
+	
+		$this->assertEquals(31, count($allDates));
+		$this->assertDateTimeEquals(new DateTime("2012-01-01"), $allDates[0]->getStartDate());
+		$this->assertDateTimeEquals(new DateTime("2012-01-02"), $allDates[1]->getStartDate());
+		$this->assertDateTimeEquals(new DateTime("2012-01-03"), $allDates[2]->getStartDate());
+		$this->assertDateTimeEquals(new DateTime("2012-01-04"), $allDates[3]->getStartDate());
+		$this->assertDateTimeEquals(new DateTime("2012-01-05"), $allDates[4]->getStartDate());
+		// there are further end dates till 2012-01-31
+	
+	}
 	
 	private function assertDateTimeEquals($expectedDateTime, $assertedDateTime) {
 		$this->assertEquals($expectedDateTime->format("Y-m-d H:i"), $assertedDateTime->format("Y-m-d H:i"));
@@ -120,6 +143,27 @@ class DateServiceTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 		$this->assertDateTimeEquals(new DateTime("2014-01-22"), $allDates[3]->getStartDate());
 	}	
 
+	/**
+	 * Tests if dates are calulcated correctly with daily frequency and no end date.
+	 *
+	 * @test
+	 */
+	public function weeklyNoEndDateTest() {
+	
+		$dates = array(
+				DateMock::getDateMock(new DateTime("2012-01-01"), strtotime("10:00"), new DateTime("0000-00-00"), strtotime("11:00"), Date::FREQUENCY_WEEKLY),
+		);
+	
+		$allDates = $this->subject->getAllDates($dates, new DateTime("2012-01-01"), new DateTime("2012-01-31"));
+	
+		$this->assertEquals(5, count($allDates));
+		$this->assertDateTimeEquals(new DateTime("2012-01-01"), $allDates[0]->getStartDate());
+		$this->assertDateTimeEquals(new DateTime("2012-01-08"), $allDates[1]->getStartDate());
+		$this->assertDateTimeEquals(new DateTime("2012-01-15"), $allDates[2]->getStartDate());
+		$this->assertDateTimeEquals(new DateTime("2012-01-22"), $allDates[3]->getStartDate());
+		$this->assertDateTimeEquals(new DateTime("2012-01-29"), $allDates[4]->getStartDate());
+	
+	}
 
 	/**
 	 * Tests if the service returns all dates (which have as frequency monthly) all dates within the given time period.
