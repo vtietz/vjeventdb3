@@ -348,7 +348,7 @@ $GLOBALS['TCA']['tx_vjeventdb3_domain_model_eventorder'] = array(
 			'starttime' => 'starttime',
 			'endtime' => 'endtime',
 		),
-		'searchFields' => 'name,surname,address,telephone,email,message,event,',
+		'searchFields' => 'name,surname,address,telephone,email,message,event,age_category,date,',
 		'dynamicConfigFile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath($_EXTKEY) . 'Configuration/TCA/EventOrder.php',
 		'iconfile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath($_EXTKEY) . 'Resources/Public/Icons/tx_vjeventdb3_domain_model_eventorder.gif'
 	),

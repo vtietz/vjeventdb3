@@ -32,6 +32,12 @@ namespace VJmedia\Vjeventdb3\Domain\Model;
 class EventOrder extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	/**
+	 * @var string
+	 * @validate \SJBR\SrFreecap\Validation\Validator\CaptchaValidator
+	 */
+	protected $captchaResponse = NULL;
+
+	/**
 	 * name
 	 *
 	 * @var string
@@ -79,13 +85,20 @@ class EventOrder extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 * @var \VJmedia\Vjeventdb3\Domain\Model\Event
 	 */
 	protected $event = NULL;
-	
-	
+
 	/**
-	 * @var string
-	 * @validate \SJBR\SrFreecap\Validation\Validator\CaptchaValidator
+	 * ageCategory
+	 *
+	 * @var \VJmedia\Vjeventdb3\Domain\Model\AgeCategory
 	 */
-	protected $captchaResponse;
+	protected $ageCategory = NULL;
+
+	/**
+	 * date
+	 *
+	 * @var \VJmedia\Vjeventdb3\Domain\Model\Date
+	 */
+	protected $date = NULL;
 
 	/**
 	 * Returns the name
@@ -219,7 +232,7 @@ class EventOrder extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	public function setEvent(\VJmedia\Vjeventdb3\Domain\Model\Event $event) {
 		$this->event = $event;
 	}
-	
+
 	/**
 	 * Sets the captchaResponse
 	 *
@@ -229,7 +242,7 @@ class EventOrder extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	public function setCaptchaResponse($captchaResponse) {
 		$this->captchaResponse = $captchaResponse;
 	}
-	
+
 	/**
 	 * Getter for captchaResponse
 	 *
@@ -237,6 +250,44 @@ class EventOrder extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 */
 	public function getCaptchaResponse() {
 		return $this->captchaResponse;
+	}
+
+	/**
+	 * Returns the ageCategory
+	 *
+	 * @return \VJmedia\Vjeventdb3\Domain\Model\AgeCategory $ageCategory
+	 */
+	public function getAgeCategory() {
+		return $this->ageCategory;
+	}
+
+	/**
+	 * Sets the ageCategory
+	 *
+	 * @param \VJmedia\Vjeventdb3\Domain\Model\AgeCategory $ageCategory
+	 * @return void
+	 */
+	public function setAgeCategory(\VJmedia\Vjeventdb3\Domain\Model\AgeCategory $ageCategory) {
+		$this->ageCategory = $ageCategory;
+	}
+
+	/**
+	 * Returns the date
+	 *
+	 * @return \VJmedia\Vjeventdb3\Domain\Model\Date $date
+	 */
+	public function getDate() {
+		return $this->date;
+	}
+
+	/**
+	 * Sets the date
+	 *
+	 * @param \VJmedia\Vjeventdb3\Domain\Model\Date $date
+	 * @return void
+	 */
+	public function setDate(\VJmedia\Vjeventdb3\Domain\Model\Date $date) {
+		$this->date = $date;
 	}
 
 }

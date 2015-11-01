@@ -5,7 +5,7 @@ namespace VJmedia\Vjeventdb3\Tests\Unit\Domain\Model;
 /***************************************************************
  *  Copyright notice
  *
- *  (c) 2014 Vincent Tietz <vincent.tietz@vj-media.de>, vjmedia
+ *  (c) 2015 Vincent Tietz <vincent.tietz@vj-media.de>, vjmedia
  *
  *  All rights reserved
  *
@@ -206,6 +206,54 @@ class EventOrderTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 		$this->assertAttributeEquals(
 			$eventFixture,
 			'event',
+			$this->subject
+		);
+	}
+
+	/**
+	 * @test
+	 */
+	public function getAgeCategoryReturnsInitialValueForAgeCategory() {
+		$this->assertEquals(
+			NULL,
+			$this->subject->getAgeCategory()
+		);
+	}
+
+	/**
+	 * @test
+	 */
+	public function setAgeCategoryForAgeCategorySetsAgeCategory() {
+		$ageCategoryFixture = new \VJmedia\Vjeventdb3\Domain\Model\AgeCategory();
+		$this->subject->setAgeCategory($ageCategoryFixture);
+
+		$this->assertAttributeEquals(
+			$ageCategoryFixture,
+			'ageCategory',
+			$this->subject
+		);
+	}
+
+	/**
+	 * @test
+	 */
+	public function getDateReturnsInitialValueForDate() {
+		$this->assertEquals(
+			NULL,
+			$this->subject->getDate()
+		);
+	}
+
+	/**
+	 * @test
+	 */
+	public function setDateForDateSetsDate() {
+		$dateFixture = new \VJmedia\Vjeventdb3\Domain\Model\Date();
+		$this->subject->setDate($dateFixture);
+
+		$this->assertAttributeEquals(
+			$dateFixture,
+			'date',
 			$this->subject
 		);
 	}

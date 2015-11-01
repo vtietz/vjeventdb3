@@ -1,7 +1,6 @@
 <?php
 namespace VJmedia\Vjeventdb3\Domain\Repository;
 
-
 /***************************************************************
  *
  *  Copyright notice
@@ -45,15 +44,15 @@ class DateRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 			$query->setQuerySettings(clone $this->defaultQuerySettings);
 		}
 		$query->matching(
-				$query->logicalAnd(
-						$query->greaterThanOrEqual('start_date', $startDate),
-						$query->logicalOr(
-								$query->lessThanOrEqual('end_date', $endDate),
-								$query->equals('end_date', NULL)
-						)
+			$query->logicalAnd(
+				$query->greaterThanOrEqual('start_date', $startDate),
+				$query->logicalOr(
+					$query->lessThanOrEqual('end_date', $endDate),
+					$query->equals('end_date', NULL)
 				)
+			)
 		);
 		return $query->execute();
 	}
-	
+
 }

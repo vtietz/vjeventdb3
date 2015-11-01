@@ -149,7 +149,7 @@
 			</trans-unit>
 			<trans-unit id="tx_vjeventdb3_domain_model_eventorder">
 				<source>Event Order</source>
-			</trans-unit>
+			</trans-unit>			
 			<trans-unit id="tx_vjeventdb3_domain_model_eventorder.name">
 				<source>Name</source>
 			</trans-unit>
@@ -171,6 +171,13 @@
 			<trans-unit id="tx_vjeventdb3_domain_model_eventorder.event">
 				<source>Event</source>
 			</trans-unit>
+			<trans-unit id="tx_vjeventdb3_domain_model_eventorder.age_category">
+                <source>Age Category</source>
+            </trans-unit>
+            <trans-unit id="tx_vjeventdb3_domain_model_eventorder.date">
+                <source>Date</source>
+            </trans-unit>
+			
 			<trans-unit id="tx_vjeventdb3_domain_model_price.quanity">
 				<source>Quanity</source>
 			</trans-unit>
@@ -179,8 +186,10 @@
 			</trans-unit>
 			
 			<trans-unit id="tx_vjeventdb3_flexform.maxItems">
-				<target>Maximum item count</target>
+				<source>Maximum item count</source>
 			</trans-unit>	
+			
+			
 			
 		</body>
 	</file>

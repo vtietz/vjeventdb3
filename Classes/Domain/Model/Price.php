@@ -46,6 +46,13 @@ class Price extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	protected $price = '';
 
 	/**
+	 * priceCategory
+	 *
+	 * @var \VJmedia\Vjeventdb3\Domain\Model\PriceCategory
+	 */
+	protected $priceCategory = NULL;
+
+	/**
 	 * priceUnit
 	 *
 	 * @var \VJmedia\Vjeventdb3\Domain\Model\PriceUnit
@@ -58,13 +65,6 @@ class Price extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 * @var \VJmedia\Vjeventdb3\Domain\Model\PriceAmount
 	 */
 	protected $priceAmount = NULL;
-
-	/**
-	 * priceCategory
-	 *
-	 * @var \VJmedia\Vjeventdb3\Domain\Model\PriceCategory
-	 */
-	protected $priceCategory = NULL;
 
 	/**
 	 * __construct

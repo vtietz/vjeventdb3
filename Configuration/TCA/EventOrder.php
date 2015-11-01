@@ -6,10 +6,10 @@ if (!defined ('TYPO3_MODE')) {
 $GLOBALS['TCA']['tx_vjeventdb3_domain_model_eventorder'] = array(
 	'ctrl' => $GLOBALS['TCA']['tx_vjeventdb3_domain_model_eventorder']['ctrl'],
 	'interface' => array(
-		'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, name, surname, address, telephone, email, message, event',
+		'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, name, surname, address, telephone, email, message, event, age_category, date',
 	),
 	'types' => array(
-		'1' => array('showitem' => 'sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, hidden;;1, name, surname, address, telephone, email, message, event, --div--;LLL:EXT:cms/locallang_ttc.xlf:tabs.access, starttime, endtime'),
+		'1' => array('showitem' => 'sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, hidden;;1, name, surname, address, telephone, email, message, event, age_category, date, --div--;LLL:EXT:cms/locallang_ttc.xlf:tabs.access, starttime, endtime'),
 	),
 	'palettes' => array(
 		'1' => array('showitem' => ''),
@@ -158,6 +158,40 @@ $GLOBALS['TCA']['tx_vjeventdb3_domain_model_eventorder'] = array(
 			'config' => array(
 				'type' => 'inline',
 				'foreign_table' => 'tx_vjeventdb3_domain_model_event',
+				'minitems' => 0,
+				'maxitems' => 1,
+				'appearance' => array(
+					'collapseAll' => 0,
+					'levelLinksPosition' => 'top',
+					'showSynchronizationLink' => 1,
+					'showPossibleLocalizationRecords' => 1,
+					'showAllLocalizationLink' => 1
+				),
+			),
+		),
+		'age_category' => array(
+			'exclude' => 1,
+			'label' => 'LLL:EXT:vjeventdb3/Resources/Private/Language/locallang_db.xlf:tx_vjeventdb3_domain_model_eventorder.age_category',
+			'config' => array(
+				'type' => 'inline',
+				'foreign_table' => 'tx_vjeventdb3_domain_model_agecategory',
+				'minitems' => 0,
+				'maxitems' => 1,
+				'appearance' => array(
+					'collapseAll' => 0,
+					'levelLinksPosition' => 'top',
+					'showSynchronizationLink' => 1,
+					'showPossibleLocalizationRecords' => 1,
+					'showAllLocalizationLink' => 1
+				),
+			),
+		),
+		'date' => array(
+			'exclude' => 1,
+			'label' => 'LLL:EXT:vjeventdb3/Resources/Private/Language/locallang_db.xlf:tx_vjeventdb3_domain_model_eventorder.date',
+			'config' => array(
+				'type' => 'inline',
+				'foreign_table' => 'tx_vjeventdb3_domain_model_date',
 				'minitems' => 0,
 				'maxitems' => 1,
 				'appearance' => array(

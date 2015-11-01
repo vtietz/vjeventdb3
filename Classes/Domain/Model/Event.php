@@ -32,6 +32,13 @@ namespace VJmedia\Vjeventdb3\Domain\Model;
 class Event extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	/**
+	 * The title with age category.
+	 *
+	 * @var string
+	 */
+	protected $titleWithAgeCategory = NULL;
+
+	/**
 	 * title
 	 *
 	 * @var string
@@ -117,12 +124,6 @@ class Event extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\VJmedia\Vjeventdb3\Domain\Model\Performer>
 	 */
 	protected $performers = NULL;
-	
-	/**
-	 * The title with age category.
-	 * @var string
-	 */
-	protected $titleWithAgeCategory = NULL;
 
 	/**
 	 * __construct
@@ -538,7 +539,7 @@ class Event extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	public function setPrices(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $prices) {
 		$this->prices = $prices;
 	}
-	
+
 	/**
 	 * @return string
 	 */
@@ -553,6 +554,5 @@ class Event extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	public function setTitleWithAgeCategory($titleWithAgeCategory) {
 		return $this->titleWithAgeCategory = $titleWithAgeCategory;
 	}
-	
-	
+
 }

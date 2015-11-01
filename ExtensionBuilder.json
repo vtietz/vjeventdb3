@@ -921,6 +921,26 @@
                             "relationType": "zeroToOne",
                             "relationWire": "[wired]",
                             "uid": "373997943364"
+                        },
+                        {
+                            "foreignRelationClass": "",
+                            "lazyLoading": false,
+                            "propertyIsExcludeField": true,
+                            "relationDescription": "",
+                            "relationName": "ageCategory",
+                            "relationType": "zeroToOne",
+                            "relationWire": "[wired]",
+                            "uid": "119008947302"
+                        },
+                        {
+                            "foreignRelationClass": "",
+                            "lazyLoading": false,
+                            "propertyIsExcludeField": true,
+                            "relationDescription": "",
+                            "relationName": "date",
+                            "relationType": "zeroToOne",
+                            "relationWire": "[wired]",
+                            "uid": "897481516376"
                         }
                     ]
                 }
@@ -1097,10 +1117,34 @@
                 "terminal": "SOURCES",
                 "uid": "326812284348"
             }
+        },
+        {
+            "src": {
+                "moduleId": 11,
+                "terminal": "relationWire_1",
+                "uid": "119008947302"
+            },
+            "tgt": {
+                "moduleId": 4,
+                "terminal": "SOURCES",
+                "uid": "562429418796"
+            }
+        },
+        {
+            "src": {
+                "moduleId": 11,
+                "terminal": "relationWire_2",
+                "uid": "897481516376"
+            },
+            "tgt": {
+                "moduleId": 2,
+                "terminal": "SOURCES",
+                "uid": "1031799716667"
+            }
         }
     ],
     "log": {
-        "last_modified": "2014-10-21 11:14",
+        "last_modified": "2015-11-01 10:38",
         "extension_builder_version": "6.2.0",
         "be_user": " (1)"
     }

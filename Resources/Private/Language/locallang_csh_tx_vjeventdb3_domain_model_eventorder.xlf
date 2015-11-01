@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <xliff version="1.0">
-	<file source-language="en" datatype="plaintext" original="messages" date="2014-08-06T20:52:38Z" product-name="vjeventdb3">
+	<file source-language="en" datatype="plaintext" original="messages" date="2015-11-01T10:38:45Z" product-name="vjeventdb3">
 		<header/>
 		<body>
 			<trans-unit id="name.description">
@@ -23,6 +23,12 @@
 			</trans-unit>
 			<trans-unit id="event.description">
 				<source>event</source>
+			</trans-unit>
+			<trans-unit id="age_category.description">
+				<source>ageCategory</source>
+			</trans-unit>
+			<trans-unit id="date.description">
+				<source>date</source>
 			</trans-unit>
 		</body>
 	</file>

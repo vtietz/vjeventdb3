@@ -3,7 +3,7 @@ namespace VJmedia\Vjeventdb3\Tests\Unit\Controller;
 /***************************************************************
  *  Copyright notice
  *
- *  (c) 2014 Vincent Tietz <vincent.tietz@vj-media.de>, vjmedia
+ *  (c) 2015 Vincent Tietz <vincent.tietz@vj-media.de>, vjmedia
  *  			
  *  All rights reserved
  *

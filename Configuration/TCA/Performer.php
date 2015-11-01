@@ -135,7 +135,6 @@ $GLOBALS['TCA']['tx_vjeventdb3_domain_model_performer'] = array(
 				$GLOBALS['TYPO3_CONF_VARS']['GFX']['imagefile_ext']
 			),
 		),
-			
 		'performer_category' => array(
 			'exclude' => 1,
 			'label' => 'LLL:EXT:vjeventdb3/Resources/Private/Language/locallang_db.xlf:tx_vjeventdb3_domain_model_performer.performer_category',

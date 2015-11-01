@@ -29,7 +29,7 @@ Event Database
 		comma,separated,list,of,keywords
 
 	:Copyright:
-		2014
+		2015
 
 	:Author:
 		Vincent Tietz

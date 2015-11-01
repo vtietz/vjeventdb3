@@ -1,8 +1,7 @@
 <?php
 namespace VJmedia\Vjeventdb3\Domain\Repository;
 
-use \DateTime;
-
+use DateTime;
 /***************************************************************
  *
  *  Copyright notice
@@ -37,25 +36,22 @@ class EventRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 		'sorting' => \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_ASCENDING,
 		'title' => \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_ASCENDING
 	);
-	
+
 	/**
-	 * @param $startDate The start date
-	 * @param $endDate The end date
-	 * @param $eventCategories If set only events with these event categories are returned.
-	 * @param $ageCategories If set only events with these age categories are returned.
+	 * @param \DateTime $startDate
+	 * @param \DateTime $endDate
+	 * @param $limit
+	 * @param $eventCategories
+	 * @param $ageCategories
 	 */
 	public function findAllInDateRange(\DateTime $startDate, \DateTime $endDate, $limit = NULL, $eventCategories = array(), $ageCategories = array()) {
-		
 		$query = $this->persistenceManager->createQueryForType($this->objectType);
-		
 		if ($this->defaultOrderings !== array()) {
 			$query->setOrderings($this->defaultOrderings);
 		}
-		
 		if ($this->defaultQuerySettings !== NULL) {
 			$query->setQuerySettings(clone $this->defaultQuerySettings);
 		}
-		
 		$query->matching(
 			$query->logicalAnd(
 				$query->lessThanOrEqual('dates.start_date', date('Y-m-d', $endDate->getTimestamp())),
@@ -66,62 +62,57 @@ class EventRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 				)
 			)
 		);
-		
-		if($limit != NULL) {
-			$query->setLimit((integer)$limit);
+		if ($limit != NULL) {
+			$query->setLimit((int) $limit);
 		}
-				
-		if(count($eventCategories) > 0) {
+		if (count($eventCategories) > 0) {
 			$query->matching($query->in('event_category', $eventCategories));
-		}	
-		if(count($ageCategory) > 0) {
+		}
+		if (count($ageCategory) > 0) {
 			$query->matching($query->in('age_category', $ageCategories));
 		}
-		
 		return $query->execute();
 	}
+
 	/**
-	 * @param $eventCategories If set only events with these event categories are returned.
-	 * @param $ageCategories If set only events with these age categories are returned.
+	 * @param $limit
+	 * @param $eventCategories
+	 * @param $ageCategories
 	 */
 	public function findAllByCategory($limit = NULL, $eventCategories = array(), $ageCategories = array()) {
-		
 		$query = $this->persistenceManager->createQueryForType($this->objectType);
-		
 		if ($this->defaultOrderings !== array()) {
 			$query->setOrderings($this->defaultOrderings);
 		}
-		
 		if ($this->defaultQuerySettings !== NULL) {
 			$query->setQuerySettings(clone $this->defaultQuerySettings);
 		}
-		
-		if($limit != NULL) {
-			$query->setLimit((integer)$limit);
+		if ($limit != NULL) {
+			$query->setLimit((int) $limit);
 		}
-		
 		$queryResult = $query->execute();
-		
-		if((count($eventCategories) == 0) && (count($ageCategories) == 0)) {
+		if (count($eventCategories) == 0 && count($ageCategories) == 0) {
 			return $queryResult;
 		}
-		
 		$result = array();
-		foreach($queryResult as $item) {
-			if($this->isInCollection($item->getEventCategory(), $eventCategories)) { 
+		foreach ($queryResult as $item) {
+			if ($this->isInCollection($item->getEventCategory(), $eventCategories)) {
 				$result[] = $item;
 			}
-			if($this->isInCollection($item->getAgeCategory(), $ageCategories)) {
+			if ($this->isInCollection($item->getAgeCategory(), $ageCategories)) {
 				$result[] = $item;
 			}
 		}
-		
 		return $result;
 	}
-	
+
+	/**
+	 * @param $objects
+	 * @param $array
+	 */
 	private function isInCollection($objects, $array) {
-		foreach($objects as $object) {
-			if(in_array($object->getUid(), $array)) {
+		foreach ($objects as $object) {
+			if (in_array($object->getUid(), $array)) {
 				return true;
 			}
 		}
