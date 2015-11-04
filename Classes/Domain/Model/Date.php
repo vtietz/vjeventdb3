@@ -299,6 +299,13 @@ class Date extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 		return $this->duration;
 	}
 	
+	/**
+	 * @return bool True if hidden
+	 */
+	public function isHidden() {
+		return $this->hidden;
+	}
+	
 	
 	
 }

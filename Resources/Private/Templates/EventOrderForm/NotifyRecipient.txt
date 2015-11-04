@@ -6,6 +6,9 @@ You received a reservation request for the following event:
 
 *{eventOrder.event.title}*
 
+Category:		{eventOrder.ageCategory.name}
+Date:			{m:dateItem(date: '{eventOrder.date}', showStartDay: '{settings.eventOrderForm.showStartDay}', timeFormat: '{settings.eventOrderForm.timeFormat}', adjustFrontendTime: '{settings.adjustFrontendTime}')}
+
 from your website {url}.
 
 This is the data from the sender:
@@ -15,8 +18,6 @@ Surname:		{eventOrder.surname}
 Address:		{eventOrder.address}
 Telephone:		{eventOrder.telephone}
 E-Mail:			{eventOrder.email}
-Category:		{eventOrder.ageCategory.name}
-Date:			{m:dateItem(date: '{eventOrder.date}', showStartDay: '{settings.eventOrderForm.showStartDay}', timeFormat: '{settings.eventOrderForm.timeFormat}', adjustFrontendTime: '{settings.adjustFrontendTime}')}
 
 Message:	
 {eventOrder.message}

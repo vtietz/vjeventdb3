@@ -56,5 +56,12 @@ class AgeCategory extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	public function setName($name) {
 		$this->name = $name;
 	}
+	
+	/**
+	 * @return bool True if hidden
+	 */
+	public function isHidden() {
+		return $this->hidden;
+	}
 
 }

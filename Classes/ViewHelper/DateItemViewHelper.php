@@ -85,17 +85,17 @@ class DateItemViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHe
 		if($date->getFrequency() == 1) {
 			$value .= $this->getLL('tx_vjeventdb3_domain_model_date.daily');
 		}
-		else if($date->getFrequency() == 2) {
+		else if($date->getFrequency() == 2 && $date->getStartDate()) {
 			$value .= $this->getLL('tx_vjeventdb3_domain_model_date.every');
 			$value .= ' ';
 			$value .= date('l', $date->getStartDate()->getTimestamp());
 		}
-		else if($date->getFrequency() == 3) {
+		else if($date->getFrequency() == 3 && $date->getStartDate()) {
 			$value = $value.$this->getLL('tx_vjeventdb3_domain_model_date.every');
 			$value .= ' ';
 			$value .= date('d.', $date->getStartDate()->getTimestamp());
 		}
-		else if($date->getFrequency() == 4) {
+		else if($date->getFrequency() == 4 && $date->getStartDate()) {
 			$value = $value.$this->getLL('tx_vjeventdb3_domain_model_date.every');
 			$value .= ' ';
 			$value .= date('d.m.', $date->getStartDate()->getTimestamp());

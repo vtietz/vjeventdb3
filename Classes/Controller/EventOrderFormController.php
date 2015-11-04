@@ -111,11 +111,15 @@ class EventOrderFormController extends \VJmedia\Vjeventdb3\Controller\AbstractCo
 			$item['title'] = $event->getTitle();
 			$item['ageCategory'] = array();
 			foreach($event->getAgeCategory() as $ageCategory) {
-				$item['ageCategory'][$ageCategory->getUid()] = $ageCategory->getName();
+				if(!$ageCategory->isHidden()) {
+					$item['ageCategory'][$ageCategory->getUid()] = $ageCategory->getName();
+				}
 			}
 			$item['dates'] = array();
 			foreach($event->getDates() as $date) {
-				$item['dates'][$date->getUid()] = $label = $this->getDateLabel($date);
+				if(!$date->isHidden() && $date->getStartDate()) {
+					$item['dates'][$date->getUid()] = $label = $this->getDateLabel($date);
+				}
 			}
 			$result[$event->getUid()] = $item;
 		}
@@ -127,9 +131,11 @@ class EventOrderFormController extends \VJmedia\Vjeventdb3\Controller\AbstractCo
 	private function getDateItemOptions(&$dates) {
 		$options = array();
 		foreach ($dates as $date) {
-			$label = $this->getDateLabel($date);
-			$option = new \VJmedia\Vjeventdb3\Domain\ViewModel\SelectOption($date->getUid(), $label);
-			$options[] = $option;
+			if(!$date->isHidden() && $date->getStartDate()) {
+				$label = $this->getDateLabel($date);
+				$option = new \VJmedia\Vjeventdb3\Domain\ViewModel\SelectOption($date->getUid(), $label);
+				$options[] = $option;
+			}
 		}
 		return $options;
 	}

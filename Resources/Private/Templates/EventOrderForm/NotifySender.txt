@@ -7,6 +7,8 @@ we received the following data and will proceed your request as soon as possible
 You have sent a reservation request for the following event:
 
 *{eventOrder.event.title}*
+Category:		{eventOrder.ageCategory.name}
+Date:			{m:dateItem(date: '{eventOrder.date}', showStartDay: '{settings.eventOrderForm.showStartDay}', timeFormat: '{settings.eventOrderForm.timeFormat}', adjustFrontendTime: '{settings.adjustFrontendTime}')}
 
 Your data is as follows:
 
@@ -15,8 +17,6 @@ Surname:		{eventOrder.surname}
 Address:		{eventOrder.address}
 Telephone:		{eventOrder.telephone}
 E-Mail:			{eventOrder.email}
-Category:		{eventOrder.ageCategory.name}
-Date:			{m:dateItem(date: '{eventOrder.date}', showStartDay: '{settings.eventOrderForm.showStartDay}', timeFormat: '{settings.eventOrderForm.timeFormat}', adjustFrontendTime: '{settings.adjustFrontendTime}')}
 
 Message:		
 {eventOrder.message}
