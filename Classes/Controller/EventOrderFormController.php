@@ -247,6 +247,7 @@ class EventOrderFormController extends \VJmedia\Vjeventdb3\Controller\AbstractCo
 		// TODO use \TYPO3\CMS\Core\Mail\MailMessage(), but currently error 500
 		$additionalHeader = 'From: '.$sender. "\r\n";
 		$additionalHeader .= 'Content-type: text/plain; charset=utf-8' . "\r\n";
+		$this->log("Sending email to ". $recipient, 1);
 		return mail($recipient, $subject,  $message, $additionalHeader);
 	}
 	
