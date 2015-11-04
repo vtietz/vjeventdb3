@@ -20,9 +20,7 @@
 		<f:if condition="{settings.eventOrderForm.selectableAgeCategory}">
 			<f:then>
 				<f:form.select id="events{data.uid}" name="events" options="{events}" property="event" optionValueField="uid" optionLabelField="title" />
-				<f:if condition="{eventOrder.event.ageCategory}">
-					<f:form.select id="ages{data.uid}" name="ageCategory" options="{eventOrder.event.ageCategory}" property="ageCategory" optionValueField="uid" optionLabelField="name" />
-				</f:if>
+				<f:form.select id="ages{data.uid}" name="ageCategory" options="{eventOrder.event.ageCategory}" property="ageCategory" optionValueField="uid" optionLabelField="name" />
 			</f:then>
 			<f:else>
 				<f:form.select id="events{data.uid}" name="events" options="{events}" property="event" optionValueField="uid" optionLabelField="titleWithAgeCategory" />
@@ -92,28 +90,51 @@
 
 <script>
 	
-	var eventsdata = <f:format.raw value="{eventsdata}" />;
+	var vjeventdb3_eventsdata = <f:format.raw value="{eventsdata}" />;
 	
-	function updateDropDownOptions(dropdown, data) {
+	function vjeventdb3_updateDropDownOptions(dropdown, data) {
 
 	    $(dropdown).empty();
 	    $.each(data, function(val, text) {
 	    	$(dropdown).append(new Option(text, val));
    		});
 
-	    if($(dropdown).children().size() === 0) {
-	    	$(dropdown).fadeOut();
+	    vjeventdb3_toggleVisibility(dropdown, false);
+	}
+	
+	function vjeventdb3_toggleVisibility(dropdown, instant) {
+	    if($(dropdown).children().size() === 0 || !$(dropdown).first().attr('value')) {
+	    	if(instant) {
+	    		$(dropdown).hide();	
+	    	}
+	    	else {
+	    		$(dropdown).fadeOut();
+	    	}
 	    }
 	    else {
-	    	$(dropdown).fadeIn();
+	    	if(instant) {
+	    		$(dropdown).show();
+	    	}
+	    	else {
+	    		$(dropdown).fadeIn();
+	    	}
 	    }
-		
 	}
 	
 	$('#events{data.uid}').change(function() {
 		var eventId = $(this).val();
-		updateDropDownOptions($('#ages{data.uid}'), eventsdata[eventId]['ageCategory']);
-		updateDropDownOptions($('#dates{data.uid}'), eventsdata[eventId]['dates']);
+		console.log('change ' + eventId);
+		vjeventdb3_updateDropDownOptions($('#ages{data.uid}'), vjeventdb3_eventsdata[eventId]['ageCategory']);
+		vjeventdb3_updateDropDownOptions($('#dates{data.uid}'), vjeventdb3_eventsdata[eventId]['dates']);
+	});
+	
+	// bind unload so that ready is always fired (http://bugs.jquery.com/ticket/8684)
+	$(window).unload(function(){});
+
+	$(document).ready(function() { 
+		console.log('ready');
+		vjeventdb3_toggleVisibility($('#ages{data.uid}'), true);
+		vjeventdb3_toggleVisibility($('#dates{data.uid}'), true);
 	});
 	
 		
