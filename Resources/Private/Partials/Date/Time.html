@@ -6,7 +6,7 @@
 		<f:then><f:translate key="tx_vjeventdb3_domain_model_date.from" /></f:then>
 		<f:else><f:translate key="tx_vjeventdb3_domain_model_date.at" /></f:else>
 	</f:if>
-	<m:timestamp time="{date.startTime}" format="{settings.timeFormat}" adjust="{settings.adjustFrontendTime}" />&nbsp;<f:translate key="tx_vjeventdb3_domain_model_date.clock" /></td>
+	<m:timestamp time="{date.startTime}" format="{settings.timeFormat}" adjust="{settings.adjustFrontendTime}" />&nbsp;<f:translate key="tx_vjeventdb3_domain_model_date.clock" />
 	<f:if condition="{date.endTime}">
 		<f:then><f:translate key="tx_vjeventdb3_domain_model_date.to" /> 
 		<m:timestamp time="{date.endTime}" format="{settings.timeFormat}" adjust="{settings.adjustFrontendTime}" /></f:then>

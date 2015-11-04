@@ -17,7 +17,17 @@ class TranslateDateViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractV
 	 */
 	public function render() {
 		$result = $this->renderChildren();
-    	$parts = \TYPO3\CMS\Core\Utility\GeneralUtility::trimExplode(' ', $result);
+		return $this->translate($result);
+		
+	}
+	
+	/**
+	 * Translates the content which can contain date names.
+	 * @param string $content
+	 * @return The translated content.
+	 */
+	public function translate($content) {
+		$parts = \TYPO3\CMS\Core\Utility\GeneralUtility::trimExplode(' ', $content);
     	foreach ($parts as $part) {
     		if(!is_numeric($part)) {
     			$part = str_replace(",", "", $part);
@@ -25,12 +35,11 @@ class TranslateDateViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractV
     			$llKey = 'LLL:EXT:vjeventdb3/Resources/Private/Language/locallang.xlf:tx_vjeventdb3_translateDateViewHelper.' . $part;
     			$replacement = \TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate($llKey, '');
     			if($replacement) {
-    				$result = str_replace($part, $replacement, $result);
+    				$content = str_replace($part, $replacement, $content);
     			}
     		} 
     	}
-		return $result;
-		
+    	return $content;
 	}
 }
 ?>

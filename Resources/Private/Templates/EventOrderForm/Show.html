@@ -1,3 +1,5 @@
+{namespace m=VJmedia\Vjeventdb3\ViewHelper}
+
 <f:layout name="Default" />
 
 <f:section name="main">
@@ -13,8 +15,24 @@
 	addQueryString="true">
 
 	<h1>
+
 		<f:translate key="tx_vjeventdb3_event_order_form.order" />
-		<f:form.select id="events{data.uid}" name="events" options="{events}" property="event" optionValueField="uid" optionLabelField="titleWithAgeCategory" />
+		<f:if condition="{settings.eventOrderForm.selectableAgeCategory}">
+			<f:then>
+				<f:form.select id="events{data.uid}" name="events" options="{events}" property="event" optionValueField="uid" optionLabelField="title" />
+				<f:if condition="{eventOrder.event.ageCategory}">
+					<f:form.select id="ages{data.uid}" name="ageCategory" options="{eventOrder.event.ageCategory}" property="ageCategory" optionValueField="uid" optionLabelField="name" />
+				</f:if>
+			</f:then>
+			<f:else>
+				<f:form.select id="events{data.uid}" name="events" options="{events}" property="event" optionValueField="uid" optionLabelField="titleWithAgeCategory" />
+			</f:else>
+		</f:if>
+		
+		<f:if condition="{settings.eventOrderForm.selectableDate}">
+			<f:form.select id="dates{data.uid}" name="date" options="{dateItems}" property="date" optionValueField="uid" optionLabelField="label" />
+		</f:if>
+	
 	</h1>
 
 	<div class="form-left">
@@ -68,8 +86,37 @@
 	
 	</div>
 	
-	<div class="clearer" />
-	
 </f:form>
+
+<div class="clearer"></div>
+
+<script>
+	
+	var eventsdata = <f:format.raw value="{eventsdata}" />;
+	
+	function updateDropDownOptions(dropdown, data) {
+
+	    $(dropdown).empty();
+	    $.each(data, function(val, text) {
+	    	$(dropdown).append(new Option(text, val));
+   		});
+
+	    if($(dropdown).children().size() === 0) {
+	    	$(dropdown).fadeOut();
+	    }
+	    else {
+	    	$(dropdown).fadeIn();
+	    }
+		
+	}
+	
+	$('#events{data.uid}').change(function() {
+		var eventId = $(this).val();
+		updateDropDownOptions($('#ages{data.uid}'), eventsdata[eventId]['ageCategory']);
+		updateDropDownOptions($('#dates{data.uid}'), eventsdata[eventId]['dates']);
+	});
+	
+		
+</script>
 
 </f:section>

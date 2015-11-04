@@ -176,6 +176,16 @@ plugin.tx_vjeventdb3.settings {
 		# default is FILE:EXT:vjeventdb3/Resources/Private/Templates/EventOrderForm/NotifySender.txt
 		templateFile.NotifySender =
 		
+		selectableAgeCategory = 1
+		selectableDate = 1
+		
+		timeFormat = H:i
+		startDateFormat =
+		endDateFormat =
+		startTimeFormat =
+		endTimeFormat =
+		showStartDay = 0
+		
 	}
 
 }

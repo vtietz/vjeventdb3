@@ -10,12 +10,16 @@ from your website {url}.
 
 This is the data from the sender:
 
-Name:		{eventOrder.name}
-Surname:	{eventOrder.surname}
-Address:	{eventOrder.address}
-Telephone:	{eventOrder.telephone}
-E-Mail:		{eventOrder.email}
-Message:	{eventOrder.message}
+Name:			{eventOrder.name}
+Surname:		{eventOrder.surname}
+Address:		{eventOrder.address}
+Telephone:		{eventOrder.telephone}
+E-Mail:			{eventOrder.email}
+Category:		{eventOrder.ageCategory.name}
+Date:			{m:dateItem(date: '{eventOrder.date}', showStartDay: '{settings.eventOrderForm.showStartDay}', timeFormat: '{settings.eventOrderForm.timeFormat}', adjustFrontendTime: '{settings.adjustFrontendTime}')}
+
+Message:	
+{eventOrder.message}
 
 Sincerly,
 Your vjeventdb3

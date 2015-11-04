@@ -118,6 +118,10 @@ abstract class AbstractController extends \TYPO3\CMS\Extbase\Mvc\Controller\Acti
 			$templatePathAndFilename = \TYPO3\CMS\Core\Utility\GeneralUtility::getFileAbsFileName($templatePathAndFilename);
 		}
 		$emailView->setTemplatePathAndFilename($templatePathAndFilename);
+		
+		$partialRootPath = \TYPO3\CMS\Core\Utility\GeneralUtility::getFileAbsFileName($extbaseFrameworkConfiguration['view']['partialRootPath']);
+		$emailView->setPartialRootPath($partialRootPath);
+		
 		$emailView->assign('settings', $this->settings);
 		return $emailView;
 	}

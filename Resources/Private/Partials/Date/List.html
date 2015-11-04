@@ -3,9 +3,7 @@
 <ul class="tx-vjeventdb-dates">
 <f:for each="{dates}" as="date">
 	<li>
-		<m:translateDate><f:render partial="Date/Date" arguments="{date:date}" /></m:translateDate>
-		<f:render partial="Date/Time" arguments="{date:date}" />
-		<f:translate key="tx_vjeventdb3_domain_model_date.clock" />
+		{m:dateItem(date: '{date}', showStartDay: '{settings.showStartDay}', timeFormat: '{settings.eventOrderForm.timeFormat}', adjustFrontendTime: '{settings.adjustFrontendTime}')}
 	</li>
 </f:for>
 </ul>

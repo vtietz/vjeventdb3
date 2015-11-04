@@ -2,6 +2,10 @@
 
 namespace VJmedia\Vjeventdb3\Controller;
 
+use \VJmedia\Vjeventdb3\ViewHelper\DateItemViewHelper;
+use \VJmedia\Vjeventdb3\ViewModel\SelectOption;
+use TYPO3\CMS\Extensionmanager\ViewHelpers\Format\JsonEncodeViewHelper;
+
 /***************************************************************
  *
 *  Copyright notice
@@ -49,6 +53,22 @@ class EventOrderFormController extends \VJmedia\Vjeventdb3\Controller\AbstractCo
 	protected $eventOrderRepository = NULL;
 	
 	/**
+	 * dateRepository
+	 *
+	 * @var \VJmedia\Vjeventdb3\Domain\Repository\DateRepository
+	 * @inject
+	 */
+	protected $dateRepository = NULL;
+	
+	/**
+	 * Current DateItemViewHelper.
+	 *
+	 * @var \VJmedia\Vjeventdb3\ViewHelper\DateItemViewHelper
+	 * @inject
+	 */
+	protected $dateItemViewHelper = NULL;
+	
+	/**
 	 * action show
 	 *
 	 * @return void
@@ -58,7 +78,15 @@ class EventOrderFormController extends \VJmedia\Vjeventdb3\Controller\AbstractCo
 		
 		$event = $this->getCurrentEvent();
 		if($event != null) {
-			$eventOrder->setEvent($this->getCurrentEvent());
+			$eventOrder->setEvent($event);
+			$this->view->assign('selectedEvent', $event);
+			$this->view->assign('dateItems', $this->getDateItemOptions($event->getDates()));
+		}
+		
+		$date = $this->getCurrentDate();
+		if($date != null) {
+			$eventOrder->setDate($date);
+			$this->view->assign('selectedDate', $date);
 		}
 		
 		$this->view->assign('eventOrder', $eventOrder);
@@ -70,6 +98,49 @@ class EventOrderFormController extends \VJmedia\Vjeventdb3\Controller\AbstractCo
 		
 		$cObjData = $this->configurationManager->getContentObject()->data;
 		$this->view->assign('data', $cObjData);
+		
+		$this->view->assign('settings', $this->settings);
+
+		$this->view->assign('eventsdata', json_encode($this->getEventsData($events)));
+
+	}
+	
+	private function getEventsData($events) {
+		
+		$result = array();
+		foreach($events as $event) {
+			$item = array();
+			$item['title'] = $event->getTitle();
+			$item['ageCategory'] = array();
+			foreach($event->getAgeCategory() as $ageCategory) {
+				$item['ageCategory'][$ageCategory->getUid()] = $ageCategory->getName();
+			}
+			$item['dates'] = array();
+			foreach($event->getDates() as $date) {
+				$item['dates'][$date->getUid()] = $label = $this->getDateLabel($date);
+			}
+			$result[$event->getUid()] = $item;
+		}
+
+		return $result;
+		
+	}
+	
+	private function getDateItemOptions(&$dates) {
+		$options = array();
+		foreach ($dates as $date) {
+			$label = $this->getDateLabel($date);
+			$option = new \VJmedia\Vjeventdb3\Domain\ViewModel\SelectOption($date->getUid(), $label);
+			$options[] = $option;
+		}
+		return $options;
+	}
+	
+	private function getDateLabel(&$date) {
+		return $this->dateItemViewHelper->render($date,
+				$this->settings['eventOrderForm']['showStartDay'],
+				$this->settings['eventOrderForm']['timeFormat'],
+				$this->settings['adjustFrontendTime']);
 	}
 	
 	private function addTitleWithAgeCategory(&$events) {
@@ -120,6 +191,21 @@ class EventOrderFormController extends \VJmedia\Vjeventdb3\Controller\AbstractCo
 		return $event;
 	}
 	
+	protected function getCurrentDate() {
+		$dateUid = $_GET['tx_vjeventdb3_eventdetail']['date'];
+		$date = $this->dateRepository->findByUid($dateUid);
+		return $date;
+	}	
+	
+	/**
+	 * @return void
+	 */
+	protected function initializeSubmitAction(){
+		$propertyMappingConfiguration = $this->arguments['eventOrder']->getPropertyMappingConfiguration();
+		$propertyMappingConfiguration->allowAllProperties();
+		$propertyMappingConfiguration->setTypeConverterOption('TYPO3\CMS\Extbase\Property\TypeConverter\PersistentObjectConverter', \TYPO3\CMS\Extbase\Property\TypeConverter\PersistentObjectConverter::CONFIGURATION_CREATION_ALLOWED, TRUE);
+	}
+	
 	/**
 	 * action submit
 	 * @param \VJmedia\Vjeventdb3\Domain\Model\EventOrder $eventOrder
@@ -158,7 +244,7 @@ class EventOrderFormController extends \VJmedia\Vjeventdb3\Controller\AbstractCo
 	 * @param string $sender
 	 */
 	protected function sendMail($recipient, $subject, $message, $sender) {
-		// TODO use \TYPO3\CMS\Core\Mail\MailMessage(), but currently error 500		
+		// TODO use \TYPO3\CMS\Core\Mail\MailMessage(), but currently error 500
 		$additionalHeader = 'From: '.$sender. "\r\n";
 		$additionalHeader .= 'Content-type: text/plain; charset=utf-8' . "\r\n";
 		return mail($recipient, $subject,  $message, $additionalHeader);
