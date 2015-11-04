@@ -74,35 +74,33 @@ class EventOrderFormController extends \VJmedia\Vjeventdb3\Controller\AbstractCo
 	 * @return void
 	 */
 	public function showAction() {
+		
 		$eventOrder = $this->objectManager->get('VJmedia\Vjeventdb3\Domain\Model\EventOrder');
-		
-		$event = $this->getCurrentEvent();
-		if($event != null) {
-			$eventOrder->setEvent($event);
-			$this->view->assign('selectedEvent', $event);
-			$this->view->assign('dateItems', $this->getDateItemOptions($event->getDates()));
-		}
-		
-		$date = $this->getCurrentDate();
-		if($date != null) {
-			$eventOrder->setDate($date);
-			$this->view->assign('selectedDate', $date);
-		}
-		
 		$this->view->assign('eventOrder', $eventOrder);
+
 		$events = $this->eventRepository->findAll();
 		$this->addTitleWithAgeCategory($events);
-		
+
 		$this->view->assign('events', $events);
 		$this->view->assign('sr_freecap', \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('sr_freecap'));
-		
-		$cObjData = $this->configurationManager->getContentObject()->data;
-		$this->view->assign('data', $cObjData);
-		
-		$this->view->assign('settings', $this->settings);
-
 		$this->view->assign('eventsdata', json_encode($this->getEventsData($events)));
-
+		$this->view->assign('data', $this->configurationManager->getContentObject()->data);
+		$this->view->assign('settings', $this->settings);
+		
+		$event = $this->getCurrentEvent();
+		if(empty($event)) {
+			$event = $events->getFirst();			
+		}
+		
+		$eventOrder->setEvent($event);
+		$this->view->assign('dateItems', $this->getDateItemOptions($event->getDates()));
+		
+		$date = $this->getCurrentDate();
+		if(empty($date)) {
+			$date = $this->objectManager->get('VJmedia\Vjeventdb3\Domain\Model\Date');
+		}
+		$eventOrder->setDate($date);
+		
 	}
 	
 	private function getEventsData($events) {
