@@ -34,7 +34,7 @@ $GLOBALS['TCA']['tx_vjeventdb3_domain_model_event'] = array(
 			'starttime' => 'starttime',
 			'endtime' => 'endtime',
 		),
-		'searchFields' => 'title,subtitle,teasertext,description,images,teaser_images,location,dates,event_category,age_category,prices,performers,',
+		'searchFields' => 'title,subtitle,teasertext,description,images,teaser_images,submission_form_mode,location,dates,event_category,age_category,prices,performers,',
 		'dynamicConfigFile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath($_EXTKEY) . 'Configuration/TCA/Event.php',
 		'iconfile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath($_EXTKEY) . 'Resources/Public/Icons/tx_vjeventdb3_domain_model_event.gif'
 	),
@@ -348,7 +348,7 @@ $GLOBALS['TCA']['tx_vjeventdb3_domain_model_eventorder'] = array(
 			'starttime' => 'starttime',
 			'endtime' => 'endtime',
 		),
-		'searchFields' => 'name,surname,address,telephone,email,message,event,age_category,date,',
+		'searchFields' => 'name,surname,address,telephone,email,message,appointment,mailtosender,mailtorecipient,event,age_category,date,',
 		'dynamicConfigFile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath($_EXTKEY) . 'Configuration/TCA/EventOrder.php',
 		'iconfile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath($_EXTKEY) . 'Resources/Public/Icons/tx_vjeventdb3_domain_model_eventorder.gif'
 	),

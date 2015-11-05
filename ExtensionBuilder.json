@@ -94,6 +94,16 @@
                             "propertyName": "teaserImages",
                             "propertyType": "Image",
                             "uid": "1085273079223"
+                        },
+                        {
+                            "allowedFileTypes": "",
+                            "maxItems": "10",
+                            "propertyDescription": "",
+                            "propertyIsExcludeField": true,
+                            "propertyIsRequired": false,
+                            "propertyName": "submissionFormMode",
+                            "propertyType": "Select",
+                            "uid": "702519271990"
                         }
                     ]
                 },
@@ -907,6 +917,36 @@
                             "propertyName": "message",
                             "propertyType": "Text",
                             "uid": "1029036751740"
+                        },
+                        {
+                            "allowedFileTypes": "",
+                            "maxItems": "1",
+                            "propertyDescription": "",
+                            "propertyIsExcludeField": true,
+                            "propertyIsRequired": false,
+                            "propertyName": "appointment",
+                            "propertyType": "DateTime",
+                            "uid": "391531530536"
+                        },
+                        {
+                            "allowedFileTypes": "",
+                            "maxItems": "1",
+                            "propertyDescription": "",
+                            "propertyIsExcludeField": true,
+                            "propertyIsRequired": false,
+                            "propertyName": "mailtosender",
+                            "propertyType": "Text",
+                            "uid": "344338365698"
+                        },
+                        {
+                            "allowedFileTypes": "",
+                            "maxItems": "1",
+                            "propertyDescription": "",
+                            "propertyIsExcludeField": true,
+                            "propertyIsRequired": false,
+                            "propertyName": "mailtorecipient",
+                            "propertyType": "Text",
+                            "uid": "482217573286"
                         }
                     ]
                 },
@@ -1144,7 +1184,7 @@
         }
     ],
     "log": {
-        "last_modified": "2015-11-01 10:38",
+        "last_modified": "2015-11-05 08:54",
         "extension_builder_version": "6.2.0",
         "be_user": " (1)"
     }

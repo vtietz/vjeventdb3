@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <xliff version="1.0">
-	<file source-language="en" datatype="plaintext" original="messages" date="2014-08-06T20:52:38Z" product-name="vjeventdb3">
+	<file source-language="en" datatype="plaintext" original="messages" date="2015-11-05T20:54:15Z" product-name="vjeventdb3">
 		<header/>
 		<body>
 			<trans-unit id="tx_vjeventdb3_domain_model_event">
@@ -23,6 +23,9 @@
 			</trans-unit>
 			<trans-unit id="tx_vjeventdb3_domain_model_event.teaser_images">
 				<source>Teaser Images</source>
+			</trans-unit>
+			<trans-unit id="tx_vjeventdb3_domain_model_event.submission_form_mode">
+				<source>Submission Form Mode</source>
 			</trans-unit>
 			<trans-unit id="tx_vjeventdb3_domain_model_event.location">
 				<source>Location</source>
@@ -149,7 +152,7 @@
 			</trans-unit>
 			<trans-unit id="tx_vjeventdb3_domain_model_eventorder">
 				<source>Event Order</source>
-			</trans-unit>			
+			</trans-unit>
 			<trans-unit id="tx_vjeventdb3_domain_model_eventorder.name">
 				<source>Name</source>
 			</trans-unit>
@@ -168,29 +171,33 @@
 			<trans-unit id="tx_vjeventdb3_domain_model_eventorder.message">
 				<source>Message</source>
 			</trans-unit>
+			<trans-unit id="tx_vjeventdb3_domain_model_eventorder.appointment">
+				<source>Appointment</source>
+			</trans-unit>
+			<trans-unit id="tx_vjeventdb3_domain_model_eventorder.mailtosender">
+				<source>Mailtosender</source>
+			</trans-unit>
+			<trans-unit id="tx_vjeventdb3_domain_model_eventorder.mailtorecipient">
+				<source>Mailtorecipient</source>
+			</trans-unit>
 			<trans-unit id="tx_vjeventdb3_domain_model_eventorder.event">
 				<source>Event</source>
 			</trans-unit>
 			<trans-unit id="tx_vjeventdb3_domain_model_eventorder.age_category">
-                <source>Age Category</source>
-            </trans-unit>
-            <trans-unit id="tx_vjeventdb3_domain_model_eventorder.date">
-                <source>Date</source>
-            </trans-unit>
-			
+				<source>Age Category</source>
+			</trans-unit>
+			<trans-unit id="tx_vjeventdb3_domain_model_eventorder.date">
+				<source>Date</source>
+			</trans-unit>
 			<trans-unit id="tx_vjeventdb3_domain_model_price.quanity">
 				<source>Quanity</source>
 			</trans-unit>
 			<trans-unit id="tx_vjeventdb3_domain_model_price.unit">
 				<source>Unit</source>
 			</trans-unit>
-			
 			<trans-unit id="tx_vjeventdb3_flexform.maxItems">
 				<source>Maximum item count</source>
-			</trans-unit>	
-			
-			
-			
+			</trans-unit>
 		</body>
 	</file>
 </xliff>

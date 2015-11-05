@@ -189,6 +189,76 @@ class EventOrderTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 	/**
 	 * @test
 	 */
+	public function getAppointmentReturnsInitialValueForDateTime() {
+		$this->assertEquals(
+			NULL,
+			$this->subject->getAppointment()
+		);
+	}
+
+	/**
+	 * @test
+	 */
+	public function setAppointmentForDateTimeSetsAppointment() {
+		$dateTimeFixture = new \DateTime();
+		$this->subject->setAppointment($dateTimeFixture);
+
+		$this->assertAttributeEquals(
+			$dateTimeFixture,
+			'appointment',
+			$this->subject
+		);
+	}
+
+	/**
+	 * @test
+	 */
+	public function getMailtosenderReturnsInitialValueForString() {
+		$this->assertSame(
+			'',
+			$this->subject->getMailtosender()
+		);
+	}
+
+	/**
+	 * @test
+	 */
+	public function setMailtosenderForStringSetsMailtosender() {
+		$this->subject->setMailtosender('Conceived at T3CON10');
+
+		$this->assertAttributeEquals(
+			'Conceived at T3CON10',
+			'mailtosender',
+			$this->subject
+		);
+	}
+
+	/**
+	 * @test
+	 */
+	public function getMailtorecipientReturnsInitialValueForString() {
+		$this->assertSame(
+			'',
+			$this->subject->getMailtorecipient()
+		);
+	}
+
+	/**
+	 * @test
+	 */
+	public function setMailtorecipientForStringSetsMailtorecipient() {
+		$this->subject->setMailtorecipient('Conceived at T3CON10');
+
+		$this->assertAttributeEquals(
+			'Conceived at T3CON10',
+			'mailtorecipient',
+			$this->subject
+		);
+	}
+
+	/**
+	 * @test
+	 */
 	public function getEventReturnsInitialValueForEvent() {
 		$this->assertEquals(
 			NULL,

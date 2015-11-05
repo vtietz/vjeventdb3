@@ -6,10 +6,10 @@ if (!defined ('TYPO3_MODE')) {
 $GLOBALS['TCA']['tx_vjeventdb3_domain_model_eventorder'] = array(
 	'ctrl' => $GLOBALS['TCA']['tx_vjeventdb3_domain_model_eventorder']['ctrl'],
 	'interface' => array(
-		'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, name, surname, address, telephone, email, message, event, age_category, date',
+		'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, name, surname, address, telephone, email, message, appointment, mailtosender, mailtorecipient, event, age_category, date',
 	),
 	'types' => array(
-		'1' => array('showitem' => 'sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, hidden;;1, name, surname, address, telephone, email, message, event, age_category, date, --div--;LLL:EXT:cms/locallang_ttc.xlf:tabs.access, starttime, endtime'),
+		'1' => array('showitem' => 'sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, hidden;;1, name, surname, address, telephone, email, message, appointment, mailtosender, mailtorecipient, event, age_category, date, --div--;LLL:EXT:cms/locallang_ttc.xlf:tabs.access, starttime, endtime'),
 	),
 	'palettes' => array(
 		'1' => array('showitem' => ''),
@@ -145,6 +145,37 @@ $GLOBALS['TCA']['tx_vjeventdb3_domain_model_eventorder'] = array(
 		'message' => array(
 			'exclude' => 1,
 			'label' => 'LLL:EXT:vjeventdb3/Resources/Private/Language/locallang_db.xlf:tx_vjeventdb3_domain_model_eventorder.message',
+			'config' => array(
+				'type' => 'text',
+				'cols' => 40,
+				'rows' => 15,
+				'eval' => 'trim'
+			)
+		),
+		'appointment' => array(
+			'exclude' => 1,
+			'label' => 'LLL:EXT:vjeventdb3/Resources/Private/Language/locallang_db.xlf:tx_vjeventdb3_domain_model_eventorder.appointment',
+			'config' => array(
+				'type' => 'input',
+				'size' => 10,
+				'eval' => 'datetime',
+				'checkbox' => 1,
+				'default' => time()
+			),
+		),
+		'mailtosender' => array(
+			'exclude' => 1,
+			'label' => 'LLL:EXT:vjeventdb3/Resources/Private/Language/locallang_db.xlf:tx_vjeventdb3_domain_model_eventorder.mailtosender',
+			'config' => array(
+				'type' => 'text',
+				'cols' => 40,
+				'rows' => 15,
+				'eval' => 'trim'
+			)
+		),
+		'mailtorecipient' => array(
+			'exclude' => 1,
+			'label' => 'LLL:EXT:vjeventdb3/Resources/Private/Language/locallang_db.xlf:tx_vjeventdb3_domain_model_eventorder.mailtorecipient',
 			'config' => array(
 				'type' => 'text',
 				'cols' => 40,

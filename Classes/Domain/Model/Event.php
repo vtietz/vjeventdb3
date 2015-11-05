@@ -126,6 +126,13 @@ class Event extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	protected $performers = NULL;
 
 	/**
+	 * submissionFormMode
+	 *
+	 * @var integer
+	 */
+	protected $submissionFormMode = 0;
+
+	/**
 	 * __construct
 	 */
 	public function __construct() {
@@ -553,6 +560,25 @@ class Event extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 */
 	public function setTitleWithAgeCategory($titleWithAgeCategory) {
 		return $this->titleWithAgeCategory = $titleWithAgeCategory;
+	}
+
+	/**
+	 * Returns the submissionFormMode
+	 *
+	 * @return integer $submissionFormMode
+	 */
+	public function getSubmissionFormMode() {
+		return $this->submissionFormMode;
+	}
+
+	/**
+	 * Sets the submissionFormMode
+	 *
+	 * @param integer $submissionFormMode
+	 * @return void
+	 */
+	public function setSubmissionFormMode($submissionFormMode) {
+		$this->submissionFormMode = $submissionFormMode;
 	}
 
 }

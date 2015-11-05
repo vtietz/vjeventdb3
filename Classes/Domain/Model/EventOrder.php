@@ -101,6 +101,27 @@ class EventOrder extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	protected $date = NULL;
 
 	/**
+	 * appointment
+	 *
+	 * @var \DateTime
+	 */
+	protected $appointment = NULL;
+
+	/**
+	 * mailtosender
+	 *
+	 * @var string
+	 */
+	protected $mailtosender = '';
+
+	/**
+	 * mailtorecipient
+	 *
+	 * @var string
+	 */
+	protected $mailtorecipient = '';
+
+	/**
 	 * Returns the name
 	 *
 	 * @return string $name
@@ -288,6 +309,63 @@ class EventOrder extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 */
 	public function setDate(\VJmedia\Vjeventdb3\Domain\Model\Date $date) {
 		$this->date = $date;
+	}
+
+	/**
+	 * Returns the appointment
+	 *
+	 * @return \DateTime $appointment
+	 */
+	public function getAppointment() {
+		return $this->appointment;
+	}
+
+	/**
+	 * Sets the appointment
+	 *
+	 * @param \DateTime $appointment
+	 * @return void
+	 */
+	public function setAppointment(\DateTime $appointment) {
+		$this->appointment = $appointment;
+	}
+
+	/**
+	 * Returns the mailtosender
+	 *
+	 * @return string $mailtosender
+	 */
+	public function getMailtosender() {
+		return $this->mailtosender;
+	}
+
+	/**
+	 * Sets the mailtosender
+	 *
+	 * @param string $mailtosender
+	 * @return void
+	 */
+	public function setMailtosender($mailtosender) {
+		$this->mailtosender = $mailtosender;
+	}
+
+	/**
+	 * Returns the mailtorecipient
+	 *
+	 * @return string $mailtorecipient
+	 */
+	public function getMailtorecipient() {
+		return $this->mailtorecipient;
+	}
+
+	/**
+	 * Sets the mailtorecipient
+	 *
+	 * @param string $mailtorecipient
+	 * @return void
+	 */
+	public function setMailtorecipient($mailtorecipient) {
+		$this->mailtorecipient = $mailtorecipient;
 	}
 
 }

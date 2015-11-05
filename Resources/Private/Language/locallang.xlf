@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <xliff version="1.0">
-	<file source-language="en" datatype="plaintext" original="messages" date="2014-07-26T20:27:36Z" product-name="vjeventdb3">
+	<file source-language="en" datatype="plaintext" original="messages" date="2015-11-05T20:54:15Z" product-name="vjeventdb3">
 		<header/>
 		<body>
 			<trans-unit id="tx_vjeventdb3_domain_model_event">
@@ -23,6 +23,9 @@
 			</trans-unit>
 			<trans-unit id="tx_vjeventdb3_domain_model_event.teaser_images">
 				<source>Teaser Images</source>
+			</trans-unit>
+			<trans-unit id="tx_vjeventdb3_domain_model_event.submission_form_mode">
+				<source>Submission Form Mode</source>
 			</trans-unit>
 			<trans-unit id="tx_vjeventdb3_domain_model_event.location">
 				<source>Location</source>
@@ -147,94 +150,120 @@
 			<trans-unit id="tx_vjeventdb3_domain_model_performercategory.name">
 				<source>Name</source>
 			</trans-unit>
+			<trans-unit id="tx_vjeventdb3_domain_model_eventorder">
+				<source>Event Order</source>
+			</trans-unit>
+			<trans-unit id="tx_vjeventdb3_domain_model_eventorder.name">
+				<source>Name</source>
+			</trans-unit>
+			<trans-unit id="tx_vjeventdb3_domain_model_eventorder.surname">
+				<source>Surname</source>
+			</trans-unit>
+			<trans-unit id="tx_vjeventdb3_domain_model_eventorder.address">
+				<source>Address</source>
+			</trans-unit>
+			<trans-unit id="tx_vjeventdb3_domain_model_eventorder.telephone">
+				<source>Telephone</source>
+			</trans-unit>
+			<trans-unit id="tx_vjeventdb3_domain_model_eventorder.email">
+				<source>Email</source>
+			</trans-unit>
+			<trans-unit id="tx_vjeventdb3_domain_model_eventorder.message">
+				<source>Message</source>
+			</trans-unit>
+			<trans-unit id="tx_vjeventdb3_domain_model_eventorder.appointment">
+				<source>Appointment</source>
+			</trans-unit>
+			<trans-unit id="tx_vjeventdb3_domain_model_eventorder.mailtosender">
+				<source>Mailtosender</source>
+			</trans-unit>
+			<trans-unit id="tx_vjeventdb3_domain_model_eventorder.mailtorecipient">
+				<source>Mailtorecipient</source>
+			</trans-unit>
+			<trans-unit id="tx_vjeventdb3_domain_model_eventorder.event">
+				<source>Event</source>
+			</trans-unit>
+			<trans-unit id="tx_vjeventdb3_domain_model_eventorder.age_category">
+				<source>Age Category</source>
+			</trans-unit>
+			<trans-unit id="tx_vjeventdb3_domain_model_eventorder.date">
+				<source>Date</source>
+			</trans-unit>
 			<trans-unit id="tx_vjeventdb3_domain_model_price.quanity">
 				<source>Quanity</source>
 			</trans-unit>
 			<trans-unit id="tx_vjeventdb3_domain_model_price.unit">
 				<source>Unit</source>
 			</trans-unit>
-			
 			<trans-unit id="tx_vjeventdb3_duration">
 				<source>Duration</source>
 			</trans-unit>
-			
-			
 			<trans-unit id="tx_vjeventdb3_domain_model_date.Every">
 				<source>Every</source>
-			</trans-unit>			
+			</trans-unit>
 			<trans-unit id="tx_vjeventdb3_domain_model_date.every">
 				<source>every</source>
-			</trans-unit>			
+			</trans-unit>
 			<trans-unit id="tx_vjeventdb3_domain_model_date.From">
 				<source>From</source>
-			</trans-unit>			
+			</trans-unit>
 			<trans-unit id="tx_vjeventdb3_domain_model_date.FromWithEnd">
 				<source>From</source>
-			</trans-unit>	
+			</trans-unit>
 			<trans-unit id="tx_vjeventdb3_domain_model_date.from">
 				<source>from</source>
-			</trans-unit>			
+			</trans-unit>
 			<trans-unit id="tx_vjeventdb3_domain_model_date.to">
 				<source>to</source>
-			</trans-unit>			
+			</trans-unit>
 			<trans-unit id="tx_vjeventdb3_domain_model_date.at">
 				<source>at</source>
-			</trans-unit>			
+			</trans-unit>
 			<trans-unit id="tx_vjeventdb3_domain_model_date.clock">
 				<source></source>
 			</trans-unit>
-
-
 			<trans-unit id="tx_vjeventdb3_domain_model_date.dates">
 				<source>Dates</source>
 			</trans-unit>
 			<trans-unit id="tx_vjeventdb3_domain_model_date.nextDates">
 				<source>Next Dates</source>
-			</trans-unit>	
+			</trans-unit>
 			<trans-unit id="tx_vjeventdb3_domain_model_date.Dates">
 				<source>All Dates</source>
-			</trans-unit>	
-
+			</trans-unit>
 			<trans-unit id="tx_vjeventdb3_domain_model_date.once">
 				<source>l, d.m.</source>
-			</trans-unit>	
+			</trans-unit>
 			<trans-unit id="tx_vjeventdb3_domain_model_date.timeFormat">
 				<source>h:i A</source>
-			</trans-unit>	
+			</trans-unit>
 			<trans-unit id="tx_vjeventdb3_domain_model_date.dateFormat">
 				<source>F jS</source>
-			</trans-unit>		
-			
+			</trans-unit>
 			<trans-unit id="tx_vjeventdb3_back_to_list">
 				<source>Back to list</source>
 			</trans-unit>
-
 			<trans-unit id="tx_vjeventdb3_allDates">
 				<source>All dates</source>
 			</trans-unit>
-
 			<trans-unit id="tx_vjeventdb3_nextDates">
 				<source>Next dates</source>
 			</trans-unit>
-
 			<trans-unit id="tx_vjeventdb3_nextDate">
 				<source>Next date</source>
 			</trans-unit>
-
 			<trans-unit id="tx_vjeventdb3_dates">
 				<source>Dates</source>
 			</trans-unit>
-
 			<trans-unit id="tx_vjeventdb3_prices">
 				<source>Prices</source>
 			</trans-unit>
 			<trans-unit id="tx_vjeventdb3_furtherPricesOnRequest">
 				<source>Further prices on request</source>
-			</trans-unit>			
+			</trans-unit>
 			<trans-unit id="tx_vjeventdb3_additionalPriceNotes">
 				<source></source>
 			</trans-unit>
-			
 			<trans-unit id="tx_vjeventdb3_datepicker_range.day">
 				<source>Day</source>
 			</trans-unit>
@@ -247,22 +276,18 @@
 			<trans-unit id="tx_vjeventdb3_datepicker_range.year">
 				<source>Year</source>
 			</trans-unit>
-
 			<trans-unit id="tx_vjeventdb3_datepicker_range.next">
 				<source>Next</source>
-			</trans-unit>			
+			</trans-unit>
 			<trans-unit id="tx_vjeventdb3_datepicker_range.previous">
 				<source>Previous</source>
-			</trans-unit>	
+			</trans-unit>
 			<trans-unit id="tx_vjeventdb3_datepicker_range.today">
 				<source>Today</source>
-			</trans-unit>			
-					
-		
-			<!-- Flexform -->
+			</trans-unit>
 			<trans-unit id="tx_vjeventdb3_flexform.action">
 				<source>Action</source>
-			</trans-unit>			
+			</trans-unit>
 			<trans-unit id="tx_vjeventdb3_flexform.listEventAction">
 				<source>Calendar list of events</source>
 			</trans-unit>
@@ -271,101 +296,94 @@
 			</trans-unit>
 			<trans-unit id="tx_vjeventdb3_flexform.teaserEventAction">
 				<source>Teaser list of events</source>
-			</trans-unit>			
+			</trans-unit>
 			<trans-unit id="tx_vjeventdb3_flexform.galleryEventAction">
 				<source>Gallery of events</source>
-			</trans-unit>			
+			</trans-unit>
 			<trans-unit id="tx_vjeventdb3_flexform.showEventAction">
 				<source>Show event details</source>
-			</trans-unit>			
+			</trans-unit>
 			<trans-unit id="tx_vjeventdb3_flexform.listPerformerAction">
 				<source>List performers</source>
-			</trans-unit>			
+			</trans-unit>
 			<trans-unit id="tx_vjeventdb3_flexform.showPerformerAction">
 				<source>Show performer details</source>
-			</trans-unit>						
+			</trans-unit>
 			<trans-unit id="tx_vjeventdb3_flexform.links">
 				<source>Links</source>
-			</trans-unit>									
-			<trans-unit id="tx_vjeventdb3_flexform.filter">
-				<source>Filter</source>
-			</trans-unit>	
-			
+			</trans-unit>
 			<trans-unit id="tx_vjeventdb3_flexform.filter">
 				<source>Filter</source>
 			</trans-unit>
-			
 			<trans-unit id="tx_vjeventdb3_day.short.1">
 				<source>Mo</source>
-			</trans-unit>	
+			</trans-unit>
 			<trans-unit id="tx_vjeventdb3_day.short.2">
 				<source>Tu</source>
-			</trans-unit>	
+			</trans-unit>
 			<trans-unit id="tx_vjeventdb3_day.short.3">
 				<source>We</source>
-			</trans-unit>	
+			</trans-unit>
 			<trans-unit id="tx_vjeventdb3_day.short.4">
 				<source>Th</source>
-			</trans-unit>	
+			</trans-unit>
 			<trans-unit id="tx_vjeventdb3_day.short.5">
 				<source>Fr</source>
-			</trans-unit>	
+			</trans-unit>
 			<trans-unit id="tx_vjeventdb3_day.short.6">
 				<source>Sa</source>
-			</trans-unit>	
+			</trans-unit>
 			<trans-unit id="tx_vjeventdb3_day.short.0">
 				<source>Su</source>
-			</trans-unit>	
-			
+			</trans-unit>
 			<trans-unit id="tx_vjeventdb3_day.long.1">
 				<source>Monday</source>
-			</trans-unit>	
+			</trans-unit>
 			<trans-unit id="tx_vjeventdb3_day.long.2">
 				<source>Tuesday</source>
-			</trans-unit>	
+			</trans-unit>
 			<trans-unit id="tx_vjeventdb3_day.long.3">
 				<source>Wednesday</source>
-			</trans-unit>	
+			</trans-unit>
 			<trans-unit id="tx_vjeventdb3_day.long.4">
 				<source>Thursday</source>
-			</trans-unit>	
+			</trans-unit>
 			<trans-unit id="tx_vjeventdb3_day.long.5">
 				<source>Friday</source>
-			</trans-unit>	
+			</trans-unit>
 			<trans-unit id="tx_vjeventdb3_day.long.6">
 				<source>Saturday</source>
-			</trans-unit>	
+			</trans-unit>
 			<trans-unit id="tx_vjeventdb3_day.long.0">
 				<source>Sunday</source>
-			</trans-unit>	
-			
+			</trans-unit>
 			<trans-unit id="tx_vjeventdb3_month.short.1">
 				<source>Jan</source>
-			</trans-unit>	
+			</trans-unit>
 			<trans-unit id="tx_vjeventdb3_month.short.2">
 				<source>Feb</source>
-			</trans-unit>	
+			</trans-unit>
 			<trans-unit id="tx_vjeventdb3_month.short.3">
 				<source>Mar</source>
-			</trans-unit>	
+			</trans-unit>
 			<trans-unit id="tx_vjeventdb3_month.short.4">
 				<source>Apr</source>
-			</trans-unit>	
+			</trans-unit>
 			<trans-unit id="tx_vjeventdb3_month.short.5">
 				<source>May</source>
-			</trans-unit>	
+			</trans-unit>
 			<trans-unit id="tx_vjeventdb3_month.short.6">
 				<source>Jun</source>
-			</trans-unit>	
+			</trans-unit>
 			<trans-unit id="tx_vjeventdb3_month.short.7">
 				<source>Jul</source>
-			</trans-unit>		
+			</trans-unit>
 			<trans-unit id="tx_vjeventdb3_month.short.8">
 				<source>Aug</source>
-			</trans-unit>		
+			</trans-unit>
 			<trans-unit id="tx_vjeventdb3_month.short.9">
 				<source>Sep</source>
-			</trans-unit>			
+			</trans-unit>
 			<trans-unit id="tx_vjeventdb3_month.short.10">
 				<source>Oct</source>
 			</trans-unit>
@@ -374,35 +392,34 @@
 			</trans-unit>
 			<trans-unit id="tx_vjeventdb3_month.short.12">
 				<source>Dec</source>
-			</trans-unit>	
-						
+			</trans-unit>
 			<trans-unit id="tx_vjeventdb3_month.long.1">
 				<source>January</source>
-			</trans-unit>	
+			</trans-unit>
 			<trans-unit id="tx_vjeventdb3_month.long.2">
 				<source>February</source>
-			</trans-unit>	
+			</trans-unit>
 			<trans-unit id="tx_vjeventdb3_month.long.3">
 				<source>March</source>
-			</trans-unit>	
+			</trans-unit>
 			<trans-unit id="tx_vjeventdb3_month.long.4">
 				<source>April</source>
-			</trans-unit>	
+			</trans-unit>
 			<trans-unit id="tx_vjeventdb3_month.long.5">
 				<source>May</source>
-			</trans-unit>	
+			</trans-unit>
 			<trans-unit id="tx_vjeventdb3_month.long.6">
 				<source>June</source>
-			</trans-unit>	
+			</trans-unit>
 			<trans-unit id="tx_vjeventdb3_month.long.7">
 				<source>July</source>
-			</trans-unit>		
+			</trans-unit>
 			<trans-unit id="tx_vjeventdb3_month.long.8">
 				<source>August</source>
-			</trans-unit>		
+			</trans-unit>
 			<trans-unit id="tx_vjeventdb3_month.long.9">
 				<source>September</source>
-			</trans-unit>			
+			</trans-unit>
 			<trans-unit id="tx_vjeventdb3_month.long.10">
 				<source>October</source>
 			</trans-unit>
@@ -411,55 +428,52 @@
 			</trans-unit>
 			<trans-unit id="tx_vjeventdb3_month.long.12">
 				<source>December</source>
-			</trans-unit>						
-
+			</trans-unit>
 			<trans-unit id="tx_vjeventdb3_duration.year">
 				<source>year</source>
-			</trans-unit>		
+			</trans-unit>
 			<trans-unit id="tx_vjeventdb3_duration.years">
 				<source>years</source>
 			</trans-unit>
 			<trans-unit id="tx_vjeventdb3_duration.month">
 				<source>month</source>
-			</trans-unit>		
+			</trans-unit>
 			<trans-unit id="tx_vjeventdb3_duration.months">
 				<source>months</source>
-			</trans-unit>		
+			</trans-unit>
 			<trans-unit id="tx_vjeventdb3_duration.day">
 				<source>day</source>
-			</trans-unit>						
+			</trans-unit>
 			<trans-unit id="tx_vjeventdb3_duration.days">
 				<source>days</source>
-			</trans-unit>						
+			</trans-unit>
 			<trans-unit id="tx_vjeventdb3_duration.hour">
 				<source>hour</source>
-			</trans-unit>			
+			</trans-unit>
 			<trans-unit id="tx_vjeventdb3_duration.hours">
 				<source>hours</source>
-			</trans-unit>	
+			</trans-unit>
 			<trans-unit id="tx_vjeventdb3_duration.minute">
 				<source>minute</source>
-			</trans-unit>			
+			</trans-unit>
 			<trans-unit id="tx_vjeventdb3_duration.minutes">
 				<source>minutes</source>
-			</trans-unit>			
+			</trans-unit>
 			<trans-unit id="tx_vjeventdb3_duration.second">
 				<source>second</source>
-			</trans-unit>						
+			</trans-unit>
 			<trans-unit id="tx_vjeventdb3_duration.seconds">
 				<source>seconds</source>
-			</trans-unit>				
+			</trans-unit>
 			<trans-unit id="tx_vjeventdb3_duration.and">
 				<source>and</source>
 			</trans-unit>
-
 			<trans-unit id="tx_vjeventdb3_not_found.performer">
 				<source>Performer not found.</source>
 			</trans-unit>
 			<trans-unit id="tx_vjeventdb3_not_found.performers">
 				<source>No performers found.</source>
 			</trans-unit>
-
 			<trans-unit id="tx_vjeventdb3_event_order_form.order">
 				<source>Order</source>
 			</trans-unit>
@@ -487,7 +501,6 @@
 			<trans-unit id="tx_vjeventdb3_event_order_form.submit">
 				<source>Submit</source>
 			</trans-unit>
-
 			<trans-unit id="tx_vjeventdb3_flexform.mail">
 				<source>Mail</source>
 			</trans-unit>
@@ -496,18 +509,16 @@
 			</trans-unit>
 			<trans-unit id="tx_vjeventdb3_flexform.mail_subject">
 				<source>Subject</source>
-			</trans-unit>		
+			</trans-unit>
 			<trans-unit id="tx_vjeventdb3_flexform.mail_send_copy_to_sender">
 				<source>Send a message to the sender</source>
-			</trans-unit>		
-	
+			</trans-unit>
 			<trans-unit id="tx_vjeventdb3.order_now">
 				<source>Order now!</source>
-			</trans-unit>	
-			
+			</trans-unit>
 			<trans-unit id="tx_vjeventdb3_translateDateViewHelper.January">
 				<source>January</source>
-			</trans-unit>	
+			</trans-unit>
 			<trans-unit id="tx_vjeventdb3_translateDateViewHelper.February">
 				<source>February</source>
 			</trans-unit>
@@ -516,44 +527,43 @@
 			</trans-unit>
 			<trans-unit id="tx_vjeventdb3_translateDateViewHelper.April">
 				<source>April</source>
-			</trans-unit>			
+			</trans-unit>
 			<trans-unit id="tx_vjeventdb3_translateDateViewHelper.May">
 				<source>May</source>
 			</trans-unit>
 			<trans-unit id="tx_vjeventdb3_translateDateViewHelper.June">
 				<source>June</source>
-			</trans-unit>								
+			</trans-unit>
 			<trans-unit id="tx_vjeventdb3_translateDateViewHelper.July">
 				<source>July</source>
-			</trans-unit>								
+			</trans-unit>
 			<trans-unit id="tx_vjeventdb3_translateDateViewHelper.August">
 				<source>August</source>
 			</trans-unit>
 			<trans-unit id="tx_vjeventdb3_translateDateViewHelper.September">
 				<source>September</source>
-			</trans-unit>								
+			</trans-unit>
 			<trans-unit id="tx_vjeventdb3_translateDateViewHelper.October">
 				<source>October</source>
-			</trans-unit>								
+			</trans-unit>
 			<trans-unit id="tx_vjeventdb3_translateDateViewHelper.November">
 				<source>November</source>
 			</trans-unit>
 			<trans-unit id="tx_vjeventdb3_translateDateViewHelper.December">
 				<source>December</source>
-			</trans-unit>								
-							
+			</trans-unit>
 			<trans-unit id="tx_vjeventdb3_flexform.maxItems">
-				<target>Maximum entries shown</target>
-			</trans-unit>	
+				<source></source>
+			</trans-unit>
 			<trans-unit id="tx_vjeventdb3_flexform.maxYearSections">
-				<target>Maximum years shown</target>
-			</trans-unit>	
+				<source></source>
+			</trans-unit>
 			<trans-unit id="tx_vjeventdb3_flexform.maxMonthSections">
-				<target>Maximum months shown</target>
-			</trans-unit>	
+				<source></source>
+			</trans-unit>
 			<trans-unit id="tx_vjeventdb3_flexform.maxDaySections">
-				<target>Maximum days shown</target>
-			</trans-unit>	
+				<source></source>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>

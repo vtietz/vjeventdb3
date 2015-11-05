@@ -6,10 +6,10 @@ if (!defined ('TYPO3_MODE')) {
 $GLOBALS['TCA']['tx_vjeventdb3_domain_model_event'] = array(
 	'ctrl' => $GLOBALS['TCA']['tx_vjeventdb3_domain_model_event']['ctrl'],
 	'interface' => array(
-		'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, title, subtitle, teasertext, description, images, teaser_images, location, dates, event_category, age_category, prices, performers',
+		'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, title, subtitle, teasertext, description, images, teaser_images, submission_form_mode, location, dates, event_category, age_category, prices, performers',
 	),
 	'types' => array(
-		'1' => array('showitem' => 'sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, hidden;;1, title, subtitle, teasertext, description;;;richtext:rte_transform[mode=ts_links], images, teaser_images, location, dates, event_category, age_category, prices, performers, --div--;LLL:EXT:cms/locallang_ttc.xlf:tabs.access, starttime, endtime'),
+		'1' => array('showitem' => 'sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, hidden;;1, title, subtitle, teasertext, description;;;richtext:rte_transform[mode=ts_links], images, teaser_images, submission_form_mode, location, dates, event_category, age_category, prices, performers, --div--;LLL:EXT:cms/locallang_ttc.xlf:tabs.access, starttime, endtime'),
 	),
 	'palettes' => array(
 		'1' => array('showitem' => ''),
@@ -157,16 +157,29 @@ $GLOBALS['TCA']['tx_vjeventdb3_domain_model_event'] = array(
 
 		),
 		'teaser_images' => array(
-				'exclude' => 1,
-				'label' => 'LLL:EXT:vjeventdb3/Resources/Private/Language/locallang_db.xlf:tx_vjeventdb3_domain_model_event.teaser_images',
-				'config' =>
-				\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::getFileFieldTCAConfig(
-						'teaser_images',
-						array('maxitems' => 10),
-						$GLOBALS['TYPO3_CONF_VARS']['GFX']['imagefile_ext']
+			'exclude' => 1,
+			'label' => 'LLL:EXT:vjeventdb3/Resources/Private/Language/locallang_db.xlf:tx_vjeventdb3_domain_model_event.teaser_images',
+			'config' => 
+			\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::getFileFieldTCAConfig(
+				'teaserImages',
+				array('maxitems' => 10),
+				$GLOBALS['TYPO3_CONF_VARS']['GFX']['imagefile_ext']
+			),
+
+		),
+		'submission_form_mode' => array(
+			'exclude' => 1,
+			'label' => 'LLL:EXT:vjeventdb3/Resources/Private/Language/locallang_db.xlf:tx_vjeventdb3_domain_model_event.submission_form_mode',
+			'config' => array(
+				'type' => 'select',
+				'items' => array(
+					array('-- Label --', 0),
 				),
-		
-		),			
+				'size' => 1,
+				'maxitems' => 1,
+				'eval' => ''
+			),
+		),
 		'location' => array(
 			'exclude' => 1,
 			'label' => 'LLL:EXT:vjeventdb3/Resources/Private/Language/locallang_db.xlf:tx_vjeventdb3_domain_model_event.location',
