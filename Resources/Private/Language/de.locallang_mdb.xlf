@@ -1,36 +1,36 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <xliff version="1.0">
-	<file source-language="en" datatype="plaintext" original="messages" date="2014-06-24T19:33:12Z" product-name="vjeventdb3">
+	<file source-language="en" target-language="de" datatype="plaintext" original="messages" date="2014-06-24T19:33:12Z" product-name="vjeventdb3">
 		<header/>
 		<body>
 
 			<trans-unit id="tx_vjeventdb3_events.frequency.I.0">
-				<source>Once</source>
+				<target>Einmalig</target>
 			</trans-unit>
 			<trans-unit id="tx_vjeventdb3_events.frequency.I.1">
-				<source>Daily</source>
+				<target>Täglich</target>
 			</trans-unit>
 			<trans-unit id="tx_vjeventdb3_events.frequency.I.2">
-				<source>Weekly</source>
+				<target>Wöchentlich</target>
 			</trans-unit>
 			<trans-unit id="tx_vjeventdb3_events.frequency.I.3">
-				<source>Monthly</source>
+				<target>Monatlich</target>
 			</trans-unit>
 			<trans-unit id="tx_vjeventdb3_events.frequency.I.4">
-				<source>Yearly</source>
+				<target>Jährlich</target>
 			</trans-unit>
 			
 			<trans-unit id="tx_vjeventdb3_events.submission_mode.I.0">
-				<source>Default</source>
+				<target>Standard</target>
 			</trans-unit>
 			<trans-unit id="tx_vjeventdb3_events.submission_mode.I.1">
-				<source>Date Selector</source>
+				<target>Datumsauswahl</target>
 			</trans-unit>
 			<trans-unit id="tx_vjeventdb3_events.submission_mode.I.2">
-				<source>Time Selector</source>
+				<target>Zeitauswahl</target>
 			</trans-unit>
 			<trans-unit id="tx_vjeventdb3_events.submission_mode.I.3">
-				<source>Date and Time Selector</source>
+				<target>Datum- und Zeitauswahl</target>
 			</trans-unit>
 			
 		</body>

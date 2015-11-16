@@ -243,8 +243,27 @@ class DateUtils {
 		if($timestamp == 0) {
 			return new DateTime("0000-00-00");
 		}
-		$dateString = date('Y-m-d', $timestamp);
+		$dateString = date('Y-m-d H:i:s', $timestamp);
 		return new DateTime($dateString);
+	}
+	
+	public static function getTimestampFromDayInDateTime(\DateTime $datetime) {
+		return strtotime($datetime->format('Y-m-d'));
+	}
+	
+	/**
+	 * Applies a date time crrection.
+	 * 
+	 * @param \DateTime $datetime The date.
+	 * @param unknown $timeCorrection The correction.
+	 * @return Ambigous <DateTime, \DateTime> The corrected date.
+	 */
+	public static function dateCorrection(\DateTime $datetime, $timeCorrection) {
+		if($correctionSettings) {
+			$starttimeString = date('Y-m-d H:i:s', strtotime($timeCorrection, $datetime->getTimestamp()));
+			$datetime = new DateTime($starttimeString);
+		}
+		return $datetime;
 	}
 	
 }

@@ -552,6 +552,12 @@
 			<trans-unit id="tx_vjeventdb3_translateDateViewHelper.December">
 				<source>December</source>
 			</trans-unit>
+			<trans-unit id="tx_vjeventdb3_translateDateViewHelper.at">
+				<source>at</source>
+			</trans-unit>
+			<trans-unit id="tx_vjeventdb3_translateDateViewHelper.clock">
+				<source></source>
+			</trans-unit>
 			<trans-unit id="tx_vjeventdb3_flexform.maxItems">
 				<source></source>
 			</trans-unit>

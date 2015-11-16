@@ -4,7 +4,8 @@ namespace VJmedia\Vjeventdb3\Controller;
 
 use \VJmedia\Vjeventdb3\ViewHelper\DateItemViewHelper;
 use \VJmedia\Vjeventdb3\ViewModel\SelectOption;
-use TYPO3\CMS\Extensionmanager\ViewHelpers\Format\JsonEncodeViewHelper;
+use \VJmedia\Vjeventdb3\Service\DateUtils;
+use \DateTime;
 
 /***************************************************************
  *
@@ -69,6 +70,30 @@ class EventOrderFormController extends \VJmedia\Vjeventdb3\Controller\AbstractCo
 	protected $dateItemViewHelper = NULL;
 	
 	/**
+	 * Current TranslateDateViewHelper.
+	 *
+	 * @var \VJmedia\Vjeventdb3\ViewHelper\TranslateDateViewHelper
+	 * @inject
+	 */
+	protected $translateDateViewHelper = NULL;
+	
+	/**
+	 * Current TimestampViewHelper.
+	 *
+	 * @var \VJmedia\Vjeventdb3\ViewHelper\TimestampViewHelper
+	 * @inject
+	 */
+	protected $timestampViewHelper = NULL;
+	
+	/**
+	 * dateService
+	 *
+	 * @var \VJmedia\Vjeventdb3\Service\DateService
+	 * @inject
+	 */
+	protected $dateService = NULL;	
+	
+	/**
 	 * action show
 	 *
 	 * @return void
@@ -83,48 +108,126 @@ class EventOrderFormController extends \VJmedia\Vjeventdb3\Controller\AbstractCo
 
 		$this->view->assign('events', $events);
 		$this->view->assign('sr_freecap', \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('sr_freecap'));
-		$this->view->assign('eventsdata', json_encode($this->getEventsData($events)));
+		
+		$eventsData = $this->getEventsData($events, $this->settings['eventOrderForm']['appointmentSelector']['maxItemsPerDate']);
+		$this->view->assign('eventsDataJSON', json_encode($eventsData));
+		$this->view->assign('eventsData', $eventsData);
 		$this->view->assign('data', $this->configurationManager->getContentObject()->data);
 		$this->view->assign('settings', $this->settings);
+		$this->view->assign('selectedTime', $this->getCurrentTime());
+		$this->view->assign('submissionFormMode', $this->getSubmissionFormMode());
+		
 		
 		$event = $this->getCurrentEvent();
-		if(empty($event)) {
-			$event = $events->getFirst();			
+		if(!empty($event)) {
+			$eventOrder->setEvent($event);
+			$this->view->assign('dateItems', $this->getDateItemOptions($event->getDates()));
+			$this->view->assign('eventData', $eventsData[$event->getUid()]);
+			$this->view->assign('submissionFormMode', $this->getSubmissionFormMode($event));
+			$this->view->assign('appointments', $eventsData[$event->getUid()]['appointments']);
 		}
-		
-		$eventOrder->setEvent($event);
-		$this->view->assign('dateItems', $this->getDateItemOptions($event->getDates()));
 		
 		$date = $this->getCurrentDate();
 		if(empty($date)) {
 			$date = $this->objectManager->get('VJmedia\Vjeventdb3\Domain\Model\Date');
+			
 		}
+		else if(!empty($event)) {
+			$filteredAppointments = array();
+			foreach($eventsData[$event->getUid()]['appointments'] as $appointment) {
+				if($appointment['dateUid'] == $date->getUid()) {
+					$filteredAppointments[] = $appointment;
+				}
+			}
+			$this->view->assign('appointments', $filteredAppointments);
+		}
+		
 		$eventOrder->setDate($date);
+		
 		
 	}
 	
-	private function getEventsData($events) {
+	private function getEventsData($events, $maxAppointmentsPerDate) {
 		
 		$result = array();
 		foreach($events as $event) {
 			$item = array();
+			
 			$item['title'] = $event->getTitle();
+			
 			$item['ageCategory'] = array();
 			foreach($event->getAgeCategory() as $ageCategory) {
 				if(!$ageCategory->isHidden()) {
 					$item['ageCategory'][$ageCategory->getUid()] = $ageCategory->getName();
 				}
 			}
+			
 			$item['dates'] = array();
 			foreach($event->getDates() as $date) {
 				if(!$date->isHidden() && $date->getStartDate()) {
-					$item['dates'][$date->getUid()] = $label = $this->getDateLabel($date);
+					$item['dates'][$date->getUid()] = $this->getDateLabel($date);
 				}
 			}
+			
+			
+			$item['appointments'] = array();
+			$appointments = $this->dateService->getAllDates($event->getDates(), new DateTime(), NULL, $maxAppointmentsPerDate);
+			foreach($appointments as $appointment) {
+				if(!$appointment->isHidden() && $appointment->getStartDate()) {
+					$appointmentLabel = $this->translateDateViewHelper->translate(
+							date($this->settings['eventOrderForm']['appointmentSelector']['dateTimeFormat'], $appointment->getStartTimestamp())
+					);
+					$appointmentValue = date('d-m-Y H:i', $appointment->getStartTimestamp());
+					$item['appointments'][$appointmentValue]['label'] = $appointmentLabel;
+					$item['appointments'][$appointmentValue]['value'] = $appointmentValue;
+					$item['appointments'][$appointmentValue]['dateUid'] = $appointment->getUid();
+					$item['appointments'][$appointmentValue]['eventUid'] = $event->getUid();
+					$item['appointments'][$appointmentValue]['startTimestamp'] = $appointment->getStartTimestamp();
+				}
+			}
+				
 			$result[$event->getUid()] = $item;
 		}
 
 		return $result;
+		
+	}
+	
+	/**
+	 * 
+	 * @param \VJmedia\Vjeventdb3\Domain\Model\Event $event
+	 * @return The submission mode.
+	 */
+	private function getSubmissionFormMode($event = NULL) {
+		
+		$submissionMode = array('date' => false, 'time' => false);
+		
+		$definedSubmissionMode = 0;
+		if(!$event || $event->getSubmissionFormMode() == 0) {
+			$definedSubmissionMode = $this->settings['eventOrderForm']['defaultSubmissionMode'];
+		}
+		else {
+			$definedSubmissionMode = $event->getSubmissionFormMode(); 
+		}
+		
+		if(!$definedSubmissionMode) {
+			return array();
+		}
+		
+		if($definedSubmissionMode == 1) {
+			$submissionMode['date'] = true;
+			$submissionMode['time'] = false;
+		}
+		else if($definedSubmissionMode == 2) {
+			$submissionMode['date'] = false;
+			$submissionMode['time'] = true;
+		}
+		else if($definedSubmissionMode == 3) {
+			$submissionMode['date'] = true;
+			$submissionMode['time'] = true;
+		}
+		
+		return $submissionMode;
 		
 	}
 	
@@ -201,13 +304,26 @@ class EventOrderFormController extends \VJmedia\Vjeventdb3\Controller\AbstractCo
 		return $date;
 	}	
 	
+	protected function getCurrentTime() {
+		return $_GET['tx_vjeventdb3_eventdetail']['time'];
+	}
+	
 	/**
 	 * @return void
 	 */
 	protected function initializeSubmitAction(){
+
 		$propertyMappingConfiguration = $this->arguments['eventOrder']->getPropertyMappingConfiguration();
-		$propertyMappingConfiguration->allowAllProperties();
-		$propertyMappingConfiguration->setTypeConverterOption('TYPO3\CMS\Extbase\Property\TypeConverter\PersistentObjectConverter', \TYPO3\CMS\Extbase\Property\TypeConverter\PersistentObjectConverter::CONFIGURATION_CREATION_ALLOWED, TRUE);
+		$propertyMappingConfiguration->allowProperties('appointment');
+		
+		if (isset($this->arguments['eventOrder'])) {
+			$this->arguments['eventOrder']
+			->getPropertyMappingConfiguration()
+			->forProperty('appointment')
+			->setTypeConverterOption('TYPO3\\CMS\\Extbase\\Property\\TypeConverter\\DateTimeConverter',
+					\TYPO3\CMS\Extbase\Property\TypeConverter\DateTimeConverter::CONFIGURATION_DATE_FORMAT,'d-m-Y H:i');
+		}
+		
 	}
 	
 	/**

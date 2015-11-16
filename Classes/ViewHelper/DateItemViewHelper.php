@@ -49,13 +49,13 @@ class DateItemViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHe
      /**
      * Renders a part of a date using the given language key suffix.
      *
-     * @param \DateTime The date.
+     * @param \VJmedia\Vjeventdb3\Domain\Model\Date The date.
      * @param string True if start day shoudl be shown. 
      * @param string The time format.
      * @param string Time adjustment.
      * @return The localized date part.
      */
-    public function render(\VJmedia\Vjeventdb3\Domain\Model\Date $date = NULL, $showStartDay = '', $timeFormat = '', $adjustFrontendTime = '') {
+    public function render($date = NULL, $showStartDay = '', $timeFormat = '', $adjustFrontendTime = '') {
     	
     	if(empty($date)) {
     		return '';

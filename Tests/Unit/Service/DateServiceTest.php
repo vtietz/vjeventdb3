@@ -51,9 +51,9 @@ class DateServiceTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 		$allDates = $this->subject->getAllDates($dates, new DateTime("2012-01-01"), new DateTime("2012-12-31"));
 		
 		// there should be only two dates 
-		$this->assertEquals(2, count($allDates));
 		$this->assertDateTimeEquals(new DateTime("2012-01-01"), $allDates[0]->getStartDate());
 		$this->assertDateTimeEquals(new DateTime("2012-01-05"), $allDates[1]->getStartDate());
+		$this->assertEquals(2, count($allDates));
 	}
 	
 	/**
@@ -268,5 +268,35 @@ class DateServiceTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 		$allDates = $this->subject->getAllDates($dates, new DateTime("2014-01-05"), new DateTime("2014-01-05"));
 		$this->assertEquals(2, count($allDates));
 	}	
+	
+	/**
+	 * Tests if only one date is returnd when the date has Date::FREQUENCY_ONCE.
+	 * 
+	 * @test
+	 */
+	public function getDateItemsShouldReturnOneItemForOnce() {
+		
+		$date = DateMock::getDateMock(new DateTime("2014-01-02"), strtotime("10:00"), new DateTime("2014-01-02"), strtotime("11:00"), Date::FREQUENCY_ONCE, 0);
+		
+		$allDates = $this->subject->getDates($date, new DateTime("2014-01-01"), 5);
+		$this->assertEquals(1, count($allDates));
+		$this->assertDateTimeEquals(new DateTime("2014-01-02"), $allDates[0]->getStartDate());		
+		
+	}  
+	
+	/**
+	 * Tests if getDates() returnes dates until the max item count is reached.
+	 * 
+	 * @test
+	 */
+	public function getDateItemsShouldCreateItemsTillMaxCountReached() {
+	
+		$date = DateMock::getDateMock(new DateTime("2014-01-01"), strtotime("10:00"), new DateTime("2014-03-01"), strtotime("11:00"), Date::FREQUENCY_DAILY, 0);
+	
+		$allDates = $this->subject->getDates($date, new DateTime("2014-01-10"), 10);
+		$this->assertEquals(10, count($allDates));
+		$this->assertDateTimeEquals(new DateTime("2014-01-10"), $allDates[0]->getStartDate());
+	
+	}
 	
 }

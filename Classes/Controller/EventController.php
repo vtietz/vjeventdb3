@@ -135,7 +135,7 @@ class EventController extends \VJmedia\Vjeventdb3\Controller\AbstractEventListCo
 	private function getStartDateTime() {
 		$rangeSettings = $this->getCurrentDateRangeSettings();
 		$startDateTime = $this->getStartTimeFromArguments($rangeSettings);
-		$startDateTime = \VJmedia\Vjeventdb3\Service\EventUtils::dateCorrection($startDateTime, $rangeSettings['startTimeCorrection']);
+		$startDateTime = \VJmedia\Vjeventdb3\Service\DateUtils::dateCorrection($startDateTime, $rangeSettings['startTimeCorrection']);
 		return $startDateTime;
 	}
 	

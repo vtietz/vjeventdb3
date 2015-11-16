@@ -33,14 +33,6 @@ use VJmedia\Vjeventdb3\Domain\Repository\PerformerRepository;
  */
 abstract class AbstractController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController {
 
-	/**
-	 * eventRepository
-	 *
-	 * @var \VJmedia\Vjeventdb3\Domain\Repository\EventRepository
-	 * @inject
-	 */
-	protected $eventRepository = NULL;
-
 	protected function setTemplatePaths($config) {
 		if($partialRootPath = $config['partialRootPath']) {
 			$this->view->setPartialRootPath($partialRootPath);

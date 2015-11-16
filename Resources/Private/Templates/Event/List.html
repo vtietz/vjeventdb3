@@ -71,7 +71,7 @@ Otherwise your changes will be overwritten the next time you save the extension 
 									arguments="{event : date.event}" controller="EventDetail"
 									pageUid="{showEventPage}" class="button"><f:translate key="tx_vjeventdb3.order_now" /></f:link.action></td>
 							<td class="tx-vjeventdb3-event"><f:link.action action="show"
-									arguments="{event : date.event, date : date}" controller="EventDetail"
+									arguments="{event : date.event, date : date, time : date.startTimestamp}" controller="EventDetail"
 									pageUid="{showEventPage}">{date.event.title} <f:render partial="Event/FlatAgeCategoryList" arguments="{ageCategories : date.event.ageCategory}" /></f:link.action></td>
 							<td class="tx-vjeventdb3-performer"><f:render partial="Performer/FlatList"
 									arguments="{performers: date.event.performers, showPerformerPage : showPerformerPage}" /></td>

@@ -18,13 +18,29 @@
 
 		<f:translate key="tx_vjeventdb3_event_order_form.order" />
 		<f:form.select id="events{data.uid}" name="events" options="{events}" property="event" optionValueField="uid" optionLabelField="titleWithAgeCategory" />
-		<f:if condition="{settings.eventOrderForm.selectableAgeCategory}">
+		<f:if condition="{settings.eventOrderForm.enableAgeCategorySelection}">
 			<f:form.select id="ages{data.uid}" name="ageCategory" options="{eventOrder.event.ageCategory}" property="ageCategory" optionValueField="uid" optionLabelField="name" />
 		</f:if>
 		
-		<f:if condition="{settings.eventOrderForm.selectableDate}">
+		<f:if condition="{submissionFormMode.date}">
 			<f:form.select id="dates{data.uid}" name="date" options="{dateItems}" property="date" optionValueField="uid" optionLabelField="label" />
 		</f:if>
+	
+		<f:if condition="{submissionFormMode.time}">
+			<select id="appointments{data.uid}" name="tx_vjeventdb3_eventorderform[eventOrder][appointment]">
+			<f:for each="{appointments}" as="appointment">
+				<f:if condition="{appointment.startTimestamp} == {selectedTime}">
+					<f:then>
+						<option selected="selected" value="{appointment.value}">{appointment.label}</option>
+					</f:then>
+					<f:else>
+						<option value="{appointment.value}">{appointment.label}</option>
+					</f:else>
+				</f:if>
+			</f:for>
+			</select>
+		</f:if>
+	
 	
 	</h1>
 
@@ -85,13 +101,13 @@
 
 <script>
 	
-	var vjeventdb3_eventsdata = <f:format.raw value="{eventsdata}" />;
+	var vjeventdb3_eventsdata = <f:format.raw value="{eventsDataJSON}" />;
+	console.log(vjeventdb3_eventsdata);
 	
 	function vjeventdb3_updateDropDownOptions(dropdown, data) {
-
 	    $(dropdown).empty();
-	    $.each(data, function(val, text) {
-	    	$(dropdown).append(new Option(text, val));
+	    $.each(data, function(value, text) {
+			$(dropdown).append(new Option(text, value));
    		});
 
 	    vjeventdb3_toggleVisibility(dropdown, false);
@@ -116,11 +132,47 @@
 	    }
 	}
 	
+	function vjeventdb3_fillAppointmentSelector(appointments) {
+		var appointmentOptions = {};
+		$.each(appointments, function(value, appointment) {
+			appointmentOptions[appointment.value] = appointment.label;
+		});
+		console.log(appointmentOptions);
+		vjeventdb3_updateDropDownOptions($('#appointments{data.uid}'), appointmentOptions);
+	}
+	
 	$('#events{data.uid}').change(function() {
+		
 		var eventId = $(this).val();
-		console.log('change ' + eventId);
+
 		vjeventdb3_updateDropDownOptions($('#ages{data.uid}'), vjeventdb3_eventsdata[eventId]['ageCategory']);
 		vjeventdb3_updateDropDownOptions($('#dates{data.uid}'), vjeventdb3_eventsdata[eventId]['dates']);
+		vjeventdb3_fillAppointmentSelector(vjeventdb3_eventsdata[eventId]['appointments']);
+		
+	});
+	
+	$('#dates{data.uid}').change(function() {
+		
+		var eventId = $('#events{data.uid}').val();
+		var dateId = $('#dates{data.uid}').val();
+		
+		var filteredAppointments = {};
+		if(dateId) {
+			$.each(vjeventdb3_eventsdata[eventId]['appointments'], function(value, appointment) {
+				if(appointment.dateUid == dateId && appointment.eventUid == eventId) {
+					filteredAppointments.push(appointment);
+				}
+			});
+		}
+		else {
+			$.each(vjeventdb3_eventsdata[eventId]['appointments'], function(value, appointment) {
+				filteredAppointments.push(appointment);
+			});
+			
+		}
+		
+		vjeventdb3_fillAppointmentSelector(filteredAppointments);
+		
 	});
 	
 	// bind unload so that ready is always fired (http://bugs.jquery.com/ticket/8684)
@@ -130,6 +182,7 @@
 		console.log('ready');
 		vjeventdb3_toggleVisibility($('#ages{data.uid}'), true);
 		vjeventdb3_toggleVisibility($('#dates{data.uid}'), true);
+		vjeventdb3_toggleVisibility($('#appointments{data.uid}'), true);
 	});
 	
 		

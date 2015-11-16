@@ -388,7 +388,7 @@ $GLOBALS['TCA']['tx_vjeventdb3_domain_model_event'] = array(
 );
 ## EXTENSION BUILDER DEFAULTS END TOKEN - Everything BEFORE this line is overwritten with the defaults of the extension builder
 
-$TCA['tx_vjeventdb3_domain_model_event']['types']['1'] = array('showitem' => 'sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, hidden;;1, title, subtitle, teasertext, description;;;richtext:rte_transform[mode=ts_links],  --div--;LLL:EXT:cms/locallang_ttc.xlf:tabs.images, teaser_images, images, --div--;Dates, location, prices, dates, --div--;LLL:EXT:cms/locallang_ttc.xlf:tabs.extended, performers, event_category, age_category, --div--;LLL:EXT:cms/locallang_ttc.xlf:tabs.access, starttime, endtime');
+$TCA['tx_vjeventdb3_domain_model_event']['types']['1'] = array('showitem' => 'sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, hidden;;1, title, subtitle, teasertext, description;;;richtext:rte_transform[mode=ts_links],  --div--;LLL:EXT:cms/locallang_ttc.xlf:tabs.images, teaser_images, images, --div--;Dates, location, prices, dates, --div--;LLL:EXT:cms/locallang_ttc.xlf:tabs.extended, performers, event_category, age_category, submission_form_mode, --div--;LLL:EXT:cms/locallang_ttc.xlf:tabs.access, starttime, endtime');
 
 $TCA['tx_vjeventdb3_domain_model_event']['columns']['images']['config']['size'] = 5;
 $TCA['tx_vjeventdb3_domain_model_event']['columns']['teaser_images']['config']['size'] = 5;
@@ -409,3 +409,10 @@ $TCA['tx_vjeventdb3_domain_model_event']['columns']['performers']['config']['wiz
 $TCA['tx_vjeventdb3_domain_model_event']['columns']['prices']['config']['wizards']['suggest'] = array('type' => 'suggest');
 
 $TCA['tx_vjeventdb3_domain_model_event']['columns']['teasertext']['config']['rows'] = 5;
+
+$TCA['tx_vjeventdb3_domain_model_event']['columns']['submission_form_mode']['config']['items'] = array(
+		array('LLL:EXT:vjeventdb3/Resources/Private/Language/locallang_mdb.xlf:tx_vjeventdb3_events.submission_mode.I.0', '0'),
+		array('LLL:EXT:vjeventdb3/Resources/Private/Language/locallang_mdb.xlf:tx_vjeventdb3_events.submission_mode.I.1', '1'),
+		array('LLL:EXT:vjeventdb3/Resources/Private/Language/locallang_mdb.xlf:tx_vjeventdb3_events.submission_mode.I.2', '2'),
+		array('LLL:EXT:vjeventdb3/Resources/Private/Language/locallang_mdb.xlf:tx_vjeventdb3_events.submission_mode.I.3', '3'),
+);

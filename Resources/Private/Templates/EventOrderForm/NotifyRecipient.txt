@@ -8,6 +8,7 @@ You received a reservation request for the following event:
 
 Category:		{eventOrder.ageCategory.name}
 Date:			{m:dateItem(date: '{eventOrder.date}', showStartDay: '{settings.eventOrderForm.showStartDay}', timeFormat: '{settings.eventOrderForm.timeFormat}', adjustFrontendTime: '{settings.adjustFrontendTime}')}
+Appointment:	{m:timestamp(time:'{eventOrder.appointment.timestamp}', format:'{settings.shortDateFormat}')} {m:timestamp(time:'{eventOrder.appointment.timestamp}', format:'{settings.timeFormat}')}
 
 from your website {url}.
 

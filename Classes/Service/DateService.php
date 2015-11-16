@@ -29,60 +29,82 @@ class DateService {
 	}
 	
 	/**
-	 * Calculates all dates from a set of dates with a certain frequency (e.g. Daily) between a goven time period.
+	 * Calculates all dates from a set of dates with a certain frequency (e.g. Daily) between a given time period.
 	 * 
 	 * @param array $dates The source of dates.
-	 * @param \DateTime $rangeStartDateTime The start date for valid dates.
-	 * @param \DateTime $rangeEndDateTime The end date for valid dates.
+	 * @param \DateTime $startDateTime The start date for valid dates.
+	 * @param \DateTime $endDateTime The end date for valid dates.
 	 */
-	public function getAllDates($dates, \DateTime $rangeStartDateTime, \DateTime $rangeEndDateTime, $maxItemsPerDate = 50) {
-
+	public function getAllDates($dates, $startDateTime, $endDateTime, $maxItemsPerDate = 50) {
 		
 		$theDates = array();
+		/* @var $date \VJmedia\Vjeventdb3\Domain\Model\Date */
 		foreach($dates as $date) {
-			/* @var $date \VJmedia\Vjeventdb3\Domain\Model\Date */
-
-			if(!$date->getStartDate()) {
-				$this->log('Skipping date '.$date->getUid().' since no start date given. This is strange because start date is a required field.',2);
+			if($date->isHidden()) {
 				continue;
 			}
-			
-			$startDateTime = $rangeStartDateTime->getTimestamp() !== FALSE ? $rangeStartDateTime : $date->getStartDate();
-			$endDateTime = $rangeEndDateTime->getTimestamp() !== FALSE ? $rangeEndDateTime : $date->getEndDate();
-			
-			if(($date->getFrequency() == Date::FREQUENCY_ONCE) && ($this->isValid($date, $startDateTime, $endDateTime)) &&
-						(DateService::getStartTimestamp($date) >= $startDateTime->getTimestamp())) {
-					$this->addDate($theDates, $date);
-					continue;
+			$appointments = $this->getDates($date, $startDateTime, $endDateTime, $maxItemsPerDate);
+			foreach($appointments as $appointment) {
+				$this->addDate($theDates, $appointment);
 			}
-			
-			if($date->getFrequency() == Date::FREQUENCY_DAILY) {
-				$startOffset = DateUtils::datediff(DateUtils::DIFF_MODE_DAYS, $date->getStartDate(), $startDateTime);
-				$this->makeNewDates($theDates, $maxItemsPerDate, $date, "day", $startOffset, $startDateTime, $endDateTime);
-			}
-			elseif($date->getFrequency() == Date::FREQUENCY_WEEKLY) {
-				$startOffset = DateUtils::datediff(DateUtils::DIFF_MODE_WEEKS, $date->getStartDate(), $startDateTime);
-				$this->makeNewDates($theDates, $maxItemsPerDate, $date, "week", $startOffset, $startDateTime, $endDateTime);
-			}				
-			elseif($date->getFrequency() == Date::FREQUENCY_MONTHLY) {
-				$startOffset = DateUtils::datediff(DateUtils::DIFF_MODE_MONTHS, $date->getStartDate(), $startDateTime);
-				$this->makeNewDates($theDates, $maxItemsPerDate, $date, "month", $startOffset, $startDateTime, $endDateTime);
-			}				
-			elseif($date->getFrequency() == Date::FREQUENCY_YEARLY) {
-				$startOffset = DateUtils::datediff(DateUtils::DIFF_MODE_YEARS, $date->getStartDate(), $startDateTime);
-				$this->makeNewDates($theDates, $maxItemsPerDate, $date, "year", $startOffset, $startDateTime, $endDateTime);
-			}				
 		} 
 		
-		$this->removeKeysFromArray($theDates);
 		$this->sortDates($theDates);
 		
 		return $theDates;
 		
 	}
 	
+	/**
+	 * @param \VJmedia\Vjeventdb3\Domain\Model\Date $date The date object.
+	 * @param \DateTime $startDateTime
+	 * @param \DateTime $endDateTime
+	 * @param number $maxItems
+	 * @return multitype:|multitype:\VJmedia\Vjeventdb3\Domain\Model\Date
+	 */
+	public function getDates($date, $startDateTime, $endDateTime, $maxItems = 50) {
+		
+		if(!is_object($date)) {
+			return array();
+		}
+		
+		if(!$date->getStartDate()) {
+			$this->log('Skipping date '.$date->getUid().' since no start date given. This is strange because start date is a required field.',2);
+			return array();
+		}
+
+		if(!$this->isValid($date, $startDateTime, $endDateTime)) { 
+			return array();
+		}
+			
+		$theDates = array();
+		if($date->getFrequency() == Date::FREQUENCY_ONCE) {
+			$this->addDate($theDates, $date);
+		}
+			
+		if($date->getFrequency() == Date::FREQUENCY_DAILY) {
+			$startOffset = DateUtils::datediff(DateUtils::DIFF_MODE_DAYS, $date->getStartDate(), $startDateTime);
+			$this->makeNewDates($theDates, $maxItems, $date, "day", $startOffset, $startDateTime, $endDateTime);
+		}
+		elseif($date->getFrequency() == Date::FREQUENCY_WEEKLY) {
+			$startOffset = DateUtils::datediff(DateUtils::DIFF_MODE_WEEKS, $date->getStartDate(), $startDateTime);
+			$this->makeNewDates($theDates, $maxItems, $date, "week", $startOffset, $startDateTime, $endDateTime);
+		}
+		elseif($date->getFrequency() == Date::FREQUENCY_MONTHLY) {
+			$startOffset = DateUtils::datediff(DateUtils::DIFF_MODE_MONTHS, $date->getStartDate(), $startDateTime);
+			$this->makeNewDates($theDates, $maxItems, $date, "month", $startOffset, $startDateTime, $endDateTime);
+		}
+		elseif($date->getFrequency() == Date::FREQUENCY_YEARLY) {
+			$startOffset = DateUtils::datediff(DateUtils::DIFF_MODE_YEARS, $date->getStartDate(), $startDateTime);
+			$this->makeNewDates($theDates, $maxItems, $date, "year", $startOffset, $startDateTime, $endDateTime);
+		}
+
+		return $theDates;
+		
+	}
 	
 	public function sortDates(&$dates) {
+		$this->removeKeysFromArray($dates);
 		usort($dates, array('VJmedia\Vjeventdb3\Service\DateService', 'compare'));
 	}
 
@@ -112,7 +134,7 @@ class DateService {
 	 * @param \VJmedia\Vjeventdb3\Domain\Model\Date $date The date.
 	 * @param string $intervalString The relative time which is added to each new date.
 	 */
-	private function makeNewDates(&$dates, $maxItemsPerDate, $date, $intervalString, $startOffset, $startDateTime, $endDateTime) {
+	private function makeNewDates(&$dates, $maxItemsPerDate, $date, $intervalString, $startOffset, $startDateTime, $endDateTime = NULL) {
 		$date = unserialize(serialize($date)); // make deep copy of the object
 		// make the first date
 		if($startOffset > 0) {
@@ -135,20 +157,14 @@ class DateService {
 	 * @param \DateTime $endDateTime The end date of the range.
 	 * @return boolean True if the date has valid dates regarding the given range. Otherwise false. 
 	 */
-	private static function isValid($date, $startDateTime, $endDateTime) {
-		
-		// not valid if start date is before the start date of the given date range
-		/*
-		if(DateService::getStartTimestamp($date) < $startDateTime->getTimestamp()) {
-			return false;
-		}
-		*/
+	private static function isValid(\VJmedia\Vjeventdb3\Domain\Model\Date $date, \DateTime $startDateTime, \DateTime $endDateTime = NULL) {
 		
 		// not valid if start date is after end date of the given range
-		if($endDateTime && ($date->getStartDate()->getTimestamp() > $endDateTime->getTimestamp())) {
-			return false;
+		if($endDateTime) {
+			if($endDateTime && ($date->getStartDate()->getTimestamp() > $endDateTime->getTimestamp())) {
+				return false;
+			}
 		}
-		
 		
 		if($date->getEndDate() && ($date->getEndDate()->getTimestamp() !== FALSE)) {
 		
@@ -176,6 +192,7 @@ class DateService {
 	 */
 	private function addDate(&$dates, $date) {
 		$timestamp = $this->getStartTimestamp($date);
+		$date->setStartTimestamp($timestamp);
 		$existingDate = $dates[$timestamp]; 
 		if($existingDate && $existingDate->getSorting() > $date->getSorting()) {
 			return $dates;
@@ -190,7 +207,7 @@ class DateService {
 	 * @return integer The start timestamp.
 	 */
 	private function getStartTimestamp($date) {
-		return $date->getStartDate()->getTimestamp() + $date->getStartTime();
+		return DateUtils::getTimestampFromDayInDateTime($date->getStartDate()) + $date->getStartTime();
 	}
 	
 	/**
