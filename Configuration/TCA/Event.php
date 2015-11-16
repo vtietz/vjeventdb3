@@ -161,7 +161,7 @@ $GLOBALS['TCA']['tx_vjeventdb3_domain_model_event'] = array(
 			'label' => 'LLL:EXT:vjeventdb3/Resources/Private/Language/locallang_db.xlf:tx_vjeventdb3_domain_model_event.teaser_images',
 			'config' => 
 			\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::getFileFieldTCAConfig(
-				'teaserImages',
+				'teaser_images',
 				array('maxitems' => 10),
 				$GLOBALS['TYPO3_CONF_VARS']['GFX']['imagefile_ext']
 			),
