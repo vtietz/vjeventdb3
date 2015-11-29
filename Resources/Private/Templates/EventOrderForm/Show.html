@@ -137,7 +137,6 @@
 		$.each(appointments, function(value, appointment) {
 			appointmentOptions[appointment.value] = appointment.label;
 		});
-		console.log(appointmentOptions);
 		vjeventdb3_updateDropDownOptions($('#appointments{data.uid}'), appointmentOptions);
 	}
 	

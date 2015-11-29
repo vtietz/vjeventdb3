@@ -343,6 +343,7 @@ class EventOrderFormController extends \VJmedia\Vjeventdb3\Controller\AbstractCo
 	
 	protected function sendMailToRecipient(\VJmedia\Vjeventdb3\Domain\Model\EventOrder $eventOrder) {
 		$message = $this->getMessage($eventOrder, 'NotifyRecipient');
+		$eventOrder->setMailtorecipient($message);
 		if($this->getSetting('mail_recipient')) {
 			$subject = sprintf($this->getSetting('mail_subject', '%s'), $eventOrder->getEvent()->getTitle());
 			$this->sendMail($this->getSetting('mail_recipient'), $subject , $message, $eventOrder->getEmail());
@@ -351,6 +352,7 @@ class EventOrderFormController extends \VJmedia\Vjeventdb3\Controller\AbstractCo
 	
 	protected function sendMailToSender(\VJmedia\Vjeventdb3\Domain\Model\EventOrder $eventOrder) {
 		$message = $this->getMessage($eventOrder, 'NotifySender');
+		$eventOrder->setMailtosender($message);
 		if($this->getSetting('mail_recipient')) {
 			$subject = sprintf($this->getSetting('mail_subject', '%s'), $eventOrder->getEvent()->getTitle());
 			$this->sendMail($eventOrder->getEmail(), $subject , $message, $this->getSetting('mail_recipient'));

@@ -6,8 +6,12 @@ You received a reservation request for the following event:
 
 *{eventOrder.event.title}*
 
+<f:if condition="{submissionFormMode.date}">
 Category:		{eventOrder.ageCategory.name}
+</f:if>
+<f:if condition="{eventOrder.date}">
 Date:			{m:dateItem(date: '{eventOrder.date}', showStartDay: '{settings.eventOrderForm.showStartDay}', timeFormat: '{settings.eventOrderForm.timeFormat}', adjustFrontendTime: '{settings.adjustFrontendTime}')}
+</f:if>
 Appointment:	{m:timestamp(time:'{eventOrder.appointment.timestamp}', format:'{settings.shortDateFormat}')} {m:timestamp(time:'{eventOrder.appointment.timestamp}', format:'{settings.timeFormat}')}
 
 from your website {url}.

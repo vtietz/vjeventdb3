@@ -185,12 +185,12 @@ plugin.tx_vjeventdb3.settings {
 		showStartDay = 0
 		
 		appointmentSelector {
-			maxItemsPerDate = 10
+			maxItemsPerDate = 20
 			lookForward = +1 year
 			dateTimeFormat = l, d.m.Y\, H:i \c\l\o\c\k
 		}
 		
-		enableAgeCategorySelection = 1
+		enableAgeCategorySelection = 0
 		
 		# When 'Deafult' is selected as submission mode then use this mode
 		# 0: none; 1: date selector only; 2: time selector only; 3: both 

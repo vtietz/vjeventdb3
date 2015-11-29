@@ -478,3 +478,8 @@ $pluginSignature = $extensionName.'_'.$pluginName;
 $TCA['tt_content']['types']['list']['subtypes_excludelist'][$pluginSignature] = 'layout,select_key,pages';
 $TCA['tt_content']['types']['list']['subtypes_addlist'][$pluginSignature] = 'pi_flexform';
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPiFlexFormValue($pluginSignature, 'FILE:EXT:'.$_EXTKEY . '/Configuration/FlexForm/flexform_eventOrder.xml');
+
+## EXTENSION BUILDER DEFAULTS END TOKEN - Everything BEFORE this line is overwritten with the defaults of the extension builder
+$GLOBALS['TCA']['tx_vjeventdb3_domain_model_eventorder']['ctrl']['label'] = 'surname';
+$GLOBALS['TCA']['tx_vjeventdb3_domain_model_eventorder']['ctrl']['label_alt'] = 'surname, name';
+$GLOBALS['TCA']['tx_vjeventdb3_domain_model_eventorder']['ctrl']['label_alt_force'] = 1;
