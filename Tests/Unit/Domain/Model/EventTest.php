@@ -5,7 +5,7 @@ namespace VJmedia\Vjeventdb3\Tests\Unit\Domain\Model;
 /***************************************************************
  *  Copyright notice
  *
- *  (c) 2015 Vincent Tietz <vincent.tietz@vj-media.de>, vjmedia
+ *  (c) 2016 Vincent Tietz <vincent.tietz@vj-media.de>, vjmedia
  *
  *  All rights reserved
  *
@@ -242,6 +242,29 @@ class EventTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 
 		$this->subject->removeTeaserImage($teaserImage);
 
+	}
+
+	/**
+	 * @test
+	 */
+	public function getSubmissionFormModeReturnsInitialValueForInteger() {
+		$this->assertSame(
+			0,
+			$this->subject->getSubmissionFormMode()
+		);
+	}
+
+	/**
+	 * @test
+	 */
+	public function setSubmissionFormModeForIntegerSetsSubmissionFormMode() {
+		$this->subject->setSubmissionFormMode(12);
+
+		$this->assertAttributeEquals(
+			12,
+			'submissionFormMode',
+			$this->subject
+		);
 	}
 
 	/**
@@ -553,6 +576,58 @@ class EventTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 		$this->inject($this->subject, 'performers', $performersObjectStorageMock);
 
 		$this->subject->removePerformer($performer);
+
+	}
+
+	/**
+	 * @test
+	 */
+	public function getExceptionalDatesReturnsInitialValueForExceptionalDate() {
+		$newObjectStorage = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
+		$this->assertEquals(
+			$newObjectStorage,
+			$this->subject->getExceptionalDates()
+		);
+	}
+
+	/**
+	 * @test
+	 */
+	public function setExceptionalDatesForObjectStorageContainingExceptionalDateSetsExceptionalDates() {
+		$exceptionalDate = new \VJmedia\Vjeventdb3\Domain\Model\ExceptionalDate();
+		$objectStorageHoldingExactlyOneExceptionalDates = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
+		$objectStorageHoldingExactlyOneExceptionalDates->attach($exceptionalDate);
+		$this->subject->setExceptionalDates($objectStorageHoldingExactlyOneExceptionalDates);
+
+		$this->assertAttributeEquals(
+			$objectStorageHoldingExactlyOneExceptionalDates,
+			'exceptionalDates',
+			$this->subject
+		);
+	}
+
+	/**
+	 * @test
+	 */
+	public function addExceptionalDateToObjectStorageHoldingExceptionalDates() {
+		$exceptionalDate = new \VJmedia\Vjeventdb3\Domain\Model\ExceptionalDate();
+		$exceptionalDatesObjectStorageMock = $this->getMock('TYPO3\\CMS\\Extbase\\Persistence\\ObjectStorage', array('attach'), array(), '', FALSE);
+		$exceptionalDatesObjectStorageMock->expects($this->once())->method('attach')->with($this->equalTo($exceptionalDate));
+		$this->inject($this->subject, 'exceptionalDates', $exceptionalDatesObjectStorageMock);
+
+		$this->subject->addExceptionalDate($exceptionalDate);
+	}
+
+	/**
+	 * @test
+	 */
+	public function removeExceptionalDateFromObjectStorageHoldingExceptionalDates() {
+		$exceptionalDate = new \VJmedia\Vjeventdb3\Domain\Model\ExceptionalDate();
+		$exceptionalDatesObjectStorageMock = $this->getMock('TYPO3\\CMS\\Extbase\\Persistence\\ObjectStorage', array('detach'), array(), '', FALSE);
+		$exceptionalDatesObjectStorageMock->expects($this->once())->method('detach')->with($this->equalTo($exceptionalDate));
+		$this->inject($this->subject, 'exceptionalDates', $exceptionalDatesObjectStorageMock);
+
+		$this->subject->removeExceptionalDate($exceptionalDate);
 
 	}
 }

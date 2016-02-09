@@ -34,7 +34,7 @@ $GLOBALS['TCA']['tx_vjeventdb3_domain_model_event'] = array(
 			'starttime' => 'starttime',
 			'endtime' => 'endtime',
 		),
-		'searchFields' => 'title,subtitle,teasertext,description,images,teaser_images,submission_form_mode,location,dates,event_category,age_category,prices,performers,',
+		'searchFields' => 'title,subtitle,teasertext,description,images,teaser_images,submission_form_mode,location,dates,event_category,age_category,prices,performers,exceptional_dates,',
 		'dynamicConfigFile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath($_EXTKEY) . 'Configuration/TCA/Event.php',
 		'iconfile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath($_EXTKEY) . 'Resources/Public/Icons/tx_vjeventdb3_domain_model_event.gif'
 	),
@@ -353,6 +353,33 @@ $GLOBALS['TCA']['tx_vjeventdb3_domain_model_eventorder'] = array(
 		'iconfile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath($_EXTKEY) . 'Resources/Public/Icons/tx_vjeventdb3_domain_model_eventorder.gif'
 	),
 );
+
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addLLrefForTCAdescr('tx_vjeventdb3_domain_model_exceptionaldate', 'EXT:vjeventdb3/Resources/Private/Language/locallang_csh_tx_vjeventdb3_domain_model_exceptionaldate.xlf');
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::allowTableOnStandardPages('tx_vjeventdb3_domain_model_exceptionaldate');
+$GLOBALS['TCA']['tx_vjeventdb3_domain_model_exceptionaldate'] = array(
+		'ctrl' => array(
+				'title'    => 'LLL:EXT:vjeventdb3/Resources/Private/Language/locallang_db.xlf:tx_vjeventdb3_domain_model_exceptionaldate',
+				'label' => 'start_date',
+				'tstamp' => 'tstamp',
+				'crdate' => 'crdate',
+				'cruser_id' => 'cruser_id',
+				'dividers2tabs' => TRUE,
+				'sortby' => 'sorting',
+				'versioningWS' => 2,
+				'versioning_followPages' => TRUE,
+				'languageField' => 'sys_language_uid',
+				'transOrigPointerField' => 'l10n_parent',
+				'transOrigDiffSourceField' => 'l10n_diffsource',
+				'delete' => 'deleted',
+				'enablecolumns' => array(
+						'disabled' => 'hidden',
+				),
+				'searchFields' => 'start_date,start_time,title,text,',
+				'dynamicConfigFile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath($_EXTKEY) . 'Configuration/TCA/ExceptionalDate.php',
+				'iconfile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath($_EXTKEY) . 'Resources/Public/Icons/tx_vjeventdb3_domain_model_exceptionaldate.gif'
+		),
+);
+
 ## EXTENSION BUILDER DEFAULTS END TOKEN - Everything BEFORE this line is overwritten with the defaults of the extension builder
 
 $extensionName = strtolower(\TYPO3\CMS\Core\Utility\GeneralUtility::underscoredToUpperCamelCase($_EXTKEY));
@@ -479,7 +506,6 @@ $TCA['tt_content']['types']['list']['subtypes_excludelist'][$pluginSignature] = 
 $TCA['tt_content']['types']['list']['subtypes_addlist'][$pluginSignature] = 'pi_flexform';
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPiFlexFormValue($pluginSignature, 'FILE:EXT:'.$_EXTKEY . '/Configuration/FlexForm/flexform_eventOrder.xml');
 
-## EXTENSION BUILDER DEFAULTS END TOKEN - Everything BEFORE this line is overwritten with the defaults of the extension builder
 $GLOBALS['TCA']['tx_vjeventdb3_domain_model_eventorder']['ctrl']['label'] = 'surname';
 $GLOBALS['TCA']['tx_vjeventdb3_domain_model_eventorder']['ctrl']['label_alt'] = 'surname, name';
 $GLOBALS['TCA']['tx_vjeventdb3_domain_model_eventorder']['ctrl']['label_alt_force'] = 1;

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <xliff version="1.0">
-	<file source-language="en" datatype="plaintext" original="messages" date="2015-11-05T20:54:15Z" product-name="vjeventdb3">
+	<file source-language="en" datatype="plaintext" original="messages" date="2016-02-09T21:11:25Z" product-name="vjeventdb3">
 		<header/>
 		<body>
 			<trans-unit id="tx_vjeventdb3_domain_model_event">
@@ -44,6 +44,9 @@
 			</trans-unit>
 			<trans-unit id="tx_vjeventdb3_domain_model_event.performers">
 				<source>Performers</source>
+			</trans-unit>
+			<trans-unit id="tx_vjeventdb3_domain_model_event.exceptional_dates">
+				<source>Exceptional Dates</source>
 			</trans-unit>
 			<trans-unit id="tx_vjeventdb3_domain_model_location">
 				<source>Location</source>
@@ -188,6 +191,21 @@
 			</trans-unit>
 			<trans-unit id="tx_vjeventdb3_domain_model_eventorder.date">
 				<source>Date</source>
+			</trans-unit>
+			<trans-unit id="tx_vjeventdb3_domain_model_exceptionaldate">
+				<source>Exceptional Date</source>
+			</trans-unit>
+			<trans-unit id="tx_vjeventdb3_domain_model_exceptionaldate.start_date">
+				<source>Start Date</source>
+			</trans-unit>
+			<trans-unit id="tx_vjeventdb3_domain_model_exceptionaldate.start_time">
+				<source>Start Time</source>
+			</trans-unit>
+			<trans-unit id="tx_vjeventdb3_domain_model_exceptionaldate.title">
+				<source>Title</source>
+			</trans-unit>
+			<trans-unit id="tx_vjeventdb3_domain_model_exceptionaldate.text">
+				<source>Text</source>
 			</trans-unit>
 			<trans-unit id="tx_vjeventdb3_domain_model_price.quanity">
 				<source>Quanity</source>

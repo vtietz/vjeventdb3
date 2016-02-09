@@ -6,10 +6,10 @@ if (!defined ('TYPO3_MODE')) {
 $GLOBALS['TCA']['tx_vjeventdb3_domain_model_event'] = array(
 	'ctrl' => $GLOBALS['TCA']['tx_vjeventdb3_domain_model_event']['ctrl'],
 	'interface' => array(
-		'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, title, subtitle, teasertext, description, images, teaser_images, submission_form_mode, location, dates, event_category, age_category, prices, performers',
+		'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, title, subtitle, teasertext, description, images, teaser_images, submission_form_mode, location, dates, exceptional_dates, event_category, age_category, prices, performers',
 	),
 	'types' => array(
-		'1' => array('showitem' => 'sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, hidden;;1, title, subtitle, teasertext, description;;;richtext:rte_transform[mode=ts_links], images, teaser_images, submission_form_mode, location, dates, event_category, age_category, prices, performers, --div--;LLL:EXT:cms/locallang_ttc.xlf:tabs.access, starttime, endtime'),
+		'1' => array('showitem' => 'sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, hidden;;1, title, subtitle, teasertext, description;;;richtext:rte_transform[mode=ts_links], images, teaser_images, submission_form_mode, location, dates, exceptional_dates, event_category, age_category, prices, performers, --div--;LLL:EXT:cms/locallang_ttc.xlf:tabs.access, starttime, endtime'),
 	),
 	'palettes' => array(
 		'1' => array('showitem' => ''),
@@ -236,6 +236,25 @@ $GLOBALS['TCA']['tx_vjeventdb3_domain_model_event'] = array(
 			),
 
 		),
+		'exceptional_dates' => array(
+			'exclude' => 1,
+			'label' => 'LLL:EXT:vjeventdb3/Resources/Private/Language/locallang_db.xlf:tx_vjeventdb3_domain_model_event.exceptional_dates',
+			'config' => array(
+				'type' => 'inline',
+				'foreign_table' => 'tx_vjeventdb3_domain_model_exceptionaldate',
+				'foreign_table_where' => 'AND tx_vjeventdb3_domain_model_exceptionaldate.pid=###CURRENT_PID###',					
+				'foreign_field' => 'event',
+				'maxitems'      => 9999,
+				'appearance' => array(
+					'collapseAll' => 0,
+					'levelLinksPosition' => 'top',
+					'showSynchronizationLink' => 1,
+					'showPossibleLocalizationRecords' => 1,
+					'useSortable' => 1,
+					'showAllLocalizationLink' => 1
+				),
+			),
+		),			
 		'event_category' => array(
 			'exclude' => 1,
 			'label' => 'LLL:EXT:vjeventdb3/Resources/Private/Language/locallang_db.xlf:tx_vjeventdb3_domain_model_event.event_category',

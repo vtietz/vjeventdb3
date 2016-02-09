@@ -27,21 +27,21 @@ namespace VJmedia\Vjeventdb3\Tests\Unit\Domain\Model;
  ***************************************************************/
 
 /**
- * Test case for class \VJmedia\Vjeventdb3\Domain\Model\Date.
+ * Test case for class \VJmedia\Vjeventdb3\Domain\Model\ExceptionalDate.
  *
  * @copyright Copyright belongs to the respective authors
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  *
  * @author Vincent Tietz <vincent.tietz@vj-media.de>
  */
-class DateTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
+class ExceptionalDateTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 	/**
-	 * @var \VJmedia\Vjeventdb3\Domain\Model\Date
+	 * @var \VJmedia\Vjeventdb3\Domain\Model\ExceptionalDate
 	 */
 	protected $subject = NULL;
 
 	protected function setUp() {
-		$this->subject = new \VJmedia\Vjeventdb3\Domain\Model\Date();
+		$this->subject = new \VJmedia\Vjeventdb3\Domain\Model\ExceptionalDate();
 	}
 
 	protected function tearDown() {
@@ -91,76 +91,6 @@ class DateTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 		$this->assertAttributeEquals(
 			12,
 			'startTime',
-			$this->subject
-		);
-	}
-
-	/**
-	 * @test
-	 */
-	public function getEndDateReturnsInitialValueForDateTime() {
-		$this->assertEquals(
-			NULL,
-			$this->subject->getEndDate()
-		);
-	}
-
-	/**
-	 * @test
-	 */
-	public function setEndDateForDateTimeSetsEndDate() {
-		$dateTimeFixture = new \DateTime();
-		$this->subject->setEndDate($dateTimeFixture);
-
-		$this->assertAttributeEquals(
-			$dateTimeFixture,
-			'endDate',
-			$this->subject
-		);
-	}
-
-	/**
-	 * @test
-	 */
-	public function getEndTimeReturnsInitialValueForInteger() {
-		$this->assertSame(
-			0,
-			$this->subject->getEndTime()
-		);
-	}
-
-	/**
-	 * @test
-	 */
-	public function setEndTimeForIntegerSetsEndTime() {
-		$this->subject->setEndTime(12);
-
-		$this->assertAttributeEquals(
-			12,
-			'endTime',
-			$this->subject
-		);
-	}
-
-	/**
-	 * @test
-	 */
-	public function getFrequencyReturnsInitialValueForInteger() {
-		$this->assertSame(
-			0,
-			$this->subject->getFrequency()
-		);
-	}
-
-	/**
-	 * @test
-	 */
-	public function setFrequencyForIntegerSetsFrequency() {
-		$this->subject->setFrequency(12);
-
-		$this->assertAttributeEquals(
-			12,
-			'frequency',
 			$this->subject
 		);
 	}

@@ -83,6 +83,13 @@ class Event extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	protected $teaserImages = NULL;
 
 	/**
+	 * submissionFormMode
+	 *
+	 * @var integer
+	 */
+	protected $submissionFormMode = 0;
+
+	/**
 	 * location
 	 *
 	 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\VJmedia\Vjeventdb3\Domain\Model\Location>
@@ -126,11 +133,12 @@ class Event extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	protected $performers = NULL;
 
 	/**
-	 * submissionFormMode
+	 * exceptionalDates
 	 *
-	 * @var integer
+	 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\VJmedia\Vjeventdb3\Domain\Model\ExceptionalDate>
+	 * @cascade remove
 	 */
-	protected $submissionFormMode = 0;
+	protected $exceptionalDates = NULL;
 
 	/**
 	 * __construct
@@ -157,6 +165,7 @@ class Event extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 		$this->ageCategory = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
 		$this->prices = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
 		$this->performers = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
+		$this->exceptionalDates = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
 	}
 
 	/**
@@ -579,6 +588,45 @@ class Event extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 */
 	public function setSubmissionFormMode($submissionFormMode) {
 		$this->submissionFormMode = $submissionFormMode;
+	}
+
+	/**
+	 * Adds a ExceptionalDate
+	 *
+	 * @param \VJmedia\Vjeventdb3\Domain\Model\ExceptionalDate $exceptionalDate
+	 * @return void
+	 */
+	public function addExceptionalDate(\VJmedia\Vjeventdb3\Domain\Model\ExceptionalDate $exceptionalDate) {
+		$this->exceptionalDates->attach($exceptionalDate);
+	}
+
+	/**
+	 * Removes a ExceptionalDate
+	 *
+	 * @param \VJmedia\Vjeventdb3\Domain\Model\ExceptionalDate $exceptionalDateToRemove The ExceptionalDate to be removed
+	 * @return void
+	 */
+	public function removeExceptionalDate(\VJmedia\Vjeventdb3\Domain\Model\ExceptionalDate $exceptionalDateToRemove) {
+		$this->exceptionalDates->detach($exceptionalDateToRemove);
+	}
+
+	/**
+	 * Returns the exceptionalDates
+	 *
+	 * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\VJmedia\Vjeventdb3\Domain\Model\ExceptionalDate> $exceptionalDates
+	 */
+	public function getExceptionalDates() {
+		return $this->exceptionalDates;
+	}
+
+	/**
+	 * Sets the exceptionalDates
+	 *
+	 * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\VJmedia\Vjeventdb3\Domain\Model\ExceptionalDate> $exceptionalDates
+	 * @return void
+	 */
+	public function setExceptionalDates(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $exceptionalDates) {
+		$this->exceptionalDates = $exceptionalDates;
 	}
 
 }

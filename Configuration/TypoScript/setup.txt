@@ -192,7 +192,7 @@ plugin.tx_vjeventdb3.settings {
 		
 		enableAgeCategorySelection = 0
 		
-		# When 'Deafult' is selected as submission mode then use this mode
+		# When 'Default' is selected as submission mode then use this mode
 		# 0: none; 1: date selector only; 2: time selector only; 3: both 
 		defaultSubmissionMode = 2
 		

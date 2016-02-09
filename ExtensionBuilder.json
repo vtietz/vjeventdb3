@@ -168,6 +168,16 @@
                             "relationType": "manyToMany",
                             "relationWire": "[wired]",
                             "uid": "502161536557"
+                        },
+                        {
+                            "foreignRelationClass": "",
+                            "lazyLoading": false,
+                            "propertyIsExcludeField": true,
+                            "relationDescription": "",
+                            "relationName": "exceptionalDates",
+                            "relationType": "zeroToMany",
+                            "relationWire": "[wired]",
+                            "uid": "242071025132"
                         }
                     ]
                 }
@@ -246,8 +256,8 @@
         {
             "config": {
                 "position": [
-                    69,
-                    205
+                    65,
+                    200
                 ]
             },
             "name": "New Model Object",
@@ -356,8 +366,8 @@
         {
             "config": {
                 "position": [
-                    69,
-                    353
+                    67,
+                    391
                 ]
             },
             "name": "New Model Object",
@@ -406,8 +416,8 @@
         {
             "config": {
                 "position": [
-                    70,
-                    496
+                    71,
+                    650
                 ]
             },
             "name": "New Model Object",
@@ -547,8 +557,8 @@
         {
             "config": {
                 "position": [
-                    71,
-                    644
+                    77,
+                    794
                 ]
             },
             "name": "New Model Object",
@@ -985,6 +995,86 @@
                     ]
                 }
             }
+        },
+        {
+            "config": {
+                "position": [
+                    965,
+                    373
+                ]
+            },
+            "name": "New Model Object",
+            "value": {
+                "actionGroup": {
+                    "_default0_list": false,
+                    "_default1_show": false,
+                    "_default2_new_create": false,
+                    "_default3_edit_update": false,
+                    "_default4_delete": false,
+                    "customActions": []
+                },
+                "name": "ExceptionalDate",
+                "objectsettings": {
+                    "addDeletedField": true,
+                    "addHiddenField": true,
+                    "addStarttimeEndtimeFields": false,
+                    "aggregateRoot": true,
+                    "categorizable": false,
+                    "description": "",
+                    "mapToTable": "",
+                    "parentClass": "",
+                    "sorting": true,
+                    "type": "Entity",
+                    "uid": "566139653185"
+                },
+                "propertyGroup": {
+                    "properties": [
+                        {
+                            "allowedFileTypes": "",
+                            "maxItems": "1",
+                            "propertyDescription": "",
+                            "propertyIsExcludeField": true,
+                            "propertyIsRequired": true,
+                            "propertyName": "startDate",
+                            "propertyType": "NativeDate",
+                            "uid": "518643154539"
+                        },
+                        {
+                            "allowedFileTypes": "",
+                            "maxItems": "1",
+                            "propertyDescription": "",
+                            "propertyIsExcludeField": true,
+                            "propertyIsRequired": false,
+                            "propertyName": "startTime",
+                            "propertyType": "Time",
+                            "uid": "483464057289"
+                        },
+                        {
+                            "allowedFileTypes": "",
+                            "maxItems": "1",
+                            "propertyDescription": "",
+                            "propertyIsExcludeField": true,
+                            "propertyIsRequired": false,
+                            "propertyName": "title",
+                            "propertyType": "String",
+                            "uid": "593120668516"
+                        },
+                        {
+                            "allowedFileTypes": "",
+                            "maxItems": "1",
+                            "propertyDescription": "",
+                            "propertyIsExcludeField": true,
+                            "propertyIsRequired": false,
+                            "propertyName": "text",
+                            "propertyType": "RichText",
+                            "uid": "471054513113"
+                        }
+                    ]
+                },
+                "relationGroup": {
+                    "relations": []
+                }
+            }
         }
     ],
     "properties": {
@@ -1181,10 +1271,22 @@
                 "terminal": "SOURCES",
                 "uid": "1031799716667"
             }
+        },
+        {
+            "src": {
+                "moduleId": 0,
+                "terminal": "relationWire_6",
+                "uid": "242071025132"
+            },
+            "tgt": {
+                "moduleId": 12,
+                "terminal": "SOURCES",
+                "uid": "566139653185"
+            }
         }
     ],
     "log": {
-        "last_modified": "2015-11-05 08:54",
+        "last_modified": "2016-02-09 09:11",
         "extension_builder_version": "6.2.0",
         "be_user": " (1)"
     }
