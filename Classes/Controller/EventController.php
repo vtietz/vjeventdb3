@@ -100,6 +100,7 @@ class EventController extends \VJmedia\Vjeventdb3\Controller\AbstractEventListCo
 		
 		$allEventDates = $this->getAllDateEvents($startDateTime, $endDateTime);
 		$this->getDateService()->sortDates($allEventDates);
+		
 		$allEventDates = $this->getDateService()->limitDates($allEventDates, $this->getSetting('maxItems'));
 		
 		$this->view->assign('dates', $allEventDates);

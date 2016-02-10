@@ -121,6 +121,37 @@ class DateService {
 		return array_slice($dates, 0, $limit);
 	}
 	
+	/**
+	 * Adds all dates which match exactly one exceptional date.
+	 * @param unknown $allEventDates The dates.
+	 * @param unknown $exceptionalDates The exceptional dates.
+	 */
+	public function addExceptionalDates($allEventDates, $exceptionalDates) {
+		foreach ($allEventDates as $date) {
+			$this->addExceptionalDate($date, $exceptionalDates);
+		}
+		return $allEventDates;
+	}
+	
+	/**
+	 * Adds an exceptional date to the date if it exists.
+	 * @param unknown $date
+	 * @param unknown $exceptionalDates
+	 */
+	public function addExceptionalDate($date, $exceptionalDates) {
+		
+		foreach ($exceptionalDates as $exceptionalDate) {
+
+			$exceptionalDateTimestamp = DateUtils::getTimestampFromDayInDateTime($exceptionalDate->getStartDate()) +
+				$exceptionalDate->getStartTime();
+			
+			if($date->getStartTimestamp() == $exceptionalDateTimestamp) {
+				$date->setExceptionalDate($exceptionalDate);
+				// only one exception is possible per date
+				return;
+			}
+		}
+	}
 	
 	private function removeKeysFromArray($array) {
 		$theArray = array();

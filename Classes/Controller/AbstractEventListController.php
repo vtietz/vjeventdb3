@@ -58,6 +58,14 @@ abstract class AbstractEventListController extends \VJmedia\Vjeventdb3\Controlle
 	protected $dateRepository = NULL;
 	
 	/**
+	 * exceptionalDateRepository
+	 *
+	 * @var \VJmedia\Vjeventdb3\Domain\Repository\ExceptionalDateRepository
+	 * @inject
+	 */
+	protected $exceptionalDateRepository = NULL;	
+	
+	/**
 	 * priceCategoryRepository
 	 *
 	 * @var \VJmedia\Vjeventdb3\Domain\Repository\PriceCategoryRepository
@@ -225,11 +233,30 @@ abstract class AbstractEventListController extends \VJmedia\Vjeventdb3\Controlle
 	protected function getDatesOfEvent(\VJmedia\Vjeventdb3\Domain\Model\Event $event, \DateTime $startDateTime, \DateTime $endDateTime, $maxItemsPerDate = 50) {
 	
 		$eventDates = $this->getDateService()->getAllDates($event->getDates(), $startDateTime, $endDateTime, $maxItemsPerDate);
+		$this->getDateService()->addExceptionalDates($eventDates, $event->getExceptionalDates());
+		
+		if($this->settings['list']['hideExceptionalDates']) {
+			$eventDates = $this->filterExceptionalDates($eventDates);
+		}
+		
 		foreach($eventDates as $date) {
 			$date->setEvent($event);
 			$date->setDuration($this->getDateService()->getDuration($date));
 		}
 		return $eventDates;
+	}
+	
+	protected function filterExceptionalDates($eventDates) {
+
+		$theDates = array();
+		foreach ($eventDates as $eventDate) {
+			if(!$eventDate->getExceptionalDate()) {
+				$theDates[] = $eventDate;
+			}
+		}
+		
+		return $theDates;
+		
 	}
 
 

@@ -126,3 +126,10 @@ $GLOBALS['TCA']['tx_vjeventdb3_domain_model_exceptionaldate'] = array(
 	),
 );
 ## EXTENSION BUILDER DEFAULTS END TOKEN - Everything BEFORE this line is overwritten with the defaults of the extension builder
+
+$TCA['tx_vjeventdb3_domain_model_exceptionaldate']['types']['1'] =  array('showitem' => 'sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, hidden;;1, start_date, start_time, --div--;LLL:EXT:cms/locallang_ttc.xlf:tabs.extended,title, text;;;richtext:rte_transform[mode=ts_links], ');
+
+// $TCA['tx_vjeventdb3_domain_model_date']['ctrl']['hideTable'] = 1;
+$TCA['tx_vjeventdb3_domain_model_exceptionaldate']['ctrl']['label'] = 'start_date';
+$TCA['tx_vjeventdb3_domain_model_exceptionaldate']['ctrl']['label_alt'] = 'start_time,title';
+$TCA['tx_vjeventdb3_domain_model_exceptionaldate']['ctrl']['label_alt_force'] = 1;

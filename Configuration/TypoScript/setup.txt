@@ -69,6 +69,11 @@ plugin.tx_vjeventdb3.settings {
 		
 		timeFormat = H:i
 		
+		# Defines the visibility of exceptional dates in list view
+		# 0: exceptional dates are shown with title text
+		# 1: exceptional dates are not shown
+		hideExceptionalDates = 1
+		
 	}
 	
 	datepicker {

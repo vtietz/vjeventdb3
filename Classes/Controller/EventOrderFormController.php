@@ -60,6 +60,14 @@ class EventOrderFormController extends \VJmedia\Vjeventdb3\Controller\AbstractCo
 	 * @inject
 	 */
 	protected $dateRepository = NULL;
+
+	/**
+	 * exceptionalDateRepository
+	 *
+	 * @var \VJmedia\Vjeventdb3\Domain\Repository\ExceptionalDateRepository
+	 * @inject
+	 */
+	protected $exceptionalDateRepository = NULL;
 	
 	/**
 	 * Current DateItemViewHelper.
@@ -172,6 +180,9 @@ class EventOrderFormController extends \VJmedia\Vjeventdb3\Controller\AbstractCo
 			
 			$item['appointments'] = array();
 			$appointments = $this->dateService->getAllDates($event->getDates(), new DateTime(), NULL, $maxAppointmentsPerDate);
+			
+			$appointments = $this->getFilteredAppointmentsByExceptionalDates($appointments, $event->getExceptionalDates());
+				
 			foreach($appointments as $appointment) {
 				if(!$appointment->isHidden() && $appointment->getStartDate()) {
 					$appointmentLabel = $this->translateDateViewHelper->translate(
@@ -190,6 +201,21 @@ class EventOrderFormController extends \VJmedia\Vjeventdb3\Controller\AbstractCo
 		}
 
 		return $result;
+		
+	}
+	
+	private function getFilteredAppointmentsByExceptionalDates($appointments, $exceptionalDates) {
+		
+		$this->dateService->addExceptionalDates($appointments, $exceptionalDates);
+		
+		$theAppointments = array();
+		foreach ($appointments as $appointment) {
+			if(!$appointment->getExceptionalDate()) {
+				$theAppointments[] = $appointment;
+			}
+		}
+		
+		return $theAppointments;
 		
 	}
 	

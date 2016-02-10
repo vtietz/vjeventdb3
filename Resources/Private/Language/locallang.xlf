@@ -588,6 +588,11 @@
 			<trans-unit id="tx_vjeventdb3_flexform.maxDaySections">
 				<source></source>
 			</trans-unit>
+			
+			<trans-unit id="tx_vjeventdb3_exceptionalDates.default_title">
+				<source>Cancelled</source>
+			</trans-unit>
+			
 		</body>
 	</file>
 </xliff>

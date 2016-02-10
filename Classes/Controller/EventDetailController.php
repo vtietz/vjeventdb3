@@ -50,6 +50,8 @@ class EventDetailController extends \VJmedia\Vjeventdb3\Controller\AbstractEvent
 	public function showAction(\VJmedia\Vjeventdb3\Domain\Model\Event $event, \VJmedia\Vjeventdb3\Domain\Model\Date $date = null) {
 
 		$this->view->assign('event', $event);
+		
+		$this->view->assign('exceptionalDate', $this->getExceptionalDate($event, $date, $this->getCurrentTime()));
 		$this->view->assign('selectedDate', $date);
 		
 		if($this->anyDateShouldBeShown()) {
@@ -111,6 +113,28 @@ class EventDetailController extends \VJmedia\Vjeventdb3\Controller\AbstractEvent
 		
 	}
 	
+	/**
+	 * @param \VJmedia\Vjeventdb3\Domain\Model\Event $event
+	 * @param \VJmedia\Vjeventdb3\Domain\Model\Date $date 
+	 */
+	private function getExceptionalDate($event, $date, $time) {
+
+		$exceptionalDates = $event->getExceptionalDates();
+
+		if(!$time || !$exceptionalDates) {
+			return;
+		}
+		
+		foreach($exceptionalDates as $exceptionalDate) {
+			$exceptionalDateTimestamp = DateUtils::getTimestampFromDayInDateTime($exceptionalDate->getStartDate()) +
+				$exceptionalDate->getStartTime();
+			if($time == $exceptionalDateTimestamp) {
+				return $exceptionalDate;
+			}
+		}
+		
+	}
+	
 	private function anyDateShouldBeShown() {
 		return $this->getSetting('show.dates.show') || $this->getSetting('show.allDates.show') || $this->getSetting('show.nextDates.show') || $this->getSetting('show.nextDate.show');
 	}
@@ -155,6 +179,12 @@ class EventDetailController extends \VJmedia\Vjeventdb3\Controller\AbstractEvent
 		
 		return null;
 	}
+	
+
+	protected function getCurrentTime() {
+		return intval($_GET['tx_vjeventdb3_eventdetail']['time']);
+	}
+	
 	
 
 }
