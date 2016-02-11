@@ -22,7 +22,16 @@
 				</f:else>
 			</f:if>
 		</div>
-		<div class="exceptional-date-text"><f:format.html>{exceptionalDate.text}</f:format.html></div>
+		<div class="exceptional-date-text">
+			<f:if condition="text">
+				<f:then>
+					<f:format.html>{exceptionalDate.text}</f:format.html>
+				</f:then>
+				<f:else>
+					<f:translate key="tx_vjeventdb3_exceptionalDates.default_text" />
+				</f:else>
+			</f:if>
+		</div>
 	</f:if>
 	
 	<f:if condition="{settings.show.teaserText.show}">

@@ -582,6 +582,9 @@
 			<trans-unit id="tx_vjeventdb3_exceptionalDates.default_title">
 				<target>Fällt aus</target>
 			</trans-unit>
+			<trans-unit id="tx_vjeventdb3_exceptionalDates.default_description">
+				<target>Dieses Ereignis findet nicht statt.</target>
+			</trans-unit>				
 
 
 		</body>

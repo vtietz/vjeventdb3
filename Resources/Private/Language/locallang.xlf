@@ -592,6 +592,9 @@
 			<trans-unit id="tx_vjeventdb3_exceptionalDates.default_title">
 				<source>Cancelled</source>
 			</trans-unit>
+			<trans-unit id="tx_vjeventdb3_exceptionalDates.default_description">
+				<source>This event is cancelled.</source>
+			</trans-unit>			
 			
 		</body>
 	</file>
