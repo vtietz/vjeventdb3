@@ -127,6 +127,11 @@ class DateService {
 	 * @param unknown $exceptionalDates The exceptional dates.
 	 */
 	public function addExceptionalDates($allEventDates, $exceptionalDates) {
+		
+		if(!$exceptionalDates) {
+			return $allEventDates;
+		}
+		
 		foreach ($allEventDates as $date) {
 			$this->addExceptionalDate($date, $exceptionalDates);
 		}
@@ -139,6 +144,10 @@ class DateService {
 	 * @param unknown $exceptionalDates
 	 */
 	public function addExceptionalDate($date, $exceptionalDates) {
+		
+		if(!$exceptionalDates) {
+			return;
+		}
 		
 		foreach ($exceptionalDates as $exceptionalDate) {
 

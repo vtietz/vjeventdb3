@@ -21,6 +21,12 @@
 			<trans-unit id="tx_vjeventdb3_domain_model_event.images">
 				<target>Bilder</target>
 			</trans-unit>
+			<trans-unit id="tx_vjeventdb3_domain_model_event.teaser_images">
+				<source>Teaser Bilder</source>
+			</trans-unit>
+			<trans-unit id="tx_vjeventdb3_domain_model_event.submission_form_mode">
+				<source>Formulartyp</source>
+			</trans-unit>			
 			<trans-unit id="tx_vjeventdb3_domain_model_event.location">
 				<target>Ort</target>
 			</trans-unit>
@@ -39,6 +45,9 @@
 			<trans-unit id="tx_vjeventdb3_domain_model_event.performers">
 				<target>Durchführende</target>
 			</trans-unit>
+			<trans-unit id="tx_vjeventdb3_domain_model_event.exceptional_dates">
+				<source>Ausnahmetermine</source>
+			</trans-unit>			
 			<trans-unit id="tx_vjeventdb3_domain_model_location">
 				<target>Ort</target>
 			</trans-unit>
@@ -174,6 +183,10 @@
 			<trans-unit id="tx_vjeventdb3_domain_model_price.unit">
 				<target>Preis-Einheit</target>
 			</trans-unit>
+			<trans-unit id="tx_vjeventdb3_flexform.maxItems">
+ 	          	<target>Maximale Anzahl von Elementen</target>
+            </trans-unit>
+			
 			
 			<trans-unit id="tx_vjeventdb3_events.frequency.I.0">
 				<target>Einmalig</target>

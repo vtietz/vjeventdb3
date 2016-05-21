@@ -206,6 +206,10 @@ class EventOrderFormController extends \VJmedia\Vjeventdb3\Controller\AbstractCo
 	
 	private function getFilteredAppointmentsByExceptionalDates($appointments, $exceptionalDates) {
 		
+		if(!$exceptionalDates) {
+			return $appointments;
+		}
+				
 		$this->dateService->addExceptionalDates($appointments, $exceptionalDates);
 		
 		$theAppointments = array();
