@@ -34,7 +34,7 @@
 				</f:if>
 				<f:for each="{day.dates}" as="date" iteration="iterator">
 					<f:cycle values="{0: 'odd', 1: 'even'}" as="rowtype">
-						<tr class="{rowtype}">
+						<tr class="{rowtype} {f:if(condition: '{date.exceptionalDate}', then:'exceptional-date', else: '')}">
 							<td>
 							<f:link.action action="show" pluginName="EventDetail" controller="EventDetail" arguments="{event : date.event, date : date}" pageUid="{showEventPage}">{date.event.title}
 							<br /> <f:render partial="Event/FlatAgeCategoryList" arguments="{ageCategories : date.event.ageCategory}" /></f:link.action>
