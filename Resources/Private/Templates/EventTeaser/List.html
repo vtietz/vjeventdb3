@@ -36,7 +36,9 @@
 					<f:cycle values="{0: 'odd', 1: 'even'}" as="rowtype">
 						<tr class="{rowtype} {f:if(condition: '{date.exceptionalDate}', then:'exceptional-date', else: '')}">
 							<td>
-							<f:link.action action="show" pluginName="EventDetail" controller="EventDetail" arguments="{event : date.event, date : date}" pageUid="{showEventPage}">{date.event.title}
+								<f:link.action action="show"
+										arguments="{event : date.event, date : date, time : date.startTimestamp}" controller="EventDetail"
+										pageUid="{showEventPage}">{date.event.title}
 							<br /> <f:render partial="Event/FlatAgeCategoryList" arguments="{ageCategories : date.event.ageCategory}" /></f:link.action>
 							</f:link.action></td>
 							<td><m:timestamp time="{date.startTime}" format="{settings.list.timeFormat}" adjust="{settings.adjustFrontendTime}" />&nbsp;<f:translate key="tx_vjeventdb3_domain_model_date.clock" /></td>
